@@ -1,0 +1,21 @@
+Telefonunu kanepe minderlerinin arasında mı kaybettin ve sessizde mi? Herhangi bir telefondan gizli bir cümle gönder; sessizde olsa bile son ses çalsın. Çevrim içi telefon bulucular yalnızca internete bağlı bir telefonu çaldırabilir. SMS Ring için şebeke yeterli.
+
+🔒 SÖZLE DEĞİL, TASARIMLA GİZLİ
+SMS Ring’in internet izni yok. İşletim sistemi her bağlantıyı kendisi engeller; verilerin telefonundan çıkamaz. Hesap, reklam, analiz ya da sunucu yok.
+
+👀 AÇIK KAYNAK: KENDİN DOĞRULA
+Kodun tamamı herkese açık. Oku, derle, kontrol et.
+
+✨ ÖZELLİKLER
+🔔 Sessizde veya titreşimde bile son ses
+🎲 Kendi dilinde 2–6 kolay kelimeden rastgele cümle ya da kendi cümlen
+📱 Herkese ya da yalnızca seçtiğin numaralara izin ver
+💬 Android: bildirim erişimine izin verirseniz WhatsApp, Messenger, Telegram, Signal veya başka herhangi bir uygulamayla da çalışır. Her şey telefonunuzda kalır, tamamen gizli.
+⏱️ 15 saniyeden 5 dakikaya kadar çalar
+📳 İsteğe bağlı titreşim
+🌙 İzin verirsen Rahatsız Etmeyin’de de çalar
+🔓 Yalnızca siz durdurabilirsiniz: PIN veya parmak izi istenir
+🧪 Deneme çalması ve mesaj simülatörü, tamamen çevrimdışı
+🌍 20 dilde kullanılabilir
+
+iPhone: Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, cümlen geldiğinde onu uyandıran 1 dakikalık bir Kestirmeler otomasyonu kurmanda sana rehberlik eder.

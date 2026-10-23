@@ -1,0 +1,17 @@
+#!/bin/sh
+# Blocks commits whose generated files are stale. Enabled by `npm install`
+# (the "prepare" script sets core.hooksPath to .githooks). Skip once with
+# `git commit --no-verify`.
+set -e
+
+staged=$(git diff --cached --name-only)
+
+# App icons and splash screens: sources in assets/, the script, or the outputs.
+if printf '%s\n' "$staged" | grep -qE '^(assets/|scripts/generate-app-assets\.mjs|android/app/src/main/res/(mipmap|drawable)|ios/App/App/Assets\.xcassets/|(public|site)/(favicon\.svg|apple-touch-icon\.png))'; then
+  npm run --silent assets:check
+fi
+
+# Native strings and store listings generated from the app's locales.
+if printf '%s\n' "$staged" | grep -qE '^(src/i18n/locales/|scripts/generate-native-locales\.mjs|android/app/src/main/res/values|ios/App/App/.*\.lproj/|fastlane/)'; then
+  npm run --silent locales:check
+fi

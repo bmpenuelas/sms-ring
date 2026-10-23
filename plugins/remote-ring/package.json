@@ -1,0 +1,31 @@
+{
+  "name": "capacitor-remote-ring",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Capacitor plugin: ring the device at full volume when a trusted trigger (an SMS on Android, a Shortcuts automation on iOS) carries the configured passphrase. No network code.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "license": "MIT",
+  "files": [
+    "src/",
+    "android/src/",
+    "android/build.gradle",
+    "ios/Sources/",
+    "Package.swift"
+  ],
+  "capacitor": {
+    "android": {
+      "src": "android"
+    },
+    "ios": {
+      "src": "ios"
+    }
+  },
+  "peerDependencies": {
+    "@capacitor/core": "^8.0.0"
+  }
+}

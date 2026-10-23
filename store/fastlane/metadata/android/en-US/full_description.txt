@@ -1,0 +1,21 @@
+Lost your phone between the sofa cushions, on silent? Text it a secret phrase from any phone and it rings at full volume, even on silent. Online phone finders can only ring a phone that’s connected to the internet. SMS Ring just needs mobile signal.
+
+🔒 PRIVATE BY DESIGN, NOT BY PROMISE
+SMS Ring has no internet permission. The operating system itself blocks every connection, so your data physically cannot leave your phone. No accounts, no ads, no analytics, no servers.
+
+👀 OPEN SOURCE: VERIFY IT YOURSELF
+Every line of code is public. Read it, build it, check it.
+
+✨ FEATURES
+🔔 Full volume, even on silent or vibrate
+🎲 Random passphrase of 2 to 6 easy words in your language, or write your own
+📱 Allow anyone, or only the numbers you choose
+💬 Android: also works with WhatsApp, Messenger, Telegram, Signal or any other app if you allow notification access. It stays on your phone, fully private.
+⏱️ Ring for 15 seconds up to 5 minutes
+📳 Optional vibration
+🌙 Rings through Do Not Disturb if you allow it
+🔓 Only you can stop it: stopping asks for your PIN or fingerprint
+🧪 Test ring and a message simulator, all offline
+🌍 Available in 20 languages
+
+iPhone: Apple doesn’t let apps read messages. SMS Ring guides you through a 1-minute Shortcuts automation that wakes it when your passphrase arrives.

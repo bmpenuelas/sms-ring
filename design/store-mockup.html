@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SMS Ring · Store search mockup</title>
+<!-- Design board, not part of the app build. Shows the app icon
+     (../assets/icon.svg) among other (fictional) apps in store search results.
+     Works opened from disk or via the dev server. -->
+<style>
+  :root { --page: #eef0f4; --ink: #14161f; --dim: #5f6475; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 18px 14px 40px; background: var(--page); color: var(--ink); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  h1 { margin: 0 0 4px; font-size: 22px; font-weight: 900; }
+  .lead { margin: 0 0 12px; color: var(--dim); font-size: 13px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 14px; }
+  .ic svg, .ic img { display: block; width: 100%; height: 100%; }
+  .toggle { margin-inline-start: auto; padding: 8px 12px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 800; font-size: 12px; border: 0; cursor: pointer; }
+  .phones { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+  /* ---------- Play Store ---------- */
+  .play { --bg: #fff; --tx: #1f1f1f; --mut: #5f6368; --chip: #e8eaed; --bar: #f1f3f4; --acc: #01875f; }
+  .dark .play { --bg: #131314; --tx: #e3e3e3; --mut: #a8abaf; --chip: #2a2b2e; --bar: #2a2b2e; --acc: #9ccfb3; }
+  .play { background: var(--bg); color: var(--tx); font-family: Roboto, system-ui, sans-serif; }
+  .play .search { display: flex; align-items: center; gap: 10px; margin: 8px 12px 10px; padding: 0 14px; height: 46px; border-radius: 23px; background: var(--bar); font-size: 15px; }
+  .play .search i { width: 14px; height: 14px; border: 2px solid var(--mut); border-radius: 50%; position: relative; flex: none; }
+  .play .chips { display: flex; gap: 8px; margin: 0 12px 6px; }
+  .play .chips b { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--chip); font-size: 12px; font-weight: 500; color: var(--mut); }
+  .play .row { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; padding: 9px 16px; }
+  .play .ic { width: 56px; height: 56px; border-radius: 22%; overflow: hidden; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); }
+  .play .t { font-size: 15px; line-height: 1.25; font-weight: 500; }
+  .play .d { font-size: 12.5px; color: var(--mut); margin-top: 2px; }
+  .play .ad { font-weight: 700; color: var(--tx); margin-inline-end: 4px; }
+
+  /* ---------- App Store ---------- */
+  .ios { --bg: #fff; --tx: #000; --mut: #8a8a8e; --field: #eeeef0; --get: #eeeef0; --acc: #007aff; --sep: #e5e5ea; }
+  .dark .ios { --bg: #000; --tx: #fff; --mut: #8d8d93; --field: #1c1c1e; --get: #2c2c2e; --acc: #0a84ff; --sep: #2c2c2e; }
+  .ios { background: var(--bg); color: var(--tx); font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; }
+  .ios .head { margin: 6px 16px 8px; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+  .ios .search { display: flex; align-items: center; gap: 8px; margin: 0 16px 8px; padding: 0 10px; height: 36px; border-radius: 10px; background: var(--field); font-size: 16px; }
+  .ios .search i { width: 12px; height: 12px; border: 2px solid var(--mut); border-radius: 50%; flex: none; }
+  .ios .card { padding: 10px 16px 12px; border-bottom: 0.5px solid var(--sep); }
+  .ios .top { display: grid; grid-template-columns: 62px 1fr auto; gap: 12px; align-items: center; }
+  .ios .ic { width: 62px; height: 62px; border-radius: 22.4%; overflow: hidden; box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12); }
+  .ios .t { font-size: 15.5px; font-weight: 600; line-height: 1.2; }
+  .ios .d { font-size: 13px; color: var(--mut); margin-top: 2px; }
+  .ios .stars { font-size: 11px; color: var(--mut); margin-top: 3px; letter-spacing: 1px; }
+  .ios .get { padding: 5px 18px; border-radius: 999px; background: var(--get); color: var(--acc); font-weight: 800; font-size: 14px; }
+  .ios .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .ios .shots i { aspect-ratio: 9 / 16; border-radius: 12px; display: block; }
+
+  /* phone frame */
+  .frame { width: 360px; border-radius: 34px; padding: 10px; background: #0b0c10; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25); }
+  .screen { height: 700px; border-radius: 26px; overflow: hidden; }
+  .status { display: flex; justify-content: space-between; padding: 10px 22px 4px; font-size: 12.5px; font-weight: 700; }
+  .label { text-align: center; font-weight: 900; font-size: 13px; margin-top: 8px; color: var(--dim); }
+</style>
+</head>
+<body>
+  <h1>SMS Ring in store search</h1>
+  <p class="lead">The app icon (assets/icon.svg) among other apps. All other apps, names and numbers are made up for comparison.</p>
+  <div class="bar" id="bar"><button class="toggle" id="dark">Dark mode</button></div>
+
+  <div class="phones">
+    <div><div class="frame"><div class="screen play" id="playBig"></div></div><div class="label">Google Play</div></div>
+    <div><div class="frame"><div class="screen ios" id="iosBig"></div></div><div class="label">App Store</div></div>
+  </div>
+
+<script>
+// Fictional neighbours in the results (generic glyphs, invented names).
+const g = (bgc, body) => `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="${bgc}"/>${body}</svg>`
+const OTHERS = [
+  { name: 'Clap to Find', dev: 'Brightloop Apps', sub: 'Clap and your phone answers', rating: '4.3', size: '9 MB',
+    icon: g('#3b82f6', '<g fill="#fff"><rect x="30" y="26" width="18" height="46" rx="9" transform="rotate(-14 39 49)"/><rect x="52" y="26" width="18" height="46" rx="9" transform="rotate(14 61 49)"/></g><g stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M50 12v8M34 16l4 6M66 16l-4 6"/></g>') },
+  { name: 'LoudBell Alarm', dev: 'Northwind Tools', sub: 'The loudest alarm clock', rating: '4.5', size: '12 MB',
+    icon: g('#f97316', '<path d="M50 20c-12 0-20 9-20 20v15l-8 10h56l-8-10V40c0-11-8-20-20-20Z" fill="#fff"/><circle cx="50" cy="72" r="6" fill="#fff"/>') },
+  { name: 'Pocket Locator', dev: 'Mapleworks', sub: 'Locate a lost device', rating: '4.1', size: '22 MB',
+    icon: g('#22c55e', '<path d="M50 84s22-20 22-38a22 22 0 0 0-44 0c0 18 22 38 22 38Z" fill="#fff"/><circle cx="50" cy="45" r="8" fill="#22c55e"/>') },
+  { name: 'Whistle Finder', dev: 'Pebble Labs', sub: 'Whistle to find your phone', rating: '4.0', size: '6 MB',
+    icon: g('#8b5cf6', '<circle cx="44" cy="56" r="18" fill="#fff"/><rect x="44" y="38" width="34" height="14" rx="4" fill="#fff"/><circle cx="44" cy="56" r="6" fill="#8b5cf6"/>') },
+  { name: 'Tone Studio', dev: 'Lumen Audio', sub: 'Make your own ringtones', rating: '4.6', size: '31 MB',
+    icon: g('#ec4899', '<circle cx="40" cy="66" r="11" fill="#fff"/><rect x="47" y="26" width="7" height="42" rx="3" fill="#fff"/><path d="M54 26c12 3 18 10 18 20-4-6-10-9-18-9Z" fill="#fff"/>') },
+  { name: 'Sound Seeker', dev: 'Harbor Mobile', sub: 'Find things by sound', rating: '3.9', size: '14 MB',
+    icon: g('#0ea5e9', '<circle cx="50" cy="50" r="7" fill="#fff"/><g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"><path d="M34 34a22 22 0 0 0 0 32M66 34a22 22 0 0 1 0 32M24 24a36 36 0 0 0 0 52M76 24a36 36 0 0 1 0 52"/></g>') },
+]
+const ME = { name: 'SMS Ring – Loud Phone Finder', dev: 'SMS Ring · open source', sub: 'Text a phrase, it rings loud', rating: '4.8', size: '3 MB' }
+
+// Simple stand-ins for SMS Ring's store screenshots.
+const shot = (body, bgc = '#ff5a4e') => `<svg viewBox="0 0 90 160" style="display:block;width:100%;height:100%"><rect width="90" height="160" fill="${bgc}"/>${body}</svg>`
+const MY_SHOTS = [
+  shot('<text x="10" y="26" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">Text a phrase.</text><text x="10" y="40" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">It rings loud.</text><rect x="20" y="58" width="50" height="88" rx="10" fill="#14161f"/><rect x="24" y="62" width="42" height="80" rx="7" fill="#f9f9f9"/><circle cx="45" cy="100" r="13" fill="#ffc21a" stroke="#14161f" stroke-width="2.5"/>'),
+  shot('<rect x="0" y="0" width="90" height="160" fill="#fff"/><text x="10" y="24" font-size="9" font-weight="900" fill="#14161f" font-family="Arial, Helvetica, sans-serif" font-style="normal">PASSPHRASE</text><rect x="10" y="32" width="70" height="34" rx="9" fill="#f1f2f6"/>' + [0, 1, 2, 3].map((k) => `<rect x="${15 + k * 16}" y="40" width="13" height="16" rx="3" fill="#fff" stroke="#dfe1e8"/>`).join('') + '<circle cx="16" cy="88" r="6" fill="#2f5bff"/><rect x="28" y="84" width="50" height="8" rx="4" fill="#f1f2f6"/><circle cx="16" cy="110" r="6" fill="#ff5a4e"/><rect x="28" y="106" width="44" height="8" rx="4" fill="#f1f2f6"/><circle cx="16" cy="132" r="6" fill="#ffc21a"/><rect x="28" y="128" width="38" height="8" rx="4" fill="#f1f2f6"/>', '#fff'),
+  shot('<text x="10" y="26" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">No internet.</text><text x="10" y="40" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">Nothing leaves.</text><path d="M45 62 22 72v20c0 18 10 30 23 36 13-6 23-18 23-36V72Z" fill="#fff"/><path d="M35 96l7 7 14-15" fill="none" stroke="#19c37d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>', '#14161f'),
+]
+
+/** The real app icon, straight from the generated sources. */
+const MY_ICON = '<img src="../assets/icon.svg" alt="">'
+
+function playRow(app, svg, mine = false, ad = false) {
+  return `<div class="row${mine ? ' mine' : ''}"><div class="ic">${svg}</div><div><div class="t">${app.name}</div>
+    <div class="d">${ad ? '<span class="ad">Ad ·</span>' : ''}${app.dev}</div><div class="d">${app.rating} ★ · ${app.size}</div></div></div>`
+}
+function iosCard(app, svg, shots = true, mine = false) {
+  const colors = ['#dfe3ea', '#cfd5df', '#e6e9ef']
+  return `<div class="card${mine ? ' mine' : ''}"><div class="top"><div class="ic">${svg}</div><div><div class="t">${app.name}</div><div class="d">${app.sub}</div>
+    <div class="stars">★★★★★ <span>${app.rating}</span></div></div><span class="get">Get</span></div>
+    ${shots ? `<div class="shots">${mine ? MY_SHOTS.map((x) => `<i style="overflow:hidden">${x}</i>`).join('') : colors.map((c) => `<i style="background:${c};box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)"></i>`).join('')}</div>` : ''}</div>`
+}
+const status = () => `<div class="status"><span>9:41</span><span>▮▮▮ 100%</span></div>`
+
+function render() {
+  const my = MY_ICON
+  document.getElementById('playBig').innerHTML = status() +
+    `<div class="search"><i></i>ring phone by sms</div><div class="chips"><b>Ratings 4+</b><b>New</b><b>Free</b></div>` +
+    playRow(OTHERS[1], OTHERS[1].icon, false, true) + playRow(ME, my, true) +
+    OTHERS.filter((_, i) => i !== 1).map((o) => playRow(o, o.icon)).join('')
+  document.getElementById('iosBig').innerHTML = status() +
+    `<div class="head">Search</div><div class="search"><i></i>ring phone by sms</div>` +
+    iosCard(ME, my, true, true) + iosCard(OTHERS[0], OTHERS[0].icon) + iosCard(OTHERS[2], OTHERS[2].icon, false)
+}
+
+document.getElementById('dark').onclick = () => document.body.classList.toggle('dark')
+render()
+</script>
+</body>
+</html>

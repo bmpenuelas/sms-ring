@@ -1,0 +1,6 @@
+{
+  "assets/icon.svg": "ca194cd2df530b1760d77aa783a612a0a9f81623a30c59ba68bbeadcc3e39a42",
+  "assets/icon-foreground.svg": "f17735f8a167632fa8dcac814a320cf139407cc7e646e6872303378ebe2acb88",
+  "assets/icon-background.svg": "11c8b828824348e8d055306d1cd86bff6810917651cb48e9b3080dad812295b7",
+  "scripts/generate-app-assets.mjs": "f570904409d1921404f13a7e0bc2e1fa0c70015a382ae6bcccd5aa224eeec8c7"
+}

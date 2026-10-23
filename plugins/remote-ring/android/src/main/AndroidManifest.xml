@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Offline by design: strip INTERNET and network-state permissions even if a
+         dependency asks for them. The OS then refuses every socket this app opens. -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" tools:node="remove" />
+
+    <!-- Read incoming SMS (never sent, never stored: only checked for the passphrase). -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- Ring for the configured time, even from the background. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- The "ringing" notification with its Stop button. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Show the Stop screen over the lock screen. -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- Let Android start the ringer immediately while the phone sleeps. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- Keep the daily "can it still ring?" check scheduled after a reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Optional: ring through Do Not Disturb "Total silence". -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+    <!-- Phone makers' "autostart" screens we may open (OemAutostart). Visibility only:
+         nothing is read from these apps. -->
+    <queries>
+        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.huawei.systemmanager" />
+        <package android:name="com.hihonor.systemmanager" />
+        <package android:name="com.coloros.safecenter" />
+        <package android:name="com.oppo.safe" />
+        <package android:name="com.oneplus.security" />
+        <package android:name="com.vivo.permissionmanager" />
+        <package android:name="com.iqoo.secure" />
+        <package android:name="com.asus.mobilemanager" />
+        <package android:name="com.letv.android.letvsafe" />
+    </queries>
+
+    <!-- directBootAware: the ringer also works after a reboot, before the first unlock
+         (its settings live in device-protected storage, see RingStore). -->
+    <application>
+        <receiver
+            android:name=".SmsReceiver"
+            android:directBootAware="true"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".StopRingReceiver"
+            android:directBootAware="true"
+            android:exported="false" />
+
+        <service
+            android:name=".RingService"
+            android:directBootAware="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <activity
+            android:name=".RingActivity"
+            android:directBootAware="true"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
+            android:taskAffinity="app.smsring.ring"
+            android:theme="@style/RemoteRing.RingScreen" />
+
+        <!-- Daily check that it can still ring; warns with a notification if not. -->
+        <service
+            android:name=".HealthCheck"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Optional "Ring from chat apps": only runs once the user grants Notification
+             access in Android's settings, and ignores everything while the setting is off. -->
+        <service
+            android:name=".ChatNotificationListener"
+            android:exported="true"
+            android:label="@string/remote_ring_listener_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

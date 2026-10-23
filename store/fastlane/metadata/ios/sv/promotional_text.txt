@@ -1,0 +1,1 @@
+Ringer även utan mobildata och wifi, något som onlinetjänster inte klarar. Ingen internetbehörighet, inga konton, ingen spårning. Öppen källkod.

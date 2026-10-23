@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+<!-- SMS Ring app icon: the artwork on its Coral → Peach background. Source for every generated icon. -->
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a4e"/><stop offset="1" stop-color="#ffb347"/></linearGradient></defs><rect width="100" height="100" fill="url(#bg)"/><g
+     id="g11"
+     transform="translate(-1.4542042,1.2118368)"><mask id="knockout" maskUnits="userSpaceOnUse" x="-20" y="-20" width="140" height="140"><rect x="-20" y="-20" width="140" height="140" fill="#fff"/><path d="M 18.477949,32.770349 H 53.360581 A 11.627545,11.41158 0 0 1 64.988125,44.181928 V 62.725744 A 11.627545,11.41158 0 0 1 53.360581,74.137323 H 3.2167972 L 8.303847,69.144757 V 42.755481 a 10.174101,9.9851321 0 0 1 10.174102,-9.985132 z" fill="#000"/></mask><g mask="url(#knockout)">
+    <g
+       id="g2"
+       transform="rotate(-30,76.359587,184.70291)"
+       style="display:inline">
+      <path
+         id="arc-right-inner"
+         d="m 163.50806,44.761045 a 20,20 0 0 1 0,18.16"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="3.68"
+         stroke-linecap="round" />
+      <path
+         id="arc-right-outer"
+         d="m 167.94805,42.041045 a 26,26 0 0 1 0,23.6"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="3.68"
+         stroke-linecap="round" />
+    </g>
+    <g
+       id="g3"
+       style="display:inline">
+      <path
+         id="arc-left-inner"
+         d="M 49.715651,42.842939 A 20,20 0 0 1 52.086006,24.8383"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="3.68"
+         stroke-linecap="round" />
+      <path
+         id="arc-left-outer"
+         d="M 44.615845,44.960133 A 26,26 0 0 1 47.696263,21.562034"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="3.68"
+         stroke-linecap="round" />
+    </g>
+    <g
+       id="rays"
+       transform="rotate(-31,65.441984,43.945727)"
+       style="display:inline">
+      <path
+         id="ray-left"
+         d="M 72.1,16.44 69.02,10.15"
+         stroke="#ffffff"
+         stroke-width="3.8"
+         stroke-linecap="round" />
+      <path
+         id="ray-middle"
+         d="M 83.03,15.41 84.89,8.67"
+         stroke="#ffffff"
+         stroke-width="3.8"
+         stroke-linecap="round" />
+      <path
+         id="ray-right"
+         d="m 91.9,21.89 5.86,-3.82"
+         stroke="#ffffff"
+         stroke-width="3.8"
+         stroke-linecap="round" />
+    </g>
+    </g>
+    <g
+       id="arrow"
+       transform="rotate(-50,57.583588,55.378503)"
+       style="display:inline">
+      <path
+         id="arrow-curve"
+         d="m 27.966208,55.1519 c -5.989522,29.377266 20.684605,53.89647 34.799848,22.211745"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="4"
+         stroke-linecap="round"
+         stroke-linejoin="round" />
+      <path
+         id="arrow-head"
+         d="m 64.091251,85.567154 -0.08026,-9.919291 -8.228001,3.659732"
+         fill="none"
+         stroke="#ffffff"
+         stroke-width="4"
+         stroke-linecap="round"
+         stroke-linejoin="round" />
+    </g>
+    <g
+       id="g1"
+       transform="translate(-9.7686375,1.1996572)"
+       style="display:inline">
+      <path
+         id="bubble"
+         d="M 27.844115,33.509629 H 59.036899 A 10.397595,10.204475 0 0 1 69.434493,43.714103 V 60.296374 A 10.397595,10.204475 0 0 1 59.036899,70.500848 H 14.197272 L 18.746219,66.03639 V 42.438544 a 9.0978957,8.9289153 0 0 1 9.097896,-8.928915 z"
+         fill="#ffffff"
+         style="stroke-width:0.643786" />
+      <rect
+         id="asterisk-1-bar-1"
+         x="31.488756"
+         y="46.689201"
+         width="2.6047497"
+         height="10.628856"
+         rx="1.3023748"
+         fill="#14161f"
+         style="stroke-width:1.27735" />
+      <rect
+         id="asterisk-1-bar-2"
+         x="60.134617"
+         y="-7.2850728"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(0.50706161,0.86190981,-0.87005056,0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+      <rect
+         id="asterisk-1-bar-3"
+         x="27.800739"
+         y="-60.030151"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(-0.50706161,0.86190981,-0.87005056,-0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+      <rect
+         id="asterisk-2-bar-1"
+         x="43.042175"
+         y="46.689201"
+         width="2.6047497"
+         height="10.628856"
+         rx="1.3023748"
+         fill="#14161f"
+         style="stroke-width:1.27735" />
+      <rect
+         id="asterisk-2-bar-2"
+         x="65.83078"
+         y="-17.244398"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(0.50706161,0.86190981,-0.87005056,0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+      <rect
+         id="asterisk-2-bar-3"
+         x="22.104582"
+         y="-69.989479"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(-0.50706161,0.86190981,-0.87005056,-0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+      <rect
+         id="asterisk-3-bar-1"
+         x="54.595463"
+         y="46.689201"
+         width="2.6047497"
+         height="10.628856"
+         rx="1.3023748"
+         fill="#14161f"
+         style="stroke-width:1.27735" />
+      <rect
+         id="asterisk-3-bar-3"
+         x="16.408491"
+         y="-79.948692"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(-0.50706161,0.86190981,-0.87005056,-0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+      <rect
+         id="asterisk-3-bar-2"
+         x="71.526871"
+         y="-27.203609"
+         width="2.5682075"
+         height="10.781735"
+         rx="1.2841038"
+         fill="#14161f"
+         transform="matrix(0.50706161,0.86190981,-0.87005056,0.4929625,0,0)"
+         style="stroke-width:1.27745" />
+    </g>
+    <g
+       id="bell"
+       transform="matrix(1.327777,-0.59116445,0.59116445,1.327777,-59.584561,22.078629)"
+       style="display:inline">
+      <circle
+         id="bell-border-knob"
+         cx="50"
+         cy="11"
+         r="6"
+         fill="#ffffff"
+         stroke="#ffffff"
+         stroke-width="14"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <path
+         id="bell-border-body"
+         d="M 50,17 C 36,17 26,27 26,41 V 57 L 16,69 H 84 L 74,57 V 41 C 74,27 64,17 50,17 Z"
+         fill="#ffffff"
+         stroke="#ffffff"
+         stroke-width="15"
+         stroke-linejoin="round"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <path
+         id="bell-border-clapper"
+         d="m 40,70 a 10,10 0 0 0 20,0 z"
+         fill="#ffffff"
+         stroke="#ffffff"
+         stroke-width="10"
+         stroke-linejoin="round"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <circle
+         id="bell-knob"
+         cx="50"
+         cy="11"
+         r="6"
+         fill="#ffc21a"
+         stroke="#14161f"
+         stroke-width="4"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <path
+         id="bell-body"
+         d="M 50,17 C 36,17 26,27 26,41 V 57 L 16,69 H 84 L 74,57 V 41 C 74,27 64,17 50,17 Z"
+         fill="#ffc21a"
+         stroke="#14161f"
+         stroke-width="5"
+         stroke-linejoin="round"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <path
+         id="bell-clapper"
+         d="m 40,70 a 10,10 0 0 0 20,0 z"
+         fill="#14161f"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+      <path
+         id="bell-shine"
+         d="m 37,34 c 2,-5 6,-8 11,-9"
+         fill="none"
+         stroke="#ffffff"
+         stroke-opacity="0.8"
+         stroke-width="5"
+         stroke-linecap="round"
+         transform="matrix(0.3443,0.0732,-0.0732,0.3443,62.7779,28.3469)" />
+    </g>
+  </g>
+</svg>

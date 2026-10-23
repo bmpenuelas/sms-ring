@@ -1,0 +1,21 @@
+Telefon zgubiony między poduszkami kanapy i wyciszony? Wyślij mu tajne hasło z dowolnego telefonu, a zadzwoni na pełnej głośności, nawet wyciszony. Wyszukiwarki telefonów online dzwonią tylko do telefonu z internetem. SMS Ring potrzebuje tylko zasięgu sieci.
+
+🔒 PRYWATNOŚĆ Z ZAŁOŻENIA, NIE Z OBIETNICY
+SMS Ring nie ma uprawnienia do internetu. Sam system blokuje każde połączenie, więc Twoje dane nie mogą opuścić telefonu. Bez kont, reklam, analityki i serwerów.
+
+👀 OTWARTY KOD: SPRAWDŹ SAM
+Cały kod jest publiczny. Przeczytaj, zbuduj, sprawdź.
+
+✨ FUNKCJE
+🔔 Pełna głośność, nawet po wyciszeniu lub w trybie wibracji
+🎲 Losowe hasło z 2–6 prostych słów w Twoim języku lub własne
+📱 Zezwól każdemu albo tylko wybranym numerom
+💬 Android: działa też z WhatsApp, Messengerem, Telegramem, Signalem czy dowolną inną aplikacją, jeśli zezwolisz na dostęp do powiadomień. Wszystko zostaje na telefonie, w pełni prywatnie.
+⏱️ Dzwoni od 15 sekund do 5 minut
+📳 Opcjonalne wibracje
+🌙 Dzwoni mimo trybu Nie przeszkadzać, jeśli pozwolisz
+🔓 Tylko Ty możesz go zatrzymać: wymaga PIN-u lub odcisku palca
+🧪 Dzwonek testowy i symulator wiadomości, wszystko offline
+🌍 Dostępny w 20 językach
+
+iPhone: Apple nie pozwala aplikacjom czytać wiadomości. SMS Ring przeprowadzi Cię przez 1-minutową automatyzację w Skrótach, która budzi go, gdy przyjdzie hasło.

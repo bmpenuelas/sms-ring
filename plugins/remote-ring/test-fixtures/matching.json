@@ -1,0 +1,43 @@
+{
+  "normalizePhrase": [
+    ["Blue Tiger  MÓON", "bluetigermoon"],
+    ["  café  crème ", "cafecreme"],
+    ["ＡＢＣ　１２３", "abc123"],
+    ["İstanbul", "istanbul"],
+    ["Ünïcödé Ñandú", "unicodenandu"],
+    ["苹果 月亮", "苹果月亮"],
+    ["ДОМ кот", "домкот"],
+    ["ring!", "ring!"],
+    ["a b\tc\nd​e", "abcde"],
+    ["", ""]
+  ],
+  "sendersMatch": [
+    ["+34 600 11 22 33", "600112233", true],
+    ["0034600112233", "+34600112233", true],
+    ["+1 (415) 555-1234", "4155551234", true],
+    ["+1 415 555 1234", "+1 415 555 9999", false],
+    ["12345", "12345", true],
+    ["12345", "112345", false],
+    ["My-Bank", "MYBANK", true],
+    ["MyBank", "YourBank", false],
+    ["", "600112233", false]
+  ],
+  "evaluate": [
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "Blue tiger MOON", "sender": "+34600112233", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "  blue  tiger moon \n", "sender": "123", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "bluetigermoon", "sender": "123", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "Hey! blue tiger moon", "sender": "123", "verdict": "no-passphrase" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "blue tiger moon!", "sender": "123", "verdict": "no-passphrase" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "blue-tiger-moon", "sender": "123", "verdict": "no-passphrase" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": [] }, "body": "moon tiger blue", "sender": "123", "verdict": "no-passphrase" },
+    { "config": { "armed": false, "passphrase": "blue tiger moon", "senders": [] }, "body": "blue tiger moon", "sender": "123", "verdict": "disarmed" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": ["+34 600 11 22 33"] }, "body": "blue tiger moon", "sender": "600112233", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "blue tiger moon", "senders": ["+34 600 11 22 33"] }, "body": "blue tiger moon", "sender": "+34 699 99 99 99", "verdict": "sender-not-allowed" },
+    { "config": { "armed": true, "passphrase": "a b", "senders": [] }, "body": "a b", "sender": "123", "verdict": "weak-passphrase" },
+    { "config": { "armed": true, "passphrase": "", "senders": [] }, "body": "", "sender": "123", "verdict": "weak-passphrase" },
+    { "config": { "armed": true, "passphrase": "café crème soleil", "senders": [] }, "body": "CAFE CREME SOLEIL", "sender": "123", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "piña año", "senders": [] }, "body": "pina ano", "sender": "123", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "사과 바다 구름", "senders": [] }, "body": "사과바다구름", "sender": "123", "verdict": "ring" },
+    { "config": { "armed": true, "passphrase": "사과 바다 구름", "senders": [] }, "body": "사과바다구름!", "sender": "123", "verdict": "no-passphrase" }
+  ]
+}

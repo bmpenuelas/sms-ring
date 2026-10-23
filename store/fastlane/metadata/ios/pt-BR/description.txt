@@ -1,0 +1,21 @@
+Perdeu o celular no sofá e ele está no silencioso? Envie uma frase secreta de qualquer telefone e ele toca no volume máximo, mesmo no silencioso. Localizadores online só tocam um celular conectado à internet. O SMS Ring só precisa de sinal da operadora.
+
+🔒 PRIVADO POR DESIGN, NÃO POR PROMESSA
+O SMS Ring não tem permissão de internet. O próprio sistema bloqueia qualquer conexão, então seus dados não podem sair do celular. Sem contas, anúncios, análises ou servidores.
+
+👀 CÓDIGO ABERTO: CONFIRA VOCÊ MESMO
+Todo o código é público. Leia, compile, confira.
+
+✨ RECURSOS
+🔔 Volume máximo, mesmo no silencioso ou vibrar
+🎲 Frase aleatória de 2 a 6 palavras fáceis no seu idioma, ou escreva a sua
+📱 Permita qualquer pessoa ou só os números que você escolher
+💬 Android: também funciona com WhatsApp, Messenger, Telegram, Signal ou qualquer outro app se você permitir o acesso às notificações. Tudo fica no seu celular, totalmente privado.
+⏱️ Toca de 15 segundos a 5 minutos
+📳 Vibração opcional
+🌙 Toca no Não perturbe se você permitir
+🔓 Só você pode parar: pede seu PIN ou digital
+🧪 Toque de teste e simulador de mensagens, tudo offline
+🌍 Disponível em 20 idiomas
+
+iPhone: a Apple não deixa apps lerem mensagens. O SMS Ring guia você numa automação do Atalhos de 1 minuto que o acorda quando sua frase chega.

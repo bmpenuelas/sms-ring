@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy · SMS Ring</title>
+    <meta name="description" content="SMS Ring collects no data. Messages are checked on your phone and forgotten; the app has no internet access." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      article {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 0 0;
+      }
+      h1 {
+        font-size: clamp(30px, 5vw, 44px);
+        margin: 0 0 8px;
+      }
+      .updated {
+        color: var(--muted);
+        margin: 0 0 32px;
+        font-size: 15px;
+      }
+      .summary {
+        padding: 22px 24px;
+        border-radius: 22px;
+        background: color-mix(in oklab, var(--good) 12%, var(--bg));
+        border: 1px solid color-mix(in oklab, var(--good) 30%, transparent);
+        margin-bottom: 8px;
+      }
+      .summary strong {
+        display: block;
+        font-family: var(--display);
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+      .summary p {
+        margin: 0;
+      }
+      h2 {
+        font-size: 21px;
+        margin: 44px 0 10px;
+      }
+      p,
+      li {
+        color: color-mix(in oklab, var(--ink) 82%, transparent);
+      }
+      ul {
+        padding-left: 22px;
+      }
+      li + li {
+        margin-top: 6px;
+      }
+      .table {
+        overflow-x: auto;
+        border-radius: 18px;
+        background: var(--card);
+        margin: 14px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+      th,
+      td {
+        padding: 12px 16px;
+        text-align: left;
+        vertical-align: top;
+      }
+      thead th {
+        font-weight: 700;
+      }
+      tbody th,
+      tbody td {
+        border-top: 1px solid var(--line);
+      }
+      tbody th {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      td {
+        color: var(--muted);
+      }
+      .muted {
+        color: var(--muted);
+        font-weight: 400;
+      }
+      code {
+        font-size: 0.88em;
+        overflow-wrap: anywhere;
+      }
+      @media (max-width: 560px) {
+        tbody th {
+          white-space: normal;
+        }
+        th,
+        td {
+          padding: 10px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="../"><img src="../favicon.svg" alt="" />SMS Ring</a>
+        <nav>
+          <a href="../">Home</a>
+          <a href="https://github.com/bmpenuelas/sms-ring">Source code</a>
+        </nav>
+      </header>
+
+      <main>
+        <article>
+          <h1>Privacy Policy</h1>
+          <p class="updated">Last updated: October 21, 2026</p>
+
+          <div class="summary">
+            <strong>In short: SMS Ring collects nothing.</strong>
+            <p>Your messages are checked on your phone and forgotten. Your settings never leave your phone. The app has no internet access, no accounts, no ads, no analytics and no servers.</p>
+          </div>
+
+          <h2>1. Who we are</h2>
+          <p>SMS Ring (“the app”) is a free, open-source app for Android and iOS that makes your phone ring at full volume when it receives a text containing a secret phrase you chose. Its full source code is public at <a href="https://github.com/bmpenuelas/sms-ring">github.com/bmpenuelas/sms-ring</a> under the MIT license. This policy applies to the app as published on Google Play and the App Store.</p>
+
+          <h2>2. Information we collect</h2>
+          <p><strong>None.</strong> The app does not collect, transmit, sell or share any personal data, device identifiers, usage statistics or crash reports. There is no account to create and no server for data to go to. We have no way to see who uses the app or how.</p>
+
+          <h2>3. Your text messages</h2>
+          <ul>
+            <li><strong>Android:</strong> with your permission, the app receives incoming SMS messages. Each message is compared, in memory and on your phone, with your secret phrase (and, if you set it up, your list of allowed numbers). The message is then discarded. Message contents are never stored, logged, copied or sent anywhere.</li>
+            <li>The app cannot read messages that were already on your phone, and it cannot send messages.</li>
+            <li><strong>Chat apps (Android, optional):</strong> if you turn on “Ring from chat apps” and grant Notification access, the app also reads the text of incoming notifications (WhatsApp, Messenger, Telegram, Signal or any other app) and checks it the same way: on your phone, in memory, then discarded. Nothing is stored or sent, and the ring history only records the app’s name. It is off by default, and you can revoke the access at any time in Android’s settings.</li>
+            <li><strong>iPhone:</strong> iOS doesn't let apps read messages. Instead, an Apple Shortcuts automation that you create passes the text of each incoming message to the app, which checks it the same way and discards it. The app only remembers when the automation last ran, so it can show that it works.</li>
+          </ul>
+
+          <h2>4. What is stored on your phone</h2>
+          <p>To work while it's closed, the app keeps a few things in its private storage on your device:</p>
+          <div class="table">
+            <table>
+              <thead>
+                <tr><th>Data</th><th>Why</th></tr>
+              </thead>
+              <tbody>
+                <tr><th>Your settings</th><td>Your secret phrase, allowed numbers (if any), ring duration, volume, tone, vibration and Do Not Disturb choice, so the ringer knows what to do.</td></tr>
+                <tr><th>Ring history</th><td>Up to the last 20 rings: the time, what triggered it and the sender's number <strong>masked</strong> to its last digits (for example •••• 1234). You can clear it in the app.</td></tr>
+                <tr><th>App preferences</th><td>Language, light or dark look, and passphrase options. No personal data.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>This data is excluded from device and cloud backups, never leaves your phone, and is deleted when you uninstall the app. On Android it is kept in the app’s device-protected storage, so the phone can still ring after a restart before you first unlock it.</p>
+
+          <h2>5. No internet access</h2>
+          <p>The Android app does not request the internet permission, so the operating system itself blocks any network connection. You can confirm it in <em>Settings → Apps → SMS Ring → Permissions</em>, and the app shows a live check of its own permissions. The iOS app contains no networking code. Links such as “Source code” open in your browser, outside the app.</p>
+
+          <h2>6. Permissions</h2>
+          <p>Every permission is explained in the app before it's requested, and each one is optional except SMS access on Android, without which the phone can't ring.</p>
+          <div class="table">
+            <table>
+              <thead>
+                <tr><th>Permission</th><th>Used for</th></tr>
+              </thead>
+              <tbody>
+                <tr><th>Receive SMS <span class="muted">(Android)</span></th><td>Checking incoming texts for your phrase, as described above.</td></tr>
+                <tr><th>Notifications</th><td>Showing that the phone is ringing and how to stop it, and warning you if it can no longer ring.</td></tr>
+                <tr><th>Run in background <span class="muted">(Android)</span></th><td>Exemption from battery optimization, so the phone rings right away even when the app hasn't been opened for a while.</td></tr>
+                <tr><th>Full-screen display <span class="muted">(Android 14+)</span></th><td>Showing the Stop button over the lock screen while ringing.</td></tr>
+                <tr><th>Do Not Disturb access <span class="muted">(Android)</span></th><td>Lifting “Total silence” while ringing, if you leave that option on. Your setting is restored as soon as ringing stops.</td></tr>
+                <tr><th>Keep working when unused <span class="muted">(Android 11+)</span></th><td>Exemption from “Pause app activity if unused”, so Android doesn’t remove the app’s permissions because it is rarely opened.</td></tr>
+                <tr><th>Autostart <span class="muted">(some Android brands)</span></th><td>Your phone maker’s own switch that lets the app wake up when a message arrives. The app only opens that settings screen.</td></tr>
+                <tr><th>Run at startup <span class="muted">(Android)</span></th><td>Keeps a once-a-day check scheduled after a restart. The check runs on your phone and only warns you, with a notification, if the app can no longer ring.</td></tr>
+                <tr><th>Notification access <span class="muted">(Android, optional)</span></th><td>Only if you turn on “Ring from chat apps”: checking incoming notifications for your phrase, as described above.</td></tr>
+                <tr><th>Audio, vibration, wake lock, foreground service <span class="muted">(Android)</span></th><td>Playing the ring at the volume you chose (full by default) and vibrating; volume is restored afterwards.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>7. Sharing</h2>
+          <p>We share no data with anyone. If you choose to share your secret phrase with someone you trust, the app opens your phone's own share sheet and you decide where it goes.</p>
+
+          <h2>8. Third-party services</h2>
+          <p>None. The app contains no analytics, advertising, crash-reporting or tracking libraries.</p>
+
+          <h2>9. Children</h2>
+          <p>The app collects no information from anyone, including children.</p>
+
+          <h2>10. Changes to this policy</h2>
+          <p>If this policy changes, the new version will be published on this page and in the <a href="https://github.com/bmpenuelas/sms-ring">source repository</a>, where its full history is visible.</p>
+
+          <h2>11. Contact</h2>
+          <p>Questions about privacy? Open an issue on <a href="https://github.com/bmpenuelas/sms-ring/issues">GitHub</a>.</p>
+        </article>
+      </main>
+    </div>
+
+    <footer>
+      <div class="wrap">
+        <span>SMS Ring · Open source under the <a href="https://github.com/bmpenuelas/sms-ring/blob/main/LICENSE">MIT license</a></span>
+        <nav>
+          <a href="../">Home</a>
+          <a href="https://github.com/bmpenuelas/sms-ring">Source code</a>
+          <a href="https://github.com/bmpenuelas/sms-ring/issues">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

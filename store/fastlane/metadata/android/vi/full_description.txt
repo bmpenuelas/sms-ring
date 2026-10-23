@@ -1,0 +1,21 @@
+Làm rơi điện thoại vào kẽ ghế sofa mà máy lại đang im lặng? Nhắn một câu bí mật từ bất kỳ điện thoại nào, máy sẽ đổ chuông hết cỡ, kể cả khi im lặng. Dịch vụ tìm điện thoại trực tuyến chỉ đổ chuông được máy có internet. SMS Ring chỉ cần sóng di động.
+
+🔒 RIÊNG TƯ TỪ THIẾT KẾ, KHÔNG PHẢI LỜI HỨA
+SMS Ring không có quyền internet. Chính hệ điều hành chặn mọi kết nối, nên dữ liệu của bạn không thể rời khỏi máy. Không tài khoản, không quảng cáo, không phân tích, không máy chủ.
+
+👀 MÃ NGUỒN MỞ: TỰ KIỂM CHỨNG
+Mọi dòng mã đều công khai. Đọc, biên dịch, kiểm tra.
+
+✨ TÍNH NĂNG
+🔔 Kêu hết cỡ, kể cả khi im lặng hay rung
+🎲 Câu ngẫu nhiên 2–6 từ dễ nhớ bằng ngôn ngữ của bạn, hoặc tự viết
+📱 Cho phép mọi người hoặc chỉ những số bạn chọn
+💬 Android: cũng hoạt động với WhatsApp, Messenger, Telegram, Signal hoặc bất kỳ ứng dụng nào nếu bạn cho phép truy cập thông báo. Mọi thứ ở lại trên điện thoại, hoàn toàn riêng tư.
+⏱️ Đổ chuông từ 15 giây đến 5 phút
+📳 Rung tùy chọn
+🌙 Kêu cả khi Không làm phiền nếu bạn cho phép
+🔓 Chỉ bạn mới tắt được: cần mã PIN hoặc vân tay
+🧪 Chuông thử và trình mô phỏng tin nhắn, hoàn toàn ngoại tuyến
+🌍 Có 20 ngôn ngữ
+
+iPhone: Apple không cho ứng dụng đọc tin nhắn. SMS Ring hướng dẫn bạn tạo trong 1 phút một tự động hóa Phím tắt để đánh thức ứng dụng khi câu bí mật đến.

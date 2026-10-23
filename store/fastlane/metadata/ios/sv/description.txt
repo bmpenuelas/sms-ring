@@ -1,0 +1,21 @@
+Tappat bort telefonen mellan soffkuddarna och den står på ljudlöst? Sms:a en hemlig fras från vilken telefon som helst så ringer den på full volym, även på ljudlöst. Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet. SMS Ring behöver bara mobiltäckning.
+
+🔒 PRIVAT FRÅN GRUNDEN, INTE GENOM LÖFTEN
+SMS Ring har ingen internetbehörighet. Operativsystemet blockerar själv varje anslutning, så dina data kan inte lämna telefonen. Inga konton, annonser, analyser eller servrar.
+
+👀 ÖPPEN KÄLLKOD: KONTROLLERA SJÄLV
+All kod är offentlig. Läs den, bygg den, granska den.
+
+✨ FUNKTIONER
+🔔 Full volym, även på ljudlöst eller vibration
+🎲 Slumpad fras med 2–6 enkla ord på ditt språk, eller skriv din egen
+📱 Tillåt alla eller bara de nummer du väljer
+💬 Android: fungerar även med WhatsApp, Messenger, Telegram, Signal eller vilken annan app som helst om du tillåter åtkomst till aviseringar. Allt stannar på telefonen, helt privat.
+⏱️ Ringer från 15 sekunder till 5 minuter
+📳 Valfri vibration
+🌙 Ringer trots Stör ej om du tillåter det
+🔓 Bara du kan stoppa den: kräver pinkod eller fingeravtryck
+🧪 Testringning och meddelandesimulator, helt offline
+🌍 Finns på 20 språk
+
+iPhone: Apple låter inte appar läsa meddelanden. SMS Ring guidar dig genom en Genvägar-automation på 1 minut som väcker den när frasen kommer.

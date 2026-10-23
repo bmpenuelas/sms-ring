@@ -1,0 +1,21 @@
+Handy zwischen den Sofakissen verloren und auf lautlos? Schick ihm von irgendeinem Telefon einen Geheimsatz und es klingelt in voller Lautstärke – auch im Lautlos-Modus. Online-Handyfinder können nur ein Handy mit Internetverbindung klingeln lassen. SMS Ring braucht nur Mobilfunkempfang.
+
+🔒 PRIVAT DURCH TECHNIK, NICHT DURCH VERSPRECHEN
+SMS Ring hat keine Internetberechtigung. Das Betriebssystem selbst blockiert jede Verbindung, deine Daten können dein Handy also gar nicht verlassen. Keine Konten, keine Werbung, keine Analysen, keine Server.
+
+👀 OPEN SOURCE: PRÜF ES SELBST
+Jede Codezeile ist öffentlich. Lesen, bauen, prüfen.
+
+✨ FUNKTIONEN
+🔔 Volle Lautstärke, auch bei lautlos oder Vibration
+🎲 Zufälliger Satz aus 2 bis 6 einfachen Wörtern in deiner Sprache – oder dein eigener
+📱 Erlaube jedem oder nur ausgewählten Nummern
+💬 Android: funktioniert auch mit WhatsApp, Messenger, Telegram, Signal oder jeder anderen App, wenn du den Benachrichtigungszugriff erlaubst. Alles bleibt auf deinem Handy, völlig privat.
+⏱️ Klingelt 15 Sekunden bis 5 Minuten
+📳 Vibration optional
+🌙 Klingelt trotz „Bitte nicht stören“, wenn du es erlaubst
+🔓 Nur du kannst es stoppen: per PIN oder Fingerabdruck
+🧪 Testklingeln und Nachrichten-Simulator, komplett offline
+🌍 In 20 Sprachen verfügbar
+
+iPhone: Apple erlaubt Apps nicht, Nachrichten zu lesen. SMS Ring führt dich durch eine 1-Minuten-Automation in Kurzbefehle, die es weckt, sobald dein Geheimsatz ankommt.

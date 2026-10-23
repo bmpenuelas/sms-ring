@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100"
+   width="1024"
+   height="1024"
+   version="1.1"
+   id="svg17"
+   sodipodi:docname="icon-base.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs17" />
+  <sodipodi:namedview
+     id="namedview17"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.15621783"
+     inkscape:cx="-566.51662"
+     inkscape:cy="115.22372"
+     inkscape:window-width="1470"
+     inkscape:window-height="852"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17" />
+  <!-- SMS Ring app icon · round 12 "Base". 100×100 artboard; the OS applies the rounded mask. -->
+  <rect
+     id="background"
+     width="100"
+     height="100"
+     fill="#ff5a4e" />
+  <path
+     d="m 92.209648,38.42 a 20,20 0 0 1 0,18.16"
+     id="path1"
+     style="fill:none;stroke:#ffffff;stroke-width:3.68;stroke-linecap:round" />
+  <path
+     d="m 96.745846,35.7 a 26,26 0 0 1 0,23.6"
+     id="path3"
+     style="fill:none;stroke:#ffffff;stroke-width:3.68;stroke-linecap:round" />
+  <g
+     id="g21">
+    <path
+       d="m 58.807604,56.783451 a 20,20 0 0 1 0,-18.16"
+       id="path2"
+       style="fill:none;stroke:#ffffff;stroke-width:3.68;stroke-linecap:round" />
+    <path
+       d="m 54.474857,59.503451 a 26,26 0 0 1 0,-23.6"
+       id="path4"
+       style="fill:none;stroke:#ffffff;stroke-width:3.68;stroke-linecap:round" />
+  </g>
+  <g
+     id="phone"
+     transform="translate(75 47.5) scale(0.8) translate(-75 -47.5)">
+    <rect
+       id="phone-edge"
+       x="57"
+       y="19"
+       width="36"
+       height="64"
+       rx="10"
+       fill="#000" />
+    <rect
+       id="phone-body"
+       x="57"
+       y="15.5"
+       width="36"
+       height="64"
+       rx="10"
+       fill="#14161f" />
+    <rect
+       id="phone-screen"
+       x="60.5"
+       y="19"
+       width="29"
+       height="57"
+       rx="7"
+       fill="#2f5bff"
+       style="fill:#f9f9f9" />
+    <rect
+       id="phone-notch"
+       x="70"
+       y="20.5"
+       width="10"
+       height="3"
+       rx="1.5"
+       fill="#14161f" />
+  </g>
+  <g
+     id="bell"
+     transform="rotate(18 77.5 47.5)">
+    <svg
+       x="59.9"
+       y="31.66"
+       width="35.2"
+       height="35.2"
+       viewBox="0 0 100 100"
+       overflow="visible"
+       version="1.1"
+       id="svg4">
+      <circle
+         id="bell-knob"
+         cx="50"
+         cy="11"
+         r="6"
+         fill="#ffc21a"
+         stroke="#14161f"
+         stroke-width="4" />
+      <path
+         id="bell-body"
+         d="M50 17c-14 0-24 10-24 24v16l-10 12h68l-10-12V41c0-14-10-24-24-24Z"
+         fill="#ffc21a"
+         stroke="#14161f"
+         stroke-width="5"
+         stroke-linejoin="round" />
+      <path
+         id="bell-clapper"
+         d="M40 70a10 10 0 0 0 20 0Z"
+         fill="#14161f" />
+      <path
+         id="bell-shine"
+         d="M37 34c2-5 6-8 11-9"
+         fill="none"
+         stroke="#fff"
+         stroke-opacity=".8"
+         stroke-width="5"
+         stroke-linecap="round" />
+    </svg>
+  </g>
+  <path
+     d="M 74.516701,16.172941 71.673261,9.7820902"
+     id="path5"
+     style="stroke:#ffffff;stroke-width:3.8;stroke-linecap:round" />
+  <path
+     d="M 86.085956,15.841763 88.480098,9.2639138"
+     id="path6"
+     style="stroke:#ffffff;stroke-width:3.8;stroke-linecap:round" />
+  <path
+     d="m 93.650614,23.056337 5.994848,-3.604149"
+     id="path7"
+     style="stroke:#ffffff;stroke-width:3.8;stroke-linecap:round" />
+  <g
+     id="arrow"
+     fill="none"
+     stroke="#fff"
+     stroke-width="4"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+    <path
+       d="M22 69C24 92 45 96 58.6 78.1"
+       id="path8" />
+    <path
+       d="M58.38 85.6L58.6 78.1L51.44 80.32"
+       id="path9" />
+  </g>
+  <g
+     id="message">
+    <svg
+       x="-2"
+       y="20"
+       width="56"
+       height="56"
+       viewBox="0 0 100 100"
+       overflow="visible"
+       version="1.1"
+       id="svg9" />
+    <g
+       id="g22"
+       transform="matrix(0.96146601,0,0,0.94352777,0.05240623,2.530164)">
+      <path
+         id="bubble"
+         d="M 27,20 H 75 A 16,16 0 0 1 91,36 V 62 A 16,16 0 0 1 75,78 H 6 l 7,-7 V 34 A 14,14 0 0 1 27,20 Z"
+         fill="#ffffff"
+         transform="matrix(0.56,0,0,0.56,-2,20)" />
+      <g
+         id="asterisks"
+         fill="#14161f">
+        <g
+           transform="translate(18.16,47.44)"
+           id="g11">
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             id="rect9" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(60)"
+             id="rect10" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(120)"
+             id="rect11" />
+        </g>
+        <g
+           transform="translate(27.12,47.44)"
+           id="g14">
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             id="rect12" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(60)"
+             id="rect13" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(120)"
+             id="rect14" />
+        </g>
+        <g
+           transform="translate(36.08,47.44)"
+           id="g17">
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             id="rect15" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(60)"
+             id="rect16" />
+          <rect
+             x="-1.01"
+             y="-4.1999998"
+             width="2.02"
+             height="8.3999996"
+             rx="1.01"
+             transform="rotate(120)"
+             id="rect17" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

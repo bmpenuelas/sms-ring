@@ -1,0 +1,21 @@
+Hai perso il telefono tra i cuscini del divano ed è in silenzioso? Inviagli una frase segreta da qualsiasi telefono e squillerà al massimo volume, anche in silenzioso. I localizzatori online fanno squillare solo un telefono connesso a internet. A SMS Ring basta la rete mobile.
+
+🔒 PRIVATO PER SCELTA, NON PER PROMESSA
+SMS Ring non ha il permesso internet. È il sistema stesso a bloccare ogni connessione, quindi i tuoi dati non possono uscire dal telefono. Niente account, pubblicità, statistiche o server.
+
+👀 OPEN SOURCE: VERIFICALO TU
+Tutto il codice è pubblico. Leggilo, compilalo, controllalo.
+
+✨ FUNZIONI
+🔔 Volume massimo, anche in silenzioso o vibrazione
+🎲 Frase casuale da 2 a 6 parole semplici nella tua lingua, o la tua
+📱 Consenti a chiunque o solo ai numeri che scegli
+💬 Android: funziona anche con WhatsApp, Messenger, Telegram, Signal o qualsiasi altra app se consenti l’accesso alle notifiche. Tutto resta sul telefono, in totale privacy.
+⏱️ Squilla da 15 secondi a 5 minuti
+📳 Vibrazione facoltativa
+🌙 Squilla anche con Non disturbare, se lo consenti
+🔓 Solo tu puoi fermarlo: chiede PIN o impronta
+🧪 Squillo di prova e simulatore di messaggi, tutto offline
+🌍 Disponibile in 20 lingue
+
+iPhone: Apple non permette alle app di leggere i messaggi. SMS Ring ti guida in un’automazione di Comandi Rapidi da 1 minuto che lo sveglia quando arriva la tua frase.

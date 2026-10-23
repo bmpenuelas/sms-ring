@@ -1,0 +1,208 @@
+/* Global reset and the tokens every component reads. */
+
+:root {
+  --ui-bg: #ffffff;
+  --ui-ink: #14161f;
+  --ui-muted: color-mix(in oklab, var(--ui-ink) 58%, transparent);
+  --ui-line: color-mix(in oklab, var(--ui-ink) 12%, transparent);
+  --ui-field: color-mix(in oklab, var(--ui-ink) 6%, transparent);
+  --ui-accent: #2f5bff;
+  --ui-accent-ink: #fff;
+  --ui-good: #12a150;
+  --ui-warn: #d98c00;
+  --ui-danger: #d92d20;
+  --ui-backdrop: rgba(15, 10, 25, 0.45);
+  /* surfaces: soft panels, raised cards (keys), and solid dark buttons */
+  --ui-sheet: var(--ui-bg);
+  --ui-soft: #f1f2f6;
+  --ui-edge: #dfe1e8;
+  --ui-card: #ffffff;
+  --ui-solid: #14161f;
+  /* text on yellow, white knobs and other fixed light surfaces */
+  --ui-on-light: #14161f;
+  --ui-radius: 22px;
+  --ui-font: 'Inter Tight Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+  --ui-font-display: 'Unbounded Variable', var(--ui-font);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light;
+}
+
+/* Dark theme (Settings → Appearance; follows the system by default, see state/theme.ts). */
+:root[data-theme='dark'] {
+  --ui-bg: #0f1016;
+  --ui-sheet: #171922;
+  --ui-ink: #eceef5;
+  --ui-accent: #5b7bff;
+  --ui-good: #2fbf71;
+  --ui-warn: #f0a020;
+  --ui-danger: #f0605a;
+  --ui-backdrop: rgba(0, 0, 0, 0.6);
+  --ui-soft: #1c1e28;
+  --ui-edge: #08090d;
+  --ui-card: #2a2d3a;
+  --ui-solid: #3b4058;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--ui-bg);
+  color: var(--ui-ink);
+  font-family: var(--ui-font);
+  overscroll-behavior: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--ui-accent);
+  outline-offset: 3px;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Pressable: every tappable thing squishes a little. */
+.press {
+  transition: transform 0.18s var(--ease-spring);
+}
+.press:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Buttons used by the shared sheets. */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  background: var(--ui-accent);
+  color: var(--ui-accent-ink);
+  transition: transform 0.18s var(--ease-spring), filter 0.2s;
+}
+.ui-btn:active {
+  transform: scale(0.96);
+}
+.ui-btn[disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.ui-btn.secondary {
+  background: var(--ui-field);
+  color: var(--ui-ink);
+}
+.ui-btn.ghost {
+  background: transparent;
+  color: var(--ui-ink);
+  box-shadow: inset 0 0 0 1.5px var(--ui-line);
+}
+.ui-btn.danger {
+  background: var(--ui-danger);
+  color: #fff;
+}
+.ui-btn.block {
+  width: 100%;
+}
+.ui-field {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  background: var(--ui-field);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ui-field:focus {
+  border-color: var(--ui-accent);
+}
+.ui-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ui-muted);
+  margin: 18px 0 8px;
+}
+.ui-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ui-muted {
+  color: var(--ui-muted);
+}
+
+/* SVG text on paths is laid out from the path start: keep the paragraph LTR
+   (Arabic runs are still shaped and ordered by the bidi algorithm). */
+svg text {
+  direction: ltr;
+}

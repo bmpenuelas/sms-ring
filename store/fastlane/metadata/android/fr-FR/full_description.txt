@@ -1,0 +1,21 @@
+Téléphone perdu entre les coussins du canapé, en silencieux ? Envoyez-lui une phrase secrète depuis n’importe quel téléphone : il sonne à plein volume, même en silencieux. Les localisateurs en ligne ne font sonner qu’un téléphone connecté à internet. SMS Ring a juste besoin du réseau mobile.
+
+🔒 PRIVÉ PAR CONCEPTION, PAS PAR PROMESSE
+SMS Ring n’a pas l’autorisation internet. Le système bloque lui-même toute connexion : vos données ne peuvent physiquement pas quitter votre téléphone. Ni compte, ni pub, ni statistiques, ni serveur.
+
+👀 OPEN SOURCE : VÉRIFIEZ VOUS-MÊME
+Tout le code est public. Lisez-le, compilez-le, vérifiez-le.
+
+✨ FONCTIONNALITÉS
+🔔 Plein volume, même en silencieux ou vibreur
+🎲 Phrase aléatoire de 2 à 6 mots simples dans votre langue, ou la vôtre
+📱 Autorisez tout le monde ou seulement les numéros choisis
+💬 Android : marche aussi avec WhatsApp, Messenger, Telegram, Signal ou toute autre app si tu autorises l’accès aux notifications. Tout reste sur ton téléphone, en toute confidentialité.
+⏱️ Sonne de 15 secondes à 5 minutes
+📳 Vibration en option
+🌙 Sonne malgré Ne pas déranger si vous l’autorisez
+🔓 Toi seul peux l’arrêter : ton code ou ton empreinte est demandé
+🧪 Sonnerie de test et simulateur de messages, hors ligne
+🌍 Disponible en 20 langues
+
+iPhone : Apple ne permet pas aux apps de lire les messages. SMS Ring vous guide pour créer en 1 minute une automatisation Raccourcis qui le réveille quand votre phrase arrive.

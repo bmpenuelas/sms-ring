@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="1024" height="1024">
+  <!-- SMS Ring app icon · round 18 #8 (steep wave, split +4). Flat: no nested svg or symbols; shapes are named and editable. -->
+  <g id="background">
+    <rect id="background-orange" width="100" height="100" fill="#ff9f1a"/>
+    <path id="background-coral-wave" d="M59 0C44 30 56 70 39 100H100V0Z" fill="#ff5a4e"/>
+  </g>
+  <g id="ring-arcs">
+    <path id="arc-right-inner" d="M91.7 38.42a20 20 0 0 1 0 18.16" fill="none" stroke="#fff" stroke-width="3.68" stroke-linecap="round"/>
+    <path id="arc-right-outer" d="M96.14 35.7a26 26 0 0 1 0 23.6" fill="none" stroke="#fff" stroke-width="3.68" stroke-linecap="round"/>
+    <path id="arc-left-inner" d="M58.3 56.58a20 20 0 0 1 0 -18.16" fill="none" stroke="#fff" stroke-width="3.68" stroke-linecap="round"/>
+    <path id="arc-left-outer" d="M53.86 59.3a26 26 0 0 1 0 -23.6" fill="none" stroke="#fff" stroke-width="3.68" stroke-linecap="round"/>
+  </g>
+  <g id="phone">
+    <rect id="phone-edge" x="60.6" y="24.7" width="28.8" height="51.2" rx="8" fill="#000"/>
+    <rect id="phone-body" x="60.6" y="21.9" width="28.8" height="51.2" rx="8" fill="#14161f"/>
+    <rect id="phone-screen" x="63.4" y="24.7" width="23.2" height="45.6" rx="5.6" fill="#f9f9f9"/>
+    <rect id="phone-notch" x="71" y="25.9" width="8" height="2.4" rx="1.2" fill="#14161f"/>
+  </g>
+  <g id="bell">
+    <circle id="bell-border-knob" cx="50" cy="11" r="6" fill="#fff" stroke="#fff" stroke-width="14" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <path id="bell-border-body" d="M50 17c-14 0-24 10-24 24v16l-10 12h68l-10-12V41c0-14-10-24-24-24Z" fill="#fff" stroke="#fff" stroke-width="15" stroke-linejoin="round" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <path id="bell-border-clapper" d="M40 70a10 10 0 0 0 20 0Z" fill="#fff" stroke="#fff" stroke-width="10" stroke-linejoin="round" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <circle id="bell-knob" cx="50" cy="11" r="6" fill="#ffc21a" stroke="#14161f" stroke-width="4" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <path id="bell-body" d="M50 17c-14 0-24 10-24 24v16l-10 12h68l-10-12V41c0-14-10-24-24-24Z" fill="#ffc21a" stroke="#14161f" stroke-width="5" stroke-linejoin="round" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <path id="bell-clapper" d="M40 70a10 10 0 0 0 20 0Z" fill="#14161f" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+    <path id="bell-shine" d="M37 34c2-5 6-8 11-9" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="5" stroke-linecap="round" transform="matrix(0.3443 0.0732 -0.0732 0.3443 62.7779 28.3469)"/>
+  </g>
+  <g id="rays">
+    <path id="ray-left" d="M72.1 16.44L69.02 10.15" stroke="#fff" stroke-width="3.8" stroke-linecap="round"/>
+    <path id="ray-middle" d="M83.03 15.41L84.89 8.67" stroke="#fff" stroke-width="3.8" stroke-linecap="round"/>
+    <path id="ray-right" d="M91.9 21.89L97.76 18.07" stroke="#fff" stroke-width="3.8" stroke-linecap="round"/>
+  </g>
+  <g id="arrow">
+    <path id="arrow-curve" d="M26 67.5C27 90 47 94 60 77" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="arrow-head" d="M59.58 84.99L60 77L52.4 79.5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="message">
+    <path id="bubble" d="M27 20H75A16 16 0 0 1 91 36V62A16 16 0 0 1 75 78H6l7-7V34A14 14 0 0 1 27 20Z" fill="#fff" transform="matrix(0.5384 0 0 0.5284 -1.8705 21.4007)"/>
+    <rect id="asterisk-1-bar-1" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.9615 0 0 0.9435 17.5126 47.2911)"/>
+    <rect id="asterisk-1-bar-2" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.4807 0.8171 -0.8327 0.4718 17.5126 47.2911)"/>
+    <rect id="asterisk-1-bar-3" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(-0.4807 0.8171 -0.8327 -0.4718 17.5126 47.2911)"/>
+    <rect id="asterisk-2-bar-1" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.9615 0 0 0.9435 26.1274 47.2911)"/>
+    <rect id="asterisk-2-bar-2" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.4807 0.8171 -0.8327 0.4718 26.1274 47.2911)"/>
+    <rect id="asterisk-2-bar-3" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(-0.4807 0.8171 -0.8327 -0.4718 26.1274 47.2911)"/>
+    <rect id="asterisk-3-bar-1" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.9615 0 0 0.9435 34.7421 47.2911)"/>
+    <rect id="asterisk-3-bar-2" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(0.4807 0.8171 -0.8327 0.4718 34.7421 47.2911)"/>
+    <rect id="asterisk-3-bar-3" x="-1.01" y="-4.2" width="2.02" height="8.4" rx="1.01" fill="#14161f" transform="matrix(-0.4807 0.8171 -0.8327 -0.4718 34.7421 47.2911)"/>
+  </g>
+</svg>

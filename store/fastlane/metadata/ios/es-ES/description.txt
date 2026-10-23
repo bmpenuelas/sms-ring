@@ -1,0 +1,21 @@
+¿Has perdido el móvil entre los cojines del sofá y está en silencio? Envíale una frase secreta desde cualquier teléfono y sonará a todo volumen, aunque esté en silencio. Los localizadores online solo pueden hacer sonar un móvil conectado a internet. SMS Ring solo necesita cobertura.
+
+🔒 PRIVADO POR DISEÑO, NO POR PROMESA
+SMS Ring no tiene permiso de internet. El propio sistema bloquea cualquier conexión, así que tus datos no pueden salir de tu móvil. Sin cuentas, sin anuncios, sin analíticas, sin servidores.
+
+👀 CÓDIGO ABIERTO: COMPRUÉBALO TÚ
+Todo el código es público. Léelo, compílalo, revísalo.
+
+✨ FUNCIONES
+🔔 A todo volumen, incluso en silencio o vibración
+🎲 Frase aleatoria de 2 a 6 palabras sencillas en tu idioma, o escribe la tuya
+📱 Permite a cualquiera o solo a los números que elijas
+💬 Android: también funciona con WhatsApp, Messenger, Telegram, Signal o cualquier otra app si permites el acceso a notificaciones. Todo se queda en tu móvil, totalmente privado.
+⏱️ Suena de 15 segundos a 5 minutos
+📳 Vibración opcional
+🌙 Suena con No molestar si lo permites
+🔓 Solo tú puedes detenerlo: pide tu PIN o huella
+🧪 Timbre de prueba y simulador de mensajes, todo sin conexión
+🌍 Disponible en 20 idiomas
+
+iPhone: Apple no permite que las apps lean mensajes. SMS Ring te guía para crear en 1 minuto una automatización de Atajos que la despierta cuando llega tu frase.

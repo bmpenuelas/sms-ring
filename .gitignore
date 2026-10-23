@@ -1,0 +1,33 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.vscode/*
+.claude
+# Local to-do notes, never committed
+PENDING.md
+!.vscode/extensions.json
+.idea/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/capacitor-cordova-android-plugins/build/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+plugins/*/android/build/
+*.keystore
+*.jks
+android/keystore.properties
+
+# iOS
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+ios/DerivedData/
+ios/App/Pods/
+xcuserdata/
+*.xcuserstate
