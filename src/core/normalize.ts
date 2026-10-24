@@ -15,6 +15,20 @@ export function normalizePhrase(text: string): string {
   return text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(INVISIBLE, '')
 }
 
+/** Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets. */
+const QUOTES = new Set([
+  ...'"\'`\u201C\u201D\u201E\u201F\u2018\u2019\u201A\u201B\u00AB\u00BB\u2039\u203A\u300C\u300D\u300E\u300F\u301D\u301E\u301F',
+])
+
+/**
+ * Drops one pair of quotes wrapping an already normalized message:
+ * "“blue tiger moon”" → "bluetigermoon". Quotes on only one side stay.
+ */
+export function unquote(normalized: string): string {
+  const last = normalized.length - 1
+  return last >= 1 && QUOTES.has(normalized[0]) && QUOTES.has(normalized[last]) ? normalized.slice(1, last) : normalized
+}
+
 /** Letters and digits only: used to compare alphanumeric sender IDs ("My-Bank" = "MYBANK"). */
 export function normalizeKey(text: string): string {
   return text

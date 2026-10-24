@@ -10,12 +10,14 @@ Implemented three times, kept identical by shared test vectors (`plugins/remote-
 
 ## Rule: the whole message must be the passphrase
 
-Only **spaces, capitals and accents/tildes** may differ. Nothing else may be added, removed or reordered: no greeting, no punctuation.
+Only **spaces, capitals, accents/tildes and one pair of wrapping quotes** may differ. Nothing else may be added, removed or reordered: no greeting, no punctuation.
 
 | Phrase `blue tiger moon` | Rings? |
 |---|---|
 | `Blue tiger MOON`, `bluetigermoon`, `  blue  tiger moon ⏎` | ✅ |
+| `"blue tiger moon"`, `“Blue tiger moon”`, `« blue tiger moon »`, `「blue tiger moon」` | ✅ |
 | `blue tiger moon!`, `Hey blue tiger moon`, `blue-tiger-moon`, `moon tiger blue` | ❌ |
+| `"blue tiger moon` (one side only), `""blue tiger moon""` (two pairs), `"blue tiger moon".` | ❌ |
 | Phrase `piña año`, message `pina ano` | ✅ |
 
 ## `normalizePhrase`
@@ -25,7 +27,9 @@ Only **spaces, capitals and accents/tildes** may differ. Nothing else may be add
 3. remove combining marks (`\p{M}`): accents, tildes, dieresis…
 4. remove whitespace, separators and invisible format characters (`[\s\p{Z}\p{Cf}]`)
 
-The message rings when `normalizePhrase(message) === normalizePhrase(passphrase)` (UTF-16 code-unit equality on all platforms). Normalized passphrases shorter than **6** units never match (`weak-passphrase`).
+The message rings when `normalizePhrase(message) === normalizePhrase(passphrase)` or, after dropping one wrapping quote pair with `unquote`, `unquote(normalizePhrase(message)) === normalizePhrase(passphrase)` (UTF-16 code-unit equality on all platforms).
+
+`unquote` works on the normalized text, so whitespace between a quote and the phrase doesn't matter. It removes the first and last character only when both are quote marks: `"` `'` `` ` `` `“ ” „ ‟ ‘ ’ ‚ ‛` `« » ‹ ›` `「 」 『 』` `〝 〞 〟` (full-width `＂ ＇` fold to `" '` first). Quotes are only stripped from the message: a passphrase that itself starts and ends with quotes still matches when typed exactly as it is. Normalized passphrases shorter than **6** units never match (`weak-passphrase`).
 
 ## Senders
 

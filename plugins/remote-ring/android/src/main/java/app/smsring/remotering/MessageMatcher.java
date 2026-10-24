@@ -37,6 +37,18 @@ public final class MessageMatcher {
         return INVISIBLE.matcher(fold(text)).replaceAll("");
     }
 
+    /** Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets. */
+    private static final String QUOTES = "\"'`\u201C\u201D\u201E\u201F\u2018\u2019\u201A\u201B\u00AB\u00BB\u2039\u203A\u300C\u300D\u300E\u300F\u301D\u301E\u301F";
+
+    /** Drops one pair of quotes wrapping an already normalized message. */
+    public static String unquote(String normalized) {
+        int last = normalized.length() - 1;
+        if (last >= 1 && QUOTES.indexOf(normalized.charAt(0)) >= 0 && QUOTES.indexOf(normalized.charAt(last)) >= 0) {
+            return normalized.substring(1, last);
+        }
+        return normalized;
+    }
+
     /** Letters and digits only (alphanumeric sender IDs). */
     public static String normalizeKey(String text) {
         if (text == null) return "";
@@ -67,11 +79,12 @@ public final class MessageMatcher {
         return "•••• " + s.substring(s.length() - 4);
     }
 
-    /** The whole message must be the passphrase; only spaces, capitals and accents may differ. */
+    /** The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ. */
     public static Verdict evaluate(boolean armed, String passphrase, List<String> senders, String body, String sender) {
         String phrase = normalizePhrase(passphrase);
         if (phrase.length() < MIN_NORMALIZED_PASSPHRASE) return Verdict.WEAK_PASSPHRASE;
-        if (!normalizePhrase(body).equals(phrase)) return Verdict.NO_PASSPHRASE;
+        String message = normalizePhrase(body);
+        if (!message.equals(phrase) && !unquote(message).equals(phrase)) return Verdict.NO_PASSPHRASE;
         boolean anyAllowed = false;
         boolean matched = false;
         for (String allowed : senders) {

@@ -51,6 +51,21 @@ public enum MessageMatcher {
         return String(out)
     }
 
+    /// Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets.
+    private static let quotes: Set<UInt32> = [
+        0x22, 0x27, 0x60, 0x201C, 0x201D, 0x201E, 0x201F, 0x2018, 0x2019, 0x201A, 0x201B,
+        0xAB, 0xBB, 0x2039, 0x203A, 0x300C, 0x300D, 0x300E, 0x300F, 0x301D, 0x301E, 0x301F,
+    ]
+
+    /// Drops one pair of quotes wrapping an already normalized message.
+    public static func unquote(_ normalized: String) -> String {
+        let scalars = Array(normalized.unicodeScalars)
+        guard scalars.count >= 2, quotes.contains(scalars[0].value), quotes.contains(scalars[scalars.count - 1].value) else { return normalized }
+        var out = String.UnicodeScalarView()
+        out.append(contentsOf: scalars[1..<(scalars.count - 1)])
+        return String(out)
+    }
+
     /// Letters and digits only (alphanumeric sender IDs).
     public static func normalizeKey(_ text: String) -> String {
         var out = String.UnicodeScalarView()
@@ -94,14 +109,16 @@ public enum MessageMatcher {
         return "•••• " + s.suffix(4)
     }
 
-    /// The whole message must be the passphrase; only spaces, capitals and accents may differ.
+    /// The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ.
     /// `sender == nil` means the trigger could not tell (a Shortcuts automation
     /// without the Sender variable): only allowed when no senders are configured.
     public static func evaluate(_ config: RingConfig, body: String, sender: String?) -> Verdict {
         let phrase = normalizePhrase(config.passphrase)
         if phrase.utf16.count < minNormalizedPassphrase { return .weakPassphrase }
         // Code-unit comparison, like === in JS and String.equals in Java.
-        if Array(normalizePhrase(body).utf16) != Array(phrase.utf16) { return .noPassphrase }
+        let message = normalizePhrase(body)
+        let expected = Array(phrase.utf16)
+        if Array(message.utf16) != expected && Array(unquote(message).utf16) != expected { return .noPassphrase }
         let allowed = config.senders.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
         if !allowed.isEmpty {
             guard let sender, allowed.contains(where: { sendersMatch($0, sender) }) else { return .senderNotAllowed }
