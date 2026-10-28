@@ -325,6 +325,8 @@ const nl: Messages = {
       stop: 'Stoppen',
     },
     language: {
+      search: "Talen zoeken",
+      noResults: "Geen talen gevonden.",
       title: 'Taal',
       automatic: 'Automatisch',
       automaticHint: (name: string) => `Taal van telefoon · ${name}`,

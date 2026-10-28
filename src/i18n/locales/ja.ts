@@ -325,6 +325,8 @@ const ja: Messages = {
       stop: '止める',
     },
     language: {
+      search: "言語を検索",
+      noResults: "言語が見つかりません。",
       title: '言語',
       automatic: '自動',
       automaticHint: (name: string) => `端末の言語 · ${name}`,

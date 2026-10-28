@@ -333,6 +333,8 @@ const pl: Messages = {
       stop: 'Zatrzymaj dzwonek',
     },
     language: {
+      search: "Szukaj języków",
+      noResults: "Nie znaleziono języków.",
       title: 'Język',
       automatic: 'Automatycznie',
       automaticHint: (name: string) => `Język telefonu · ${name}`,

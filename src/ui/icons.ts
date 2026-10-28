@@ -1,5 +1,6 @@
 // Inline stroke icons (24×24 grid), so nothing is fetched and color follows text.
 export const ICONS = {
+  search: 'M21 21l-4.4-4.4 M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',
   bell: 'M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16Z M10 20.5a2 2 0 0 0 4 0',
   'bell-off': 'M6 16V11a6 6 0 0 1 9.5-4.9 M18 11v5l1.5 2H8 M10 20.5a2 2 0 0 0 4 0 M3 3l18 18',
   shield: 'M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6L12 3Z',

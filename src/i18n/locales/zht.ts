@@ -325,6 +325,8 @@ const zht: Messages = {
       stop: '停止響鈴',
     },
     language: {
+      search: "搜尋語言",
+      noResults: "找不到語言。",
       title: '語言',
       automatic: '自動',
       automaticHint: (name: string) => `手機語言 · ${name}`,

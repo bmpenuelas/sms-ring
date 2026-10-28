@@ -325,6 +325,8 @@ const th: Messages = {
       stop: 'หยุดเสียง',
     },
     language: {
+      search: "ค้นหาภาษา",
+      noResults: "ไม่พบภาษา",
       title: 'ภาษา',
       automatic: 'อัตโนมัติ',
       automaticHint: (name: string) => `ภาษาของโทรศัพท์ · ${name}`,

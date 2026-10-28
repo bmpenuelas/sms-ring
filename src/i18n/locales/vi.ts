@@ -325,6 +325,8 @@ const vi: Messages = {
       stop: 'Dừng chuông',
     },
     language: {
+      search: "Tìm ngôn ngữ",
+      noResults: "Không tìm thấy ngôn ngữ.",
       title: 'Ngôn ngữ',
       automatic: 'Tự động',
       automaticHint: (name: string) => `Ngôn ngữ máy · ${name}`,

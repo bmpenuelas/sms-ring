@@ -333,6 +333,8 @@ const ru: Messages = {
       stop: 'Остановить звонок',
     },
     language: {
+      search: "Поиск языков",
+      noResults: "Языки не найдены.",
       title: 'Язык',
       automatic: 'Автоматически',
       automaticHint: (name: string) => `Язык телефона · ${name}`,

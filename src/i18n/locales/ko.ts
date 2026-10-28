@@ -325,6 +325,8 @@ const ko: Messages = {
       stop: '울림 중지',
     },
     language: {
+      search: "언어 검색",
+      noResults: "언어를 찾을 수 없습니다.",
       title: '언어',
       automatic: '자동',
       automaticHint: (name: string) => `휴대폰 언어 · ${name}`,

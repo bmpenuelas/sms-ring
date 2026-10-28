@@ -325,6 +325,8 @@ const it: Messages = {
       stop: 'Ferma lo squillo',
     },
     language: {
+      search: "Cerca lingue",
+      noResults: "Nessuna lingua trovata.",
       title: 'Lingua',
       automatic: 'Automatica',
       automaticHint: (name: string) => `Lingua del telefono · ${name}`,

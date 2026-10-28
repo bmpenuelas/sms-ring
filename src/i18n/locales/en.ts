@@ -329,6 +329,8 @@ const en = {
       stop: 'Stop ringing',
     },
     language: {
+      search: "Search languages",
+      noResults: "No languages found.",
       title: 'Language',
       automatic: 'Automatic',
       automaticHint: (name: string) => `Phone language · ${name}`,

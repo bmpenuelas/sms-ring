@@ -325,6 +325,8 @@ const fr: Messages = {
       stop: 'Arrêter la sonnerie',
     },
     language: {
+      search: "Rechercher une langue",
+      noResults: "Aucune langue trouvée.",
       title: 'Langue',
       automatic: 'Automatique',
       automaticHint: (name: string) => `Langue du téléphone · ${name}`,

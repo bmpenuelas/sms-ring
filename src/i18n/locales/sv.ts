@@ -325,6 +325,8 @@ const sv: Messages = {
       stop: 'Sluta ringa',
     },
     language: {
+      search: "Sök språk",
+      noResults: "Inga språk hittades.",
       title: 'Språk',
       automatic: 'Automatiskt',
       automaticHint: (name: string) => `Telefonens språk · ${name}`,

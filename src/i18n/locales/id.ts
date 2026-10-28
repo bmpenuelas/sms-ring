@@ -325,6 +325,8 @@ const id: Messages = {
       stop: 'Hentikan dering',
     },
     language: {
+      search: "Cari bahasa",
+      noResults: "Tidak ada bahasa ditemukan.",
       title: 'Bahasa',
       automatic: 'Otomatis',
       automaticHint: (name: string) => `Bahasa ponsel · ${name}`,

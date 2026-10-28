@@ -325,6 +325,8 @@ const es: Messages = {
       stop: 'Detener',
     },
     language: {
+      search: "Buscar idiomas",
+      noResults: "No se encontraron idiomas.",
       title: 'Idioma',
       automatic: 'Automático',
       automaticHint: (name: string) => `Idioma del móvil · ${name}`,

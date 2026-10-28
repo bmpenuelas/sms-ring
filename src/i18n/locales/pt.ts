@@ -325,6 +325,8 @@ const pt: Messages = {
       stop: 'Parar de tocar',
     },
     language: {
+      search: "Buscar idiomas",
+      noResults: "Nenhum idioma encontrado.",
       title: 'Idioma',
       automatic: 'Automático',
       automaticHint: (name: string) => `Idioma do celular · ${name}`,

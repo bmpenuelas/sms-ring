@@ -325,6 +325,8 @@ const tr: Messages = {
       stop: 'Çalmayı durdur',
     },
     language: {
+      search: "Dil ara",
+      noResults: "Dil bulunamadı.",
       title: 'Dil',
       automatic: 'Otomatik',
       automaticHint: (name: string) => `Telefon dili · ${name}`,

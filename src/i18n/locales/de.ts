@@ -325,6 +325,8 @@ const de: Messages = {
       stop: 'Klingeln stoppen',
     },
     language: {
+      search: "Sprachen suchen",
+      noResults: "Keine Sprachen gefunden.",
       title: 'Sprache',
       automatic: 'Automatisch',
       automaticHint: (name: string) => `Handysprache · ${name}`,

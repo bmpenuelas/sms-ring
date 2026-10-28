@@ -325,6 +325,8 @@ const hi: Messages = {
       stop: 'बजना रोकें',
     },
     language: {
+      search: "भाषाएँ खोजें",
+      noResults: "कोई भाषा नहीं मिली।",
       title: 'भाषा',
       automatic: 'स्वचालित',
       automaticHint: (name: string) => `फ़ोन की भाषा · ${name}`,

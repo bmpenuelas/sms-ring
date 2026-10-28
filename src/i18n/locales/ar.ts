@@ -329,6 +329,8 @@ const ar: Messages = {
       stop: 'إيقاف الرنين',
     },
     language: {
+      search: "البحث عن اللغات",
+      noResults: "لم يتم العثور على لغات.",
       title: 'اللغة',
       automatic: 'تلقائي',
       automaticHint: (name: string) => `لغة الهاتف · ${name}`,
