@@ -38,9 +38,64 @@ The message rings when `normalizePhrase(message) === normalizePhrase(passphrase)
 - Numbers under 7 digits (short codes) and alphanumeric IDs must match exactly.
 - No senders configured = anyone. On iOS, if senders are configured but the automation passes no sender, it does not ring.
 
+## Optional vibrate-only modifier
+
+Settings → **Vibrate-only mode** is on by default (a saved off choice is preserved). When enabled, the editable
+**Vibrate-only words** default to “vibration only”, translated into the app's
+language (20 locales). Untouched defaults follow language changes; custom words
+are preserved. Empty or whitespace-only settings revert to the localized default.
+The saved modifier is shared with the native background matcher. The settings row
+shows the configured words; tapping its title/description opens a minimal editor
+sheet. The separate switch in Settings still enables/disables the feature.
+
+The modifier editor and secret-passphrase sheet share `PassphraseShareActions.vue`.
+Copy and Share (including the home-screen shortcuts) both use
+`src/core/instructions.ts` to generate the same localized instructions. The normal
+message mentions vibration only when normal vibration is on; the silent message
+appears only when vibrate-only mode is on. Matching/quoting explanations are not
+included in copied/shared instructions. Sender restrictions,
+chat-app triggering and the paused warning appear only when applicable. No claim
+of full volume or DND bypass is made, and allowed phone numbers are not disclosed.
+
+For passphrase `blue tiger moon` and modifier `vibration only`, these all request
+**vibration without the alarm sound**:
+
+| Form | Examples |
+|---|---|
+| Modifier after / before | `blue tiger moon vibration only`, `vibration only blue tiger moon` |
+| Entire message quoted | `"blue tiger moon vibration only"`, `“vibration only blue tiger moon”` |
+| Each part quoted | `"blue tiger moon" "vibration only"`, `“vibration only” «blue tiger moon»` |
+| Only one part quoted | `"blue tiger moon" vibration only`, `vibration only "blue tiger moon"` |
+| Outer quotes plus quoted parts | `「“blue tiger moon” «vibration only»」` |
+| Normalization | `VÍBRATION ONLY  BLÚE TÍGER MÓÓN`, `bluetigermoonvibrationonly` |
+
+All forms work in either order, with the same normalization and quote characters
+listed above. Each complete part can have one quote pair, and the complete message
+can have one outer pair. Quotes *inside* a configured phrase remain literal; this
+does not strip arbitrary punctuation or quotes from the text.
+
+The passphrase **alone still rings normally**. The modifier alone never triggers
+anything. Extra text, extra punctuation, partial words, repeated modifiers,
+one-sided quotes or a modifier inserted *inside* the passphrase do not match.
+The master switch, minimum passphrase length and sender filter still apply.
+When the feature is disabled, messages containing the extra modifier do not match.
+
+A vibration-only trigger forces vibration even if “Vibrate while ringing” is off.
+Android skips tone playback, audio focus, volume changes and DND lifting; a new
+vibration-only SMS also stops a previous audible alarm. The fallback notification
+uses a dedicated channel with vibration and no sound, and carries the silent mode
+through to the stop screen. iOS skips the audio player/session and requests system
+vibration; vibration availability and continued execution depend on the device's
+haptics/background restrictions. No silent audio is played to keep iOS awake.
+Other apps' own incoming-message sounds are outside SMS Ring's control.
+
+The shared fixture includes positive/negative modifier cases, quoting variations,
+custom/localized modifiers, Unicode normalization and sender/armed/weak-phrase
+checks, run by the TypeScript, Android and iOS matcher tests.
+
 ## Verdicts
 
-`ring`, `disarmed`, `weak-passphrase`, `no-passphrase` (the message is not exactly the phrase), `sender-not-allowed`; shown live in the *Try a message* sheet.
+`ring`, `vibrate-only`, `disarmed`, `weak-passphrase`, `no-passphrase` (the message is not exactly the phrase or enabled modifier combination), `sender-not-allowed`; shown live in the *Try a message* sheet.
 
 ## Passphrase generation
 

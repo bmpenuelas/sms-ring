@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { DEFAULT_TONE, TONES, sanitizeConfig } from '../src/core/config.ts'
+import { DEFAULT_TONE, TONES, defaultConfig, sanitizeConfig } from '../src/core/config.ts'
 
 test('config/tone keeps known tones', () => {
   for (const tone of TONES) assert.equal(sanitizeConfig({ tone }, 'a b c').tone, tone)
@@ -26,4 +26,20 @@ test('config/chatApps is off unless explicitly on', () => {
   assert.equal(sanitizeConfig({}, 'a b c').chatApps, false)
   assert.equal(sanitizeConfig({ chatApps: 'yes' }, 'a b c').chatApps, false)
   assert.equal(sanitizeConfig({ chatApps: true }, 'a b c').chatApps, true)
+})
+
+test('config/vibrate-only migrates safely with a localized default', () => {
+  const old = sanitizeConfig({}, 'blue tiger moon', 'solo vibración')
+  assert.equal(defaultConfig().vibrateOnlyEnabled, true)
+  assert.equal(old.vibrateOnlyEnabled, true)
+  assert.equal(old.vibrateOnlyPhrase, 'solo vibración')
+  assert.equal(sanitizeConfig(null, 'a b c').vibrateOnlyEnabled, true)
+  assert.equal(sanitizeConfig({ vibrateOnlyEnabled: 'yes' }, 'a b c').vibrateOnlyEnabled, true)
+  assert.equal(sanitizeConfig({ vibrateOnlyEnabled: false }, 'a b c').vibrateOnlyEnabled, false)
+  const custom = sanitizeConfig({ vibrateOnlyEnabled: true, vibrateOnlyPhrase: '  hush please  ' }, 'a b c', 'solo vibración')
+  assert.equal(custom.vibrateOnlyEnabled, true)
+  assert.equal(custom.vibrateOnlyPhrase, 'hush please')
+  for (const invalid of ['', '  \t\n', '\u200b', '\u0301', null, 42]) {
+    assert.equal(sanitizeConfig({ vibrateOnlyPhrase: invalid }, 'a b c', 'solo vibración').vibrateOnlyPhrase, 'solo vibración')
+  }
 })

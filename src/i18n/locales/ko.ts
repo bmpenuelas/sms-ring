@@ -55,10 +55,18 @@ const ko: Messages = {
       copyLabel: '비밀 문구 복사',
       shareLabel: '믿을 수 있는 사람과 공유',
       shareTitle: '내 SMS Ring 문구',
-      shareText: (phrase: string) =>
-        `내 휴대폰을 잃어버리면 내 번호로 “${phrase}”라고 보내줘. 무음이어도 최대 볼륨으로 울려. 꼭 비밀로 해줘.`,
       show: '문구 보기',
       hide: '문구 숨기기',
+    },
+    sharing: {
+      intro: "휴대폰을 잃어버리면 내 번호로 다음 메시지를 보내 주세요:",
+      ring: (message: string) => "“" + message + "”을(를) 보내면 벨이 울립니다.",
+      ringVibrate: (message: string) => "“" + message + "”을(를) 보내면 벨이 울리고 진동합니다.",
+      vibrateOnly: (message: string) => "“" + message + "”을(를) 보내면 소리 없이 진동합니다.",
+      senderRestricted: "허용된 발신자만 작동시킬 수 있습니다. 내가 허용한 번호를 사용해 주세요.",
+      paused: "SMS Ring이 현재 일시 정지되어 있습니다. 이 메시지가 작동하려면 내가 켜야 합니다.",
+      chatApps: "채팅 앱에서 작동시키는 기능도 켜져 있으며 SMS Ring이 읽을 수 있는 알림을 통해 동작합니다.",
+      keepSecret: "이 안내를 비밀로 해 주세요.",
     },
     senders: {
       title: '울릴 수 있는 사람',
@@ -81,6 +89,13 @@ const ko: Messages = {
       title: '진동',
       on: '울리는 동안 진동',
       off: '소리만',
+    },
+    vibrateOnly: {
+      title: "진동 전용 모드",
+      defaultPhrase: "진동만",
+      hint: (words: string) => "메시지에 “" + words + "”을(를) 추가하면 소리 없이 진동합니다",
+      phraseLabel: "진동 전용 단어",
+      matchingHint: "비밀 문구 앞이나 뒤에 추가하세요. 비밀 문구만 보내면 평소처럼 울립니다.",
     },
     dnd: {
       title: '방해 금지 모드에서도 울리기',
@@ -133,6 +148,7 @@ const ko: Messages = {
       placeholder: '메시지 입력…',
       sender: '보낸 사람 (선택)',
       verdicts: {
+        'vibrate-only': "소리 없이 진동합니다",
         ring: '이 메시지는 휴대폰을 울려요',
         disarmed: '울렸겠지만 SMS Ring이 일시 중지됨',
         'weak-passphrase': '문구가 너무 짧아요',

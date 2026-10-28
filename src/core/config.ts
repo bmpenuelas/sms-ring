@@ -2,6 +2,7 @@
 // read back from storage.
 
 import type { RingConfig, ToneId } from 'capacitor-remote-ring'
+import { normalizePhrase } from './normalize.ts'
 
 export type { RingConfig, ToneId }
 
@@ -18,7 +19,7 @@ export const DEFAULT_TONE: ToneId = 'beacon'
 export const MIN_VOLUME = 10
 export const MAX_VOLUME = 100
 
-export function defaultConfig(passphrase = ''): RingConfig {
+export function defaultConfig(passphrase = '', vibrateOnlyPhrase = 'vibration only'): RingConfig {
   return {
     version: 1,
     armed: true,
@@ -26,6 +27,8 @@ export function defaultConfig(passphrase = ''): RingConfig {
     senders: [],
     durationSeconds: DEFAULT_DURATION,
     vibrate: true,
+    vibrateOnlyEnabled: true,
+    vibrateOnlyPhrase,
     overrideDnd: true,
     tone: DEFAULT_TONE,
     volume: MAX_VOLUME,
@@ -33,8 +36,8 @@ export function defaultConfig(passphrase = ''): RingConfig {
   }
 }
 
-export function sanitizeConfig(input: unknown, fallbackPassphrase: string): RingConfig {
-  const base = defaultConfig(fallbackPassphrase)
+export function sanitizeConfig(input: unknown, fallbackPassphrase: string, fallbackVibrateOnlyPhrase = 'vibration only'): RingConfig {
+  const base = defaultConfig(fallbackPassphrase, fallbackVibrateOnlyPhrase)
   if (!input || typeof input !== 'object') return base
   const c = input as Partial<RingConfig>
   const duration = Number(c.durationSeconds)
@@ -49,6 +52,9 @@ export function sanitizeConfig(input: unknown, fallbackPassphrase: string): Ring
       ? Math.min(MAX_DURATION, Math.max(MIN_DURATION, Math.round(duration)))
       : base.durationSeconds,
     vibrate: c.vibrate !== false,
+    vibrateOnlyEnabled: typeof c.vibrateOnlyEnabled === 'boolean' ? c.vibrateOnlyEnabled : base.vibrateOnlyEnabled,
+    vibrateOnlyPhrase: typeof c.vibrateOnlyPhrase === 'string' && normalizePhrase(c.vibrateOnlyPhrase)
+      ? c.vibrateOnlyPhrase.trim() : base.vibrateOnlyPhrase,
     overrideDnd: c.overrideDnd !== false,
     tone: TONES.includes(c.tone as ToneId) ? (c.tone as ToneId) : DEFAULT_TONE,
     volume: Number.isFinite(Number(c.volume))

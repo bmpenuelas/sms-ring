@@ -55,10 +55,18 @@ const it: Messages = {
       copyLabel: 'Copia la frase segreta',
       shareLabel: 'Condividi con una persona di fiducia',
       shareTitle: 'La mia frase di SMS Ring',
-      shareText: (phrase: string) =>
-        `Se perdo il telefono, invia «${phrase}» al mio numero e squillerà al massimo volume, anche in silenzioso. Per favore tienilo segreto.`,
       show: 'Mostra frase',
       hide: 'Nascondi frase',
+    },
+    sharing: {
+      intro: "Se perdo il telefono, invia al mio numero:",
+      ring: (message: string) => "Invia «" + message + "» per farlo squillare.",
+      ringVibrate: (message: string) => "Invia «" + message + "» per farlo squillare e vibrare.",
+      vibrateOnly: (message: string) => "Invia «" + message + "» per farlo vibrare senza suono.",
+      senderRestricted: "Funziona solo con i mittenti consentiti. Usa un numero che ho autorizzato.",
+      paused: "SMS Ring è in pausa. Devo attivarlo affinché questi messaggi funzionino.",
+      chatApps: "È attiva anche l’attivazione dalle app di chat, tramite le notifiche che SMS Ring può leggere.",
+      keepSecret: "Per favore, mantieni segrete queste istruzioni.",
     },
     senders: {
       title: 'Chi può farlo squillare',
@@ -81,6 +89,13 @@ const it: Messages = {
       title: 'Vibrazione',
       on: 'Vibra mentre squilla',
       off: 'Solo suono',
+    },
+    vibrateOnly: {
+      title: "Modalità solo vibrazione",
+      defaultPhrase: "solo vibrazione",
+      hint: (words: string) => "Aggiungi «" + words + "» al messaggio per farlo vibrare senza suono",
+      phraseLabel: "Parole per la sola vibrazione",
+      matchingHint: "Metti queste parole prima o dopo la frase segreta. La frase da sola continua a far squillare.",
     },
     dnd: {
       title: 'Squillare anche con Non disturbare',
@@ -133,6 +148,7 @@ const it: Messages = {
       placeholder: 'Scrivi un messaggio…',
       sender: 'Da (facoltativo)',
       verdicts: {
+        'vibrate-only': "Questo farebbe vibrare senza suono",
         ring: 'Questo farebbe squillare il telefono',
         disarmed: 'Squillerebbe, ma SMS Ring è in pausa',
         'weak-passphrase': 'La tua frase è troppo corta',

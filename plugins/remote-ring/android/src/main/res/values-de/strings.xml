@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring kann gerade nicht klingeln</string>
     <string name="remote_ring_health_text">Etwas Nötiges wurde ausgeschaltet. Tippe, um es zu beheben.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Nur-Vibration-Modus</string>
 </resources>

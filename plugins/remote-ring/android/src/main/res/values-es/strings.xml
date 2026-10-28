@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring no puede sonar ahora</string>
     <string name="remote_ring_health_text">Se desactivó algo que necesita. Toca para arreglarlo.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Modo de solo vibración</string>
 </resources>

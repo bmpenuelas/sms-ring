@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring kan inte ringa nu</string>
     <string name="remote_ring_health_text">Något som behövs har stängts av. Tryck för att åtgärda.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Endast vibration</string>
 </resources>

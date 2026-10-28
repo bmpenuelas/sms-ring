@@ -14,7 +14,7 @@ const { state, actions } = useRingApp()
 const body = ref(state.config.passphrase)
 const sender = ref('')
 const verdict = computed(() => actions.simulate(body.value, sender.value))
-const rings = computed(() => verdict.value === 'ring')
+const rings = computed(() => verdict.value === 'ring' || verdict.value === 'vibrate-only')
 </script>
 
 <template>
@@ -27,7 +27,7 @@ const rings = computed(() => verdict.value === 'ring')
         <textarea v-model="body" rows="2" :placeholder="t.tryIt.placeholder" :aria-label="t.tryIt.placeholder" />
       </div>
       <div class="result" :key="verdict">
-        <span class="bell"><Icon :name="rings ? 'bell' : 'bell-off'" :size="22" /></span>
+        <span class="bell"><Icon :name="verdict === 'vibrate-only' ? 'vibrate' : rings ? 'bell' : 'bell-off'" :size="22" /></span>
         <strong>{{ t.tryIt.verdicts[verdict] }}</strong>
       </div>
     </div>

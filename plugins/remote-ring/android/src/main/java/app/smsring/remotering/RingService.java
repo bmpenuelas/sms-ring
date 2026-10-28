@@ -32,6 +32,7 @@ public class RingService extends Service {
     private static final String TAG = "RemoteRing";
     private static final String EXTRA_DURATION = "durationSeconds";
     private static final String EXTRA_VIBRATE = "vibrate";
+    private static final String EXTRA_VIBRATE_ONLY = "vibrateOnly";
     private static final String EXTRA_REASON = "reason";
     private static final String EXTRA_SENDER = "sender";
 
@@ -47,10 +48,11 @@ public class RingService extends Service {
     private int previousAlarmVolume = -1;
     private int previousInterruptionFilter = -1;
 
-    static Intent startIntent(Context context, int durationSeconds, boolean vibrate, String reason, @Nullable String sender) {
+    static Intent startIntent(Context context, int durationSeconds, boolean vibrate, String reason, @Nullable String sender, boolean vibrateOnly) {
         return new Intent(context, RingService.class)
             .putExtra(EXTRA_DURATION, durationSeconds)
             .putExtra(EXTRA_VIBRATE, vibrate)
+            .putExtra(EXTRA_VIBRATE_ONLY, vibrateOnly)
             .putExtra(EXTRA_REASON, reason)
             .putExtra(EXTRA_SENDER, sender);
     }
@@ -63,6 +65,7 @@ public class RingService extends Service {
         }
         int duration = Math.max(RingConfig.MIN_DURATION, Math.min(RingConfig.MAX_DURATION, intent.getIntExtra(EXTRA_DURATION, 60)));
         boolean vibrate = intent.getBooleanExtra(EXTRA_VIBRATE, true);
+        boolean vibrateOnly = intent.getBooleanExtra(EXTRA_VIBRATE_ONLY, false);
         String reason = intent.getStringExtra(EXTRA_REASON);
         String sender = intent.getStringExtra(EXTRA_SENDER);
         long endsAt = System.currentTimeMillis() + duration * 1000L;
@@ -72,7 +75,7 @@ public class RingService extends Service {
         ServiceCompat.startForeground(
             this,
             RingNotifications.NOTIFICATION_ID,
-            RingNotifications.ringing(this, RingNotifications.CHANNEL_ACTIVE, endsAt, sender, false),
+            RingNotifications.ringing(this, RingNotifications.CHANNEL_ACTIVE, endsAt, sender, false, vibrateOnly),
             type
         );
 
@@ -80,10 +83,15 @@ public class RingService extends Service {
         handler.removeCallbacks(timeout);
         handler.postDelayed(timeout, duration * 1000L);
         acquireWakeLock(duration);
-        liftDoNotDisturb();
-        raiseAlarmVolume();
-        startTone();
-        if (vibrate) startVibration(); else stopVibration();
+        if (vibrateOnly) {
+            // Also handles an audible ring being replaced by a silent trigger.
+            stopAudio();
+        } else {
+            liftDoNotDisturb();
+            raiseAlarmVolume();
+            startTone();
+        }
+        if (vibrateOnly || vibrate) startVibration(); else stopVibration();
 
         RingState.setRinging(reason == null ? "sms" : reason, endsAt, sender);
         return START_NOT_STICKY;
@@ -180,9 +188,8 @@ public class RingService extends Service {
         if (vibrator != null) vibrator.cancel();
     }
 
-    @Override
-    public void onDestroy() {
-        handler.removeCallbacks(timeout);
+    /** Release sound and restore audio settings without stopping the vibration/timer. */
+    private void stopAudio() {
         if (player != null) {
             try {
                 player.stop();
@@ -192,7 +199,6 @@ public class RingService extends Service {
             player.release();
             player = null;
         }
-        stopVibration();
         AudioManager am = getSystemService(AudioManager.class);
         if (am != null) {
             if (focusRequest != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) am.abandonAudioFocusRequest(focusRequest);
@@ -208,6 +214,16 @@ public class RingService extends Service {
             NotificationManager nm = getSystemService(NotificationManager.class);
             if (nm != null && nm.isNotificationPolicyAccessGranted()) nm.setInterruptionFilter(previousInterruptionFilter);
         }
+        focusRequest = null;
+        previousAlarmVolume = -1;
+        previousInterruptionFilter = -1;
+    }
+
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacks(timeout);
+        stopAudio();
+        stopVibration();
         if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
         RingState.setIdle();

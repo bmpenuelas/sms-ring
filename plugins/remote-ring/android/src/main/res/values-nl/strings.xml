@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring kan nu niet overgaan</string>
     <string name="remote_ring_health_text">Iets wat nodig is, staat uit. Tik om het op te lossen.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Alleen trillen</string>
 </resources>

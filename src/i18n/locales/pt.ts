@@ -55,10 +55,18 @@ const pt: Messages = {
       copyLabel: 'Copiar frase secreta',
       shareLabel: 'Compartilhar com alguém de confiança',
       shareTitle: 'Minha frase do SMS Ring',
-      shareText: (phrase: string) =>
-        `Se eu perder o celular, envie “${phrase}” para o meu número e ele vai tocar no volume máximo, mesmo no silencioso. Guarde isso em segredo.`,
       show: 'Mostrar frase',
       hide: 'Ocultar frase',
+    },
+    sharing: {
+      intro: "Se eu perder o celular, envie para o meu número:",
+      ring: (message: string) => "Envie “" + message + "” para fazê-lo tocar.",
+      ringVibrate: (message: string) => "Envie “" + message + "” para fazê-lo tocar e vibrar.",
+      vibrateOnly: (message: string) => "Envie “" + message + "” para fazê-lo vibrar sem som.",
+      senderRestricted: "Apenas remetentes permitidos podem ativá-lo. Use um número que eu tenha autorizado.",
+      paused: "O SMS Ring está pausado. Preciso ativá-lo para que estas mensagens funcionem.",
+      chatApps: "A ativação por apps de conversa também está habilitada, pelas notificações que o SMS Ring pode ler.",
+      keepSecret: "Por favor, mantenha estas instruções em segredo.",
     },
     senders: {
       title: 'Quem pode fazer tocar',
@@ -81,6 +89,13 @@ const pt: Messages = {
       title: 'Vibrar',
       on: 'Vibra enquanto toca',
       off: 'Só som',
+    },
+    vibrateOnly: {
+      title: "Modo somente vibração",
+      defaultPhrase: "somente vibração",
+      hint: (words: string) => "Adicione “" + words + "” à mensagem para vibrar sem som",
+      phraseLabel: "Palavras para somente vibrar",
+      matchingHint: "Coloque estas palavras antes ou depois da frase secreta. A frase sozinha continua tocando.",
     },
     dnd: {
       title: 'Tocar mesmo em Não perturbe',
@@ -133,6 +148,7 @@ const pt: Messages = {
       placeholder: 'Digite uma mensagem…',
       sender: 'De (opcional)',
       verdicts: {
+        'vibrate-only': "Isso faria vibrar sem som",
         ring: 'Isto faria seu celular tocar',
         disarmed: 'Tocaria, mas o SMS Ring está pausado',
         'weak-passphrase': 'Sua frase é curta demais',

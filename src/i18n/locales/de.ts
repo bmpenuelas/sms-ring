@@ -55,10 +55,18 @@ const de: Messages = {
       copyLabel: 'Geheimsatz kopieren',
       shareLabel: 'Mit einer Vertrauensperson teilen',
       shareTitle: 'Mein SMS-Ring-Geheimsatz',
-      shareText: (phrase: string) =>
-        `Falls ich mein Handy verliere: Schick „${phrase}“ an meine Nummer, dann klingelt es in voller Lautstärke, auch wenn es stumm ist. Bitte behalte das für dich.`,
       show: 'Geheimsatz anzeigen',
       hide: 'Geheimsatz verbergen',
+    },
+    sharing: {
+      intro: "Falls ich mein Handy verliere, schicke an meine Nummer:",
+      ring: (message: string) => "Schicke „" + message + "“, damit es klingelt.",
+      ringVibrate: (message: string) => "Schicke „" + message + "“, damit es klingelt und vibriert.",
+      vibrateOnly: (message: string) => "Schicke „" + message + "“, damit es ohne Ton vibriert.",
+      senderRestricted: "Nur erlaubte Absender können es auslösen. Verwende eine von mir erlaubte Nummer.",
+      paused: "SMS Ring ist gerade pausiert. Ich muss es einschalten, damit diese Nachrichten funktionieren.",
+      chatApps: "Das Auslösen über Chat-Apps ist ebenfalls aktiviert und funktioniert über Benachrichtigungen, die SMS Ring lesen kann.",
+      keepSecret: "Bitte halte diese Anleitung geheim.",
     },
     senders: {
       title: 'Wer es klingeln lassen darf',
@@ -81,6 +89,13 @@ const de: Messages = {
       title: 'Vibrieren',
       on: 'Vibriert beim Klingeln',
       off: 'Nur Ton',
+    },
+    vibrateOnly: {
+      title: "Nur-Vibration-Modus",
+      defaultPhrase: "nur vibration",
+      hint: (words: string) => "Füge „" + words + "“ zur Nachricht hinzu, damit es ohne Ton vibriert",
+      phraseLabel: "Wörter für reine Vibration",
+      matchingHint: "Setze diese Wörter vor oder nach die Passphrase. Die Passphrase allein lässt es weiter klingeln.",
     },
     dnd: {
       title: 'Trotz „Bitte nicht stören“ klingeln',
@@ -133,6 +148,7 @@ const de: Messages = {
       placeholder: 'Nachricht eingeben…',
       sender: 'Von (optional)',
       verdicts: {
+        'vibrate-only': "Das würde ohne Ton vibrieren",
         ring: 'Das würde dein Handy klingeln lassen',
         disarmed: 'Würde klingeln, aber SMS Ring ist pausiert',
         'weak-passphrase': 'Dein Geheimsatz ist zu kurz',

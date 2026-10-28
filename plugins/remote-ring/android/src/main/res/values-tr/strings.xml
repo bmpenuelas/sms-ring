@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring şu an çalamıyor</string>
     <string name="remote_ring_health_text">Gereken bir şey kapatıldı. Düzeltmek için dokunun.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Yalnızca titreşim modu</string>
 </resources>

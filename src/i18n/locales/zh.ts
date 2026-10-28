@@ -55,10 +55,18 @@ const zh: Messages = {
       copyLabel: '复制暗号',
       shareLabel: '分享给信任的人',
       shareTitle: '我的 SMS Ring 暗号',
-      shareText: (phrase: string) =>
-        `如果我丢了手机，请把“${phrase}”发到我的号码，即使静音它也会以最大音量响铃。请务必保密。`,
       show: '显示暗号',
       hide: '隐藏暗号',
+    },
+    sharing: {
+      intro: "如果我丢了手机，请向我的号码发送：",
+      ring: (message: string) => "发送“" + message + "”让手机响铃。",
+      ringVibrate: (message: string) => "发送“" + message + "”让手机响铃并振动。",
+      vibrateOnly: (message: string) => "发送“" + message + "”让手机只振动不响铃。",
+      senderRestricted: "只有允许的发件人才能触发。请使用我已允许的号码。",
+      paused: "SMS Ring 目前已暂停。我需要先启用它，这些消息才会生效。",
+      chatApps: "聊天应用触发也已开启，通过 SMS Ring 能读取的通知生效。",
+      keepSecret: "请为这些说明保密。",
     },
     senders: {
       title: '谁可以让它响',
@@ -81,6 +89,13 @@ const zh: Messages = {
       title: '振动',
       on: '响铃时振动',
       off: '仅声音',
+    },
+    vibrateOnly: {
+      title: "仅振动模式",
+      defaultPhrase: "仅振动",
+      hint: (words: string) => "在消息中添加“" + words + "”即可只振动不响铃",
+      phraseLabel: "仅振动附加词",
+      matchingHint: "将这些词放在口令前或后。只发送口令仍会响铃。",
     },
     dnd: {
       title: '勿扰模式下也响铃',
@@ -133,6 +148,7 @@ const zh: Messages = {
       placeholder: '输入短信…',
       sender: '发件人（可选）',
       verdicts: {
+        'vibrate-only': "这会仅振动，不发出声音",
         ring: '这条短信会让手机响铃',
         disarmed: '本会响铃，但 SMS Ring 已暂停',
         'weak-passphrase': '暗号太短了',

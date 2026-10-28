@@ -21,6 +21,8 @@ public final class RingConfig {
     public final List<String> senders;
     public final int durationSeconds;
     public final boolean vibrate;
+    public final boolean vibrateOnlyEnabled;
+    public final String vibrateOnlyPhrase;
     public final boolean overrideDnd;
     public final String tone;
     /** Percent of the maximum alarm volume. */
@@ -28,12 +30,14 @@ public final class RingConfig {
     /** Also ring from chat apps' notifications (ChatNotificationListener). */
     public final boolean chatApps;
 
-    private RingConfig(boolean armed, String passphrase, List<String> senders, int durationSeconds, boolean vibrate, boolean overrideDnd, String tone, int volume, boolean chatApps) {
+    private RingConfig(boolean armed, String passphrase, List<String> senders, int durationSeconds, boolean vibrate, boolean overrideDnd, String tone, int volume, boolean chatApps, boolean vibrateOnlyEnabled, String vibrateOnlyPhrase) {
         this.armed = armed;
         this.passphrase = passphrase;
         this.senders = Collections.unmodifiableList(senders);
         this.durationSeconds = durationSeconds;
         this.vibrate = vibrate;
+        this.vibrateOnlyEnabled = vibrateOnlyEnabled;
+        this.vibrateOnlyPhrase = vibrateOnlyPhrase;
         this.overrideDnd = overrideDnd;
         this.tone = tone;
         this.volume = volume;
@@ -59,7 +63,9 @@ public final class RingConfig {
             json.optBoolean("overrideDnd", true),
             RingTones.isKnown(json.optString("tone", null)) ? json.optString("tone") : RingTones.DEFAULT,
             Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, json.optInt("volume", MAX_VOLUME))),
-            json.optBoolean("chatApps", false)
+            json.optBoolean("chatApps", false),
+            json.optBoolean("vibrateOnlyEnabled", true),
+            json.optString("vibrateOnlyPhrase", "")
         );
     }
 
@@ -71,6 +77,8 @@ public final class RingConfig {
         json.put("senders", new JSONArray(senders));
         json.put("durationSeconds", durationSeconds);
         json.put("vibrate", vibrate);
+        json.put("vibrateOnlyEnabled", vibrateOnlyEnabled);
+        json.put("vibrateOnlyPhrase", vibrateOnlyPhrase);
         json.put("overrideDnd", overrideDnd);
         json.put("tone", tone);
         json.put("volume", volume);
@@ -79,6 +87,6 @@ public final class RingConfig {
     }
 
     public MessageMatcher.Verdict evaluate(String body, String sender) {
-        return MessageMatcher.evaluate(armed, passphrase, senders, body, sender);
+        return MessageMatcher.evaluate(armed, passphrase, senders, body, sender, vibrateOnlyEnabled, vibrateOnlyPhrase);
     }
 }

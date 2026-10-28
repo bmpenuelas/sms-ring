@@ -39,33 +39,41 @@ public final class RingEngine: NSObject {
     private let notificationId = "app.smsring.remotering.ringing"
 
     /// Starts (or restarts) ringing. Safe to call from any thread.
-    public func start(durationSeconds: Int, vibrate: Bool, reason: String, sender: String?) {
-        DispatchQueue.main.async { self.startOnMain(durationSeconds: durationSeconds, vibrate: vibrate, reason: reason, sender: sender) }
+    public func start(durationSeconds: Int, vibrate: Bool, reason: String, sender: String?, vibrateOnly: Bool = false) {
+        DispatchQueue.main.async { self.startOnMain(durationSeconds: durationSeconds, vibrate: vibrate, reason: reason, sender: sender, vibrateOnly: vibrateOnly) }
     }
 
     public func stop() {
         DispatchQueue.main.async { self.stopOnMain() }
     }
 
-    private func startOnMain(durationSeconds: Int, vibrate: Bool, reason: String, sender: String?) {
+    private func startOnMain(durationSeconds: Int, vibrate: Bool, reason: String, sender: String?, vibrateOnly: Bool) {
         let duration = max(RingConfig.minDuration, min(RingConfig.maxDuration, durationSeconds))
-        do {
-            let session = AVAudioSession.sharedInstance()
-            // .playback ignores the Ring/Silent switch; no .mixWithOthers so music pauses.
-            try session.setCategory(.playback, mode: .default, options: [])
-            try session.setActive(true)
-        } catch {
-            NSLog("RemoteRing: audio session failed: \(error)")
-        }
+        if vibrateOnly {
+            // A vibration-only trigger must also silence any previous audible ring.
+            player?.stop()
+            player = nil
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+            clearNowPlaying()
+        } else {
+            do {
+                let session = AVAudioSession.sharedInstance()
+                // .playback ignores the Ring/Silent switch; no .mixWithOthers so music pauses.
+                try session.setCategory(.playback, mode: .default, options: [])
+                try session.setActive(true)
+            } catch {
+                NSLog("RemoteRing: audio session failed: \(error)")
+            }
 
-        let config = RingStore.loadConfig()
-        if player == nil, let url = RingConfig.toneURL(config?.tone ?? RingConfig.defaultTone) {
-            player = try? AVAudioPlayer(contentsOf: url)
-            player?.numberOfLoops = -1
-            player?.volume = Float(config?.volume ?? RingConfig.maxVolume) / 100
-            player?.prepareToPlay()
+            let config = RingStore.loadConfig()
+            if player == nil, let url = RingConfig.toneURL(config?.tone ?? RingConfig.defaultTone) {
+                player = try? AVAudioPlayer(contentsOf: url)
+                player?.numberOfLoops = -1
+                player?.volume = Float(config?.volume ?? RingConfig.maxVolume) / 100
+                player?.prepareToPlay()
+            }
+            player?.play()
         }
-        player?.play()
 
         stopTimer?.invalidate()
         stopTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { [weak self] _ in
@@ -74,7 +82,7 @@ public final class RingEngine: NSObject {
 
         vibrateTimer?.invalidate()
         vibrateTimer = nil
-        if vibrate {
+        if vibrateOnly || vibrate {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             vibrateTimer = Timer.scheduledTimer(withTimeInterval: 1.4, repeats: true) { _ in
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -84,7 +92,7 @@ public final class RingEngine: NSObject {
         let endsAt = Date().timeIntervalSince1970 * 1000 + Double(duration) * 1000
         RingStore.addHistory(reason: reason, sender: sender)
         publish(RingSnapshot(ringing: true, reason: reason, endsAt: endsAt, sender: sender))
-        showNowPlaying(duration: duration)
+        if !vibrateOnly { showNowPlaying(duration: duration) }
         postNotification(sender: sender)
     }
 
@@ -181,12 +189,13 @@ public enum RingTrigger {
         }
         let verdict = MessageMatcher.evaluate(config, body: message, sender: sender)
         RingStore.recordAutomationRun(verdict: verdict)
-        guard verdict == .ring else { return false }
+        guard verdict == .ring || verdict == .vibrateOnly else { return false }
         RingEngine.shared.start(
             durationSeconds: config.durationSeconds,
             vibrate: config.vibrate,
             reason: "shortcut",
-            sender: sender.map(MessageMatcher.maskSender)
+            sender: sender.map(MessageMatcher.maskSender),
+            vibrateOnly: verdict == .vibrateOnly
         )
         return true
     }

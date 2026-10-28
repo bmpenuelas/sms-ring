@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">لا يستطيع SMS Ring الرنين الآن</string>
     <string name="remote_ring_health_text">تم إيقاف شيء يحتاجه. اضغط لإصلاحه.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">وضع الاهتزاز فقط</string>
 </resources>

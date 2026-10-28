@@ -31,4 +31,22 @@ final class MessageMatcherTests: XCTestCase {
             XCTAssertEqual(verdict.rawValue, c["verdict"] as! String, c["body"] as! String)
         }
     }
+
+    func testVibrationConfigRoundTrip() throws {
+        var config = RingConfig()
+        config.passphrase = "blue tiger moon"
+        config.vibrateOnlyEnabled = true
+        config.vibrateOnlyPhrase = "hush please"
+        config.vibrate = false
+        let restored = try JSONDecoder().decode(RingConfig.self, from: JSONEncoder().encode(config))
+        XCTAssertEqual(restored, config)
+        XCTAssertEqual(MessageMatcher.evaluate(restored, body: "hush please 'blue tiger moon'", sender: nil), .vibrateOnly)
+        XCTAssertEqual(MessageMatcher.evaluate(restored, body: "blue tiger moon", sender: nil), .ring)
+        let old = try JSONDecoder().decode(RingConfig.self, from: Data("{}".utf8))
+        XCTAssertTrue(old.vibrateOnlyEnabled)
+        XCTAssertTrue(RingConfig().vibrateOnlyEnabled)
+        config.vibrateOnlyEnabled = false
+        let disabled = try JSONDecoder().decode(RingConfig.self, from: JSONEncoder().encode(config))
+        XCTAssertFalse(disabled.vibrateOnlyEnabled)
+    }
 }

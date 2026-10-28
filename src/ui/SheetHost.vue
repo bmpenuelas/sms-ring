@@ -10,6 +10,7 @@ const SHEETS: Record<Exclude<SheetName, 'permission'>, Component> = {
   'health-warning': defineAsyncComponent(() => import('./sheets/HealthWarningSheet.vue')),
   'ios-setup': defineAsyncComponent(() => import('./sheets/IosSetupSheet.vue')),
   passphrase: defineAsyncComponent(() => import('./sheets/PassphraseSheet.vue')),
+  'vibrate-only': defineAsyncComponent(() => import('./sheets/VibrateOnlySheet.vue')),
   senders: defineAsyncComponent(() => import('./sheets/SendersSheet.vue')),
   try: defineAsyncComponent(() => import('./sheets/TrySheet.vue')),
   history: defineAsyncComponent(() => import('./sheets/HistorySheet.vue')),

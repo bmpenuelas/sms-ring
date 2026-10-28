@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring can’t ring right now</string>
     <string name="remote_ring_health_text">Something it needs was turned off. Tap to fix it.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Vibrate-only mode</string>
 </resources>

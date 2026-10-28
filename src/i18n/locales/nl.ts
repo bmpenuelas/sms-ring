@@ -55,10 +55,18 @@ const nl: Messages = {
       copyLabel: 'Geheime zin kopiëren',
       shareLabel: 'Delen met iemand die je vertrouwt',
       shareTitle: 'Mijn SMS Ring-zin',
-      shareText: (phrase: string) =>
-        `Als ik mijn telefoon kwijt ben, sms dan "${phrase}" naar mijn nummer. Hij gaat dan op vol volume over, ook als hij op stil staat. Hou dit geheim, alsjeblieft.`,
       show: 'Zin tonen',
       hide: 'Zin verbergen',
+    },
+    sharing: {
+      intro: "Als ik mijn telefoon kwijt ben, sms dan naar mijn nummer:",
+      ring: (message: string) => "Sms “" + message + "” om hem te laten rinkelen.",
+      ringVibrate: (message: string) => "Sms “" + message + "” om hem te laten rinkelen en trillen.",
+      vibrateOnly: (message: string) => "Sms “" + message + "” om hem zonder geluid te laten trillen.",
+      senderRestricted: "Alleen toegestane afzenders kunnen hem activeren. Gebruik een nummer dat ik heb toegestaan.",
+      paused: "SMS Ring staat op pauze. Ik moet het inschakelen voordat deze berichten werken.",
+      chatApps: "Activering via chatapps is ook ingeschakeld, via meldingen die SMS Ring kan lezen.",
+      keepSecret: "Houd deze instructies geheim, alsjeblieft.",
     },
     senders: {
       title: 'Wie hem kan laten overgaan',
@@ -81,6 +89,13 @@ const nl: Messages = {
       title: 'Trillen',
       on: 'Trilt tijdens het overgaan',
       off: 'Alleen geluid',
+    },
+    vibrateOnly: {
+      title: "Alleen trillen",
+      defaultPhrase: "alleen trillen",
+      hint: (words: string) => "Voeg “" + words + "” toe aan je bericht om zonder geluid te trillen",
+      phraseLabel: "Woorden voor alleen trillen",
+      matchingHint: "Zet deze woorden voor of na de wachtzin. De wachtzin alleen laat de telefoon nog rinkelen.",
     },
     dnd: {
       title: 'Overgaan ondanks Niet storen',
@@ -133,6 +148,7 @@ const nl: Messages = {
       placeholder: 'Typ een bericht…',
       sender: 'Van (optioneel)',
       verdicts: {
+        'vibrate-only': "Dit zou zonder geluid trillen",
         ring: 'Dit laat je telefoon overgaan',
         disarmed: 'Zou overgaan, maar SMS Ring is gepauzeerd',
         'weak-passphrase': 'Je geheime zin is te kort',

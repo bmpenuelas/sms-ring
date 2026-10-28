@@ -7,6 +7,7 @@ public enum MessageMatcher {
 
     public enum Verdict: String {
         case ring
+        case vibrateOnly = "vibrate-only"
         case disarmed
         case weakPassphrase = "weak-passphrase"
         case noPassphrase = "no-passphrase"
@@ -109,7 +110,25 @@ public enum MessageMatcher {
         return "•••• " + s.suffix(4)
     }
 
-    /// The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ.
+    private static func sameUnits(_ a: String, _ b: String) -> Bool {
+        Array(a.utf16) == Array(b.utf16)
+    }
+
+    /// Each part and the whole message may have one wrapping quote pair.
+    private static func matchesParts(_ message: String, _ first: String, _ second: String) -> Bool {
+        for candidate in [message, unquote(message)] {
+            let units = Array(candidate.utf16)
+            for length in [first.utf16.count, first.utf16.count + 2] where length <= units.count {
+                let left = String(decoding: units[..<length], as: UTF16.self)
+                let right = String(decoding: units[length...], as: UTF16.self)
+                if (sameUnits(left, first) || sameUnits(unquote(left), first)) &&
+                    (sameUnits(right, second) || sameUnits(unquote(right), second)) { return true }
+            }
+        }
+        return false
+    }
+
+    /// The whole message must be the passphrase, optionally with the enabled vibration modifier.
     /// `sender == nil` means the trigger could not tell (a Shortcuts automation
     /// without the Sender variable): only allowed when no senders are configured.
     public static func evaluate(_ config: RingConfig, body: String, sender: String?) -> Verdict {
@@ -117,12 +136,16 @@ public enum MessageMatcher {
         if phrase.utf16.count < minNormalizedPassphrase { return .weakPassphrase }
         // Code-unit comparison, like === in JS and String.equals in Java.
         let message = normalizePhrase(body)
-        let expected = Array(phrase.utf16)
-        if Array(message.utf16) != expected && Array(unquote(message).utf16) != expected { return .noPassphrase }
+        let regular = sameUnits(message, phrase) || sameUnits(unquote(message), phrase)
+        let modifier = normalizePhrase(config.vibrateOnlyPhrase)
+        let vibrateOnly = !regular && config.vibrateOnlyEnabled && !modifier.isEmpty &&
+            (matchesParts(message, phrase, modifier) || matchesParts(message, modifier, phrase))
+        if !regular && !vibrateOnly { return .noPassphrase }
         let allowed = config.senders.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
         if !allowed.isEmpty {
             guard let sender, allowed.contains(where: { sendersMatch($0, sender) }) else { return .senderNotAllowed }
         }
-        return config.armed ? .ring : .disarmed
+        if !config.armed { return .disarmed }
+        return vibrateOnly ? .vibrateOnly : .ring
     }
 }

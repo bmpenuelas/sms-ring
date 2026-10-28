@@ -63,10 +63,18 @@ const pl: Messages = {
       copyLabel: 'Kopiuj tajne hasło',
       shareLabel: 'Udostępnij zaufanej osobie',
       shareTitle: 'Moje hasło SMS Ring',
-      shareText: (phrase: string) =>
-        `Jeśli zgubię telefon, wyślij „${phrase}” na mój numer, a zadzwoni na pełnej głośności, nawet wyciszony. Zachowaj to w tajemnicy.`,
       show: 'Pokaż hasło',
       hide: 'Ukryj hasło',
+    },
+    sharing: {
+      intro: "Jeśli zgubię telefon, wyślij na mój numer:",
+      ring: (message: string) => "Wyślij „" + message + "”, aby włączyć dzwonek.",
+      ringVibrate: (message: string) => "Wyślij „" + message + "”, aby włączyć dzwonek i wibracje.",
+      vibrateOnly: (message: string) => "Wyślij „" + message + "”, aby włączyć wibracje bez dźwięku.",
+      senderRestricted: "Działa to tylko dla dozwolonych nadawców. Użyj numeru, który został przeze mnie dopuszczony.",
+      paused: "SMS Ring jest wstrzymany. Muszę go włączyć, aby te wiadomości działały.",
+      chatApps: "Włączono też uruchamianie z komunikatorów przez powiadomienia, które SMS Ring może odczytać.",
+      keepSecret: "Zachowaj te instrukcje w tajemnicy.",
     },
     senders: {
       title: 'Kto może sprawić, że zadzwoni',
@@ -89,6 +97,13 @@ const pl: Messages = {
       title: 'Wibracje',
       on: 'Wibruje podczas dzwonienia',
       off: 'Tylko dźwięk',
+    },
+    vibrateOnly: {
+      title: "Tryb samych wibracji",
+      defaultPhrase: "tylko wibracje",
+      hint: (words: string) => "Dodaj „" + words + "” do wiadomości, aby włączyć wibracje bez dźwięku",
+      phraseLabel: "Słowa dla samych wibracji",
+      matchingHint: "Umieść te słowa przed tajną frazą lub po niej. Sama fraza nadal włącza dzwonek.",
     },
     dnd: {
       title: 'Dzwoń mimo trybu Nie przeszkadzać',
@@ -141,6 +156,7 @@ const pl: Messages = {
       placeholder: 'Wpisz wiadomość…',
       sender: 'Od (opcjonalnie)',
       verdicts: {
+        'vibrate-only': "To włączyłoby wibracje bez dźwięku",
         ring: 'To uruchomi dzwonek',
         disarmed: 'Zadzwoniłby, ale SMS Ring jest wstrzymany',
         'weak-passphrase': 'Twoje hasło jest za krótkie',

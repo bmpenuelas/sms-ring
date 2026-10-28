@@ -20,6 +20,8 @@ final class RingNotifications {
     static final String CHANNEL_ACTIVE = "remote_ring_active";
     /** Used only if Android refuses to start the service: the channel itself makes the sound. */
     static final String CHANNEL_FALLBACK = "remote_ring_fallback";
+    /** Silent fallback: never reuse the audible fallback channel for a vibration-only trigger. */
+    static final String CHANNEL_VIBRATE_ONLY = "remote_ring_vibrate_only";
 
     static final int NOTIFICATION_ID = 7301;
 
@@ -60,6 +62,18 @@ final class RingNotifications {
         fallback.setBypassDnd(true);
         fallback.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         nm.createNotificationChannel(fallback);
+
+        NotificationChannel vibration = new NotificationChannel(
+            CHANNEL_VIBRATE_ONLY,
+            context.getString(R.string.remote_ring_channel_vibrate_only),
+            NotificationManager.IMPORTANCE_HIGH
+        );
+        vibration.setSound(null, null);
+        vibration.enableVibration(true);
+        vibration.setVibrationPattern(RingService.VIBRATION_PATTERN);
+        vibration.setBypassDnd(true);
+        vibration.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        nm.createNotificationChannel(vibration);
     }
 
     static Uri toneUri(Context context) {
@@ -70,10 +84,11 @@ final class RingNotifications {
             .build();
     }
 
-    static Notification ringing(Context context, String channel, long endsAt, @Nullable String sender, boolean startServiceFromScreen) {
+    static Notification ringing(Context context, String channel, long endsAt, @Nullable String sender, boolean startServiceFromScreen, boolean vibrateOnly) {
         Intent screen = new Intent(context, RingActivity.class)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_USER_ACTION)
             .putExtra(RingActivity.EXTRA_START_SERVICE, startServiceFromScreen)
+            .putExtra(RingActivity.EXTRA_VIBRATE_ONLY, vibrateOnly)
             .putExtra(RingActivity.EXTRA_SENDER, sender);
         PendingIntent screenIntent = PendingIntent.getActivity(
             context, 1, screen, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
@@ -96,6 +111,9 @@ final class RingNotifications {
             : context.getString(R.string.remote_ring_notification_text_from, sender);
 
         return new NotificationCompat.Builder(context, channel)
+            .setSilent(CHANNEL_ACTIVE.equals(channel))
+            .setSound(vibrateOnly ? null : toneUri(context))
+            .setVibrate(startServiceFromScreen ? RingService.VIBRATION_PATTERN : new long[] {0})
             .setSmallIcon(R.drawable.remote_ring_ic_notification)
             .setContentTitle(context.getString(R.string.remote_ring_notification_title))
             .setContentText(text)

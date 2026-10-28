@@ -59,10 +59,18 @@ const en = {
       copyLabel: 'Copy passphrase',
       shareLabel: 'Share with someone you trust',
       shareTitle: 'My SMS Ring passphrase',
-      shareText: (phrase: string) =>
-        `If I lose my phone, text “${phrase}” to my number and it will ring at full volume, even on silent. Please keep this secret.`,
       show: 'Show passphrase',
       hide: 'Hide passphrase',
+    },
+    sharing: {
+      intro: "If I lose my phone, text my number:",
+      ring: (message: string) => "Text “" + message + "” to make it ring.",
+      ringVibrate: (message: string) => "Text “" + message + "” to make it ring and vibrate.",
+      vibrateOnly: (message: string) => "Text “" + message + "” to make it vibrate without sound.",
+      senderRestricted: "Only my allowed senders can trigger it. Use a number I have allowed.",
+      paused: "SMS Ring is currently paused. I need to turn it on before these messages can work.",
+      chatApps: "Chat-app triggering is also enabled; it works through notifications that SMS Ring can read.",
+      keepSecret: "Please keep these instructions secret.",
     },
     senders: {
       title: 'Who can make it ring',
@@ -85,6 +93,13 @@ const en = {
       title: 'Vibrate',
       on: 'Vibrates while ringing',
       off: 'Sound only',
+    },
+    vibrateOnly: {
+      title: "Vibrate-only mode",
+      defaultPhrase: "vibration only",
+      hint: (words: string) => "Add \"" + words + "\" to your message to make it vibrate without sound",
+      phraseLabel: "Vibrate-only words",
+      matchingHint: "Put these words before or after the passphrase. The passphrase alone still rings.",
     },
     dnd: {
       title: 'Ring through Do Not Disturb',
@@ -137,6 +152,7 @@ const en = {
       placeholder: 'Type a message…',
       sender: 'From (optional)',
       verdicts: {
+        'vibrate-only': "This would vibrate without sound",
         ring: 'This would ring your phone',
         disarmed: 'Would ring, but SMS Ring is paused',
         'weak-passphrase': 'Your passphrase is too short',

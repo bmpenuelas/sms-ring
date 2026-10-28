@@ -8,6 +8,7 @@ import BottomSheet from '../BottomSheet.vue'
 import Icon from '../Icon.vue'
 import KeycapPhrase from '../KeycapPhrase.vue'
 import StrengthMeter from '../StrengthMeter.vue'
+import PassphraseShareActions from '../PassphraseShareActions.vue'
 
 defineEmits<{ close: [] }>()
 const { state, actions, prefs } = useRingApp()
@@ -20,19 +21,7 @@ onMounted(() => {
   // Opened with Edit: focus the phrase, cursor at the end.
   if (editing) setTimeout(() => customInput.value?.focus(), 350)
 })
-const copied = ref(false)
-const shared = ref<string>('')
 const counts = computed(() => Array.from({ length: MAX_WORDS - MIN_WORDS + 1 }, (_, i) => MIN_WORDS + i))
-
-async function copy() {
-  copied.value = await actions.copyPassphrase()
-  setTimeout(() => (copied.value = false), 1600)
-}
-
-async function share() {
-  shared.value = await actions.sharePassphrase()
-  setTimeout(() => (shared.value = ''), 1600)
-}
 
 function switchMode(next: 'words' | 'custom') {
   mode.value = next
@@ -104,12 +93,7 @@ function switchMode(next: 'words' | 'custom') {
     <div class="meter-wrap"><StrengthMeter /></div>
 
     <template #footer>
-      <button class="ui-btn secondary grow" @click="copy">
-        <Icon :name="copied ? 'check' : 'copy'" /> {{ copied ? t.common.copied : t.common.copy }}
-      </button>
-      <button class="ui-btn secondary grow" @click="share">
-        <Icon :name="shared === 'copied' ? 'check' : 'share'" /> {{ shared === 'copied' ? t.common.copied : t.common.share }}
-      </button>
+      <PassphraseShareActions />
     </template>
   </BottomSheet>
 </template>
@@ -177,8 +161,5 @@ function switchMode(next: 'words' | 'custom') {
 }
 .meter-wrap {
   margin-top: 20px;
-}
-.grow {
-  flex: 1;
 }
 </style>

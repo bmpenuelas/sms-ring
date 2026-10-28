@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">지금은 SMS Ring이 울릴 수 없습니다</string>
     <string name="remote_ring_health_text">필요한 설정이 꺼졌습니다. 탭해서 해결하세요.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">진동 전용 모드</string>
 </resources>

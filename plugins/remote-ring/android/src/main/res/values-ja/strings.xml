@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring は今鳴らせません</string>
     <string name="remote_ring_health_text">必要な設定がオフになりました。タップして直しましょう。</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">振動のみモード</string>
 </resources>

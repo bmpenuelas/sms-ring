@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring ดังไม่ได้ในตอนนี้</string>
     <string name="remote_ring_health_text">มีบางอย่างที่จำเป็นถูกปิด แตะเพื่อแก้ไข</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">โหมดสั่นเท่านั้น</string>
 </resources>

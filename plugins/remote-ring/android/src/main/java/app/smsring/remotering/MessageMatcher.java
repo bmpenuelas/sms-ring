@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public final class MessageMatcher {
 
-    public enum Verdict { RING, DISARMED, WEAK_PASSPHRASE, NO_PASSPHRASE, SENDER_NOT_ALLOWED }
+    public enum Verdict { RING, VIBRATE_ONLY, DISARMED, WEAK_PASSPHRASE, NO_PASSPHRASE, SENDER_NOT_ALLOWED }
 
     public static final int MIN_NORMALIZED_PASSPHRASE = 6;
     public static final int SENDER_SUFFIX_DIGITS = 9;
@@ -81,10 +81,33 @@ public final class MessageMatcher {
 
     /** The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ. */
     public static Verdict evaluate(boolean armed, String passphrase, List<String> senders, String body, String sender) {
+        return evaluate(armed, passphrase, senders, body, sender, false, "");
+    }
+
+    /** Whole message or individually quoted parts, with an optional outer quote pair. */
+    private static boolean matchesParts(String message, String first, String second) {
+        for (String candidate : new String[] {message, unquote(message)}) {
+            for (int length : new int[] {first.length(), first.length() + 2}) {
+                if (length > candidate.length()) continue;
+                String left = candidate.substring(0, length);
+                String right = candidate.substring(length);
+                if ((left.equals(first) || unquote(left).equals(first)) &&
+                    (right.equals(second) || unquote(right).equals(second))) return true;
+            }
+        }
+        return false;
+    }
+
+    public static Verdict evaluate(boolean armed, String passphrase, List<String> senders, String body, String sender,
+                                   boolean vibrateOnlyEnabled, String vibrateOnlyPhrase) {
         String phrase = normalizePhrase(passphrase);
         if (phrase.length() < MIN_NORMALIZED_PASSPHRASE) return Verdict.WEAK_PASSPHRASE;
         String message = normalizePhrase(body);
-        if (!message.equals(phrase) && !unquote(message).equals(phrase)) return Verdict.NO_PASSPHRASE;
+        boolean regular = message.equals(phrase) || unquote(message).equals(phrase);
+        String modifier = normalizePhrase(vibrateOnlyPhrase);
+        boolean vibrateOnly = !regular && vibrateOnlyEnabled && !modifier.isEmpty() &&
+            (matchesParts(message, phrase, modifier) || matchesParts(message, modifier, phrase));
+        if (!regular && !vibrateOnly) return Verdict.NO_PASSPHRASE;
         boolean anyAllowed = false;
         boolean matched = false;
         for (String allowed : senders) {
@@ -96,6 +119,7 @@ public final class MessageMatcher {
             }
         }
         if (anyAllowed && !matched) return Verdict.SENDER_NOT_ALLOWED;
-        return armed ? Verdict.RING : Verdict.DISARMED;
+        if (!armed) return Verdict.DISARMED;
+        return vibrateOnly ? Verdict.VIBRATE_ONLY : Verdict.RING;
     }
 }

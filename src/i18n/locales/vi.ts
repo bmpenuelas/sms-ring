@@ -55,10 +55,18 @@ const vi: Messages = {
       copyLabel: 'Sao chép câu bí mật',
       shareLabel: 'Chia sẻ với người bạn tin tưởng',
       shareTitle: 'Câu SMS Ring của tôi',
-      shareText: (phrase: string) =>
-        `Nếu mình làm mất điện thoại, hãy nhắn “${phrase}” tới số của mình, máy sẽ đổ chuông hết cỡ kể cả khi im lặng. Nhớ giữ bí mật nhé.`,
       show: 'Hiện câu',
       hide: 'Ẩn câu',
+    },
+    sharing: {
+      intro: "Nếu tôi làm mất điện thoại, hãy nhắn tới số của tôi:",
+      ring: (message: string) => "Nhắn “" + message + "” để máy đổ chuông.",
+      ringVibrate: (message: string) => "Nhắn “" + message + "” để máy đổ chuông và rung.",
+      vibrateOnly: (message: string) => "Nhắn “" + message + "” để máy rung không có âm thanh.",
+      senderRestricted: "Chỉ người gửi được cho phép mới kích hoạt được. Hãy dùng số mà tôi đã cho phép.",
+      paused: "SMS Ring hiện đang tạm dừng. Tôi cần bật ứng dụng để các tin nhắn này hoạt động.",
+      chatApps: "Kích hoạt từ ứng dụng trò chuyện cũng được bật, qua các thông báo mà SMS Ring có thể đọc.",
+      keepSecret: "Vui lòng giữ bí mật các hướng dẫn này.",
     },
     senders: {
       title: 'Ai có thể làm máy đổ chuông',
@@ -81,6 +89,13 @@ const vi: Messages = {
       title: 'Rung',
       on: 'Rung khi đổ chuông',
       off: 'Chỉ âm thanh',
+    },
+    vibrateOnly: {
+      title: "Chế độ chỉ rung",
+      defaultPhrase: "chỉ rung",
+      hint: (words: string) => "Thêm “" + words + "” vào tin nhắn để máy rung không có âm thanh",
+      phraseLabel: "Từ dành cho chế độ chỉ rung",
+      matchingHint: "Đặt các từ này trước hoặc sau cụm từ bí mật. Chỉ gửi cụm từ bí mật vẫn làm máy đổ chuông.",
     },
     dnd: {
       title: 'Đổ chuông cả khi Không làm phiền',
@@ -133,6 +148,7 @@ const vi: Messages = {
       placeholder: 'Nhập tin nhắn…',
       sender: 'Từ (tùy chọn)',
       verdicts: {
+        'vibrate-only': "Tin nhắn này sẽ làm máy rung không có âm thanh",
         ring: 'Tin này sẽ làm máy đổ chuông',
         disarmed: 'Lẽ ra sẽ kêu, nhưng SMS Ring đang tạm dừng',
         'weak-passphrase': 'Câu bí mật quá ngắn',

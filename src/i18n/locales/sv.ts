@@ -55,10 +55,18 @@ const sv: Messages = {
       copyLabel: 'Kopiera hemlig fras',
       shareLabel: 'Dela med någon du litar på',
       shareTitle: 'Min SMS Ring-fras',
-      shareText: (phrase: string) =>
-        `Om jag tappar bort telefonen, sms:a ”${phrase}” till mitt nummer så ringer den på full volym, även på ljudlöst. Håll det hemligt.`,
       show: 'Visa fras',
       hide: 'Dölj fras',
+    },
+    sharing: {
+      intro: "Om jag tappar bort telefonen, sms:a mitt nummer:",
+      ring: (message: string) => "Sms:a ”" + message + "” för att få den att ringa.",
+      ringVibrate: (message: string) => "Sms:a ”" + message + "” för att få den att ringa och vibrera.",
+      vibrateOnly: (message: string) => "Sms:a ”" + message + "” för att få den att vibrera utan ljud.",
+      senderRestricted: "Bara tillåtna avsändare kan aktivera den. Använd ett nummer som jag har godkänt.",
+      paused: "SMS Ring är pausat. Jag måste slå på det innan dessa meddelanden fungerar.",
+      chatApps: "Aktivering från chattappar är också på, via aviseringar som SMS Ring kan läsa.",
+      keepSecret: "Håll dessa instruktioner hemliga.",
     },
     senders: {
       title: 'Vem kan få den att ringa',
@@ -81,6 +89,13 @@ const sv: Messages = {
       title: 'Vibrera',
       on: 'Vibrerar medan den ringer',
       off: 'Bara ljud',
+    },
+    vibrateOnly: {
+      title: "Endast vibration",
+      defaultPhrase: "endast vibration",
+      hint: (words: string) => "Lägg till ”" + words + "” i meddelandet för att vibrera utan ljud",
+      phraseLabel: "Ord för endast vibration",
+      matchingHint: "Skriv dessa ord före eller efter lösenfrasen. Enbart lösenfrasen ringer fortfarande.",
     },
     dnd: {
       title: 'Ring trots Stör ej',
@@ -133,6 +148,7 @@ const sv: Messages = {
       placeholder: 'Skriv ett meddelande…',
       sender: 'Från (valfritt)',
       verdicts: {
+        'vibrate-only': "Detta skulle vibrera utan ljud",
         ring: 'Det här skulle få telefonen att ringa',
         disarmed: 'Skulle ringa, men SMS Ring är pausad',
         'weak-passphrase': 'Din fras är för kort',

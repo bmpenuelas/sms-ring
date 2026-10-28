@@ -121,7 +121,10 @@ for (const lang of LANGUAGES) {
   await emit(join(appRes, `values${suffix}`, 'strings.xml'), stringsXml(appEntries))
   await emit(
     join(pluginRes, `values${suffix}`, 'strings.xml'),
-    stringsXml(Object.entries(PLUGIN_STRINGS).map(([name, key]) => [name, android(m.native[key])])),
+    stringsXml([
+      ...Object.entries(PLUGIN_STRINGS).map(([name, key]) => [name, android(m.native[key])]),
+      ['remote_ring_channel_vibrate_only', m.app.vibrateOnly.title],
+    ]),
   )
 
   // ---- iOS ----

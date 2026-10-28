@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring hiện không thể đổ chuông</string>
     <string name="remote_ring_health_text">Một thứ cần thiết đã bị tắt. Chạm để khắc phục.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Chế độ chỉ rung</string>
 </resources>

@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring nie może teraz dzwonić</string>
     <string name="remote_ring_health_text">Coś, czego potrzebuje, zostało wyłączone. Dotknij, by naprawić.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Tryb samych wibracji</string>
 </resources>

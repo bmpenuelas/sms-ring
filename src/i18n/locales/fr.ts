@@ -55,10 +55,18 @@ const fr: Messages = {
       copyLabel: 'Copier la phrase secrète',
       shareLabel: 'Partager avec une personne de confiance',
       shareTitle: 'Ma phrase SMS Ring',
-      shareText: (phrase: string) =>
-        `Si je perds mon téléphone, envoie « ${phrase} » à mon numéro et il sonnera à plein volume, même en silencieux. Garde-le secret, s’il te plaît.`,
       show: 'Afficher la phrase',
       hide: 'Masquer la phrase',
+    },
+    sharing: {
+      intro: "Si je perds mon téléphone, envoie à mon numéro :",
+      ring: (message: string) => "Envoie « " + message + " » pour le faire sonner.",
+      ringVibrate: (message: string) => "Envoie « " + message + " » pour le faire sonner et vibrer.",
+      vibrateOnly: (message: string) => "Envoie « " + message + " » pour le faire vibrer sans son.",
+      senderRestricted: "Seuls les expéditeurs autorisés peuvent le déclencher. Utilise un numéro que j’ai autorisé.",
+      paused: "SMS Ring est en pause. Je dois l’activer pour que ces messages fonctionnent.",
+      chatApps: "Le déclenchement depuis les applications de discussion est aussi activé, via les notifications que SMS Ring peut lire.",
+      keepSecret: "Garde ces instructions secrètes, s’il te plaît.",
     },
     senders: {
       title: 'Qui peut le faire sonner',
@@ -81,6 +89,13 @@ const fr: Messages = {
       title: 'Vibrer',
       on: 'Vibre pendant la sonnerie',
       off: 'Son uniquement',
+    },
+    vibrateOnly: {
+      title: "Mode vibration seule",
+      defaultPhrase: "vibration seule",
+      hint: (words: string) => "Ajoutez « " + words + " » à votre message pour faire vibrer sans son",
+      phraseLabel: "Mots pour vibrer sans son",
+      matchingHint: "Placez ces mots avant ou après la phrase secrète. La phrase seule fait toujours sonner.",
     },
     dnd: {
       title: 'Sonner malgré Ne pas déranger',
@@ -133,6 +148,7 @@ const fr: Messages = {
       placeholder: 'Tapez un message…',
       sender: 'De (facultatif)',
       verdicts: {
+        'vibrate-only': "Ceci ferait vibrer sans son",
         ring: 'Ceci ferait sonner votre téléphone',
         disarmed: 'Sonnerait, mais SMS Ring est en pause',
         'weak-passphrase': 'Votre phrase est trop courte',

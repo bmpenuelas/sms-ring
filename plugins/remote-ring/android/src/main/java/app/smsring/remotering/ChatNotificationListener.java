@@ -47,7 +47,8 @@ public class ChatNotificationListener extends NotificationListenerService {
         int hash = (sbn.getPackageName() + "|" + text).hashCode();
         long now = System.currentTimeMillis();
         if (hash == lastHash && now - lastAt < REPEAT_WINDOW_MS) return;
-        if (config.evaluate(text, sender) != MessageMatcher.Verdict.RING) return;
+        MessageMatcher.Verdict verdict = config.evaluate(text, sender);
+        if (verdict != MessageMatcher.Verdict.RING && verdict != MessageMatcher.Verdict.VIBRATE_ONLY) return;
         lastHash = hash;
         lastAt = now;
         // An SMS also shows up here as the messaging app's notification: SmsReceiver
@@ -55,7 +56,8 @@ public class ChatNotificationListener extends NotificationListenerService {
         // a later update of that notification from ringing again after Stop.
         if (RingState.current().ringing) return;
         // History shows which app it came from, never the person or the text.
-        RingController.start(this, config.durationSeconds, config.vibrate, "app", appLabel(n, sbn.getPackageName()));
+        RingController.start(this, config.durationSeconds, config.vibrate, "app", appLabel(n, sbn.getPackageName()),
+            verdict == MessageMatcher.Verdict.VIBRATE_ONLY);
     }
 
     /** {text, sender} of the newest message, or null when there's no text. */

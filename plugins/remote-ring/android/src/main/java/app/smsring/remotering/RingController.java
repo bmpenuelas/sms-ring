@@ -16,10 +16,14 @@ public final class RingController {
     private RingController() {}
 
     public static void start(Context context, int durationSeconds, boolean vibrate, String reason, @Nullable String maskedSender) {
+        start(context, durationSeconds, vibrate, reason, maskedSender, false);
+    }
+
+    public static void start(Context context, int durationSeconds, boolean vibrate, String reason, @Nullable String maskedSender, boolean vibrateOnly) {
         Context app = context.getApplicationContext();
         RingNotifications.ensureChannels(app);
         RingStore.addHistory(app, reason, maskedSender);
-        Intent intent = RingService.startIntent(app, durationSeconds, vibrate, reason, maskedSender);
+        Intent intent = RingService.startIntent(app, durationSeconds, vibrate, reason, maskedSender, vibrateOnly);
         try {
             ContextCompat.startForegroundService(app, intent);
         } catch (RuntimeException e) {
@@ -32,7 +36,8 @@ public final class RingController {
             if (nm != null) {
                 nm.notify(
                     RingNotifications.NOTIFICATION_ID,
-                    RingNotifications.ringing(app, RingNotifications.CHANNEL_FALLBACK, endsAt, maskedSender, true)
+                    RingNotifications.ringing(app, vibrateOnly ? RingNotifications.CHANNEL_VIBRATE_ONLY : RingNotifications.CHANNEL_FALLBACK,
+                        endsAt, maskedSender, true, vibrateOnly)
                 );
             }
         }

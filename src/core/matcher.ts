@@ -10,17 +10,35 @@ export interface MatchInput {
   armed: boolean
   passphrase: string
   senders: string[]
+  vibrateOnlyEnabled?: boolean
+  vibrateOnlyPhrase?: string
 }
 
-export type MatchVerdict = 'ring' | 'disarmed' | 'weak-passphrase' | 'no-passphrase' | 'sender-not-allowed'
+export type MatchVerdict = 'ring' | 'vibrate-only' | 'disarmed' | 'weak-passphrase' | 'no-passphrase' | 'sender-not-allowed'
 
-/** The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ. */
+/** Each part may have one quote pair; the entire message may have one too. */
+function matchesParts(message: string, first: string, second: string): boolean {
+  return [message, unquote(message)].some((candidate) =>
+    [first.length, first.length + 2].some((length) => {
+      const left = candidate.slice(0, length)
+      const right = candidate.slice(length)
+      return (left === first || unquote(left) === first) && (right === second || unquote(right) === second)
+    }),
+  )
+}
+
+/** Exact whole-message match, optionally adding the enabled vibration-only modifier. */
 export function evaluateMessage(config: MatchInput, body: string, sender: string): MatchVerdict {
   const phrase = normalizePhrase(config.passphrase)
   if (phrase.length < MIN_NORMALIZED_PASSPHRASE) return 'weak-passphrase'
   const message = normalizePhrase(body)
-  if (message !== phrase && unquote(message) !== phrase) return 'no-passphrase'
+  const regular = message === phrase || unquote(message) === phrase
+  const modifier = normalizePhrase(config.vibrateOnlyPhrase ?? '')
+  const vibrateOnly = !regular && config.vibrateOnlyEnabled !== false && modifier.length > 0 &&
+    (matchesParts(message, phrase, modifier) || matchesParts(message, modifier, phrase))
+  if (!regular && !vibrateOnly) return 'no-passphrase'
   const allowed = config.senders.filter((s) => s.trim())
   if (allowed.length > 0 && !allowed.some((a) => sendersMatch(a, sender))) return 'sender-not-allowed'
-  return config.armed ? 'ring' : 'disarmed'
+  if (!config.armed) return 'disarmed'
+  return vibrateOnly ? 'vibrate-only' : 'ring'
 }

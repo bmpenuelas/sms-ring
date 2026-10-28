@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring 现在无法响铃</string>
     <string name="remote_ring_health_text">它需要的某项设置被关闭了。轻触修复。</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">仅振动模式</string>
 </resources>

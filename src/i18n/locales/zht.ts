@@ -55,10 +55,18 @@ const zht: Messages = {
       copyLabel: '拷貝暗號',
       shareLabel: '分享給信任的人',
       shareTitle: '我的 SMS Ring 暗號',
-      shareText: (phrase: string) =>
-        `如果我弄丟手機，請把「${phrase}」傳到我的號碼，即使靜音它也會以最大音量響鈴。請務必保密。`,
       show: '顯示暗號',
       hide: '隱藏暗號',
+    },
+    sharing: {
+      intro: "如果我弄丟手機，請向我的號碼傳送：",
+      ring: (message: string) => "傳送「" + message + "」讓手機響鈴。",
+      ringVibrate: (message: string) => "傳送「" + message + "」讓手機響鈴並震動。",
+      vibrateOnly: (message: string) => "傳送「" + message + "」讓手機只震動不響鈴。",
+      senderRestricted: "只有允許的寄件者才能觸發。請使用我已允許的號碼。",
+      paused: "SMS Ring 目前已暫停。我需要先啟用它，這些訊息才會生效。",
+      chatApps: "聊天應用程式觸發也已開啟，透過 SMS Ring 能讀取的通知生效。",
+      keepSecret: "請為這些說明保密。",
     },
     senders: {
       title: '誰可以讓它響',
@@ -81,6 +89,13 @@ const zht: Messages = {
       title: '震動',
       on: '響鈴時震動',
       off: '只有聲音',
+    },
+    vibrateOnly: {
+      title: "僅震動模式",
+      defaultPhrase: "僅震動",
+      hint: (words: string) => "在訊息中加入「" + words + "」即可只震動不響鈴",
+      phraseLabel: "僅震動附加詞",
+      matchingHint: "將這些詞放在通關密語前或後。只傳送通關密語仍會響鈴。",
     },
     dnd: {
       title: '勿擾模式下也響鈴',
@@ -133,6 +148,7 @@ const zht: Messages = {
       placeholder: '輸入簡訊…',
       sender: '寄件人（選填）',
       verdicts: {
+        'vibrate-only': "這會僅震動，不發出聲音",
         ring: '這則簡訊會讓手機響鈴',
         disarmed: '本來會響，但 SMS Ring 已暫停',
         'weak-passphrase': '暗號太短了',

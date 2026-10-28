@@ -25,8 +25,9 @@ import {
 } from '../core/config'
 import { evaluateMessage, MIN_NORMALIZED_PASSPHRASE } from '../core/matcher'
 import { normalizePhrase } from '../core/normalize'
+import { buildPassphraseInstructions } from '../core/instructions'
 import { MAX_WORDS, MIN_WORDS, entropyBits, generateWords, splitWords } from '../core/passphrase'
-import { language, loadWords, t, type LanguageCode } from '../i18n'
+import { language, loadCatalogue, loadWords, t, type LanguageCode } from '../i18n'
 import { haptic, platform, shareText, copyText } from '../services/device'
 import { prefs } from './prefs'
 import type { ThemeChoice } from './theme'
@@ -186,6 +187,11 @@ watch(wordLanguage, async (code) => {
   words.value = await loadWords(code)
 })
 
+// Translate an untouched default when the app language changes; preserve custom words.
+watch(() => t.value.vibrateOnly.defaultPhrase, (next, previous) => {
+  if (loaded.value && config.value.vibrateOnlyPhrase === previous) config.value.vibrateOnlyPhrase = next
+})
+
 let tick: ReturnType<typeof setInterval> | undefined
 watch(
   () => ring.value.ringing,
@@ -213,9 +219,11 @@ async function init() {
   words.value = await loadWords(wordLanguage.value)
   const stored = (await RemoteRing.getConfig()).config
   const fallback = generateWords(words.value, prefs.wordCount).join(' ')
-  config.value = sanitizeConfig(stored, fallback)
+  const messages = await loadCatalogue(language.value)
+  config.value = sanitizeConfig(stored, fallback, messages.app.vibrateOnly.defaultPhrase)
   loaded.value = true
-  if (!stored) await RemoteRing.setConfig({ config: config.value })
+  // Persist migrated defaults too, so native background triggers see the same settings.
+  await RemoteRing.setConfig({ config: config.value })
   await Promise.all([refreshCapabilities(), refreshHistory(), refreshPlatform()])
   ring.value = await RemoteRing.getRingState()
   now.value = Date.now()
@@ -330,6 +338,15 @@ function stopTonePreview() {
 function setVolume(percent: number) {
   config.value.volume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, Math.round(percent / 10) * 10))
   haptic.tick()
+}
+
+function setVibrateOnlyEnabled(on: boolean) {
+  config.value.vibrateOnlyEnabled = on
+  haptic.tap()
+}
+
+function setVibrateOnlyPhrase(text: string) {
+  config.value.vibrateOnlyPhrase = normalizePhrase(text) ? text.trim() : t.value.vibrateOnly.defaultPhrase
 }
 
 function setTheme(choice: ThemeChoice) {
@@ -477,13 +494,13 @@ async function clearHistory() {
 }
 
 async function copyPassphrase() {
-  const ok = await copyText(config.value.passphrase)
+  const ok = await copyText(buildPassphraseInstructions(config.value, t.value.sharing))
   if (ok) haptic.success()
   return ok
 }
 
 async function sharePassphrase() {
-  return shareText(t.value.passphrase.shareTitle, t.value.passphrase.shareText(config.value.passphrase))
+  return shareText(t.value.passphrase.shareTitle, buildPassphraseInstructions(config.value, t.value.sharing))
 }
 
 function simulate(body: string, sender: string) {
@@ -532,6 +549,8 @@ const actions = {
   setTone,
   stopTonePreview,
   setVolume,
+  setVibrateOnlyEnabled,
+  setVibrateOnlyPhrase,
   setTheme,
   setOverrideDnd,
   setChatApps,

@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring अभी नहीं बज सकता</string>
     <string name="remote_ring_health_text">ज़रूरी कुछ बंद हो गया है। ठीक करने के लिए टैप करें।</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">केवल कंपन मोड</string>
 </resources>

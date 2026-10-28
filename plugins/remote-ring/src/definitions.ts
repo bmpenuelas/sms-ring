@@ -17,6 +17,10 @@ export interface RingConfig {
   durationSeconds: number
   /** Vibrate while ringing. */
   vibrate: boolean
+  /** Allow the extra phrase to request vibration without any alarm sound. On by default. */
+  vibrateOnlyEnabled: boolean
+  /** Modifier placed before or after the secret passphrase; localized default supplied by the UI. */
+  vibrateOnlyPhrase: string
   /** Android only: temporarily lift Do Not Disturb while ringing (needs DND access). On by default. */
   overrideDnd: boolean
   /** Which sound rings. "system" (Android only) is the phone's own alarm sound. */

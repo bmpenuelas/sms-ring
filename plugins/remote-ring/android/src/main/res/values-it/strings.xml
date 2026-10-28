@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring non può squillare ora</string>
     <string name="remote_ring_health_text">Qualcosa di necessario è stato disattivato. Tocca per risolvere.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Modalità solo vibrazione</string>
 </resources>

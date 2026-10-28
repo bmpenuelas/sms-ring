@@ -55,10 +55,18 @@ const id: Messages = {
       copyLabel: 'Salin frasa rahasia',
       shareLabel: 'Bagikan ke orang tepercaya',
       shareTitle: 'Frasa SMS Ring-ku',
-      shareText: (phrase: string) =>
-        `Kalau ponselku hilang, kirim “${phrase}” ke nomorku dan ponsel akan berdering dengan volume penuh, bahkan saat senyap. Tolong rahasiakan ya.`,
       show: 'Tampilkan frasa',
       hide: 'Sembunyikan frasa',
+    },
+    sharing: {
+      intro: "Jika ponselku hilang, kirim ke nomorku:",
+      ring: (message: string) => "Kirim “" + message + "” agar ponsel berdering.",
+      ringVibrate: (message: string) => "Kirim “" + message + "” agar ponsel berdering dan bergetar.",
+      vibrateOnly: (message: string) => "Kirim “" + message + "” agar ponsel bergetar tanpa suara.",
+      senderRestricted: "Hanya pengirim yang diizinkan yang dapat memicunya. Gunakan nomor yang telah aku izinkan.",
+      paused: "SMS Ring sedang dijeda. Aku perlu mengaktifkannya agar pesan ini berfungsi.",
+      chatApps: "Pemicu dari aplikasi chat juga aktif, melalui notifikasi yang dapat dibaca SMS Ring.",
+      keepSecret: "Tolong rahasiakan petunjuk ini.",
     },
     senders: {
       title: 'Siapa yang bisa membuatnya berdering',
@@ -81,6 +89,13 @@ const id: Messages = {
       title: 'Getar',
       on: 'Bergetar saat berdering',
       off: 'Suara saja',
+    },
+    vibrateOnly: {
+      title: "Mode getar saja",
+      defaultPhrase: "getar saja",
+      hint: (words: string) => "Tambahkan “" + words + "” ke pesan untuk bergetar tanpa suara",
+      phraseLabel: "Kata untuk getar saja",
+      matchingHint: "Letakkan kata ini sebelum atau sesudah frasa rahasia. Frasa saja tetap membunyikan ponsel.",
     },
     dnd: {
       title: 'Tetap berdering saat Jangan Ganggu',
@@ -133,6 +148,7 @@ const id: Messages = {
       placeholder: 'Ketik pesan…',
       sender: 'Dari (opsional)',
       verdicts: {
+        'vibrate-only': "Ini akan bergetar tanpa suara",
         ring: 'Ini akan membuat ponselmu berdering',
         disarmed: 'Akan berdering, tapi SMS Ring sedang dijeda',
         'weak-passphrase': 'Frasamu terlalu pendek',

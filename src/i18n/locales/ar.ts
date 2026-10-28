@@ -59,10 +59,18 @@ const ar: Messages = {
       copyLabel: 'نسخ العبارة السرية',
       shareLabel: 'مشاركتها مع شخص تثق به',
       shareTitle: 'عبارتي في SMS Ring',
-      shareText: (phrase: string) =>
-        `إذا فقدت هاتفي، أرسل «${phrase}» إلى رقمي وسيرنّ بأعلى صوت حتى لو كان صامتًا. أرجو أن تُبقي هذا سرًا.`,
       show: 'إظهار العبارة',
       hide: 'إخفاء العبارة',
+    },
+    sharing: {
+      intro: "إذا فقدت هاتفي، أرسل إلى رقمي:",
+      ring: (message: string) => "أرسل «" + message + "» لتشغيل الرنين.",
+      ringVibrate: (message: string) => "أرسل «" + message + "» لتشغيل الرنين والاهتزاز.",
+      vibrateOnly: (message: string) => "أرسل «" + message + "» للاهتزاز دون صوت.",
+      senderRestricted: "يعمل ذلك فقط للمرسلين المسموح لهم. استخدم رقمًا سمحتُ به.",
+      paused: "SMS Ring متوقف مؤقتًا. يجب أن أفعّله لتعمل هذه الرسائل.",
+      chatApps: "التشغيل من تطبيقات المحادثة مفعّل أيضًا، عبر الإشعارات التي يستطيع SMS Ring قراءتها.",
+      keepSecret: "يرجى إبقاء هذه التعليمات سرية.",
     },
     senders: {
       title: 'من يمكنه جعله يرنّ',
@@ -85,6 +93,13 @@ const ar: Messages = {
       title: 'الاهتزاز',
       on: 'يهتز أثناء الرنين',
       off: 'صوت فقط',
+    },
+    vibrateOnly: {
+      title: "وضع الاهتزاز فقط",
+      defaultPhrase: "اهتزاز فقط",
+      hint: (words: string) => "أضف «" + words + "» إلى رسالتك للاهتزاز دون صوت",
+      phraseLabel: "كلمات الاهتزاز فقط",
+      matchingHint: "ضع هذه الكلمات قبل العبارة السرية أو بعدها. العبارة وحدها لا تزال تُشغّل الرنين.",
     },
     dnd: {
       title: 'الرنين رغم «عدم الإزعاج»',
@@ -137,6 +152,7 @@ const ar: Messages = {
       placeholder: 'اكتب رسالة…',
       sender: 'من (اختياري)',
       verdicts: {
+        'vibrate-only': "سيؤدي هذا إلى الاهتزاز دون صوت",
         ring: 'هذه الرسالة ستجعل هاتفك يرنّ',
         disarmed: 'كان سيرنّ، لكن SMS Ring متوقف مؤقتًا',
         'weak-passphrase': 'عبارتك قصيرة جدًا',

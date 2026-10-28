@@ -37,13 +37,15 @@ public class SmsReceiver extends BroadcastReceiver {
         }
 
         for (Map.Entry<String, StringBuilder> entry : bodies.entrySet()) {
-            if (config.evaluate(entry.getValue().toString(), entry.getKey()) == MessageMatcher.Verdict.RING) {
+            MessageMatcher.Verdict verdict = config.evaluate(entry.getValue().toString(), entry.getKey());
+            if (verdict == MessageMatcher.Verdict.RING || verdict == MessageMatcher.Verdict.VIBRATE_ONLY) {
                 RingController.start(
                     context,
                     config.durationSeconds,
                     config.vibrate,
                     "sms",
-                    MessageMatcher.maskSender(entry.getKey())
+                    MessageMatcher.maskSender(entry.getKey()),
+                    verdict == MessageMatcher.Verdict.VIBRATE_ONLY
                 );
                 return;
             }

@@ -55,10 +55,18 @@ const tr: Messages = {
       copyLabel: 'Gizli cümleyi kopyala',
       shareLabel: 'Güvendiğin biriyle paylaş',
       shareTitle: 'SMS Ring cümlem',
-      shareText: (phrase: string) =>
-        `Telefonumu kaybedersem numarama “${phrase}” yaz; sessizde olsa bile son ses çalar. Lütfen bunu gizli tut.`,
       show: 'Cümleyi göster',
       hide: 'Cümleyi gizle',
+    },
+    sharing: {
+      intro: "Telefonumu kaybedersem numarama şunu gönder:",
+      ring: (message: string) => "Çaldırmak için “" + message + "” gönder.",
+      ringVibrate: (message: string) => "Çaldırmak ve titretmek için “" + message + "” gönder.",
+      vibrateOnly: (message: string) => "Ses çıkarmadan titretmek için “" + message + "” gönder.",
+      senderRestricted: "Yalnızca izin verilen gönderenler tetikleyebilir. İzin verdiğim bir numara kullan.",
+      paused: "SMS Ring şu anda duraklatıldı. Bu mesajların çalışması için onu açmam gerekiyor.",
+      chatApps: "Sohbet uygulamalarından tetikleme de açık; SMS Ring’in okuyabildiği bildirimler üzerinden çalışır.",
+      keepSecret: "Lütfen bu talimatları gizli tut.",
     },
     senders: {
       title: 'Kim çaldırabilir',
@@ -81,6 +89,13 @@ const tr: Messages = {
       title: 'Titreşim',
       on: 'Çalarken titreşir',
       off: 'Yalnızca ses',
+    },
+    vibrateOnly: {
+      title: "Yalnızca titreşim modu",
+      defaultPhrase: "sadece titreşim",
+      hint: (words: string) => "Ses çıkarmadan titremesi için mesajınıza “" + words + "” ekleyin",
+      phraseLabel: "Yalnızca titreşim sözcükleri",
+      matchingHint: "Bu sözcükleri gizli ifadenin önüne veya arkasına koyun. Yalnızca gizli ifade yine çaldırır.",
     },
     dnd: {
       title: 'Rahatsız Etmeyin’de de çal',
@@ -133,6 +148,7 @@ const tr: Messages = {
       placeholder: 'Bir mesaj yaz…',
       sender: 'Kimden (isteğe bağlı)',
       verdicts: {
+        'vibrate-only': "Bu, ses çıkarmadan titretir",
         ring: 'Bu telefonunu çaldırır',
         disarmed: 'Çalardı ama SMS Ring duraklatıldı',
         'weak-passphrase': 'Cümlen çok kısa',

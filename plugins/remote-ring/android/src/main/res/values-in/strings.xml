@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring tidak bisa berdering</string>
     <string name="remote_ring_health_text">Sesuatu yang dibutuhkan dimatikan. Ketuk untuk memperbaiki.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Mode getar saja</string>
 </resources>

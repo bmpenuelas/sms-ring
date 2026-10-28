@@ -15,4 +15,5 @@
     <string name="remote_ring_health_title">SMS Ring сейчас не может звонить</string>
     <string name="remote_ring_health_text">Отключено то, что ему нужно. Нажмите, чтобы исправить.</string>
     <string name="remote_ring_listener_label">SMS Ring</string>
+    <string name="remote_ring_channel_vibrate_only">Режим только вибрации</string>
 </resources>

@@ -55,10 +55,18 @@ const ja: Messages = {
       copyLabel: '秘密のフレーズをコピー',
       shareLabel: '信頼できる人と共有',
       shareTitle: '私の SMS Ring フレーズ',
-      shareText: (phrase: string) =>
-        `もし私がスマホをなくしたら、「${phrase}」を私の番号に送ってね。マナーモードでも最大音量で鳴ります。このことは秘密にしてください。`,
       show: 'フレーズを表示',
       hide: 'フレーズを隠す',
+    },
+    sharing: {
+      intro: "スマホをなくしたら、私の番号に次のメッセージを送ってください：",
+      ring: (message: string) => "「" + message + "」を送ると音が鳴ります。",
+      ringVibrate: (message: string) => "「" + message + "」を送ると音が鳴り、振動します。",
+      vibrateOnly: (message: string) => "「" + message + "」を送ると音を出さずに振動します。",
+      senderRestricted: "許可した送信者だけが作動させられます。私が許可した番号を使ってください。",
+      paused: "SMS Ringは現在一時停止中です。これらのメッセージが動作するには、私が有効にする必要があります。",
+      chatApps: "チャットアプリからの起動も有効です。SMS Ringが読み取れる通知を通じて動作します。",
+      keepSecret: "この手順は秘密にしてください。",
     },
     senders: {
       title: '鳴らせる人',
@@ -81,6 +89,13 @@ const ja: Messages = {
       title: 'バイブレーション',
       on: '鳴っている間バイブします',
       off: '音のみ',
+    },
+    vibrateOnly: {
+      title: "振動のみモード",
+      defaultPhrase: "振動のみ",
+      hint: (words: string) => "メッセージに「" + words + "」を追加すると音を出さずに振動します",
+      phraseLabel: "振動のみの追加フレーズ",
+      matchingHint: "秘密のフレーズの前か後ろに追加してください。秘密のフレーズだけなら通常どおり鳴ります。",
     },
     dnd: {
       title: 'サイレントモード中でも鳴らす',
@@ -133,6 +148,7 @@ const ja: Messages = {
       placeholder: 'メッセージを入力…',
       sender: '送信者（任意）',
       verdicts: {
+        'vibrate-only': "音を出さずに振動します",
         ring: 'このメッセージでスマホが鳴ります',
         disarmed: '鳴るはずですが、SMS Ring は一時停止中です',
         'weak-passphrase': 'フレーズが短すぎます',

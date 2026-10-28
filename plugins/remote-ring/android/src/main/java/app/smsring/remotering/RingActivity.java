@@ -25,6 +25,7 @@ import java.util.Locale;
 public class RingActivity extends AppCompatActivity implements RingState.Listener {
 
     static final String EXTRA_START_SERVICE = "startService";
+    static final String EXTRA_VIBRATE_ONLY = "vibrateOnly";
     static final String EXTRA_SENDER = "sender";
 
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -72,7 +73,8 @@ public class RingActivity extends AppCompatActivity implements RingState.Listene
             RingConfig config = RingStore.loadConfig(this);
             int duration = config != null ? config.durationSeconds : 60;
             boolean vibrate = config == null || config.vibrate;
-            ContextCompat.startForegroundService(this, RingService.startIntent(this, duration, vibrate, "sms", sender));
+            boolean vibrateOnly = getIntent().getBooleanExtra(EXTRA_VIBRATE_ONLY, false);
+            ContextCompat.startForegroundService(this, RingService.startIntent(this, duration, vibrate, "sms", sender, vibrateOnly));
         }
     }
 

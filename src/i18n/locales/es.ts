@@ -55,10 +55,18 @@ const es: Messages = {
       copyLabel: 'Copiar frase secreta',
       shareLabel: 'Compartir con alguien de confianza',
       shareTitle: 'Mi frase de SMS Ring',
-      shareText: (phrase: string) =>
-        `Si pierdo el móvil, envía «${phrase}» a mi número y sonará a todo volumen, aunque esté en silencio. Por favor, guárdalo en secreto.`,
       show: 'Mostrar frase',
       hide: 'Ocultar frase',
+    },
+    sharing: {
+      intro: "Si pierdo el móvil, envía a mi número:",
+      ring: (message: string) => "Envía «" + message + "» para que suene.",
+      ringVibrate: (message: string) => "Envía «" + message + "» para que suene y vibre.",
+      vibrateOnly: (message: string) => "Envía «" + message + "» para que vibre sin sonido.",
+      senderRestricted: "Solo funcionan los remitentes permitidos. Usa un número que yo haya autorizado.",
+      paused: "SMS Ring está en pausa. Debo activarlo para que estos mensajes funcionen.",
+      chatApps: "La activación desde apps de chat también está habilitada; funciona mediante las notificaciones que SMS Ring puede leer.",
+      keepSecret: "Por favor, guarda estas instrucciones en secreto.",
     },
     senders: {
       title: 'Quién puede hacerlo sonar',
@@ -81,6 +89,13 @@ const es: Messages = {
       title: 'Vibrar',
       on: 'Vibra mientras suena',
       off: 'Solo sonido',
+    },
+    vibrateOnly: {
+      title: "Modo de solo vibración",
+      defaultPhrase: "solo vibración",
+      hint: (words: string) => "Añade \"" + words + "\" a tu mensaje para que vibre sin sonido",
+      phraseLabel: "Palabras de solo vibración",
+      matchingHint: "Pon estas palabras antes o después de la frase secreta. La frase sola sigue sonando.",
     },
     dnd: {
       title: 'Sonar aunque esté en No molestar',
@@ -133,6 +148,7 @@ const es: Messages = {
       placeholder: 'Escribe un mensaje…',
       sender: 'De (opcional)',
       verdicts: {
+        'vibrate-only': "Esto vibraría sin sonido",
         ring: 'Esto haría sonar tu móvil',
         disarmed: 'Sonaría, pero SMS Ring está en pausa',
         'weak-passphrase': 'Tu frase es demasiado corta',

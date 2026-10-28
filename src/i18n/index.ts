@@ -51,7 +51,7 @@ export const isRtl = computed(() => languageByCode(language.value).rtl)
 const catalogue = shallowRef<Messages>(en)
 export const t = computed<AppMessages>(() => catalogue.value.app)
 
-async function loadCatalogue(code: LanguageCode): Promise<Messages> {
+export async function loadCatalogue(code: LanguageCode): Promise<Messages> {
   if (code === 'en') return en
   const loader = catalogueLoaders[`./locales/${code}.ts`]
   return loader ? (await loader()).default : en

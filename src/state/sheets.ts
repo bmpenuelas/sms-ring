@@ -12,6 +12,7 @@ export type SheetRequest =
   | { name: 'health-warning' }
   | { name: 'ios-setup' }
   | { name: 'passphrase' }
+  | { name: 'vibrate-only' }
   | { name: 'senders' }
   | { name: 'try' }
   | { name: 'history' }

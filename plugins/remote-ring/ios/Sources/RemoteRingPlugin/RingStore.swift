@@ -8,6 +8,8 @@ public struct RingConfig: Codable, Equatable {
     public var senders: [String] = []
     public var durationSeconds: Int = 60
     public var vibrate: Bool = true
+    public var vibrateOnlyEnabled: Bool = true
+    public var vibrateOnlyPhrase: String = ""
     public var overrideDnd: Bool = true
     /// Bundled tone id (src/core/config.ts TONES). "system" has no iOS equivalent and plays the default.
     public var tone: String = RingConfig.defaultTone
@@ -36,6 +38,8 @@ public struct RingConfig: Codable, Equatable {
         let duration = (try? c.decode(Int.self, forKey: .durationSeconds)) ?? 60
         durationSeconds = max(Self.minDuration, min(Self.maxDuration, duration))
         vibrate = (try? c.decode(Bool.self, forKey: .vibrate)) ?? true
+        vibrateOnlyEnabled = (try? c.decode(Bool.self, forKey: .vibrateOnlyEnabled)) ?? true
+        vibrateOnlyPhrase = (try? c.decode(String.self, forKey: .vibrateOnlyPhrase)) ?? ""
         overrideDnd = (try? c.decode(Bool.self, forKey: .overrideDnd)) ?? true
         let decodedTone = (try? c.decode(String.self, forKey: .tone)) ?? Self.defaultTone
         tone = Self.tones.contains(decodedTone) ? decodedTone : Self.defaultTone

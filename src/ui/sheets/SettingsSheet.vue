@@ -53,6 +53,25 @@ const chatAppsAvailable = computed(() => state.capabilities.notificationAccess !
           <Icon name="chevron" :size="16" class="chev" />
         </button>
       </li>
+      <li class="row toggle">
+        <button class="setting-link press" @click="openSheet('vibrate-only')">
+          <span class="ico"><Icon name="vibrate" /></span>
+          <span class="label">
+            {{ t.vibrateOnly.title }}
+            <small>
+              {{ t.vibrateOnly.hint(state.config.vibrateOnlyPhrase) }}
+              <span class="edit-cue">{{ t.common.edit }} <Icon name="edit" :size="12" /></span>
+            </small>
+          </span>
+        </button>
+        <input
+          type="checkbox"
+          role="switch"
+          :aria-label="t.vibrateOnly.title"
+          :checked="state.config.vibrateOnlyEnabled"
+          @change="actions.setVibrateOnlyEnabled(($event.target as HTMLInputElement).checked)"
+        />
+      </li>
       <li class="row stack">
         <span class="ico"><Icon name="volume" /></span>
         <label class="label" for="ring-volume">
@@ -132,6 +151,15 @@ const chatAppsAvailable = computed(() => state.capabilities.notificationAccess !
   margin: 0;
   padding: 0;
 }
+.setting-link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: start;
+  align-self: stretch;
+}
 .row {
   width: 100%;
   display: flex;
@@ -153,13 +181,24 @@ const chatAppsAvailable = computed(() => state.capabilities.notificationAccess !
 }
 .label {
   flex: 1;
+  min-width: 0;
   display: grid;
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 .label small {
   font-weight: 400;
   font-size: 12px;
   color: var(--ui-muted);
+}
+.edit-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-inline-start: 6px;
+  white-space: nowrap;
+  font-weight: 700;
+  color: inherit;
 }
 .value {
   color: var(--ui-muted);
