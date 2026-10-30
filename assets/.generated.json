@@ -1,6 +1,6 @@
 {
-  "assets/icon.svg": "ca194cd2df530b1760d77aa783a612a0a9f81623a30c59ba68bbeadcc3e39a42",
-  "assets/icon-foreground.svg": "f17735f8a167632fa8dcac814a320cf139407cc7e646e6872303378ebe2acb88",
-  "assets/icon-background.svg": "11c8b828824348e8d055306d1cd86bff6810917651cb48e9b3080dad812295b7",
-  "scripts/generate-app-assets.mjs": "f570904409d1921404f13a7e0bc2e1fa0c70015a382ae6bcccd5aa224eeec8c7"
+  "assets/icon.svg": "76c4d60fdb65418f9c9df1e2a89045d6dfdc1927214ab0c9fec48db927fdaf24",
+  "assets/icon-foreground.svg": "87bb4d09e21b06265468a731156af302c2f014c334504aee5a33f01aca77324f",
+  "assets/icon-background.svg": "979c0a8cec28e8abe62c912fc704b274022a4ea0533bf15da6d16c554e7b9028",
+  "scripts/generate-app-assets.mjs": "df193730509fcabd0f05532bcbbf1ddc2a18df07d67afb1603084d445c16160a"
 }

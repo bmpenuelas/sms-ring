@@ -37,7 +37,7 @@ const SOURCES = ['icon.svg', 'icon-foreground.svg', 'icon-background.svg']
 const ICON = 1024
 const SPLASH = 2732
 /** Background colour behind anything a platform can't fill with the image (first gradient stop). */
-const BG = '#ff5a4e'
+const BG = '#2b63f0'
 /**
  * Adaptive icons: @capacitor/assets insets the foreground 16.7% per side, which
  * maps this image onto the visible launcher area. The artwork is full-bleed for

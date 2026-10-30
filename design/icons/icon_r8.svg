@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 100 100"
+   width="1024"
+   height="1024"
+   version="1.1"
+   id="svg49"
+   sodipodi:docname="icon_r8.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview49"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.56982422"
+     inkscape:cx="399.24593"
+     inkscape:cy="352.74036"
+     inkscape:window-width="1718"
+     inkscape:window-height="1360"
+     inkscape:window-x="-7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g49" />
+  <!-- SMS Ring app icon: the artwork on its Blue → Violet gradient with soft shapes. Source for every generated icon. -->
+  <defs
+     id="defs17">
+    <linearGradient
+       id="bg"
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="1">
+      <stop
+         offset="0"
+         stop-color="#16e3d6"
+         id="stop1" />
+      <stop
+         offset=".2"
+         stop-color="#18a9f8"
+         id="stop2" />
+      <stop
+         offset=".5"
+         stop-color="#2b63f0"
+         id="stop3" />
+      <stop
+         offset=".75"
+         stop-color="#4a2cee"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="#8a1fe8"
+         id="stop5" />
+    </linearGradient>
+    <radialGradient
+       id="bgGlowTL"
+       cx="0"
+       cy="0"
+       r="1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0 0) scale(560)">
+      <stop
+         offset="0"
+         stop-color="#1ff2e0"
+         stop-opacity=".85"
+         id="stop6" />
+      <stop
+         offset="1"
+         stop-color="#1ff2e0"
+         stop-opacity="0"
+         id="stop7" />
+    </radialGradient>
+    <radialGradient
+       id="bgGlowBR"
+       cx="0"
+       cy="0"
+       r="1"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(1254 1254) scale(620)">
+      <stop
+         offset="0"
+         stop-color="#d048f8"
+         stop-opacity=".95"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#d048f8"
+         stop-opacity="0"
+         id="stop9" />
+    </radialGradient>
+    <linearGradient
+       id="bubble"
+       x1="83.475413"
+       y1="598.43969"
+       x2="83.475413"
+       y2="1091.9982"
+       gradientTransform="matrix(1.4252002,0,0,0.93609204,-94.17827,-97.756662)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#ffffff"
+         id="stop10" />
+      <stop
+         offset=".7"
+         stop-color="#ffffff"
+         id="stop11" />
+      <stop
+         offset="1"
+         stop-color="#e6ecfb"
+         id="stop12" />
+    </linearGradient>
+    <linearGradient
+       id="gold"
+       gradientUnits="userSpaceOnUse"
+       x1="50"
+       y1="14"
+       x2="50"
+       y2="70">
+      <stop
+         offset="0"
+         stop-color="#ffdf3d"
+         id="stop13" />
+      <stop
+         offset=".55"
+         stop-color="#ffc20f"
+         id="stop14" />
+      <stop
+         offset="1"
+         stop-color="#ffb000"
+         id="stop15" />
+    </linearGradient>
+    <filter
+       id="glowW"
+       filterUnits="userSpaceOnUse"
+       x="-200"
+       y="-200"
+       width="1654"
+       height="1654">
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur15" />
+    </filter>
+    <filter
+       id="glowR"
+       filterUnits="userSpaceOnUse"
+       x="-200"
+       y="-200"
+       width="1654"
+       height="1654">
+      <feGaussianBlur
+         stdDeviation="10"
+         id="feGaussianBlur16" />
+    </filter>
+    <filter
+       id="soft"
+       filterUnits="userSpaceOnUse"
+       x="-200"
+       y="-200"
+       width="1654"
+       height="1654">
+      <feGaussianBlur
+         stdDeviation="18"
+         id="feGaussianBlur17" />
+    </filter>
+    <path
+       id="bell-body"
+       d="M50 17C36 17 26 27 26 41V57L16 69H84L74 57V41C74 27 64 17 50 17Z" />
+    <path
+       id="bell-clap"
+       d="M40 70a10 10 0 0 0 20 0Z" />
+    <path
+       id="arcs-l"
+       d="M607.2 329.1A318 318 0 0 0 527.4 473.1M653.3 373.6A254 254 0 0 0 597.3 463.1" />
+    <path
+       id="arrow"
+       d="M466 948C560 1066 690 1128 800 1128C900 1128 968 1070 958 960C954 910 936 860 912 812" />
+    <path
+       id="arrow-head"
+       d="M872 925L912 806L1012 886" />
+  </defs>
+  <rect
+     width="100"
+     height="100"
+     fill="url(#bg)"
+     id="rect17" />
+  <g
+     transform="scale(0.07974481658692185)"
+     id="g49">
+    <rect
+       width="1254"
+       height="1254"
+       fill="url(#bgGlowTL)"
+       id="rect18" />
+    <rect
+       width="1254"
+       height="1254"
+       fill="url(#bgGlowBR)"
+       id="rect19" />
+    <g
+       fill="#fff"
+       id="g24">
+      <circle
+         cx="627"
+         cy="627"
+         r="470"
+         fill-opacity=".07"
+         id="circle19" />
+      <circle
+         cx="627"
+         cy="627"
+         r="395"
+         fill-opacity=".05"
+         id="circle20" />
+      <circle
+         cx="627"
+         cy="627"
+         r="320"
+         fill-opacity=".04"
+         id="circle21" />
+      <circle
+         cx="1115"
+         cy="95"
+         r="62"
+         fill-opacity=".14"
+         id="circle22" />
+      <circle
+         cx="140"
+         cy="1125"
+         r="48"
+         fill-opacity=".1"
+         id="circle23" />
+      <path
+         d="M0 0H300C250 130 130 240 0 300Z"
+         fill-opacity=".1"
+         id="path23" />
+      <circle
+         cx="85"
+         cy="235"
+         r="82"
+         fill="#25f5ee"
+         fill-opacity=".35"
+         id="circle24" />
+      <path
+         d="M0 490C110 450 200 470 240 510C150 520 80 580 0 600Z"
+         fill-opacity=".1"
+         id="path24" />
+    </g>
+    <path
+       d="M0 925C240 900 430 1010 640 1100C860 1195 1050 1200 1254 1010V1254H0Z"
+       fill="#5a20f0"
+       fill-opacity=".5"
+       id="path25" />
+    <path
+       d="M1254 930C1130 960 1040 1060 980 1254H1254Z"
+       fill="#c040f8"
+       fill-opacity=".55"
+       id="path26" />
+    <!-- Glows: red under the arcs, white around arcs, rays and arrow. The arcs on the left and the arrow
+         share the artwork transform; the right arcs and rays are drawn straight in canvas space. -->
+    <g
+       fill="none"
+       stroke-linecap="round"
+       id="g34"
+       transform="matrix(1.1550405,0,0,1.1550405,-94.178271,-97.756662)">
+      <use href="#arcs-l" stroke="#ff1f3a" stroke-width="30" filter="url(#glowR)" transform="translate(12,16)" id="use26" />
+      <use href="#arcs-l" stroke="#ff1f3a" stroke-width="22" filter="url(#glowR)" transform="translate(12,16)" id="use28" />
+      <use href="#arcs-l" stroke="#ffffff" stroke-width="40" opacity="0.55" filter="url(#glowW)" id="use30" />
+      <use href="#arrow" stroke="#ffffff" stroke-width="42" opacity="0.5" filter="url(#glowW)" id="use33" />
+      <use href="#arrow-head" stroke="#ffffff" stroke-width="42" opacity="0.5" filter="url(#glowW)" stroke-linejoin="round" id="use34" />
+    </g>
+    <g
+       fill="none"
+       stroke-linecap="round"
+       id="g35">
+      <path d="m 1039.0005,220.2274 c 125.3454,38.3775 180.2572,166.66153 163.6646,291.07279 M 1031.9882,301.46244 c 60.3941,26.68891 95.4671,77.23131 102.8778,171.51405" stroke="#ff1f3a" stroke-width="34.7" filter="url(#glowR)" transform="translate(-14,18.5)" id="glow-arcs-r-red-1" />
+      <path d="m 1039.0005,220.2274 c 125.3454,38.3775 180.2572,166.66153 163.6646,291.07279 M 1031.9882,301.46244 c 60.3941,26.68891 95.4671,77.23131 102.8778,171.51405" stroke="#ff1f3a" stroke-width="25.4" filter="url(#glowR)" transform="translate(-14,18.5)" id="glow-arcs-r-red-2" />
+      <path d="m 1039.0005,220.2274 c 125.3454,38.3775 180.2572,166.66153 163.6646,291.07279 M 1031.9882,301.46244 c 60.3941,26.68891 95.4671,77.23131 102.8778,171.51405" stroke="#ffffff" stroke-width="46.2" opacity="0.55" filter="url(#glowW)" id="glow-arcs-r-white" />
+      <path d="M 717.12217,238.01361 632.68872,159.23985 M 818.82551,194.86429 806.56278,62.930949 M 911.67365,222.28358 993.19368,113.282" stroke="#ffffff" stroke-width="55.4" opacity="0.55" filter="url(#glowW)" id="glow-rays" />
+    </g>
+    <path
+       d="M 211.90746,462.43798 H 598.84602 A 129.36453,129.36453 0 0 1 728.21056,591.80252 V 795.08964 A 129.36453,129.36453 0 0 1 598.84602,924.45417 H 24.7909 L 82.542924,866.70215 V 591.80252 A 129.36453,129.36453 0 0 1 211.90746,462.43798 Z"
+       fill="#0b1a7a"
+       fill-opacity="0.25"
+       filter="url(#soft)"
+       transform="translate(0,16)"
+       id="path39" />
+    <use
+       href="#arcs-l"
+       id="use35"
+       transform="matrix(1.1550405,0,0,1.1550405,-94.178271,-97.756662)"
+       style="fill:none;stroke:#ffffff;stroke-width:32;stroke-linecap:round" />
+    <path
+       id="use36"
+       d="m 1039.0005,220.2274 c 125.3454,38.3775 180.2572,166.66153 163.6646,291.07279 M 1031.9882,301.46244 c 60.3941,26.68891 95.4671,77.23131 102.8778,171.51405"
+       style="fill:none;stroke:#ffffff;stroke-width:36.9613;stroke-linecap:round"
+       sodipodi:nodetypes="cccc" />
+    <path
+       id="use37"
+       d="M 717.12217,238.01361 632.68872,159.23985 M 818.82551,194.86429 806.56278,62.930949 M 911.67365,222.28358 993.19368,113.282"
+       style="fill:none;stroke:#ffffff;stroke-width:46.2016;stroke-linecap:round"
+       sodipodi:nodetypes="cccccc" />
+    <g
+       fill="none"
+       stroke="#ffffff"
+       stroke-width="40"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="g39"
+       transform="matrix(1.1550405,0,0,1.1550405,-94.178271,-97.756662)">
+      <use
+         href="#arrow"
+         id="use38" />
+      <use
+         href="#arrow-head"
+         id="use39" />
+    </g>
+    <path
+       d="M 211.90746,462.43798 H 598.84602 A 129.36453,129.36453 0 0 1 728.21056,591.80252 V 795.08964 A 129.36453,129.36453 0 0 1 598.84602,924.45417 H 24.7909 L 82.542924,866.70215 V 591.80252 A 129.36453,129.36453 0 0 1 211.90746,462.43798 Z"
+       fill="url(#bubble)"
+       id="path40"
+       style="fill:url(#bubble);stroke-width:1.15504" />
+    <g
+       fill="none"
+       stroke="#0a0a10"
+       stroke-width="30"
+       stroke-linecap="round"
+       id="g43"
+       transform="matrix(1.1550405,0,0,1.1550405,-94.178271,-97.756662)">
+      <path
+         d="m 303,639 v 76 m -40,-61 80,46 m -80,0 80,-46"
+         id="path41" />
+      <path
+         d="m 435,639 v 76 m -40,-61 80,46 m -80,0 80,-46"
+         id="path42" />
+      <path
+         d="m 568,639 v 76 m -40,-61 80,46 m -80,0 80,-46"
+         id="path43" />
+    </g>
+    <g
+       transform="matrix(6.4105806,-1.5983373,1.5983373,6.4105806,483.77639,348.18809)"
+       id="g47">
+      <g
+         fill="#ffffff"
+         stroke="#ffffff"
+         stroke-linejoin="round"
+         id="g44">
+        <circle
+           cx="50"
+           cy="11"
+           r="6"
+           stroke-width="14.5"
+           id="circle43" />
+        <use
+           href="#bell-body"
+           stroke-width="15.5"
+           id="use43" />
+        <use
+           href="#bell-clap"
+           stroke-width="10"
+           id="use44" />
+      </g>
+      <circle
+         cx="50"
+         cy="11"
+         r="6"
+         fill="#ffc21a"
+         stroke="#0a0a10"
+         stroke-width="4.4"
+         id="circle44" />
+      <use
+         href="#bell-body"
+         fill="url(#gold)"
+         stroke="#0a0a10"
+         stroke-width="5"
+         stroke-linejoin="round"
+         id="use45"
+         style="fill:url(#gold)" />
+      <use
+         href="#bell-clap"
+         fill="#0a0a10"
+         id="use46" />
+      <path
+         d="M 30,60 H 70"
+         stroke="#ffe566"
+         stroke-width="3"
+         stroke-linecap="round"
+         opacity="0.85"
+         id="path46" />
+      <path
+         d="M 36,35 C 38,29 42,25 47,24"
+         fill="none"
+         stroke="#ffffff"
+         stroke-opacity="0.85"
+         stroke-width="4.5"
+         stroke-linecap="round"
+         id="path47" />
+    </g>
+  </g>
+</svg>

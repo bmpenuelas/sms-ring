@@ -4,9 +4,9 @@ Every icon and splash screen is generated from three vector sources in `assets/`
 
 | Source | Used for |
 |---|---|
-| `icon.svg` | The full icon: iOS AppIcon, legacy Android icons, web favicon and touch icon |
+| `icon.svg` | The full icon, with its soft background shapes: iOS AppIcon, legacy Android icons, web favicon and touch icon |
 | `icon-foreground.svg` | The artwork alone: Android adaptive-icon foreground, splash mark |
-| `icon-background.svg` | The Coral → Peach background: adaptive-icon background, splash backdrop |
+| `icon-background.svg` | The plain Blue → Violet gradient, no shapes: adaptive-icon background, splash backdrop |
 
 Earlier icon drafts are kept in `design/icons/`. `design/store-mockup.html` shows `assets/icon.svg` among other apps in Play Store and App Store search results.
 

@@ -93,8 +93,8 @@ const MY_SHOTS = [
   shot('<text x="10" y="26" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">No internet.</text><text x="10" y="40" font-size="9.5" font-weight="900" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-style="normal">Nothing leaves.</text><path d="M45 62 22 72v20c0 18 10 30 23 36 13-6 23-18 23-36V72Z" fill="#fff"/><path d="M35 96l7 7 14-15" fill="none" stroke="#19c37d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>', '#14161f'),
 ]
 
-/** The real app icon, straight from the generated sources. */
-const MY_ICON = '<img src="../assets/icon.svg" alt="">'
+/** The real app icon, straight from the generated sources. Preview a draft with ?icon=icons/icon_r8.svg */
+const MY_ICON = `<img src="${new URLSearchParams(location.search).get('icon') || '../assets/icon.svg'}" alt="">`
 
 function playRow(app, svg, mine = false, ad = false) {
   return `<div class="row${mine ? ' mine' : ''}"><div class="ic">${svg}</div><div><div class="t">${app.name}</div>
