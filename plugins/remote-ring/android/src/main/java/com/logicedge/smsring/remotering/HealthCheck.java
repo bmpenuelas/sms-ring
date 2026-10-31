@@ -1,4 +1,4 @@
-package app.smsring.remotering;
+package com.logicedge.smsring.remotering;
 
 import android.Manifest;
 import android.app.Notification;
@@ -36,7 +36,7 @@ public class HealthCheck extends JobService {
     static final int NOTIFICATION_ID = 7303;
     static final String CHANNEL = "remote_ring_health";
     /** Action of the warning's tap: the app opens straight on the permissions list. */
-    static final String ACTION_REVIEW = "app.smsring.remotering.REVIEW_PERMISSIONS";
+    static final String ACTION_REVIEW = "com.logicedge.smsring.remotering.REVIEW_PERMISSIONS";
     private static final String KEY_IGNORED = "healthIgnored";
     /** Repeat an unchanged warning at most this often. */
     private static final long REMIND_EVERY = TimeUnit.DAYS.toMillis(3);

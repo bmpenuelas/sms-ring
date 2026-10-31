@@ -17,7 +17,7 @@ buildscript {
 apply plugin: 'com.android.library'
 
 android {
-    namespace = "app.smsring.remotering"
+    namespace = "com.logicedge.smsring.remotering"
     compileSdk = project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
     defaultConfig {
         minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 24

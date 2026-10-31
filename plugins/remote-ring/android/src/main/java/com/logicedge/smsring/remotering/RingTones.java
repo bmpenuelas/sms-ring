@@ -1,4 +1,4 @@
-package app.smsring.remotering;
+package com.logicedge.smsring.remotering;
 
 import android.content.Context;
 import android.media.AudioAttributes;

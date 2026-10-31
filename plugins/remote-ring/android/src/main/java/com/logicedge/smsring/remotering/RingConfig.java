@@ -1,4 +1,4 @@
-package app.smsring.remotering;
+package com.logicedge.smsring.remotering;
 
 import java.util.ArrayList;
 import java.util.Collections;

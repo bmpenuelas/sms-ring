@@ -1,4 +1,4 @@
-package app.smsring.remotering;
+package com.logicedge.smsring.remotering;
 
 import static org.junit.Assert.assertEquals;
 

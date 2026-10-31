@@ -11,7 +11,7 @@ import { buildAndroidEnv, gradleCommand } from './lib/android-env.mjs'
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const androidDir = join(repoRoot, 'android')
-const appId = 'app.smsring'
+const appId = 'com.logicedge.smsring'
 const debugApkPath = join(androidDir, 'app', 'build', 'outputs', 'apk', 'debug', 'app-debug.apk')
 const env = buildAndroidEnv()
 

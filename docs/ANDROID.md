@@ -1,6 +1,6 @@
 # Android
 
-Code: `plugins/remote-ring/android/src/main/java/app/smsring/remotering/`.
+Code: `plugins/remote-ring/android/src/main/java/com/logicedge/smsring/remotering/`.
 
 | Class | Role |
 |---|---|

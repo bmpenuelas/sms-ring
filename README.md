@@ -5,7 +5,7 @@ No accounts, no cloud, no internet. Private by design, open source so you can ch
 
 📶 **Works even when your phone is offline.** Find My and similar services can only ring a phone with mobile data or Wi-Fi on. SMS Ring just needs mobile signal.
 
-[![Get it on Google Play](site/badges/google-play.png)](https://play.google.com/store/apps/details?id=app.smsring) [![Download on the App Store](site/badges/app-store.png)](https://apps.apple.com/app/sms-ring/id0000000000)
+[![Get it on Google Play](site/badges/google-play.png)](https://play.google.com/store/apps/details?id=com.logicedge.smsring) [![Download on the App Store](site/badges/app-store.png)](https://apps.apple.com/app/sms-ring/id0000000000)
 
 🌐 [bmpenuelas.github.io/sms-ring](https://bmpenuelas.github.io/sms-ring/) · 🔒 [Privacy policy](https://bmpenuelas.github.io/sms-ring/privacy/)
 

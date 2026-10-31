@@ -76,7 +76,7 @@
             android:launchMode="singleInstance"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
-            android:taskAffinity="app.smsring.ring"
+            android:taskAffinity="com.logicedge.smsring.ring"
             android:theme="@style/RemoteRing.RingScreen" />
 
         <!-- Daily check that it can still ring; warns with a notification if not. -->

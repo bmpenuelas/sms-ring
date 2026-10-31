@@ -1,21 +1,18 @@
-Ponsel hilang di sela bantal sofa dan sedang senyap? Kirim frasa rahasia dari ponsel mana pun, dan ponselmu berdering dengan volume penuh, bahkan saat senyap. Pelacak ponsel online hanya bisa membunyikan ponsel yang terhubung ke internet. SMS Ring cukup dengan sinyal seluler.
+Bunyikan ponselmu dengan volume penuh dengan mengirim SMS ke ponsel tersebut. Ponsel berdering dengan volume penuh, bahkan saat senyap. Tidak perlu koneksi internet, tetap bekerja meski sinyal seluler lemah.
 
-🔒 PRIVAT KARENA RANCANGAN, BUKAN JANJI
+Pelacak ponsel online hanya bisa membunyikan ponsel yang terhubung ke internet dan mengharuskanmu masuk ke akun di perangkat lain, menghubungkan ke ponselmu... SMS Ring cukup dengan sinyal seluler. Tanpa internet, tanpa akun, tanpa login.
+
+► Volume penuh, bahkan saat senyap atau getar
+► Getar opsional dan mode getar saja
+► Pilih frasa rahasiamu untuk membunyikan ponsel
+► Izinkan pesan dari nomor mana pun atau hanya nomor yang kamu pilih
+► Hanya Anda yang bisa menghentikannya: perlu PIN atau sidik jari
+
+► Privat karena rancangan, bukan janji
 SMS Ring tidak punya izin internet. Sistem operasi sendiri memblokir setiap koneksi, jadi datamu tidak bisa keluar dari ponsel. Tanpa akun, iklan, analitik, atau server.
 
-👀 SUMBER TERBUKA: PERIKSA SENDIRI
-Seluruh kode bersifat publik. Baca, bangun, periksa.
+PENYIAPAN (PENTING!): Apple tidak mengizinkan aplikasi membaca pesan. SMS Ring memandumu membuat otomatisasi Pintasan dalam 1 menit yang harus kamu siapkan agar aplikasi bisa membaca pesan masuk.
 
-✨ FITUR
-🔔 Volume penuh, bahkan saat senyap atau getar
-🎲 Frasa acak 2–6 kata mudah dalam bahasamu, atau tulis sendiri
-📱 Izinkan siapa pun atau hanya nomor pilihanmu
-💬 Android: juga bekerja dengan WhatsApp, Messenger, Telegram, Signal, atau aplikasi lain jika Anda mengizinkan akses notifikasi. Semuanya tetap di ponsel Anda, sepenuhnya privat.
-⏱️ Berdering 15 detik hingga 5 menit
-📳 Getar opsional
-🌙 Tetap berdering saat Jangan Ganggu jika kamu izinkan
-🔓 Hanya Anda yang bisa menghentikannya: perlu PIN atau sidik jari
-🧪 Tes dering dan simulator pesan, sepenuhnya offline
-🌍 Tersedia dalam 20 bahasa
-
-iPhone: Apple tidak mengizinkan aplikasi membaca pesan. SMS Ring memandumu membuat otomatisasi Pintasan 1 menit yang membangunkannya saat frasamu tiba.
+► Sumber terbuka: Kamu bisa memeriksanya sendiri
+Setiap baris kode terbuka untuk umum agar kamu bisa meninjaunya di GitHub
+https://github.com/bmpenuelas/sms-ring

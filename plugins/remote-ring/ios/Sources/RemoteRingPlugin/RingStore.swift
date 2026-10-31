@@ -71,7 +71,7 @@ public struct AutomationRun: Codable {
 /// Nothing here ever leaves the device.
 public enum RingStore {
 
-    private static let queue = DispatchQueue(label: "app.smsring.remotering.store")
+    private static let queue = DispatchQueue(label: "com.logicedge.smsring.remotering.store")
     private static let historyLimit = 20
 
     private static var directory: URL {

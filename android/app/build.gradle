@@ -10,10 +10,10 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "app.smsring"
+    namespace = "com.logicedge.smsring"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "app.smsring"
+        applicationId "com.logicedge.smsring"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1000

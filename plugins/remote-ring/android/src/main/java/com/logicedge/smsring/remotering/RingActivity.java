@@ -1,4 +1,4 @@
-package app.smsring.remotering;
+package com.logicedge.smsring.remotering;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

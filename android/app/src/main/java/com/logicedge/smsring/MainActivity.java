@@ -1,4 +1,4 @@
-package app.smsring;
+package com.logicedge.smsring;
 
 import com.getcapacitor.BridgeActivity;
 

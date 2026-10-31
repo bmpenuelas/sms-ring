@@ -1,1 +1,1 @@
-Dzwoni nawet bez danych i Wi-Fi, czego nie potrafią wyszukiwarki online. Bez uprawnienia do internetu, bez kont, bez śledzenia. Otwarty kod.
+Działa nawet po wyciszeniu i bez internetu. Wystarczy wysłać SMS, aby telefon zadzwonił.

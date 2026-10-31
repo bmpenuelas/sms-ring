@@ -1,1 +1,1 @@
-Vẫn đổ chuông khi tắt dữ liệu di động và Wi-Fi, điều mà dịch vụ tìm điện thoại trực tuyến không làm được. Không quyền internet, không tài khoản. Mã nguồn mở.
+Hoạt động ngay cả khi im lặng và không có internet. Chỉ cần gửi SMS để điện thoại đổ chuông.

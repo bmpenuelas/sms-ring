@@ -1,1 +1,1 @@
-Klingelt auch ohne mobile Daten und WLAN – Online-Handyfinder können das nicht. Keine Internetberechtigung, keine Konten, kein Tracking. Open Source.
+Funktioniert auch lautlos und ohne Internet. Schick einfach eine SMS, damit dein Handy klingelt.

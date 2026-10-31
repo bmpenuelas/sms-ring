@@ -3,6 +3,6 @@
 <resources>
     <string name="app_name">SMS Ring</string>
     <string name="title_activity_main">SMS Ring</string>
-    <string name="package_name">app.smsring</string>
-    <string name="custom_url_scheme">app.smsring</string>
+    <string name="package_name">com.logicedge.smsring</string>
+    <string name="custom_url_scheme">com.logicedge.smsring</string>
 </resources>

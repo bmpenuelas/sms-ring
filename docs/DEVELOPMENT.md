@@ -52,7 +52,7 @@ Every npm script ends with a framed result banner on stderr: a green `✅ SUCCES
 
 ## Configuration to set before release
 
-- `appId` (`capacitor.config.ts`, Android `applicationId`/`namespace`, iOS bundle id): currently `app.smsring`.
+- `appId` (`capacitor.config.ts`, Android `applicationId`/`namespace`, iOS bundle id): currently `com.logicedge.smsring`.
 - `SOURCE_URL` in `src/app.config.ts`.
 - App icons and splash: chosen and generated (`npm run assets`, see [ASSETS.md](ASSETS.md)).
 

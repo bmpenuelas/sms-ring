@@ -17,6 +17,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { LANGUAGES } from '../src/i18n/languages.ts'
+import { storeDescription } from '../src/i18n/store-description.ts'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const check = process.argv.includes('--check')
@@ -64,7 +65,7 @@ const IOS_STRINGS = [
 ]
 
 /** Store limits (characters). */
-const LIMITS = { title: 30, shortDescription: 80, subtitle: 30, keywords: 100, promo: 170, description: 4000 }
+const LIMITS = { title: 30, shortDescription: 80, subtitle: 30, keywords: 100, promo: 170 }
 
 async function loadCatalogue(code) {
   const mod = await import(pathToFileURL(join(root, 'src/i18n/locales', `${code}.ts`)).href)
@@ -117,7 +118,7 @@ for (const lang of LANGUAGES) {
     ['app_name', m.native.appName],
     ['title_activity_main', m.native.appName],
   ]
-  if (!lang.android) appEntries.push(['package_name', 'app.smsring'], ['custom_url_scheme', 'app.smsring'])
+  if (!lang.android) appEntries.push(['package_name', 'com.logicedge.smsring'], ['custom_url_scheme', 'com.logicedge.smsring'])
   await emit(join(appRes, `values${suffix}`, 'strings.xml'), stringsXml(appEntries))
   await emit(
     join(pluginRes, `values${suffix}`, 'strings.xml'),
@@ -138,14 +139,20 @@ for (const lang of LANGUAGES) {
     const len = [...s[key]].length
     if (len > limit) problems.push(`${lang.code}: store.${key} is ${len} > ${limit}`)
   }
+  const descriptions = Object.fromEntries(['android', 'ios'].map((platform) => {
+    const text = storeDescription(s.description, platform)
+    const len = [...text].length
+    if (len > 4000) problems.push(`${lang.code}: store.description.${platform} is ${len} > 4000`)
+    return [platform, text]
+  }))
   const play = join(storeDir, 'android', lang.play)
   await emit(join(play, 'title.txt'), `${s.title}\n`)
   await emit(join(play, 'short_description.txt'), `${s.shortDescription}\n`)
-  await emit(join(play, 'full_description.txt'), `${s.description}\n`)
+  await emit(join(play, 'full_description.txt'), `${descriptions.android}\n`)
   const apple = join(storeDir, 'ios', lang.appStore)
   await emit(join(apple, 'name.txt'), `${s.title}\n`)
   await emit(join(apple, 'subtitle.txt'), `${s.subtitle}\n`)
-  await emit(join(apple, 'description.txt'), `${s.description}\n`)
+  await emit(join(apple, 'description.txt'), `${descriptions.ios}\n`)
   await emit(join(apple, 'keywords.txt'), `${s.keywords}\n`)
   await emit(join(apple, 'promotional_text.txt'), `${s.promo}\n`)
 }

@@ -1,21 +1,18 @@
-¿Has perdido el móvil entre los cojines del sofá y está en silencio? Envíale una frase secreta desde cualquier teléfono y sonará a todo volumen, aunque esté en silencio. Los localizadores online solo pueden hacer sonar un móvil conectado a internet. SMS Ring solo necesita cobertura.
+Haz sonar tu móvil a todo volumen enviándole un SMS. Suena a todo volumen, incluso en silencio. No necesita conexión a internet y funciona incluso con una señal móvil débil.
 
-🔒 PRIVADO POR DISEÑO, NO POR PROMESA
+Los localizadores online solo pueden hacer sonar un móvil conectado a internet y te obligan a iniciar sesión en otro dispositivo, conectarte a tu móvil... SMS Ring solo necesita cobertura. Sin internet, sin cuentas, sin inicios de sesión.
+
+► A todo volumen, incluso en silencio o vibración
+► Vibración opcional y modo de solo vibración
+► Elige tu frase secreta para hacerlo sonar
+► Permite mensajes de cualquier número o solo de los números que elijas
+► Solo tú puedes detenerlo: pide tu PIN o huella
+
+► Privado por diseño, no por promesa
 SMS Ring no tiene permiso de internet. El propio sistema bloquea cualquier conexión, así que tus datos no pueden salir de tu móvil. Sin cuentas, sin anuncios, sin analíticas, sin servidores.
 
-👀 CÓDIGO ABIERTO: COMPRUÉBALO TÚ
-Todo el código es público. Léelo, compílalo, revísalo.
+CONFIGURACIÓN (¡IMPORTANTE!): Apple no permite que las apps lean mensajes. SMS Ring te guía para crear en 1 minuto una automatización de Atajos que debes configurar para que la app pueda leer el mensaje entrante.
 
-✨ FUNCIONES
-🔔 A todo volumen, incluso en silencio o vibración
-🎲 Frase aleatoria de 2 a 6 palabras sencillas en tu idioma, o escribe la tuya
-📱 Permite a cualquiera o solo a los números que elijas
-💬 Android: también funciona con WhatsApp, Messenger, Telegram, Signal o cualquier otra app si permites el acceso a notificaciones. Todo se queda en tu móvil, totalmente privado.
-⏱️ Suena de 15 segundos a 5 minutos
-📳 Vibración opcional
-🌙 Suena con No molestar si lo permites
-🔓 Solo tú puedes detenerlo: pide tu PIN o huella
-🧪 Timbre de prueba y simulador de mensajes, todo sin conexión
-🌍 Disponible en 20 idiomas
-
-iPhone: Apple no permite que las apps lean mensajes. SMS Ring te guía para crear en 1 minuto una automatización de Atajos que la despierta cuando llega tu frase.
+► Código abierto: Puedes comprobarlo tú mismo
+Todo el código es público para que puedas inspeccionarlo en GitHub
+https://github.com/bmpenuelas/sms-ring

@@ -1,1 +1,1 @@
-Mobil veri ve Wi-Fi kapalıyken bile çalar; çevrim içi bulucular bunu yapamaz. İnternet izni yok, hesap yok, takip yok. Açık kaynak.
+Sessizde ve internetsiz bile çalışır. Telefonunu çaldırmak için bir SMS göndermen yeterli.

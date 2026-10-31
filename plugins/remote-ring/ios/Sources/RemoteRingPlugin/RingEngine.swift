@@ -28,7 +28,7 @@ public struct RingSnapshot {
 public final class RingEngine: NSObject {
 
     public static let shared = RingEngine()
-    public static let stateDidChange = Notification.Name("app.smsring.remotering.stateDidChange")
+    public static let stateDidChange = Notification.Name("com.logicedge.smsring.remotering.stateDidChange")
 
     public private(set) var snapshot = RingSnapshot.idle
 
@@ -36,7 +36,7 @@ public final class RingEngine: NSObject {
     private var stopTimer: Timer?
     private var vibrateTimer: Timer?
     private var commandTargets: [Any] = []
-    private let notificationId = "app.smsring.remotering.ringing"
+    private let notificationId = "com.logicedge.smsring.remotering.ringing"
 
     /// Starts (or restarts) ringing. Safe to call from any thread.
     public func start(durationSeconds: Int, vibrate: Bool, reason: String, sender: String?, vibrateOnly: Bool = false) {
