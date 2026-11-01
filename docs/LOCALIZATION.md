@@ -22,6 +22,33 @@ Plurals are functions in the catalogue (e.g. Polish/Russian/Arabic forms); dates
 | `ios/App/App/Info.plist` `CFBundleLocalizations` + Xcode variant groups + `knownRegions` | The App Store lists these languages. |
 | `store/fastlane/metadata/{android,ios}/<locale>/*.txt` | Store listings (title, short/full description, subtitle, keywords, promo). Limits are enforced; the script fails if one is too long. |
 
+## Store listing CSV exports
+
+Run `npm run store:csv:android` for Google Play or `npm run store:csv:ios` for the Apple App Store.
+These read the existing `store/fastlane/metadata/{android,ios}/<locale>/*.txt` files; run `npm run locales`
+first if you changed the catalogue and need to refresh those files.
+
+The generated, git-ignored `store/exports/android.csv` and `store/exports/ios.csv` each contain one row
+per supported language, in `LANGUAGES` order. The `locale` column uses the store-specific code.
+Android columns are `title`, `short_description`, `full_description`; Apple columns are `name`,
+`subtitle`, `description`, `keywords`, `promotional_text`. Additional locale-level `.txt` files
+are automatically included as extra columns (blank for languages without that optional field).
+Missing supported-language folders or required fields fail the export rather than omit a language.
+
+CSV output is UTF-8 with a BOM, comma-separated, with quoted cells and CRLF record separators.
+Embedded newlines, Unicode, commas and quotation marks are preserved. Only an input BOM and one
+final file newline are removed; descriptions retain their paragraph breaks and other whitespace.
+These are review/export tables, not store-specific upload templates.
+
+To choose an output path, pass it after `--`, for example:
+
+```bash
+npm run store:csv:android -- "exports/google-play.csv"
+npm run store:csv:ios -- "exports/apple.csv"
+```
+
+Custom paths are relative to the working directory; default paths are relative to the repository.
+
 ## Runtime
 
 `src/i18n/index.ts`: language = user choice → phone's preferred languages → English. Catalogues and word lists are lazy-loaded chunks. `<html lang dir>` follows the language (Arabic switches to RTL).

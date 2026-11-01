@@ -32,6 +32,8 @@ Like the app, it loads nothing from other sites: fonts are copied from `@fontsou
 | `npm run build` | Typecheck + production build (adds the offline CSP). |
 | `npm test` | Matcher vectors, passphrase generator, word lists, result banners. |
 | `npm run locales` / `locales:check` | Generate / verify native strings, Xcode entries and store listings. |
+| `npm run store:csv:android` | Export all supported Google Play listings to `store/exports/android.csv`. |
+| `npm run store:csv:ios` | Export all supported Apple App Store listings to `store/exports/ios.csv`. |
 | `npm run assets` / `assets:check` | Generate / verify app icons, splash screens and web icons ([ASSETS.md](ASSETS.md)). |
 | `npm run ringtone` | Re-synthesize the ring tones (no third-party audio) into the Android and iOS plugin resources. |
 | `npm run verify:offline` | Check the no-network guarantees. |

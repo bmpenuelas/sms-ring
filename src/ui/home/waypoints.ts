@@ -1,6 +1,6 @@
 // Measures the stops a travelling message visits, so a design can animate it
 // between real element positions on any screen size or language. Elements
-// marked `data-stop="0..n"` (optionally `data-anchor="l|r|t|b|c"` combos)
+// marked `data-stop="0..n"` or a name (optionally `data-anchor="l|r|t|b|c"` combos)
 // become CSS variables --x0/--y0, --x1/--y1… relative to the host element,
 // ready to use inside @keyframes.
 import { nextTick, onBeforeUnmount, onMounted, reactive, ref, type Ref } from 'vue'
@@ -27,7 +27,9 @@ export function useWaypoints(host: Ref<HTMLElement | undefined>) {
       if (anchor.includes('b')) y = r.bottom
       vars[`--x${node.dataset.stop}`] = `${Math.round(x - box.left)}px`
       vars[`--y${node.dataset.stop}`] = `${Math.round(y - box.top)}px`
-      found.push({ i: Number(node.dataset.stop), x: Math.round(x - box.left), y: Math.round(y - box.top) })
+      // named stops (e.g. "cta") only get their variables; they aren't on the path
+      const i = Number(node.dataset.stop)
+      if (Number.isInteger(i)) found.push({ i, x: Math.round(x - box.left), y: Math.round(y - box.top) })
     })
     points.value = found.sort((a, b) => a.i - b.i).map(({ x, y }) => ({ x, y }))
   }

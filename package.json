@@ -1,6 +1,6 @@
 {
   "name": "sms-ring",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "Ring your phone at full volume with a secret SMS. Offline by design, open source.",
@@ -16,6 +16,8 @@
     "test": "node scripts/run-command.mjs -- node --test --experimental-strip-types tests/*.test.ts",
     "locales": "node scripts/run-command.mjs -- node scripts/generate-native-locales.mjs",
     "locales:check": "node scripts/run-command.mjs -- node scripts/generate-native-locales.mjs --check",
+    "store:csv:android": "node scripts/run-command.mjs -- node scripts/generate-store-csv.mjs android",
+    "store:csv:ios": "node scripts/run-command.mjs -- node scripts/generate-store-csv.mjs ios",
     "ringtone": "node scripts/run-command.mjs -- node scripts/generate-ringtone.mjs",
     "verify:offline": "node scripts/run-command.mjs -- node scripts/verify-offline.mjs",
     "assets": "node scripts/run-command.mjs -- node scripts/generate-app-assets.mjs",

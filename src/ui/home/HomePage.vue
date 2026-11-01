@@ -29,7 +29,10 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
   <div ref="host" class="home" :class="[state.status, { live }]" :style="vars">
     <header class="top">
       <BrandMark />
-      <PrivacySeal />
+      <div class="top-actions">
+        <PrivacySeal />
+        <button class="round small press" :aria-label="t.common.settings" @click="k.openSheet('settings')"><Icon name="settings" /></button>
+      </div>
     </header>
 
     <!-- SMS refused: nothing can ring. Loud on purpose. -->
@@ -80,12 +83,12 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
         <h1>{{ k.statusTitle.value }}</h1>
         <p>{{ k.statusHint.value }}</p>
       </span>
-      <button v-if="state.status === 'setup' || state.status === 'paused'" class="cta press" @click="k.primaryAction()">
+      <button v-if="state.status === 'setup' || state.status === 'paused'" class="cta press" data-stop="cta" @click="k.primaryAction()">
         {{ state.status === 'setup' ? k.setupLabel.value : t.status.turnOn }}
       </button>
       <!-- ready, but some recommended access is missing: the whole card asks for it -->
       <button v-if="state.improvable.length" class="improve press" @click.stop="actions.improveReliability()">
-        <Icon name="shield-check" :size="16" :stroke="2.4" />
+        <Icon name="shield-alert" :size="16" :stroke="2.4" />
         <span>{{ t.status.improve }}</span>
         <Icon name="chevron" :size="14" class="improve-chev" />
       </button>
@@ -244,6 +247,11 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 /* status: a light card with a pulsing message under a radar sweep */
@@ -416,7 +424,7 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
   text-align: start;
 }
 .improve :deep(svg:first-child) {
-  color: var(--blue);
+  color: var(--ui-warn);
   flex: none;
 }
 .improve span {
@@ -835,6 +843,11 @@ h2 b {
   place-items: center;
   background: var(--soft);
 }
+.round.small {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+}
 
 /* the line between the dots (measured), and the fill the message draws */
 .line,
@@ -922,7 +935,7 @@ h2 b {
   animation: perch 1.6s ease-in-out infinite;
 }
 @keyframes perch {
-  0%, 100% { transform: translate(var(--x0), calc(var(--y0) - 36px)); }
-  50% { transform: translate(var(--x0), calc(var(--y0) - 42px)); }
+  0%, 100% { transform: translate(var(--x0), calc(var(--ycta) + 3px)); }
+  50% { transform: translate(var(--x0), calc(var(--ycta) - 3px)); }
 }
 </style>
