@@ -1,0 +1,10 @@
+SMS Ring makes the iPhone ring loudly, even on silent, when a text message contains the secret phrase chosen in the app. No account, login or network access is needed, and no data leaves the device.
+
+iOS does not let apps read messages, so the app uses an Apple Shortcuts personal automation (trigger "Message", any sender) that passes each message to the app's "Ring if passphrase matches" action. The in-app guide walks through creating it.
+
+To test:
+1. Open the app, turn it on and note the phrase shown.
+2. Follow the in-app iPhone setup guide to create the Message automation in Shortcuts (Run Immediately).
+3. From another phone, text this iPhone the phrase. It rings at full volume; tap Stop (unlocking first if the phone is locked).
+
+Without the automation you can also run the "Ring if passphrase matches" action from the Shortcuts app with the phrase as text.

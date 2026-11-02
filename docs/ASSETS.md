@@ -21,7 +21,8 @@ npm run assets
 1. Renders the base PNGs `@capacitor/assets` expects into `assets/`: `icon-only.png`, `icon-foreground.png`, `icon-background.png` and `splash.png`. The adaptive foreground is drawn at 88% because `@capacitor/assets` maps it onto the visible launcher area, and that keeps it inside round masks.
 2. Runs `@capacitor/assets` for Android (mipmaps, adaptive icons, splash drawables) and iOS (AppIcon, Splash). It then drops images the iOS asset sets no longer list. It redraws every splash, light and dark, at its own size so the gradient fills it edge to edge, because `@capacitor/assets` pads non-square and dark splashes with a flat colour. Finally it recompresses all native PNGs.
 3. Writes `public/favicon.svg` (rounded corners) and `public/apple-touch-icon.png`.
-4. Records a hash of the sources and the script in `assets/.generated.json`.
+4. Writes the Google Play listing icon, 512×512 and square (Play rounds the corners), to `store/fastlane/metadata/android/en-US/images/icon.png`. Other languages fall back to it. `fastlane android listing_with_images` uploads it. The App Store needs no upload: it takes the icon from the build's AppIcon set.
+5. Records a hash of the sources and the script in `assets/.generated.json`.
 
 Commit the sources, the base PNGs and the native files together.
 

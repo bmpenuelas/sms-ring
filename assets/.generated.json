@@ -2,5 +2,5 @@
   "assets/icon.svg": "76c4d60fdb65418f9c9df1e2a89045d6dfdc1927214ab0c9fec48db927fdaf24",
   "assets/icon-foreground.svg": "87bb4d09e21b06265468a731156af302c2f014c334504aee5a33f01aca77324f",
   "assets/icon-background.svg": "979c0a8cec28e8abe62c912fc704b274022a4ea0533bf15da6d16c554e7b9028",
-  "scripts/generate-app-assets.mjs": "df193730509fcabd0f05532bcbbf1ddc2a18df07d67afb1603084d445c16160a"
+  "scripts/generate-app-assets.mjs": "368dcea62f086f13c08239126197756e6884318c716da194bec21d9720535b9c"
 }

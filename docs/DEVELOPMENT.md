@@ -10,7 +10,7 @@ plugins/remote-ring/ local Capacitor plugin (npm workspace): TS API, Android (Ja
 android/ ios/        Capacitor platform projects (committed)
 assets/              icon sources (SVG) and the base PNGs generated from them
 scripts/             generate-app-assets, generate-native-locales, generate-ringtone, verify-offline, run-command (result banners)
-store/fastlane/      generated store listings
+store/fastlane/      generated store listings + fastlane lanes that upload them
 site/                GitHub Pages: landing page + privacy/ (static, no build step)
 tests/               node:test suites (core + word lists)
 ```
@@ -45,6 +45,43 @@ Every npm script ends with a framed result banner on stderr: a green `✅ SUCCES
 - stdout is untouched, so JSON and pipes still work. Color follows the terminal: `NO_COLOR`, `TERM=dumb` and `FORCE_COLOR=0` turn it off, `FORCE_COLOR=1` forces it.
 - Success is per command step, not per `&&` chain: a later step can still fail, and a long-running `dev` server reports only when it exits.
 - The banner never changes the exit status and never repeats arguments or environment values.
+
+## Uploading store listings
+
+fastlane uploads the listings in `store/fastlane/` (Ruby only, so Windows works; building the iOS app
+still needs a Mac). Store API keys stay out of git: the paths below are gitignored, and so is any `.p8`.
+
+1. Ruby 3.3 (`winget install RubyInstallerTeam.RubyWithDevKit.3.3 --source winget`), then
+   `bundle config set --local path vendor/bundle` and `bundle install` in `store/`.
+2. Keys, or point the environment variable at a key kept outside the repo:
+   - **Google Play**: a Google Cloud service account with the Google Play Android Developer API
+     enabled, invited in Play Console with access to this app only (Manage store presence, plus Edit
+     and delete draft apps while the app is still a draft). Its JSON key goes in
+     `store/fastlane/play-service-account.json` (`SUPPLY_JSON_KEY`).
+   - **App Store**: an App Store Connect team API key with App Manager access, as fastlane's JSON
+     (`key_id`, `issuer_id`, and the `.p8` contents as `key`) in
+     `store/fastlane/app-store-connect-api-key.json` (`APP_STORE_CONNECT_API_KEY_PATH`).
+3. From `store/`:
+
+```bash
+bundle exec fastlane android listing validate:true   # dry run: Google Play checks it, nothing is saved
+bundle exec fastlane android listing                 # title, short and full description, every language
+bundle exec fastlane android listing_with_images     # also icon, feature graphic + phone screenshots
+bundle exec fastlane ios listing                     # name, subtitle, description, keywords, promo text
+bundle exec fastlane ios listing_with_images         # also screenshots (replaced) + app previews
+```
+
+Play attaches listing edits to a release, so the Android lanes use the newest release on the first
+track that has one (production, beta, alpha, internal); pass `track:<name>` to choose. The iOS lanes
+write to the App Store version being prepared and never submit it for review. They also send the App
+Review notes (`metadata/ios/review_information/notes.txt`); enter the review contact details in App
+Store Connect itself, never in this public repo. fastlane can't upload the App Store header and
+search results artwork (`store/artwork/ios/<locale>/`): upload each language's pair by hand on the
+version page, under *Header and Search Results*, then Save. App Store Connect has no
+dry run, but `bundle exec fastlane deliver download_metadata --api_key_path <key json>` checks access
+read-only. If Ruby fails with `certificate verify failed` because antivirus HTTPS scanning re-signs
+traffic, set `SSL_CERT_FILE` to a PEM bundle of Ruby's `ssl/cert.pem` plus the antivirus root
+certificate.
 
 ## Testing end to end
 

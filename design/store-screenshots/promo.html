@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SMS Ring · Promo artwork</title>
+<script src="copy.js"></script>
+<script>
+  // ?kind=feature&lang=<code>  Google Play feature graphic (rendered at 2048×1000, saved at 1024×500)
+  // ?kind=header&lang=<code>   App Store product page header, 21:9 (3840×1646)
+  // ?kind=search&lang=<code>   App Store search results, 3:2 (3840×2560)
+  const query = new URLSearchParams(location.search)
+  window.KIND = ['header', 'search'].includes(query.get('kind')) ? query.get('kind') : 'feature'
+  window.LANG = COPY[query.get('lang')] ? query.get('lang') : 'en'
+  window.PLATFORM = KIND === 'feature' ? 'android' : 'ios'
+  const root = document.documentElement
+  root.lang = LANG
+  root.dataset.kind = KIND
+  if (RTL.includes(LANG)) root.dir = 'rtl'
+  if (SCRIPT_FONT[LANG]) {
+    root.style.setProperty('--script', `'${SCRIPT_FONT[LANG]}'`)
+    document.write(`<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${SCRIPT_FONT[LANG].replace(/ /g, '+')}:wght@400..900&display=block">`)
+  }
+</script>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="keycap.css">
+<script src="kit.js"></script>
+<style>
+  /* One stage 1000 units tall, scaled to the requested size; its width follows the aspect. */
+  html, body { background: var(--sun); overflow: hidden; }
+  .stage { position: absolute; left: 0; top: 0; height: 1000px; transform-origin: 0 0; overflow: hidden; background: var(--sun); color: var(--ink); font-family: 'Inter Tight', var(--script, sans-serif); }
+  .stage > * { position: absolute; }
+  .trail { inset: 0; width: 100%; height: 100%; }
+  .scaled { transform-origin: 0 0; }
+
+  .brand { left: 110px; right: auto; top: 110px; justify-content: flex-start; gap: 26px; }
+  .brand .app-icon { position: static; --s: 104px; border: 6px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+  .brand span { font: 900 50px/1 'Unbounded', var(--script, sans-serif); letter-spacing: -0.03em; }
+  .headline { left: 110px; top: 270px; width: 940px; height: 360px; text-align: start; font-size: 112px; }
+  html[dir="rtl"] .brand { flex-direction: row-reverse; }
+
+  /* The ringing phone with the icon's bell over its screen, scaled as one piece. */
+  .cluster { left: 1340px; top: 110px; transform-origin: 0 0; transform: scale(var(--s, 1)); }
+  .cluster > * { position: absolute; }
+  .bubble { left: 790px; top: 660px; transform: scale(.72); }
+  .burst { left: 1730px; top: 600px; transform: scale(.75) rotate(12deg); }
+
+  /* App Store header: App Store shows the icon, name and Get button, so no brand row. */
+  [data-kind="header"] .brand { display: none; }
+  [data-kind="header"] .headline { left: 230px; top: 150px; width: 1080px; height: 420px; font-size: 128px; }
+  [data-kind="header"] .cluster { left: 1530px; top: 70px; --s: 1.05; }
+  [data-kind="header"] .bubble { left: 960px; top: 640px; }
+  [data-kind="header"] .burst { left: 1955px; top: 610px; }
+
+  /* Search results: a small card in a list, so the headline is large and the phone fills the side. */
+  [data-kind="search"] .brand { display: none; }
+  [data-kind="search"] .headline { left: 80px; top: 80px; width: 820px; height: 320px; font-size: 118px; }
+  [data-kind="search"] .cluster { left: 900px; top: 70px; --s: 1.02; }
+  [data-kind="search"] .bubble { left: 75px; top: 610px; }
+  [data-kind="search"] .burst { left: 590px; top: 420px; transform: scale(.7) rotate(-10deg); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <svg class="trail"><path id="trail" fill="none" stroke="#14161f" stroke-width="22" stroke-dasharray="2 50" stroke-linecap="round"/></svg>
+  <div class="brand"><i class="app-icon"></i><span>SMS Ring</span></div>
+  <h1 class="headline fit shrink" data-t="hero"></h1>
+  <div class="cluster">
+    <div class="phone" data-cap="ring" data-theme="dark" data-bar="#120a18" style="--w:560px;left:0;top:0;transform:rotate(5deg)"></div>
+    <svg class="bell" data-motif="bell" viewBox="-35 -30 170 140" style="left:138px;top:14px;width:400px;transform:rotate(5deg)"></svg>
+  </div>
+  <div class="bubble big scaled" data-motif="message"></div>
+  <div class="burst scaled">
+    <svg viewBox="-100 -100 200 200"><polygon class="star" fill="#ff5a4e" stroke="#14161f" stroke-width="5" stroke-linejoin="round"/></svg>
+    <span class="shrink" data-t="silent"></span>
+  </div>
+</div>
+<script>
+  const stage = document.querySelector('.stage')
+  const k = innerHeight / 1000
+  const width = innerWidth / k
+  Object.assign(stage.style, { width: `${width}px`, transform: `scale(${k})` })
+
+  for (const el of document.querySelectorAll('[data-t]')) el.textContent = COPY[LANG][el.dataset.t] ?? COPY.en[el.dataset.t]
+
+  const pts = []
+  for (let i = 0; i < 28; i++) {
+    const r = i % 2 ? 78 : 96
+    const a = (i / 28) * Math.PI * 2
+    pts.push(`${(Math.cos(a) * r).toFixed(1)},${(Math.sin(a) * r).toFixed(1)}`)
+  }
+  document.querySelectorAll('.star').forEach((p) => p.setAttribute('points', pts.join(' ')))
+
+  // The app's dotted timeline, waving across the stage under the message.
+  const trail = document.getElementById('trail')
+  trail.parentElement.setAttribute('viewBox', `0 0 ${width} 1000`)
+  const [hi, lo] = [700, 960]
+  let d = `M-40 ${(hi + lo) / 2}`
+  for (let x = -40, i = 0; x < width; x += 420, i++) d += ` S ${x + 300} ${i % 2 ? hi - 60 : lo + 60}, ${x + 420} ${i % 2 ? hi : lo}`
+  trail.setAttribute('d', d)
+</script>
+<script src="motifs.js"></script>
+</body>
+</html>

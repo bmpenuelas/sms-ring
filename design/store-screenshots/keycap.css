@@ -1,0 +1,215 @@
+/* Style B, Keycap Pop, shared by base.html (screenshots) and promo.html (feature and
+   App Store artwork). The app's keycaps and timeline markers as chunky physical
+   stickers: flat colour fields, ink outlines, hard offset shadows, big centred type,
+   and the app's dotted timeline winding through everything. */
+:root {
+  --ink: #14161f;
+  --sun: #ffc21a;
+  --blue: #2f5bff;
+  --coral: #ff5a4e;
+  --mint: #19c37d;
+  --lilac: #c8b9ff;
+  --sky: #8fd3ff;
+  --pink: #ffa8d2;
+}
+.pano { --panels: 8; background: var(--sun); font-family: 'Inter Tight', var(--script, sans-serif); color: var(--ink); }
+html:not([data-platform="ios"]) [data-only="ios"],
+html[data-platform="ios"] [data-only="android"] { display: none; }
+
+.field { position: absolute; top: 0; height: 100%; width: 1290px; }
+
+/* Scripts that need air: no tracking (it breaks Arabic joining), taller lines */
+html:is([lang="ar"], [lang="hi"], [lang="th"]) * { letter-spacing: 0 !important; }
+html:is([lang="ar"], [lang="hi"], [lang="th"]) h1 { line-height: 1.22; }
+html:is([lang="ja"], [lang="ko"], [lang="zh"], [lang="zht"]) h1 { letter-spacing: 0; line-height: 1.12; }
+html[lang="vi"] h1 { line-height: 1.14; } /* room for stacked tone marks */
+
+/* Android: 9:16 panels, so the copy sits higher and a little smaller */
+html[data-platform="android"] { --ph: 2294px; }
+html[data-platform="android"] .copy { top: 170px; }
+html[data-platform="android"] h1 { font-size: 120px; }
+html[data-platform="android"] .sub { margin-top: 34px; font-size: 48px; }
+html[data-platform="android"] .slide:first-of-type .brand { top: 110px !important; }
+html[data-platform="android"] .slide:first-of-type .copy { top: 290px !important; }
+.trail { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.copy { left: 90px; width: 1110px; top: 230px; text-align: center; }
+h1 { font: 900 132px/1.0 'Unbounded', var(--script, sans-serif); letter-spacing: -0.04em; }
+.sub { margin-top: 40px; font: 600 52px/1.3 'Inter Tight', var(--script, sans-serif); white-space: pre-line; opacity: 0.85; }
+
+.brand { position: absolute; left: 0; right: 0; top: 150px; display: flex; justify-content: center; align-items: center; gap: 28px; }
+.brand .app-icon { position: static; --s: 112px; border: 6px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); }
+.brand span { font: 900 52px/1 'Unbounded', var(--script, sans-serif); letter-spacing: -0.03em; }
+
+.phone {
+  --shadow: transparent;
+  box-shadow: inset 0 0 0 0.45em #5b5f6e, inset 0 0 0 0.9em #08090c, 0 0 0 0.75em #14161f, 3em 3em 0 0.75em #14161f;
+}
+.phone::before, .phone::after { display: none; }
+.phone .glare { display: none; }
+
+/* Highlight around a part of the phone screen (inside .phone, em units) */
+.focus {
+  position: absolute;
+  border-radius: 3.4em;
+  border: 0.9em solid var(--sun);
+  box-shadow: 0 0 0 0.55em var(--ink), inset 0 0 0 0.55em var(--ink);
+}
+
+.sticker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 8px solid var(--ink);
+  box-shadow: 14px 14px 0 var(--ink);
+  font: 900 50px/1.05 'Unbounded', var(--script, sans-serif);
+  letter-spacing: -0.02em;
+  white-space: pre;
+}
+.burst {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  font: 900 54px/1.02 'Unbounded', var(--script, sans-serif);
+  letter-spacing: -0.02em;
+  white-space: pre;
+}
+.burst svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.burst span { position: relative; display: grid; place-items: center; width: 300px; height: 260px; }
+.pill {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 26px 44px 26px 30px;
+  border-radius: 999px;
+  border: 7px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--ink);
+  background: #fff;
+  color: var(--ink);
+  font: 800 50px/1 'Inter Tight', var(--script, sans-serif);
+  white-space: nowrap;
+}
+.pill svg { width: 58px; height: 58px; flex: none; }
+
+/* Sent message whose words are hidden like a password */
+.bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding: 40px 54px 44px 40px;
+  border-radius: 70px 70px 70px 18px;
+  background: #fff;
+  border: 8px solid var(--ink);
+  box-shadow: 16px 16px 0 var(--ink);
+}
+.bubble .cap {
+  flex: none;
+  width: 128px;
+  height: 136px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 10px;
+  border-radius: 30px;
+  background: var(--sun);
+  border: 7px solid var(--ink);
+  box-shadow: 0 12px 0 var(--ink);
+}
+.bubble .cap svg { width: 64px; height: 64px; }
+.dots { display: flex; gap: 32px; }
+.dots span { display: flex; gap: 13px; }
+.dots i { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); }
+
+/* Hidden passphrase as asterisks, like the app icon */
+.stars { display: flex; gap: 10px; }
+.stars svg { width: 92px; height: 92px; }
+.bubble.big {
+  gap: 54px;
+  padding: 54px 80px 60px 54px;
+  border-radius: 100px 100px 100px 0;
+  box-shadow: none;
+  filter: drop-shadow(16px 16px 0 #14161f);
+}
+/* Speech-bubble tail at the bottom-left corner, like the app icon's message */
+.bubble .tail { position: absolute; left: -72px; bottom: -8px; width: 130px; height: 80px; overflow: visible; }
+.bubble.big .cap { width: 188px; height: 200px; border-radius: 44px; }
+.bubble.big .cap svg { width: 98px; height: 98px; }
+.bubble.big .stars svg { width: 118px; height: 118px; }
+
+/* The app icon's ringing bell, drawn as a sticker */
+.bell { position: absolute; overflow: visible; }
+
+/* Unlock prompt over the ringing phone */
+.unlock {
+  position: absolute;
+  width: 720px;
+  padding: 50px 56px 56px;
+  border-radius: 60px;
+  background: #fff;
+  border: 8px solid var(--ink);
+  box-shadow: 18px 18px 0 var(--ink);
+  text-align: center;
+}
+.unlock b { display: block; font: 900 58px/1.05 'Unbounded', var(--script, sans-serif); letter-spacing: -0.03em; }
+.unlock p { margin-top: 14px; font: 600 42px/1.25 'Inter Tight', var(--script, sans-serif); opacity: 0.7; }
+.unlock .fp {
+  width: 230px;
+  height: 230px;
+  margin: 40px auto 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--sun);
+  border: 7px solid var(--ink);
+  box-shadow: 0 12px 0 var(--ink);
+}
+.unlock .fp svg { width: 150px; height: 150px; }
+
+/* Incoming chat notifications (generic app tiles, no logos) */
+.note {
+  position: absolute;
+  width: 760px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 38px;
+  border-radius: 48px;
+  background: #fff;
+  border: 7px solid var(--ink);
+  box-shadow: 12px 12px 0 var(--ink);
+  color: var(--ink);
+}
+.note > i {
+  flex: none;
+  width: 104px;
+  height: 104px;
+  border-radius: 28px;
+  border: 6px solid var(--ink);
+  display: grid;
+  place-items: center;
+}
+.note > i svg { width: 56px; height: 56px; }
+.note div { flex: 1; min-width: 0; }
+.note b { display: block; font: 800 42px/1.1 'Inter Tight', var(--script, sans-serif); }
+.note .dots { margin-top: 18px; gap: 22px; }
+.note .dots span { gap: 9px; }
+.note .dots i { width: 20px; height: 20px; }
+.note time { align-self: flex-start; font: 600 32px/1 'Inter Tight', var(--script, sans-serif); opacity: 0.55; }
+
+/* Language names as keycaps */
+.lang {
+  position: absolute;
+  padding: 30px 46px 40px;
+  border-radius: 34px;
+  background: #fff;
+  border: 8px solid var(--ink);
+  box-shadow: 0 16px 0 var(--ink);
+  color: var(--ink);
+  font: 800 60px/1 'Inter Tight', 'Segoe UI', 'Yu Gothic UI', 'Malgun Gothic', 'Nirmala UI', 'Leelawadee UI', sans-serif;
+  white-space: nowrap;
+}

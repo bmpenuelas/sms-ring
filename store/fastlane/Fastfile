@@ -1,0 +1,69 @@
+default_platform(:android)
+
+platform :android do
+  # supply attaches listings to an existing release, even when skipping changelogs.
+  # Use the newest release on the first track that has one (or `track:<name>`).
+  private_lane :listing_release do |options|
+    tracks = options[:track] ? [options[:track]] : %w[production beta alpha internal]
+    track, codes = tracks.lazy
+                         .map { |t| [t, google_play_track_version_codes(track: t)] }
+                         .find { |_, c| c.any? }
+    UI.user_error!("No release on #{tracks.join(', ')}: upload a build first") unless track
+    UI.message("Attaching the listing to #{track} release #{codes.max}")
+    { track: track, version_code: codes.max }
+  end
+
+  # Run from store/: `bundle exec fastlane android listing`. Add `validate:true` to dry-run.
+  desc "Upload the Google Play listing text (title, short and full description) in every language"
+  lane :listing do |options|
+    upload_to_play_store(
+      **listing_release(options),
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      validate_only: options[:validate] || false
+    )
+  end
+
+  desc "Upload the listing text plus app icon, feature graphics and phone screenshots (build them first)"
+  lane :listing_with_images do |options|
+    upload_to_play_store(
+      **listing_release(options),
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      validate_only: options[:validate] || false
+    )
+  end
+end
+
+platform :ios do
+  # Uploads to the App Store version being prepared; never submits it for review.
+  private_lane :deliver_listing do |options|
+    deliver(
+      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"] || "fastlane/app-store-connect-api-key.json",
+      metadata_path: "./fastlane/metadata/ios",
+      screenshots_path: "./fastlane/screenshots",
+      skip_binary_upload: true,
+      skip_app_version_update: true,
+      submit_for_review: false,
+      run_precheck_before_submit: false,
+      precheck_include_in_app_purchases: false,
+      force: true,
+      **options
+    )
+  end
+
+  # Run from store/: `bundle exec fastlane ios listing`.
+  desc "Upload the App Store listing text (name, subtitle, description, keywords, promotional text) in every language"
+  lane :listing do
+    deliver_listing(skip_screenshots: true)
+  end
+
+  desc "Upload the listing text plus screenshots (replacing the current ones) and app previews (build them first)"
+  lane :listing_with_images do
+    deliver_listing(overwrite_screenshots: true, app_previews_path: "./fastlane/previews")
+  end
+end

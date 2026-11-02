@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SMS Ring · Store artwork</title>
+<script src="copy.js"></script>
+<script>
+  // ?lang=<app language code>&platform=android|ios picks the copy, the app screens
+  // (caps/<lang>/) and the layout: Android is 9:16, iOS keeps the tall 6.3" canvas.
+  const query = new URLSearchParams(location.search)
+  window.LANG = COPY[query.get('lang')] ? query.get('lang') : 'en'
+  window.PLATFORM = query.get('platform') === 'ios' ? 'ios' : 'android'
+  const root = document.documentElement
+  root.lang = LANG
+  root.dataset.platform = PLATFORM
+  if (RTL.includes(LANG)) root.dir = 'rtl'
+  if (SCRIPT_FONT[LANG]) {
+    root.style.setProperty('--script', `'${SCRIPT_FONT[LANG]}'`)
+    document.write(`<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${SCRIPT_FONT[LANG].replace(/ /g, '+')}:wght@400..900&display=block">`)
+  }
+  document.write(`<script src="caps/${LANG}/meta.js"><\/script>`)
+</script>
+<link rel="stylesheet" href="kit.css">
+<script src="kit.js"></script>
+<link rel="stylesheet" href="keycap.css">
+<!-- Slot 7 differs per platform: chat apps on Android, languages on iOS
+     (Apple never lets apps read chat notifications). -->
+</head>
+<body>
+<script>
+  if (new URLSearchParams(location.search).get('platform') === 'ios') document.documentElement.dataset.platform = 'ios'
+</script>
+<div class="pano">
+  <div class="field" style="left:0;background:var(--sun)"></div>
+  <div class="field" style="left:1290px;background:var(--blue)"></div>
+  <div class="field" style="left:2580px;background:var(--lilac)"></div>
+  <div class="field" style="left:3870px;background:var(--coral)"></div>
+  <div class="field" style="left:5160px;background:var(--mint)"></div>
+  <div class="field" style="left:6450px;background:var(--sky)"></div>
+  <div class="field" style="left:7740px;background:var(--ink)"></div>
+  <div class="field" style="left:9030px;background:var(--pink)"></div>
+
+  <!-- The app's timeline, running through every screenshot -->
+  <svg class="trail" viewBox="0 0 10320 2796"><path id="trail" fill="none" stroke="#14161f" stroke-width="26" stroke-dasharray="2 56" stroke-linecap="round"/></svg>
+
+  <!-- 1 · Hero: a secret passphrase by text makes the phone ring -->
+  <section class="slide" style="left:0">
+    <div class="brand" style="top:200px"><i class="app-icon"></i><span>SMS Ring</span></div>
+    <div class="copy" style="top:390px">
+      <h1 class="fit" data-t="hero"></h1>
+    </div>
+    <div class="phone" data-cap="ring" data-theme="dark" data-bar="#120a18" style="--w:1020px;left:135px;top:1250px;transform:rotate(-2deg)"></div>
+    <svg class="bell" data-motif="bell" viewBox="-35 -30 170 140" style="left:205px;top:1222px;width:880px"></svg>
+    <div class="bubble big" data-motif="message" style="left:100px;top:930px"></div>
+    <div class="burst" style="left:880px;top:2200px;transform:rotate(12deg)">
+      <svg viewBox="-100 -100 200 200"><polygon class="star" fill="#ff5a4e" stroke="#14161f" stroke-width="5" stroke-linejoin="round"/></svg>
+      <span class="shrink" data-t="silent"></span>
+    </div>
+  </section>
+
+  <!-- 2 · Offline -->
+  <section class="slide" style="left:1290px;color:#fff">
+    <div class="copy">
+      <h1 class="fit" data-t="offline"></h1>
+      <p class="sub" data-t="offlineSub"></p>
+    </div>
+    <div class="phone" data-cap="home" data-theme="light" data-net="signal" style="--w:880px;left:205px;top:1010px;transform:rotate(3deg)"></div>
+    <div class="sticker shrink" style="left:60px;top:1330px;width:250px;height:250px;border-radius:50%;background:#fff;color:var(--ink);transform:rotate(-8deg)">
+      <svg viewBox="0 0 30 24" width="130"><g fill="none" stroke="#14161f" stroke-width="3.4" stroke-linecap="round"><path d="M2.5 9.2a18 18 0 0 1 25 0"/><path d="M7.4 14a11 11 0 0 1 15.2 0"/><circle cx="15" cy="19.4" r="1.4" fill="#14161f"/><path d="M3 2 27 22" stroke="#ff5a4e" stroke-width="4"/></g></svg>
+    </div>
+    <div class="pill shrink" style="left:700px;max-width:550px;top:2280px;background:var(--sun);transform:rotate(-5deg)">
+      <svg viewBox="0 0 34 22"><g fill="#14161f"><rect x="0" y="15" width="6" height="7" rx="1.6"/><rect x="9" y="10.5" width="6" height="11.5" rx="1.6"/><rect x="18" y="5.5" width="6" height="16.5" rx="1.6"/><rect x="27" y="0" width="6" height="22" rx="1.6"/></g></svg><span data-t="signal"></span></div>
+  </section>
+
+  <!-- 3 · Private -->
+  <section class="slide" style="left:2580px">
+    <div class="copy">
+      <h1 class="fit" data-t="private"></h1>
+      <p class="sub" data-t="privateSub"></p>
+    </div>
+    <div class="phone" data-cap="privacy" data-theme="light" data-bar="#8e8c92" style="--w:880px;left:205px;top:1130px;transform:rotate(-2deg)"></div>
+    <div class="pill shrink" style="left:50px;max-width:1200px;top:1480px;transform:rotate(-7deg)"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/><path d="M3 3l18 18" stroke="#ff5a4e" stroke-width="3"/></svg><span data-t="noAccount"></span></div>
+    <div class="pill shrink" style="left:780px;max-width:470px;top:1760px;background:var(--sun);transform:rotate(6deg)"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17l5-5-5-5M15 12H3M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M3 3l18 18" stroke="#ff5a4e" stroke-width="3"/></svg><span data-t="noLogin"></span></div>
+    <div class="pill shrink" style="left:70px;max-width:1180px;top:2280px;transform:rotate(-4deg)"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18" stroke="#ff5a4e" stroke-width="3"/></svg><span data-t="noTracking"></span></div>
+  </section>
+
+  <!-- 4 · Only you can stop it -->
+  <section class="slide" style="left:3870px">
+    <div class="copy">
+      <h1 class="fit" data-t="stop"></h1>
+      <p class="sub" data-t="stopSub"></p>
+    </div>
+    <div class="phone" data-cap="ring" data-theme="dark" data-bar="#120a18" style="--w:880px;left:205px;top:1010px;transform:rotate(2deg)"></div>
+    <div class="unlock" style="left:285px;top:1780px;transform:rotate(-4deg)">
+      <b data-t="unlock"></b>
+      <p data-t="unlockSub"></p>
+      <div class="fp"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="1.6" stroke-linecap="round"><path d="M6.2 5.3A8.5 8.5 0 0 1 20.4 11"/><path d="M3.6 9.5a8.6 8.6 0 0 1 1.1-2.4"/><path d="M8.6 20.6c1-1.9 1.4-3.9 1.4-6.1a2 2 0 0 1 4 0c0 1.1 0 2.1-.2 3.1"/><path d="M5.2 18.6c.9-1.6 1.3-3.3 1.3-5.1a5.5 5.5 0 0 1 11 0c0 1.2-.1 2.4-.3 3.5"/><path d="M12 14.5c0 3-.6 5.6-1.9 7.6"/><path d="M16.2 20.3c.4-.8.7-1.7.9-2.6"/><path d="M3.3 14.8c.2-.4.2-.8.2-1.3"/><path d="M20.6 15c.1-.5.2-1 .2-1.5"/></svg></div>
+    </div>
+  </section>
+
+  <!-- 5 · Who can ring it -->
+  <section class="slide" style="left:5160px">
+    <div class="copy">
+      <h1 class="fit" data-t="who"></h1>
+      <p class="sub" data-t="whoSub"></p>
+    </div>
+    <div class="phone" data-cap="home-low" data-theme="light" style="--w:880px;left:205px;top:1010px;transform:rotate(-2deg)">
+      <i class="focus" data-focus="who"></i>
+    </div>
+    <div class="sticker shrink" style="left:830px;top:1180px;width:340px;height:150px;border-radius:30px;background:var(--sun);transform:rotate(8deg);font-size:46px" data-t="family"></div>
+    <div class="pill shrink" style="left:60px;max-width:1190px;top:2300px;transform:rotate(-5deg)"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span data-t="share"></span></div>
+  </section>
+
+  <!-- 6 · Ring settings -->
+  <section class="slide" style="left:6450px">
+    <div class="copy">
+      <h1 class="fit" data-t="rules"></h1>
+      <p class="sub" data-t="rulesSub"></p>
+    </div>
+    <div class="phone" data-cap="settings-low" data-theme="light" data-bar="#8e8c92" style="--w:880px;left:205px;top:1010px;transform:rotate(3deg)">
+      <i class="focus" data-focus="rules"></i>
+    </div>
+    <div class="sticker shrink" style="left:40px;top:1260px;width:260px;height:260px;border-radius:50%;background:var(--sun);transform:rotate(-10deg);font-size:48px" data-t="duration"></div>
+    <div class="pill shrink" style="left:660px;max-width:590px;top:2300px;background:var(--coral);transform:rotate(-4deg)"><svg viewBox="0 0 24 24" fill="none" stroke="#14161f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="3" width="9" height="18" rx="2"/><path d="M3.5 8v8M20.5 8v8"/></svg><span data-t="vibrate"></span></div>
+  </section>
+
+  <!-- 7 (Android) · Chat apps -->
+  <section class="slide" data-only="android" style="left:7740px;color:var(--sun)">
+    <div class="copy">
+      <h1 class="fit" data-t="chat"></h1>
+      <p class="sub" style="color:#fff" data-t="chatSub"></p>
+    </div>
+    <div class="phone" data-cap="home" data-theme="light" style="--w:880px;left:205px;top:1010px;transform:rotate(-2deg)"></div>
+    <div class="note" style="left:60px;top:1380px;transform:rotate(-4deg)">
+      <i style="background:#2bd96b"><svg viewBox="0 0 24 24" fill="#fff" stroke="#14161f" stroke-width="1.6"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.4 1.3 4.6 3.5 6.1L5 21l4.2-2.3c.9.2 1.8.3 2.8.3 5.5 0 10-3.6 10-8S17.5 3 12 3Z"/></svg></i>
+      <div><b data-t="chatMessage"></b><span class="dots"><span><i></i><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i><i></i><i></i></span></span></div>
+    </div>
+    <div class="note" style="left:470px;top:1680px;transform:rotate(3deg)">
+      <i style="background:#3aa8ff"><svg viewBox="0 0 24 24" fill="#fff" stroke="#14161f" stroke-width="1.6" stroke-linejoin="round"><path d="M21 4 3 11l5.5 2L18 7l-7.5 7.5L17 20z"/></svg></i>
+      <div><b data-t="chatMessage"></b><span class="dots"><span><i></i><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i><i></i><i></i></span></span></div>
+    </div>
+    <div class="note" style="left:90px;top:1980px;transform:rotate(-2deg)">
+      <i style="background:#9a6bff"><svg viewBox="0 0 24 24" fill="#fff" stroke="#14161f" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/></svg></i>
+      <div><b data-t="chatMessage"></b><span class="dots"><span><i></i><i></i><i></i><i></i><i></i></span><span><i></i><i></i><i></i><i></i><i></i><i></i></span></span></div>
+    </div>
+  </section>
+
+  <!-- 7 (iOS) · Languages -->
+  <section class="slide" data-only="ios" style="left:7740px;color:var(--sun)">
+    <div class="copy">
+      <h1 class="fit" data-t="lang"></h1>
+      <p class="sub" style="color:#fff" data-t="langSub"></p>
+    </div>
+    <div class="phone" data-cap="language" data-theme="light" data-bar="#8e8c92" style="--w:880px;left:205px;top:1010px;transform:rotate(-2deg)"></div>
+    <b class="lang" style="left:40px;top:1300px;transform:rotate(-8deg);background:var(--sun)" data-lang></b>
+    <b class="lang" style="left:860px;top:1560px;transform:rotate(7deg)" data-lang></b>
+    <b class="lang" style="left:30px;top:1940px;transform:rotate(-5deg)" data-lang></b>
+    <b class="lang" style="left:820px;top:2200px;transform:rotate(6deg);background:var(--coral)" data-lang></b>
+    <b class="lang" style="left:120px;top:2440px;transform:rotate(-3deg)" data-lang></b>
+  </section>
+
+  <!-- 8 · Try it first -->
+  <section class="slide" style="left:9030px">
+    <div class="copy">
+      <h1 class="fit" data-t="try"></h1>
+      <p class="sub" data-t="trySub"></p>
+    </div>
+    <div class="phone" data-cap="try" data-theme="light" data-bar="#939197" style="--w:880px;left:205px;top:1010px;transform:rotate(2deg)"></div>
+    <div class="burst" style="left:880px;top:1150px;transform:rotate(10deg)">
+      <svg viewBox="-100 -100 200 200"><polygon class="star" fill="#ffc21a" stroke="#14161f" stroke-width="5" stroke-linejoin="round"/></svg>
+      <span class="shrink" data-t="free"></span>
+    </div>
+  </section>
+</div>
+<script src="motifs.js"></script>
+<script>
+  // Starburst points for the stickers.
+  const pts = []
+  for (let i = 0; i < 28; i++) {
+    const r = i % 2 ? 78 : 96
+    const a = (i / 28) * Math.PI * 2
+    pts.push(`${(Math.cos(a) * r).toFixed(1)},${(Math.sin(a) * r).toFixed(1)}`)
+  }
+  document.querySelectorAll('.star').forEach((p) => p.setAttribute('points', pts.join(' ')))
+
+  const PH = PLATFORM === 'android' ? 2294 : 2796
+
+  // The timeline: a wave that dips low and climbs high once per screenshot.
+  const trail = document.getElementById('trail')
+  trail.parentElement.setAttribute('viewBox', `0 0 10320 ${PH}`)
+  const hi = PH * 0.5, lo = PH * 0.8, swing = PH * 0.054
+  let d = `M-40 ${hi + swing}`
+  for (let x = -40, i = 0; x < 10320; x += 645, i++) {
+    const y = i % 2 ? hi : lo
+    d += ` S ${x + 450} ${y + (i % 2 ? -swing : swing)}, ${x + 645} ${y}`
+  }
+  trail.setAttribute('d', d)
+
+  // Copy for this language.
+  for (const el of document.querySelectorAll('[data-t]')) el.textContent = COPY[LANG][el.dataset.t] ?? COPY.en[el.dataset.t]
+  const names = [LANG, ...['es', 'ja', 'de', 'ar', 'hi', 'fr'].filter((c) => c !== LANG)]
+  document.querySelectorAll('[data-lang]').forEach((el, i) => { el.textContent = LANG_NAMES[names[i]] })
+
+  // Android panels are shorter: move each screenshot's artwork up under the copy.
+  if (PLATFORM === 'android') {
+    document.querySelectorAll('.slide').forEach((slide, i) => {
+      const dy = i === 0 ? 240 : 250
+      for (const el of slide.children) {
+        if (!el.matches('.copy, .brand')) el.style.top = `${parseFloat(el.style.top) - dy}px`
+      }
+    })
+  }
+
+  window.afterBuild = (fitted) => {
+    // Tall scripts (Arabic, Devanagari) and long translations can make the copy deeper
+    // than the layout planned: move that screenshot's artwork down to clear it.
+    if (fitted) {
+      for (const slide of document.querySelectorAll('.slide')) {
+        const copy = slide.querySelector('.copy')
+        const art = [...slide.querySelectorAll(':scope > .phone, :scope > .bubble')]
+        const clear = copy.offsetTop + copy.offsetHeight + 50 - Math.min(...art.map((el) => el.offsetTop))
+        if (clear <= 0) continue
+        for (const el of slide.children) if (!el.matches('.copy, .brand')) el.style.top = `${el.offsetTop + clear}px`
+      }
+    }
+    // Keep stickers inside the shorter Android panel (phones may run off the bottom edge).
+    if (PLATFORM === 'android') {
+      for (const el of document.querySelectorAll('.slide > :not(.copy):not(.brand):not(.phone):not(.bell)')) {
+        const over = el.offsetTop + el.offsetHeight - (PH - 60)
+        if (over > 0) el.style.top = `${el.offsetTop - over}px`
+      }
+    }
+    // Outline the measured part of the app screen (CSS pixels of a 393-wide viewport).
+    for (const el of document.querySelectorAll('[data-focus]')) {
+      const r = window.CAPMETA?.[el.dataset.focus]
+      const screen = el.closest('.screen')
+      if (!r || !screen) continue
+      const k = screen.clientWidth / 393, pad = 7 * k
+      const top = screen.querySelector('.status').offsetHeight
+      Object.assign(el.style, {
+        left: `${r.x * k - pad}px`, top: `${top + r.y * k - pad}px`,
+        width: `${r.w * k + 2 * pad}px`, height: `${r.h * k + 2 * pad}px`,
+      })
+    }
+  }
+</script>
+</body>
+</html>

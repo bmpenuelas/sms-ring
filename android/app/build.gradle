@@ -36,6 +36,10 @@ android {
         }
     }
     buildTypes {
+        // Debug builds install next to the store app, so they never touch its settings.
+        debug {
+            applicationIdSuffix ".debug"
+        }
         release {
             if (keystorePropertiesFile.exists()) {
                 signingConfig signingConfigs.release

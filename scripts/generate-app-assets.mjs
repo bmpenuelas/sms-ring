@@ -17,7 +17,9 @@
 //    to edge, and recompresses the PNGs.
 // 3. Writes the web icons (favicon.svg, apple-touch-icon.png) for the app (public/)
 //    and the GitHub Pages site (site/).
-// 4. Records a hash of the sources in assets/.generated.json for assets:check.
+// 4. Writes the 512 px Google Play listing icon into the fastlane metadata. The
+//    App Store takes its icon from the build's AppIcon set instead.
+// 5. Records a hash of the sources in assets/.generated.json for assets:check.
 //
 // Commit the sources, the base PNGs and the native files together.
 import './lib/cli-failure.mjs'
@@ -46,6 +48,12 @@ const BG = '#2b63f0'
 const FOREGROUND_SCALE = 0.88
 /** The artwork's width on the splash screen, as a share of the shorter side. */
 const SPLASH_MARK = 0.34
+/**
+ * Google Play listing icon: 512 px, 32-bit PNG, square (Play rounds the corners).
+ * Only the default language gets one; the other listings fall back to it.
+ */
+const PLAY_ICON = 'store/fastlane/metadata/android/en-US/images/icon.png'
+const PLAY_ICON_SIZE = 512
 
 /** Generated files assets:check expects to exist. */
 const OUTPUTS = [
@@ -64,6 +72,7 @@ const OUTPUTS = [
   'public/apple-touch-icon.png',
   'site/favicon.svg',
   'site/apple-touch-icon.png',
+  PLAY_ICON,
 ]
 /** Folders whose PNGs come from @capacitor/assets (recompressed after generation). */
 const NATIVE_PNG_ROOTS = ['android/app/src/main/res', 'ios/App/App/Assets.xcassets']
@@ -141,6 +150,13 @@ async function main() {
     await png(canvas(ICON).composite([await centred(ICON, fg)])).toFile(join(assets, 'icon-foreground.png'))
     await (await splashAt(SPLASH, SPLASH)).toFile(join(assets, 'splash.png'))
     console.log('Rendered assets/icon-only.png, icon-foreground.png, icon-background.png, splash.png')
+  }
+
+  async function storeIcon() {
+    const file = join(root, PLAY_ICON)
+    mkdirSync(dirname(file), { recursive: true })
+    await png(sharp(await render('icon.svg', PLAY_ICON_SIZE)).ensureAlpha()).toFile(file)
+    console.log(`Rendered ${PLAY_ICON}`)
   }
 
   function capacitorAssets() {
@@ -221,6 +237,7 @@ async function main() {
   pruneIosAssetSets()
   await redrawSplashes()
   await recompressNativePngs()
+  await storeIcon()
   // Only a full run vouches for every output.
   writeFileSync(stampPath, `${JSON.stringify(fingerprint(), null, 2)}\n`)
   console.log('Recorded source hashes in assets/.generated.json')
