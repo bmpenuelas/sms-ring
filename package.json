@@ -1,6 +1,6 @@
 {
   "name": "sms-ring",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Ring your phone at full volume with a secret SMS. Offline by design, open source.",
@@ -38,8 +38,8 @@
     "release:prepare:ios:open": "node scripts/run-command.mjs -- node scripts/release-prepare-native.mjs ios --open",
     "android:debug": "node scripts/run-command.mjs -- npm run cap:sync:android && node scripts/android-release.mjs assembleDebug",
     "android:install": "node scripts/run-command.mjs -- node scripts/android-install.mjs",
-    "android:bundle": "node scripts/run-command.mjs -- node scripts/android-release.mjs bundleRelease",
-    "android:apk:release": "node scripts/run-command.mjs -- node scripts/android-release.mjs assembleRelease",
+    "android:bundle": "npm run release:prepare:android && node scripts/run-command.mjs -- node scripts/android-release.mjs bundleRelease",
+    "android:apk:release": "npm run release:prepare:android && node scripts/run-command.mjs -- node scripts/android-release.mjs assembleRelease",
     "android:start-adb": "node scripts/run-command.mjs -- adb start-server",
     "prepare": "git config core.hooksPath .githooks || true"
   },
