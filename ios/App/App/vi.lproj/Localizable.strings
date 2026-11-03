@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Nhận được câu từ %@.";
 "Unlock, then tap pause to stop" = "Mở khóa, rồi chạm tạm dừng để tắt";
 "Ring if passphrase matches" = "Đổ chuông nếu khớp câu";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên iPhone này; không gì được gửi đi.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên thiết bị này; không gì được gửi đi.";
 "Message" = "Tin nhắn";
 "The message text, usually Shortcut Input." = "Nội dung tin nhắn, thường là Đầu vào phím tắt.";
 "Sender" = "Người gửi";

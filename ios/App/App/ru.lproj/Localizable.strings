@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Фраза получена от %@.";
 "Unlock, then tap pause to stop" = "Разблокируйте и нажмите паузу, чтобы остановить";
 "Ring if passphrase matches" = "Звонить при совпадении фразы";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Заставляет телефон звонить на полную громкость, если сообщение содержит вашу фразу SMS Ring. Проверяется на этом iPhone; ничего не отправляется.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Заставляет телефон звонить на полную громкость, если сообщение содержит вашу фразу SMS Ring. Проверяется на этом устройстве; ничего не отправляется.";
 "Message" = "Сообщение";
 "The message text, usually Shortcut Input." = "Текст сообщения, обычно «Входные данные команды».";
 "Sender" = "Отправитель";

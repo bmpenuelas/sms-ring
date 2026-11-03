@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "收到来自 %@ 的暗号。";
 "Unlock, then tap pause to stop" = "解锁后轻触暂停即可停止";
 "Ring if passphrase matches" = "暗号匹配时响铃";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台 iPhone 上检查，不会发送任何内容。";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台设备 上检查，不会发送任何内容。";
 "Message" = "信息";
 "The message text, usually Shortcut Input." = "短信正文，通常是“快捷指令输入”。";
 "Sender" = "发件人";

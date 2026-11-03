@@ -9,7 +9,7 @@ import RemoteRingPlugin
 struct RingIfPassphraseIntent: AudioPlaybackIntent {
     static let title: LocalizedStringResource = "Ring if passphrase matches"
     static let description = IntentDescription(
-        "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere."
+        "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere."
     )
     static let openAppWhenRun = false
 

@@ -355,7 +355,7 @@ const ja: Messages = {
     healthText: '必要な設定がオフになりました。タップして直しましょう。',
     intentRingTitle: 'フレーズが一致したら鳴らす',
     intentRingDescription:
-      'メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。この iPhone で確認し、何も送信しません。',
+      'メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。このデバイス で確認し、何も送信しません。',
     intentMessage: 'メッセージ',
     intentMessageDescription: 'メッセージの本文。通常はショートカットの入力です。',
     intentSender: '送信者',

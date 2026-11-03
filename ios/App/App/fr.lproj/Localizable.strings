@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Phrase reçue de %@.";
 "Unlock, then tap pause to stop" = "Déverrouille, puis touche pause pour arrêter";
 "Ring if passphrase matches" = "Sonner si la phrase correspond";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Fait sonner votre téléphone à plein volume si le message contient votre phrase SMS Ring. Vérifié sur cet iPhone ; rien n’est envoyé.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Fait sonner votre téléphone à plein volume si le message contient votre phrase SMS Ring. Vérifié sur cet appareil ; rien n’est envoyé.";
 "Message" = "Message";
 "The message text, usually Shortcut Input." = "Le texte du message, en général l’Entrée du raccourci.";
 "Sender" = "Expéditeur";

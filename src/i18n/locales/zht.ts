@@ -354,7 +354,7 @@ const zht: Messages = {
     healthTitle: 'SMS Ring 現在無法響鈴',
     healthText: '它需要的某項設定被關閉了。輕觸修復。',
     intentRingTitle: '暗號相符時響鈴',
-    intentRingDescription: '當簡訊包含你的 SMS Ring 暗號時，讓手機以最大音量響鈴。在這支 iPhone 上檢查，不會傳送任何內容。',
+    intentRingDescription: '當簡訊包含你的 SMS Ring 暗號時，讓手機以最大音量響鈴。在這部裝置 上檢查，不會傳送任何內容。',
     intentMessage: '訊息',
     intentMessageDescription: '簡訊內文，通常是「捷徑輸入」。',
     intentSender: '寄件人',

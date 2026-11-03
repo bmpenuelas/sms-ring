@@ -355,7 +355,7 @@ const vi: Messages = {
     healthText: 'Một thứ cần thiết đã bị tắt. Chạm để khắc phục.',
     intentRingTitle: 'Đổ chuông nếu khớp câu',
     intentRingDescription:
-      'Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên iPhone này; không gì được gửi đi.',
+      'Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên thiết bị này; không gì được gửi đi.',
     intentMessage: 'Tin nhắn',
     intentMessageDescription: 'Nội dung tin nhắn, thường là Đầu vào phím tắt.',
     intentSender: 'Người gửi',

@@ -355,7 +355,7 @@ const es: Messages = {
     healthText: 'Se desactivó algo que necesita. Toca para arreglarlo.',
     intentRingTitle: 'Sonar si coincide la frase',
     intentRingDescription:
-      'Hace sonar el móvil a todo volumen si el mensaje contiene tu frase de SMS Ring. Se comprueba en este iPhone; no se envía nada.',
+      'Hace sonar el móvil a todo volumen si el mensaje contiene tu frase de SMS Ring. Se comprueba en este dispositivo; no se envía nada.',
     intentMessage: 'Mensaje',
     intentMessageDescription: 'El texto del mensaje, normalmente la Entrada del atajo.',
     intentSender: 'Remitente',

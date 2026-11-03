@@ -355,7 +355,7 @@ const de: Messages = {
     healthText: 'Etwas Nötiges wurde ausgeschaltet. Tippe, um es zu beheben.',
     intentRingTitle: 'Klingeln, wenn Geheimsatz passt',
     intentRingDescription:
-      'Lässt dein Handy in voller Lautstärke klingeln, wenn die Nachricht deinen SMS-Ring-Geheimsatz enthält. Auf diesem iPhone geprüft; nichts wird gesendet.',
+      'Lässt dein Handy in voller Lautstärke klingeln, wenn die Nachricht deinen SMS-Ring-Geheimsatz enthält. Auf diesem Gerät geprüft; nichts wird gesendet.',
     intentMessage: 'Nachricht',
     intentMessageDescription: 'Der Nachrichtentext, meist die Kurzbefehleingabe.',
     intentSender: 'Absender',

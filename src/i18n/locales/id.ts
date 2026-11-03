@@ -355,7 +355,7 @@ const id: Messages = {
     healthText: 'Sesuatu yang dibutuhkan dimatikan. Ketuk untuk memperbaiki.',
     intentRingTitle: 'Berdering jika frasa cocok',
     intentRingDescription:
-      'Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di iPhone ini; tidak ada yang dikirim.',
+      'Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di perangkat ini; tidak ada yang dikirim.',
     intentMessage: 'Pesan',
     intentMessageDescription: 'Teks pesan, biasanya Input Pintasan.',
     intentSender: 'Pengirim',

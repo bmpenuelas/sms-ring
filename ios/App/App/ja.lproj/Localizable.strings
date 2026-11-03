@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "%@からフレーズを受信しました。";
 "Unlock, then tap pause to stop" = "ロックを解除して一時停止をタップすると止まります";
 "Ring if passphrase matches" = "フレーズが一致したら鳴らす";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。この iPhone で確認し、何も送信しません。";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。このデバイス で確認し、何も送信しません。";
 "Message" = "メッセージ";
 "The message text, usually Shortcut Input." = "メッセージの本文。通常はショートカットの入力です。";
 "Sender" = "送信者";

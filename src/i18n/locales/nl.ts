@@ -355,7 +355,7 @@ const nl: Messages = {
     healthText: 'Iets wat nodig is, staat uit. Tik om het op te lossen.',
     intentRingTitle: 'Overgaan als zin klopt',
     intentRingDescription:
-      'Laat je telefoon op vol volume overgaan als het bericht je SMS Ring-zin bevat. Gecontroleerd op deze iPhone; er wordt niets verzonden.',
+      'Laat je telefoon op vol volume overgaan als het bericht je SMS Ring-zin bevat. Gecontroleerd op dit apparaat; er wordt niets verzonden.',
     intentMessage: 'Bericht',
     intentMessageDescription: 'De berichttekst, meestal de Opdrachtinvoer.',
     intentSender: 'Afzender',

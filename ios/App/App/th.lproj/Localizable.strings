@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "ได้รับวลีจาก %@";
 "Unlock, then tap pause to stop" = "ปลดล็อก แล้วแตะหยุดชั่วคราวเพื่อหยุด";
 "Ring if passphrase matches" = "ดังเมื่อวลีตรงกัน";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "ทำให้โทรศัพท์ดังเต็มเสียงเมื่อข้อความมีวลี SMS Ring ของคุณ ตรวจใน iPhone เครื่องนี้ ไม่มีการส่งสิ่งใดออกไป";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "ทำให้โทรศัพท์ดังเต็มเสียงเมื่อข้อความมีวลี SMS Ring ของคุณ ตรวจใน อุปกรณ์เครื่องนี้ ไม่มีการส่งสิ่งใดออกไป";
 "Message" = "ข้อความ";
 "The message text, usually Shortcut Input." = "ข้อความ โดยปกติคือค่าป้อนเข้าคำสั่งลัด";
 "Sender" = "ผู้ส่ง";

@@ -355,7 +355,7 @@ const it: Messages = {
     healthText: 'Qualcosa di necessario è stato disattivato. Tocca per risolvere.',
     intentRingTitle: 'Squilla se la frase corrisponde',
     intentRingDescription:
-      'Fa squillare il telefono al massimo volume se il messaggio contiene la tua frase di SMS Ring. Verificato su questo iPhone; non viene inviato nulla.',
+      'Fa squillare il telefono al massimo volume se il messaggio contiene la tua frase di SMS Ring. Verificato su questo dispositivo; non viene inviato nulla.',
     intentMessage: 'Messaggio',
     intentMessageDescription: 'Il testo del messaggio, di solito l’Input comando rapido.',
     intentSender: 'Mittente',

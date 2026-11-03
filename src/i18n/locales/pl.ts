@@ -363,7 +363,7 @@ const pl: Messages = {
     healthText: 'Coś, czego potrzebuje, zostało wyłączone. Dotknij, by naprawić.',
     intentRingTitle: 'Dzwoń, gdy hasło pasuje',
     intentRingDescription:
-      'Uruchamia dzwonek na pełnej głośności, gdy wiadomość zawiera Twoje hasło SMS Ring. Sprawdzane na tym iPhonie; nic nie jest wysyłane.',
+      'Uruchamia dzwonek na pełnej głośności, gdy wiadomość zawiera Twoje hasło SMS Ring. Sprawdzane na tym urządzeniu; nic nie jest wysyłane.',
     intentMessage: 'Wiadomość',
     intentMessageDescription: 'Tekst wiadomości, zwykle Dane wejściowe skrótu.',
     intentSender: 'Nadawca',

@@ -361,7 +361,7 @@ const en = {
     healthText: 'Something it needs was turned off. Tap to fix it.',
     intentRingTitle: 'Ring if passphrase matches',
     intentRingDescription:
-      'Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere.',
+      'Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere.',
     intentMessage: 'Message',
     intentMessageDescription: 'The message text, usually Shortcut Input.',
     intentSender: 'Sender',

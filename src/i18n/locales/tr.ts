@@ -355,7 +355,7 @@ const tr: Messages = {
     healthText: 'Gereken bir şey kapatıldı. Düzeltmek için dokunun.',
     intentRingTitle: 'Cümle eşleşirse çal',
     intentRingDescription:
-      'Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu iPhone’da kontrol edilir; hiçbir şey gönderilmez.',
+      'Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu cihazda kontrol edilir; hiçbir şey gönderilmez.',
     intentMessage: 'Mesaj',
     intentMessageDescription: 'Mesaj metni, genellikle Kestirme Girdisi.',
     intentSender: 'Gönderen',

@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "%@ से वाक्य मिला।";
 "Unlock, then tap pause to stop" = "अनलॉक करें, फिर रोकने के लिए पॉज़ पर टैप करें";
 "Ring if passphrase matches" = "वाक्य मिलने पर बजाएँ";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "संदेश में आपका SMS Ring वाक्य होने पर फ़ोन पूरी आवाज़ में बजाता है। इसी iPhone पर जाँचा जाता है; कुछ भी भेजा नहीं जाता।";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "संदेश में आपका SMS Ring वाक्य होने पर फ़ोन पूरी आवाज़ में बजाता है। इसी डिवाइस पर जाँचा जाता है; कुछ भी भेजा नहीं जाता।";
 "Message" = "संदेश";
 "The message text, usually Shortcut Input." = "संदेश का टेक्स्ट, आमतौर पर शॉर्टकट इनपुट।";
 "Sender" = "प्रेषक";

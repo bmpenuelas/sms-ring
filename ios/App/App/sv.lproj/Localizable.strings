@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Fras mottagen från %@.";
 "Unlock, then tap pause to stop" = "Lås upp och tryck på paus för att stoppa";
 "Ring if passphrase matches" = "Ring om frasen stämmer";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här iPhonen; inget skickas.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här enheten; inget skickas.";
 "Message" = "Meddelande";
 "The message text, usually Shortcut Input." = "Meddelandets text, oftast Genvägsindata.";
 "Sender" = "Avsändare";

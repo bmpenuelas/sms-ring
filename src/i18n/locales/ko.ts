@@ -355,7 +355,7 @@ const ko: Messages = {
     healthText: '필요한 설정이 꺼졌습니다. 탭해서 해결하세요.',
     intentRingTitle: '문구가 일치하면 울리기',
     intentRingDescription:
-      '메시지에 SMS Ring 문구가 있으면 휴대폰을 최대 볼륨으로 울려요. 이 iPhone에서 확인하며 아무것도 전송하지 않아요.',
+      '메시지에 SMS Ring 문구가 있으면 휴대폰을 최대 볼륨으로 울려요. 이 기기에서 확인하며 아무것도 전송하지 않아요.',
     intentMessage: '메시지',
     intentMessageDescription: '메시지 본문, 보통 단축어 입력이에요.',
     intentSender: '발신자',

@@ -355,7 +355,7 @@ const pt: Messages = {
     healthText: 'Algo de que ele precisa foi desativado. Toque para corrigir.',
     intentRingTitle: 'Tocar se a frase coincidir',
     intentRingDescription:
-      'Faz o celular tocar no volume máximo quando a mensagem contém sua frase do SMS Ring. Verificado neste iPhone; nada é enviado.',
+      'Faz o celular tocar no volume máximo quando a mensagem contém sua frase do SMS Ring. Verificado neste dispositivo; nada é enviado.',
     intentMessage: 'Mensagem',
     intentMessageDescription: 'O texto da mensagem, normalmente a Entrada do Atalho.',
     intentSender: 'Remetente',

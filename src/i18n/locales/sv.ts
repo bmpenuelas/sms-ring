@@ -355,7 +355,7 @@ const sv: Messages = {
     healthText: 'Något som behövs har stängts av. Tryck för att åtgärda.',
     intentRingTitle: 'Ring om frasen stämmer',
     intentRingDescription:
-      'Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här iPhonen; inget skickas.',
+      'Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här enheten; inget skickas.',
     intentMessage: 'Meddelande',
     intentMessageDescription: 'Meddelandets text, oftast Genvägsindata.',
     intentSender: 'Avsändare',

@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Frasa diterima dari %@.";
 "Unlock, then tap pause to stop" = "Buka kunci, lalu ketuk jeda untuk berhenti";
 "Ring if passphrase matches" = "Berdering jika frasa cocok";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di iPhone ini; tidak ada yang dikirim.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di perangkat ini; tidak ada yang dikirim.";
 "Message" = "Pesan";
 "The message text, usually Shortcut Input." = "Teks pesan, biasanya Input Pintasan.";
 "Sender" = "Pengirim";

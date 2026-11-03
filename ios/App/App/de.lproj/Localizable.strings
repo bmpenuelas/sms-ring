@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Geheimsatz von %@ erhalten.";
 "Unlock, then tap pause to stop" = "Entsperren, dann Pause tippen zum Beenden";
 "Ring if passphrase matches" = "Klingeln, wenn Geheimsatz passt";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Lässt dein Handy in voller Lautstärke klingeln, wenn die Nachricht deinen SMS-Ring-Geheimsatz enthält. Auf diesem iPhone geprüft; nichts wird gesendet.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Lässt dein Handy in voller Lautstärke klingeln, wenn die Nachricht deinen SMS-Ring-Geheimsatz enthält. Auf diesem Gerät geprüft; nichts wird gesendet.";
 "Message" = "Nachricht";
 "The message text, usually Shortcut Input." = "Der Nachrichtentext, meist die Kurzbefehleingabe.";
 "Sender" = "Absender";

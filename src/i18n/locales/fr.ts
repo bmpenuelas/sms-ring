@@ -355,7 +355,7 @@ const fr: Messages = {
     healthText: 'Un élément nécessaire a été désactivé. Touche pour corriger.',
     intentRingTitle: 'Sonner si la phrase correspond',
     intentRingDescription:
-      'Fait sonner votre téléphone à plein volume si le message contient votre phrase SMS Ring. Vérifié sur cet iPhone ; rien n’est envoyé.',
+      'Fait sonner votre téléphone à plein volume si le message contient votre phrase SMS Ring. Vérifié sur cet appareil ; rien n’est envoyé.',
     intentMessage: 'Message',
     intentMessageDescription: 'Le texte du message, en général l’Entrée du raccourci.',
     intentSender: 'Expéditeur',

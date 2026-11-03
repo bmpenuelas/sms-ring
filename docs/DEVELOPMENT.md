@@ -39,6 +39,26 @@ Like the app, it loads nothing from other sites: fonts are copied from `@fontsou
 | `npm run verify:offline` | Check the no-network guarantees. |
 | `npm run cap:sync` | Check assets + build + locales + `cap sync`. |
 | `npm run android:debug` | Build a debug APK. |
+| `npm run native:versions` | Sync package version to native projects, preserving a higher iOS build number. |
+| `npm run ios:bump-build-number` | Increment the iOS build number in every Xcode configuration, keeping the package/marketing version (e.g. `1.0.0`). |
+
+For another upload of the same iOS version (TestFlight or an unreleased App Store version), run:
+
+```bash
+npm run ios:bump-build-number
+npm run cap:sync:open:ios
+```
+
+Then archive and upload from Xcode. `ios:bump-build-number` advances the highest existing
+`CURRENT_PROJECT_VERSION` across Debug and Release (initially `1000000` → `1000001`).
+`Info.plist` already reads it through `CFBundleVersion`, so no separate plist edit is needed.
+Subsequent `native:versions` runs preserve that bump. If Xcode or CI uploaded a higher build,
+set that number in Xcode first so the next bump exceeds it.
+
+For an update to an already published App Store version, increase the marketing version too.
+`npm run release:version` bumps the package patch version and syncs both native projects;
+`release:prepare:ios` / `release:prepare:ios:open` also bump that patch version before syncing/building.
+Use `cap:sync:open:ios` after a build-only bump to keep `1.0.0`.
 
 Every npm script ends with a framed result banner on stderr: a green `✅ SUCCESS` for exit code 0 or a red `❌ FAILED` otherwise, with the local time and date (`HH:mm:ss DD/MM/YYYY`). `scripts/run-command.mjs` wraps each external command (`vite`, `vue-tsc`, `cap`, `node`, `npm`, `adb`) without a shell, and the custom scripts import `scripts/lib/cli-failure.mjs` so running them directly is covered too.
 

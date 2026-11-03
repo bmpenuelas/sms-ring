@@ -31,6 +31,7 @@
     "cap:sync:open:android": "node scripts/run-command.mjs -- npm run cap:sync:android && node scripts/run-command.mjs -- cap open android",
     "cap:sync:open:ios": "node scripts/run-command.mjs -- npm run cap:sync:ios && node scripts/run-command.mjs -- cap open ios",
     "native:versions": "node scripts/run-command.mjs -- node scripts/sync-native-versions.mjs",
+    "ios:bump-build-number": "node scripts/run-command.mjs -- node scripts/sync-native-versions.mjs --bump-ios-build",
     "release:version": "node scripts/run-command.mjs -- npm version patch --no-git-tag-version && node scripts/run-command.mjs -- npm run native:versions",
     "release:prepare:android": "node scripts/run-command.mjs -- node scripts/release-prepare-native.mjs android",
     "release:prepare:android:open": "node scripts/run-command.mjs -- node scripts/release-prepare-native.mjs android --open",

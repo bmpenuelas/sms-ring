@@ -354,7 +354,7 @@ const zh: Messages = {
     healthTitle: 'SMS Ring 现在无法响铃',
     healthText: '它需要的某项设置被关闭了。轻触修复。',
     intentRingTitle: '暗号匹配时响铃',
-    intentRingDescription: '当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台 iPhone 上检查，不会发送任何内容。',
+    intentRingDescription: '当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台设备 上检查，不会发送任何内容。',
     intentMessage: '信息',
     intentMessageDescription: '短信正文，通常是“快捷指令输入”。',
     intentSender: '发件人',

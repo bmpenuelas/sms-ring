@@ -4,7 +4,7 @@
 "Passphrase received from %@." = "Cümle %@ numarasından geldi.";
 "Unlock, then tap pause to stop" = "Kilidi açın, sonra durdurmak için duraklata dokunun";
 "Ring if passphrase matches" = "Cümle eşleşirse çal";
-"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this iPhone; nothing is sent anywhere." = "Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu iPhone’da kontrol edilir; hiçbir şey gönderilmez.";
+"Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu cihazda kontrol edilir; hiçbir şey gönderilmez.";
 "Message" = "Mesaj";
 "The message text, usually Shortcut Input." = "Mesaj metni, genellikle Kestirme Girdisi.";
 "Sender" = "Gönderen";
