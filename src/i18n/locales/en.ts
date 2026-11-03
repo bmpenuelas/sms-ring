@@ -370,7 +370,7 @@ const en = {
     intentStopDescription: 'Stops SMS Ring if it is ringing.',
   },
 
-  // Store listings (fastlane metadata). Limits: title 30, short 80, subtitle 30, keywords 100, promo 170.
+  // Store listings (fastlane metadata). Limits: title 30, short 80, subtitle 30, keywords 100 bytes, promo 170.
   store: {
     title: 'SMS Ring – Loud Phone Finder',
     shortDescription: 'Even on silent and without internet, send an SMS to make your phone ring',

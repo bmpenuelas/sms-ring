@@ -34,6 +34,8 @@ Like the app, it loads nothing from other sites: fonts are copied from `@fontsou
 | `npm run locales` / `locales:check` | Generate / verify native strings, Xcode entries and store listings. |
 | `npm run store:csv:android` | Export all supported Google Play listings to `store/exports/android.csv`. |
 | `npm run store:csv:ios` | Export all supported Apple App Store listings to `store/exports/ios.csv`. |
+| `npm run store:check` / `store:check:strict` | Check store text limits, image and video sizes, folder names ([below](#uploading-store-listings)). |
+| `npm run store -- <android\|ios> <lane>` | Run a fastlane upload lane. |
 | `npm run assets` / `assets:check` | Generate / verify app icons, splash screens and web icons ([ASSETS.md](ASSETS.md)). |
 | `npm run ringtone` | Re-synthesize the ring tones (no third-party audio) into the Android and iOS plugin resources. |
 | `npm run verify:offline` | Check the no-network guarantees. |
@@ -71,37 +73,65 @@ Every npm script ends with a framed result banner on stderr: a green `✅ SUCCES
 fastlane uploads the listings in `store/fastlane/` (Ruby only, so Windows works; building the iOS app
 still needs a Mac). Store API keys stay out of git: the paths below are gitignored, and so is any `.p8`.
 
-1. Ruby 3.3 (`winget install RubyInstallerTeam.RubyWithDevKit.3.3 --source winget`), then
-   `bundle config set --local path vendor/bundle` and `bundle install` in `store/`.
-2. Keys, or point the environment variable at a key kept outside the repo:
+1. Ruby 3.3 and Bundler (`winget install RubyInstallerTeam.RubyWithDevKit.3.3 --source winget`).
+   The first `npm run store -- …` runs `bundle install` into `store/vendor/bundle` for you.
+2. Keys. Neither is ever committed, and a `.p8` is ignored anywhere. Point the environment variable
+   at the file, or put it at the gitignored default path:
    - **Google Play**: a Google Cloud service account with the Google Play Android Developer API
      enabled, invited in Play Console with access to this app only (Manage store presence, plus Edit
-     and delete draft apps while the app is still a draft). Its JSON key goes in
-     `store/fastlane/play-service-account.json` (`SUPPLY_JSON_KEY`).
+     and delete draft apps while the app is still a draft). Its JSON key:
+     `SUPPLY_JSON_KEY=<path>`, default `store/fastlane/play-service-account.json`.
    - **App Store**: an App Store Connect team API key with App Manager access, as fastlane's JSON
-     (`key_id`, `issuer_id`, and the `.p8` contents as `key`) in
-     `store/fastlane/app-store-connect-api-key.json` (`APP_STORE_CONNECT_API_KEY_PATH`).
-3. From `store/`:
+     (`key_id`, `issuer_id`, and the `.p8` contents as `key`):
+     `APP_STORE_CONNECT_API_KEY_PATH=<path>`, default `store/fastlane/app-store-connect-api-key.json`.
+
+   An App Store Connect key belongs to the team and a Play service account to the developer
+   account, so one key can serve several apps (the service account must be invited to each app).
+3. From the repo root:
 
 ```bash
-bundle exec fastlane android listing validate:true   # dry run: Google Play checks it, nothing is saved
-bundle exec fastlane android listing                 # title, short and full description, every language
-bundle exec fastlane android listing_with_images     # also icon, feature graphic + phone screenshots
-bundle exec fastlane ios listing                     # name, subtitle, description, keywords, promo text
-bundle exec fastlane ios listing_with_images         # also screenshots (replaced) + app previews
+npm run store:check                                  # text limits, image/video sizes, folder names
+npm run store -- android doctor                      # key works; releases on each track
+npm run store -- ios doctor                          # key works; the App Store version being prepared
+
+npm run store -- android listing validate:true       # dry run: Google Play checks it, nothing is saved
+npm run store -- android listing                     # title, short and full description, every language
+npm run store -- android images                      # icon, feature graphic + phone screenshots only
+npm run store -- android listing_with_images         # both; add changelogs:true to send release notes
+npm run store -- ios listing                         # name, subtitle, description, keywords, promo text
+npm run store -- ios screenshots                     # screenshots only (replaced)
+npm run store -- ios previews                        # app preview videos only (replaced)
+npm run store -- ios listing_with_images             # everything
+npm run store -- lanes                               # list the lanes
 ```
 
+Every upload lane runs `store:check:strict` first and stops on errors; `skip_check:true` skips it and
+`strict:false` tolerates content that is still missing. The check wants the icon, feature graphic and
+phone screenshots for `en-US` on Google Play and an iPhone set for `en-US` on the App Store (other
+languages fall back to those; `--all-locales` requires every language). Options: `validate:true`
+(App Store Connect has no dry run, so on iOS it only runs the local check), `confirm:true` (deliver
+shows its HTML preview and asks first), `version:1.2.3` (iOS), `track:<name>` and `version_code:<n>`
+(Android). `npm run store -- android pull` and `ios pull` download the live listing into
+`store/fastlane/downloaded/` (gitignored) to compare with the local files.
+
 Play attaches listing edits to a release, so the Android lanes use the newest release on the first
-track that has one (production, beta, alpha, internal); pass `track:<name>` to choose. The iOS lanes
-write to the App Store version being prepared and never submit it for review. They also send the App
-Review notes (`metadata/ios/review_information/notes.txt`); enter the review contact details in App
-Store Connect itself, never in this public repo. fastlane can't upload the App Store header and
-search results artwork (`store/artwork/ios/<locale>/`): upload each language's pair by hand on the
-version page, under *Header and Search Results*, then Save. App Store Connect has no
-dry run, but `bundle exec fastlane deliver download_metadata --api_key_path <key json>` checks access
-read-only. If Ruby fails with `certificate verify failed` because antivirus HTTPS scanning re-signs
-traffic, set `SSL_CERT_FILE` to a PEM bundle of Ruby's `ssl/cert.pem` plus the antivirus root
-certificate.
+track that has one (production, beta, alpha, internal); upload a build first. The iOS lanes write
+to the App Store version being prepared (create it in App Store Connect first) and never submit it
+for review. They also send the App Review notes (`metadata/ios/review_information/notes.txt`);
+enter the review contact details in App Store Connect itself, never in this public repo (contact
+and demo-account `.txt` files in that folder are gitignored if you want fastlane to send them).
+`npm run store:changelog` writes Google Play release notes for the `package.json` version into
+`android/<locale>/changelogs/` (from an App Store `release_notes.txt` per language when present, or
+`-- --text "<notes>"` for one text), then `android listing_with_images changelogs:true` sends them.
+fastlane can't upload the App Store header and search results artwork (`store/artwork/ios/<locale>/`):
+upload each language's pair by hand on the version page, under *Header and Search Results*, then Save.
+The App Store counts keywords in bytes, not characters, so the check reports languages whose
+keywords exceed 100 bytes. If Ruby fails with `certificate verify failed` because antivirus HTTPS
+scanning re-signs traffic, set `SSL_CERT_FILE` to a PEM bundle of Ruby's `ssl/cert.pem` plus the
+antivirus root certificate.
+
+`scripts/lib/store-specs.mjs` holds every limit and media size (the languages come from
+`src/i18n/languages.ts`, so they cannot drift); `tests/store-metadata.test.ts` covers the checks.
 
 ## Testing end to end
 

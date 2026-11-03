@@ -367,7 +367,7 @@ const vi: Messages = {
     title: 'SMS Ring – Tìm điện thoại',
     shortDescription: 'Ngay cả khi im lặng và không có internet, gửi SMS để điện thoại đổ chuông',
     subtitle: 'Không internet vẫn hoạt động',
-    keywords: 'tìm điện thoại,mất điện thoại,đổ chuông,im lặng,sms,báo thức,ngoại tuyến,riêng tư,mã nguồn mở',
+    keywords: 'tìm điện thoại,mất điện thoại,đổ chuông,im lặng,sms,báo thức,ngoại tuyến',
     promo: 'Hoạt động ngay cả khi im lặng và không có internet. Chỉ cần gửi SMS để điện thoại đổ chuông.',
     description: [
       'Làm điện thoại đổ chuông hết cỡ bằng cách gửi SMS đến máy. Máy đổ chuông hết cỡ, kể cả khi im lặng. Không cần kết nối internet, hoạt động ngay cả khi sóng di động yếu.',

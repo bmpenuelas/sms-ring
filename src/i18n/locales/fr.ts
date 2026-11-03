@@ -367,7 +367,7 @@ const fr: Messages = {
     title: 'SMS Ring – Trouve ton tél.',
     shortDescription: 'Même en silencieux et sans internet, un SMS fait sonner votre téléphone',
     subtitle: 'Fonctionne même sans internet',
-    keywords: 'retrouver téléphone,téléphone perdu,sonner,silencieux,sms,alarme,hors ligne,vie privée,open source',
+    keywords: 'retrouver téléphone,téléphone perdu,sonner,silencieux,sms,alarme,hors ligne,vie privée',
     promo: 'Fonctionne même en silencieux et sans internet. Envoyez simplement un SMS pour faire sonner votre téléphone.',
     description: [
       'Faites sonner votre téléphone à plein volume en lui envoyant un SMS. Il sonne à plein volume, même en silencieux. Aucune connexion internet n’est nécessaire : il fonctionne même avec un faible signal mobile.',

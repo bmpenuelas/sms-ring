@@ -367,7 +367,7 @@ const tr: Messages = {
     title: 'SMS Ring – Telefonunu Bul',
     shortDescription: 'Sessizde ve internetsiz bile, telefonunu çaldırmak için SMS gönder',
     subtitle: 'İnternetsiz bile çalışır',
-    keywords: 'telefon bul,kayıp telefon,çaldır,sessiz,sms,alarm,çevrimdışı,gizlilik,açık kaynak,yüksek ses',
+    keywords: 'telefon bul,kayıp telefon,çaldır,sessiz,sms,alarm,çevrimdışı,gizlilik,yüksek ses',
     promo: 'Sessizde ve internetsiz bile çalışır. Telefonunu çaldırmak için bir SMS göndermen yeterli.',
     description: [
       'Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses çalar. İnternet bağlantısı gerekmez, zayıf bir şebeke sinyaliyle bile çalışır.',

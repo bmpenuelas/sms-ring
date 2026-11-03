@@ -136,8 +136,9 @@ for (const lang of LANGUAGES) {
   // ---- Store listings ----
   const s = m.store
   for (const [key, limit] of Object.entries(LIMITS)) {
-    const len = [...s[key]].length
-    if (len > limit) problems.push(`${lang.code}: store.${key} is ${len} > ${limit}`)
+    // Apple counts the keywords field in UTF-8 bytes; everything else in characters.
+    const len = key === 'keywords' ? Buffer.byteLength(s[key], 'utf8') : [...s[key]].length
+    if (len > limit) problems.push(`${lang.code}: store.${key} is ${len} > ${limit}${key === 'keywords' ? ' bytes' : ''}`)
   }
   const descriptions = Object.fromEntries(['android', 'ios'].map((platform) => {
     const text = storeDescription(s.description, platform)

@@ -1,49 +1,111 @@
+# Store listing lanes for Google Play (supply) and the App Store (deliver).
+# Run from the repo root with `npm run store -- <platform> <lane> [key:value ...]`, or from store/
+# with `bundle exec fastlane <platform> <lane>`. Options and files are described in docs/DEVELOPMENT.md.
+#
+# Every lane that uploads first runs `node scripts/store-metadata.mjs check` and stops on errors
+# (pass skip_check:true to bypass). Nothing here uploads a build or submits anything for review.
+skip_docs
 default_platform(:android)
 
+fastlane_dir = File.expand_path(FastlaneCore::FastlaneFolder.path)
+repo_root = File.expand_path("../..", fastlane_dir)
+check_script = File.join(repo_root, "scripts", "store-metadata.mjs")
+
+# Fails with a pointer to the docs instead of fastlane's stack trace when a key is not in place.
+require_key = lambda do |path, what|
+  next if File.exist?(File.expand_path(path))
+  UI.user_error!("#{what} not found at #{path}. See \"Uploading store listings\" in docs/DEVELOPMENT.md.")
+end
+
+# The same checks as `npm run store:check`. Strict also fails on content that is still missing.
+run_check = lambda do |options, platform, scope|
+  next if options[:skip_check]
+  args = ["node", check_script, "check", "--platform", platform, "--scope", scope]
+  args << "--strict" if options[:strict] != false
+  sh(*args)
+end
+
 platform :android do
+  play_key = ENV["SUPPLY_JSON_KEY"] || "fastlane/play-service-account.json"
+  tracks = %w[production beta alpha internal]
+
   # supply attaches listings to an existing release, even when skipping changelogs.
   # Use the newest release on the first track that has one (or `track:<name>`).
   private_lane :listing_release do |options|
-    tracks = options[:track] ? [options[:track]] : %w[production beta alpha internal]
-    track, codes = tracks.lazy
-                         .map { |t| [t, google_play_track_version_codes(track: t)] }
-                         .find { |_, c| c.any? }
-    UI.user_error!("No release on #{tracks.join(', ')}: upload a build first") unless track
-    UI.message("Attaching the listing to #{track} release #{codes.max}")
-    { track: track, version_code: codes.max }
+    require_key.call(play_key, "Google Play service account key")
+    candidates = options[:track] ? [options[:track]] : tracks
+    track, codes = candidates.lazy
+                             .map { |t| [t, google_play_track_version_codes(track: t)] }
+                             .find { |_, c| c.any? }
+    UI.user_error!("No release on #{candidates.join(', ')}: upload a build first") unless track
+    code = (options[:version_code] || codes.max).to_i
+    UI.message("Attaching the listing to #{track} release #{code}")
+    { track: track, version_code: code }
   end
 
-  # Run from store/: `bundle exec fastlane android listing`. Add `validate:true` to dry-run.
-  desc "Upload the Google Play listing text (title, short and full description) in every language"
+  private_lane :upload_listing do |options|
+    upload_to_play_store(
+      **listing_release(options),
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: options[:metadata] == false,
+      skip_upload_changelogs: !options[:changelogs],
+      skip_upload_images: options[:images] == false,
+      skip_upload_screenshots: options[:images] == false,
+      # Hash-compares images so unchanged ones are not sent again.
+      sync_image_upload: true,
+      metadata_path: "./fastlane/metadata/android",
+      validate_only: options[:validate] || false
+    )
+  end
+
+  # Add `validate:true` to dry-run: Google Play checks the edit and nothing is saved.
+  desc "Upload the Google Play listing text (title, short and full description, video) in every language"
   lane :listing do |options|
-    upload_to_play_store(
-      **listing_release(options),
-      skip_upload_apk: true,
-      skip_upload_aab: true,
-      skip_upload_changelogs: true,
-      skip_upload_images: true,
-      skip_upload_screenshots: true,
-      validate_only: options[:validate] || false
-    )
+    run_check.call(options, "android", "text")
+    upload_listing(options.merge(images: false))
   end
 
-  desc "Upload the listing text plus app icon, feature graphics and phone screenshots (build them first)"
+  desc "Upload the listing graphics only: icon, feature graphic, phone and tablet screenshots"
+  lane :images do |options|
+    run_check.call(options, "android", "media")
+    upload_listing(options.merge(metadata: false))
+  end
+
+  desc "Upload the listing text plus all graphics. `changelogs:true` also sends changelogs/<versionCode>.txt"
   lane :listing_with_images do |options|
-    upload_to_play_store(
-      **listing_release(options),
-      skip_upload_apk: true,
-      skip_upload_aab: true,
-      skip_upload_changelogs: true,
-      validate_only: options[:validate] || false
-    )
+    run_check.call(options, "android", "all")
+    upload_listing(options)
+  end
+
+  desc "Download the live listing into fastlane/downloaded/android to compare with the local files"
+  lane :pull do
+    require_key.call(play_key, "Google Play service account key")
+    download_from_play_store(metadata_path: "./fastlane/downloaded/android")
+  end
+
+  desc "Check the Play key works and show the releases on each track"
+  lane :doctor do
+    require_key.call(play_key, "Google Play service account key")
+    validate_play_store_json_key
+    tracks.each do |track|
+      codes = google_play_track_version_codes(track: track)
+      UI.message("#{track}: #{codes.empty? ? 'no release' : codes.sort.join(', ')}")
+    end
   end
 end
 
 platform :ios do
-  # Uploads to the App Store version being prepared; never submits it for review.
+  apple_key = ENV["APP_STORE_CONNECT_API_KEY_PATH"] || "fastlane/app-store-connect-api-key.json"
+  # Read when a lane runs: the Appfile's for_platform blocks only apply once the platform is known.
+  bundle_id = -> { CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier) }
+
+  # Uploads to the App Store version being prepared (create it in App Store Connect first);
+  # never submits it for review. `confirm:true` shows deliver's HTML preview and asks first.
   private_lane :deliver_listing do |options|
-    deliver(
-      api_key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"] || "fastlane/app-store-connect-api-key.json",
+    require_key.call(apple_key, "App Store Connect API key")
+    params = {
+      api_key_path: apple_key,
       metadata_path: "./fastlane/metadata/ios",
       screenshots_path: "./fastlane/screenshots",
       skip_binary_upload: true,
@@ -51,19 +113,67 @@ platform :ios do
       submit_for_review: false,
       run_precheck_before_submit: false,
       precheck_include_in_app_purchases: false,
-      force: true,
-      **options
-    )
+      force: !options[:confirm]
+    }
+    params[:app_version] = options[:version] if options[:version]
+    deliver(**params, **options.fetch(:deliver, {}))
   end
 
-  # Run from store/: `bundle exec fastlane ios listing`.
-  desc "Upload the App Store listing text (name, subtitle, description, keywords, promotional text) in every language"
-  lane :listing do
-    deliver_listing(skip_screenshots: true)
+  # App Store Connect has no dry run, so `validate:true` only runs the local checks.
+  desc "Upload the App Store listing text (name, subtitle, description, keywords, promotional text, release notes, URLs, categories, review notes) in every language"
+  lane :listing do |options|
+    run_check.call(options, "ios", "text")
+    next if options[:validate]
+    deliver_listing(options.merge(deliver: { skip_screenshots: true }))
   end
 
-  desc "Upload the listing text plus screenshots (replacing the current ones) and app previews (build them first)"
-  lane :listing_with_images do
-    deliver_listing(overwrite_screenshots: true, app_previews_path: "./fastlane/previews")
+  desc "Upload the screenshots only (replacing the current ones), for every language with a folder in fastlane/screenshots"
+  lane :screenshots do |options|
+    run_check.call(options, "ios", "media")
+    next if options[:validate]
+    deliver_listing(options.merge(deliver: { skip_metadata: true, overwrite_screenshots: true }))
+  end
+
+  desc "Upload the app preview videos only (replacing the current ones)"
+  lane :previews do |options|
+    run_check.call(options, "ios", "media")
+    next if options[:validate]
+    deliver_listing(options.merge(deliver: {
+      skip_metadata: true, skip_screenshots: true,
+      app_previews_path: "./fastlane/previews", overwrite_preview_videos: true
+    }))
+  end
+
+  desc "Upload the listing text plus screenshots (replacing the current ones) and app previews"
+  lane :listing_with_images do |options|
+    run_check.call(options, "ios", "all")
+    next if options[:validate]
+    deliver_listing(options.merge(deliver: {
+      overwrite_screenshots: true,
+      app_previews_path: "./fastlane/previews", overwrite_preview_videos: true
+    }))
+  end
+
+  desc "Download the live listing text into fastlane/downloaded/ios to compare with the local files"
+  lane :pull do
+    require_key.call(apple_key, "App Store Connect API key")
+    sh("bundle", "exec", "fastlane", "deliver", "download_metadata",
+       "--api_key_path", apple_key, "--app_identifier", bundle_id.call,
+       "--metadata_path", File.join(fastlane_dir, "downloaded", "ios"), "--force")
+  end
+
+  desc "Check the App Store Connect key works and show the version being prepared"
+  lane :doctor do
+    require_key.call(apple_key, "App Store Connect API key")
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.from(filepath: File.expand_path(apple_key))
+    app = Spaceship::ConnectAPI::App.find(bundle_id.call)
+    UI.user_error!("No app with bundle ID #{bundle_id.call} in this App Store Connect team") unless app
+    UI.success("#{app.name} (#{app.bundle_id})")
+    version = app.get_edit_app_store_version
+    if version
+      UI.message("Editable version: #{version.version_string} (#{version.app_store_state})")
+    else
+      UI.important("No editable App Store version: create one in App Store Connect before uploading")
+    end
   end
 end

@@ -1,1 +1,1 @@
-telefon bul,kayıp telefon,çaldır,sessiz,sms,alarm,çevrimdışı,gizlilik,açık kaynak,yüksek ses
+telefon bul,kayıp telefon,çaldır,sessiz,sms,alarm,çevrimdışı,gizlilik,yüksek ses
