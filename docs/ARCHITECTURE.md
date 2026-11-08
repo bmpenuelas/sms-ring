@@ -46,4 +46,4 @@
 
 ## Data flow: iPhone
 
-Shortcuts automation (`Message contains <phrase>`) → `RingIfPassphraseIntent` → `RingTrigger.handleAutomation` (same matcher) → `RingEngine.start`. See [IOS.md](IOS.md).
+Shortcuts automation (`Message contains <ring word>`, e.g. `ring`; the passphrase is never stored in Shortcuts) → `RingIfPassphraseIntent` → `RingTrigger.handleAutomation` (same matcher) → `RingEngine.start`. See [IOS.md](IOS.md).

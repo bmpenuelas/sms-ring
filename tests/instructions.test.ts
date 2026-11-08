@@ -4,6 +4,7 @@ import { test } from 'node:test'
 
 import { defaultConfig } from '../src/core/config.ts'
 import { buildPassphraseInstructions } from '../src/core/instructions.ts'
+import { evaluateMessage } from '../src/core/matcher.ts'
 import en from '../src/i18n/locales/en.ts'
 import { LANGUAGES } from '../src/i18n/languages.ts'
 
@@ -64,6 +65,26 @@ test('both editors reuse the footer and Copy/Share use the same instructions bui
     assert.ok(!source.includes('async function copy('), path)
   }
   const source = readFileSync(new URL('../src/state/app.ts', import.meta.url), 'utf8')
-  assert.ok(source.includes('copyText(buildPassphraseInstructions(config.value, t.value.sharing))'))
-  assert.ok(source.includes('shareText(t.value.passphrase.shareTitle, buildPassphraseInstructions(config.value, t.value.sharing))'))
+  assert.ok(source.includes('copyText(buildPassphraseInstructions(config.value, t.value.sharing, shareRingWord()))'))
+  assert.ok(source.includes('shareText(t.value.passphrase.shareTitle, buildPassphraseInstructions(config.value, t.value.sharing, shareRingWord()))'))
+  assert.ok(source.includes("platform === 'ios' ? t.value.ios.ringWord : ''"), 'only iPhone adds the ring word')
+})
+
+test('on iPhone the ring word starts every message to send, and it still matches', async () => {
+  for (const { code } of LANGUAGES) {
+    const { default: messages } = await import(`../src/i18n/locales/${code}.ts`)
+    const word: string = messages.app.ios.ringWord
+    const config = { ...defaultConfig('blue tiger moon', messages.app.vibrateOnly.defaultPhrase), vibrate: true, vibrateOnlyEnabled: true }
+    const copy = messages.app.sharing
+    const text = buildPassphraseInstructions(config, copy, word)
+    assert.ok(text.includes(copy.ringVibrate(`${word} blue tiger moon`)), code)
+    assert.ok(text.includes(copy.vibrateOnly(`${word} blue tiger moon ${config.vibrateOnlyPhrase}`)), code)
+    assert.equal(evaluateMessage(config, `${word} blue tiger moon`, ''), 'ring', code)
+    assert.equal(evaluateMessage(config, `${word} blue tiger moon ${config.vibrateOnlyPhrase}`, ''), 'vibrate-only', code)
+    assert.ok(!buildPassphraseInstructions(config, copy).includes(`${word} blue tiger moon`) || word === '', `${code}: Android text has no ring word`)
+  }
+  const plain = buildPassphraseInstructions(defaultConfig('blue tiger moon'), en.app.sharing)
+  assert.ok(plain.includes('Text “blue tiger moon” to make it ring'))
+  const ios = buildPassphraseInstructions(defaultConfig('blue tiger moon'), en.app.sharing, 'ring')
+  assert.ok(ios.includes('Text “ring blue tiger moon” to make it ring'))
 })

@@ -11,7 +11,7 @@ Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet oc
 ► Privat från grunden, inte genom löften
 SMS Ring har ingen internetbehörighet. Operativsystemet blockerar själv varje anslutning, så dina data kan inte lämna telefonen. Inga konton, annonser, analyser eller servrar.
 
-KONFIGURATION (VIKTIGT!): Apple låter inte appar läsa meddelanden. SMS Ring hjälper dig att på 1 minut skapa en Genvägar-automation som du måste ställa in för att appen ska kunna läsa det inkommande meddelandet.
+KONFIGURATION (VIKTIGT!): Apple låter inte appar läsa meddelanden. SMS Ring hjälper dig att på 1 minut skapa en Genvägar-automation som du måste ställa in för att appen ska kunna läsa det inkommande meddelandet. Dessutom måste varje meddelande som ska få telefonen att ringa innehålla ordet ”ring”. SMS Ring lägger till det när du kopierar eller delar meddelandet.
 
 ► Öppen källkod: Du kan kontrollera själv
 Varje kodrad är offentlig så att du kan granska den på GitHub

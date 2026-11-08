@@ -41,7 +41,7 @@ const tr: Messages = {
     passphrase: {
       title: 'Gizli cümle',
       exactly: 'Çalması için tam olarak bunu gönder',
-      hint: 'Çalması için tam olarak bu kelimeleri bu telefona gönder. Yalnızca boşluklar, büyük-küçük harf ve aksanlar farklı olabilir.',
+      hint: 'Çalması için tam olarak bu kelimeleri bu telefona gönder. Boşluk, büyük-küçük harf, aksan ve noktalama fark etmez.',
       shuffle: 'Yeni kelimeler',
       words: (n: number) => `${n} kelime`,
       wordCount: 'Kelime sayısı',
@@ -305,13 +305,14 @@ const tr: Messages = {
     ios: {
       setupTitle: 'Apple Kestirmeler’i bağla',
       why: 'iPhone hiçbir uygulamanın mesajlarınızı okumasına izin vermez, bizimkine bile. Bunun yerine Apple’ın Kestirmeler uygulaması her yeni mesajı SMS Ring’e iletir; o da mesajı bu telefonda kontrol edip unutur.',
-      steps: [
-        '**Kestirmeler** → **Otomasyon** → **Yeni Otomasyon** → **Mesaj**’ı aç.',
-        '**Gönderen** ve **Mesaj Şunu İçeriyorsa** alanlarını olduğu gibi bırak, böylece her mesajda çalışsın. **Hemen Çalıştır**’ı seç, **Çalıştırıldığında Bildir**’i kapat, sonra **Sonraki**’ye dokun.',
-        '**Yeni Boş Otomasyon**’a dokun, **Cümle eşleşirse çal** (SMS Ring) ekle ve Mesaj’ı **Kestirme Girdisi** yap.',
-        'İsteğe bağlı: oka dokun ve Gönderen’i **Kestirme Girdisi → Gönderen** yap.',
+      ringWord: 'çal',
+      wordNote: 'Bu telefonu çaldırması gereken her mesaj bu sözcüğü içermelidir: dilindeki “ring”. SMS Ring’den kopyaladığın veya paylaştığın mesaj zaten bununla başlar.',
+      steps: (word: string) => [
+        '**Kestirmeler** → **Otomasyon** → **+** → **Kişisel Otomasyon Yarat** (görünüyorsa) → **Mesaj**’ı aç.',
+        `**Gönderen**’i boş bırak ve **İleti İçeriği** alanına **${word}** yaz. Sormadan çalışmasını sağla: **Hemen Çalıştır**’ı seç (eski sürümlerde **Çalıştırmadan Önce Sor**’u kapat ve **Sorma**’ya dokun). **Çalıştırıldığında Bildir** görünüyorsa onu da kapat. Sonra **Sonraki**’ye dokun.`,
+        '**İşlem Ekle**’ye dokun, **SMS Ring**’i ara ve **Cümle eşleşirse çal**’ı seç. **Mesaj**’ı **Kestirme Girişi** yap. Yalnızca göndericileri kısıtlıyorsan: oka dokun ve **Gönderen**’i **Kestirme Girişi → Gönderen** yap.',
         '**Eğer** ekle, koşulu **doğru** yap ve içine %100 olarak **Ses Düzeyini Ayarla** ekle. Ses düzeyini yalnızca cümlen değiştirir.',
-        '**Bitti**’ye dokun, sonra kendine herhangi bir mesaj gönder: aşağıdaki kontrol yeşile döner.',
+        `**Bitti**’ye dokun, sonra kendine **${word}** içeren bir mesaj gönder: aşağıdaki kontrol yeşile döner.`,
       ],
       openShortcuts: 'Kestirmeler’i aç',
       waiting: 'İlk otomasyon çalışması bekleniyor…',
@@ -384,7 +385,7 @@ const tr: Messages = {
       '🔒 Sözle değil, tasarımla gizli',
       'SMS Ring’in internet izni yok. İşletim sistemi her bağlantıyı kendisi engeller; verilerin telefonundan çıkamaz. Hesap, reklam, analiz ya da sunucu yok.',
       '',
-      { ios: 'KURULUM (ÖNEMLİ!): Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, uygulamanın gelen mesajı okuyabilmesi için oluşturman gereken bir Kestirmeler otomasyonunu 1 dakikada kurmanda sana rehberlik eder.' },
+      { ios: 'KURULUM (ÖNEMLİ!): Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, uygulamanın gelen mesajı okuyabilmesi için oluşturman gereken bir Kestirmeler otomasyonunu 1 dakikada kurmanda sana rehberlik eder. Ayrıca telefonu çaldırması gereken her mesaj “çal” sözcüğünü de içermelidir. SMS Ring, mesajı kopyaladığında veya paylaştığında bunu kendisi ekler.' },
       { ios: '' },
       '👀 Açık kaynak: Kendin doğrulayabilirsin',
       'Kodun her satırı herkese açık, böylece GitHub’da inceleyebilirsin',

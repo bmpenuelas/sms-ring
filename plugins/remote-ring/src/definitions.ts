@@ -9,7 +9,7 @@ export interface RingConfig {
   version: 1
   /** Master switch. When false, nothing rings no matter what arrives. */
   armed: boolean
-  /** The secret phrase. A message must be exactly this; only spaces, capitals and accents may differ. */
+  /** The secret phrase. A message must be this phrase; spaces, capitals, accents, punctuation, quotes and (iPhone) a "ring" word may differ. */
   passphrase: string
   /** Allowed senders. Empty = anyone who knows the passphrase. */
   senders: string[]

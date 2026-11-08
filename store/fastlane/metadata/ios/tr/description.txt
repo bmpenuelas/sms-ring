@@ -11,7 +11,7 @@ Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses ç
 ► Sözle değil, tasarımla gizli
 SMS Ring’in internet izni yok. İşletim sistemi her bağlantıyı kendisi engeller; verilerin telefonundan çıkamaz. Hesap, reklam, analiz ya da sunucu yok.
 
-KURULUM (ÖNEMLİ!): Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, uygulamanın gelen mesajı okuyabilmesi için oluşturman gereken bir Kestirmeler otomasyonunu 1 dakikada kurmanda sana rehberlik eder.
+KURULUM (ÖNEMLİ!): Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, uygulamanın gelen mesajı okuyabilmesi için oluşturman gereken bir Kestirmeler otomasyonunu 1 dakikada kurmanda sana rehberlik eder. Ayrıca telefonu çaldırması gereken her mesaj “çal” sözcüğünü de içermelidir. SMS Ring, mesajı kopyaladığında veya paylaştığında bunu kendisi ekler.
 
 ► Açık kaynak: Kendin doğrulayabilirsin
 Kodun her satırı herkese açık, böylece GitHub’da inceleyebilirsin

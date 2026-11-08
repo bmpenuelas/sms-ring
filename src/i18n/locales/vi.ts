@@ -41,7 +41,7 @@ const vi: Messages = {
     passphrase: {
       title: 'Câu bí mật',
       exactly: 'Nhắn chính xác điều này để đổ chuông',
-      hint: 'Nhắn chính xác những từ này tới máy này để nó đổ chuông. Chỉ khoảng trắng, chữ hoa và dấu được phép khác.',
+      hint: 'Nhắn chính xác những từ này tới máy này để nó đổ chuông. Khoảng trắng, chữ hoa, dấu và dấu câu đều không quan trọng.',
       shuffle: 'Từ mới',
       words: (n: number) => `${n} từ`,
       wordCount: 'Số từ',
@@ -305,13 +305,14 @@ const vi: Messages = {
     ios: {
       setupTitle: 'Kết nối Phím tắt của Apple',
       why: 'iPhone không cho ứng dụng nào đọc tin nhắn của bạn, kể cả chúng tôi. Thay vào đó, ứng dụng Phím tắt của Apple chuyển từng tin nhắn mới cho SMS Ring, kiểm tra trên điện thoại này rồi quên ngay.',
-      steps: [
-        'Mở **Phím tắt** → **Tự động hóa** → **Tự động hóa mới** → **Tin nhắn**.',
-        'Giữ nguyên **Người gửi** và **Tin nhắn chứa** để chạy với mọi tin nhắn. Chọn **Chạy ngay lập tức**, tắt **Thông báo khi chạy** rồi chạm **Tiếp**.',
-        'Chạm **Tự động hóa trống mới**, thêm **Đổ chuông nếu khớp câu** (SMS Ring) và đặt Tin nhắn là **Đầu vào phím tắt**.',
-        'Tùy chọn: chạm mũi tên và đặt Người gửi là **Đầu vào phím tắt → Người gửi**.',
+      ringWord: 'reo',
+      wordNote: 'Mọi tin nhắn muốn làm điện thoại này đổ chuông đều phải chứa từ này, tức “ring” trong ngôn ngữ của bạn. Tin nhắn bạn sao chép hoặc chia sẻ từ SMS Ring đã bắt đầu bằng từ đó.',
+      steps: (word: string) => [
+        'Mở **Phím tắt** → **Tự động hóa** → **+** → **Tạo mục tự động hóa cá nhân** (nếu có) → **Tin nhắn**.',
+        `Để trống **Người gửi** và nhập **${word}** vào **Tin nhắn có chứa**. Cho nó chạy mà không hỏi: chọn **Chạy ngay lập tức** (trên bản cũ, tắt **Hỏi trước khi chạy** rồi chạm **Không hỏi**). Nếu thấy **Thông báo khi chạy**, hãy tắt. Sau đó chạm **Tiếp**.`,
+        'Chạm **Thêm tác vụ**, tìm **SMS Ring** và chọn **Đổ chuông nếu khớp câu**. Đặt **Tin nhắn** là **Đầu vào phím tắt**. Chỉ khi bạn giới hạn người gửi: chạm mũi tên và đặt **Người gửi** là **Đầu vào phím tắt → Người gửi**.',
         'Thêm **Nếu** với điều kiện **là đúng**, rồi thêm **Đặt âm lượng** ở 100% vào bên trong. Chỉ câu bí mật mới đổi âm lượng.',
-        'Chạm **Xong**, rồi tự nhắn cho mình tin bất kỳ: ô kiểm tra bên dưới sẽ chuyển xanh.',
+        `Chạm **Xong**, rồi tự nhắn cho mình một tin có **${word}**: ô kiểm tra bên dưới sẽ chuyển xanh.`,
       ],
       openShortcuts: 'Mở Phím tắt',
       waiting: 'Đang chờ lần chạy đầu tiên…',
@@ -384,7 +385,7 @@ const vi: Messages = {
       '🔒 Riêng tư từ thiết kế, không phải lời hứa',
       'SMS Ring không có quyền internet. Chính hệ điều hành chặn mọi kết nối, nên dữ liệu của bạn không thể rời khỏi máy. Không tài khoản, không quảng cáo, không phân tích, không máy chủ.',
       '',
-      { ios: 'THIẾT LẬP (QUAN TRỌNG!): Apple không cho ứng dụng đọc tin nhắn. SMS Ring hướng dẫn bạn tạo trong 1 phút một tự động hóa Phím tắt mà bạn phải thiết lập để ứng dụng có thể đọc tin nhắn đến.' },
+      { ios: 'THIẾT LẬP (QUAN TRỌNG!): Apple không cho ứng dụng đọc tin nhắn. SMS Ring hướng dẫn bạn tạo trong 1 phút một tự động hóa Phím tắt mà bạn phải thiết lập để ứng dụng có thể đọc tin nhắn đến. Ngoài ra, mọi tin nhắn muốn làm điện thoại đổ chuông đều phải chứa từ “reo”. SMS Ring tự thêm từ này khi bạn sao chép hoặc chia sẻ tin nhắn.' },
       { ios: '' },
       '👀 Mã nguồn mở: Bạn có thể tự kiểm chứng',
       'Mọi dòng mã đều công khai để bạn có thể xem xét trên GitHub',

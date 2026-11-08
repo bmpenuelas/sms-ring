@@ -32,11 +32,15 @@ public enum MessageMatcher {
         }
     }
 
-    /// Matches JS `[\s\p{Z}\p{Cf}]` and Java `[\s\p{Z}\p{Cf}]`.
-    private static func isInvisible(_ s: Unicode.Scalar) -> Bool {
+    /// Matches JS and Java `[\s\p{Z}\p{Cf}\p{P}\p{S}]`: whitespace, separators, invisible characters,
+    /// all punctuation (every kind of quote) and symbols.
+    private static func isIgnored(_ s: Unicode.Scalar) -> Bool {
         if (9...13).contains(s.value) || s.value == 32 { return true }
         switch s.properties.generalCategory {
-        case .spaceSeparator, .lineSeparator, .paragraphSeparator, .format: return true
+        case .spaceSeparator, .lineSeparator, .paragraphSeparator, .format,
+             .connectorPunctuation, .dashPunctuation, .openPunctuation, .closePunctuation,
+             .initialPunctuation, .finalPunctuation, .otherPunctuation,
+             .mathSymbol, .currencySymbol, .modifierSymbol, .otherSymbol: return true
         default: return false
         }
     }
@@ -45,26 +49,36 @@ public enum MessageMatcher {
         text.lowercased().decomposedStringWithCompatibilityMapping.unicodeScalars
     }
 
-    /// Lowercase, NFKD, no accents, no whitespace. Punctuation is kept.
+    /// Lowercase, NFKD, no accents, then no spaces, separators, quotes or other punctuation.
     public static func normalizePhrase(_ text: String) -> String {
         var out = String.UnicodeScalarView()
-        for s in fold(text) where !isMark(s) && !isInvisible(s) { out.append(s) }
+        for s in fold(text) where !isMark(s) && !isIgnored(s) { out.append(s) }
         return String(out)
     }
 
-    /// Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets.
-    private static let quotes: Set<UInt32> = [
-        0x22, 0x27, 0x60, 0x201C, 0x201D, 0x201E, 0x201F, 0x2018, 0x2019, 0x201A, 0x201B,
-        0xAB, 0xBB, 0x2039, 0x203A, 0x300C, 0x300D, 0x300E, 0x300F, 0x301D, 0x301E, 0x301F,
+    /// "ring" in every app language, the word an iPhone user types in the Shortcuts automation.
+    /// Allowed before or after the passphrase. Same list as RING_WORDS in src/core/matcher.ts.
+    public static let ringWords = [
+        "ring", "suena", "toca", "sonne", "klingeln", "squilla", "bel", "dzwoni", "звонок", "çal",
+        "رنين", "रिंग", "เรียกเข้า", "reo", "dering", "着信", "벨", "响铃", "響鈴",
     ]
 
-    /// Drops one pair of quotes wrapping an already normalized message.
-    public static func unquote(_ normalized: String) -> String {
-        let scalars = Array(normalized.unicodeScalars)
-        guard scalars.count >= 2, quotes.contains(scalars[0].value), quotes.contains(scalars[scalars.count - 1].value) else { return normalized }
-        var out = String.UnicodeScalarView()
-        out.append(contentsOf: scalars[1..<(scalars.count - 1)])
-        return String(out)
+    private static let normalizedRingWords: [String] = {
+        var seen = Set<String>()
+        return ringWords.map(normalizePhrase).filter { !$0.isEmpty && seen.insert($0).inserted }
+    }()
+
+    /// The message as is, and without a ring word at its start or at its end (UTF-16 units, like JS and Java).
+    private static func withoutRingWord(_ message: String) -> [String] {
+        let units = Array(message.utf16)
+        var candidates = [message]
+        for word in normalizedRingWords {
+            let w = Array(word.utf16)
+            guard units.count > w.count else { continue }
+            if Array(units[..<w.count]) == w { candidates.append(String(decoding: units[w.count...], as: UTF16.self)) }
+            if Array(units[(units.count - w.count)...]) == w { candidates.append(String(decoding: units[..<(units.count - w.count)], as: UTF16.self)) }
+        }
+        return candidates
     }
 
     /// Letters and digits only (alphanumeric sender IDs).
@@ -114,32 +128,19 @@ public enum MessageMatcher {
         Array(a.utf16) == Array(b.utf16)
     }
 
-    /// Each part and the whole message may have one wrapping quote pair.
-    private static func matchesParts(_ message: String, _ first: String, _ second: String) -> Bool {
-        for candidate in [message, unquote(message)] {
-            let units = Array(candidate.utf16)
-            for length in [first.utf16.count, first.utf16.count + 2] where length <= units.count {
-                let left = String(decoding: units[..<length], as: UTF16.self)
-                let right = String(decoding: units[length...], as: UTF16.self)
-                if (sameUnits(left, first) || sameUnits(unquote(left), first)) &&
-                    (sameUnits(right, second) || sameUnits(unquote(right), second)) { return true }
-            }
-        }
-        return false
-    }
-
-    /// The whole message must be the passphrase, optionally with the enabled vibration modifier.
+    /// The whole message must be the passphrase (spaces, capitals, accents, punctuation, quotes and a ring word may
+    /// differ), optionally with the enabled vibration modifier.
     /// `sender == nil` means the trigger could not tell (a Shortcuts automation
     /// without the Sender variable): only allowed when no senders are configured.
     public static func evaluate(_ config: RingConfig, body: String, sender: String?) -> Verdict {
         let phrase = normalizePhrase(config.passphrase)
         if phrase.utf16.count < minNormalizedPassphrase { return .weakPassphrase }
         // Code-unit comparison, like === in JS and String.equals in Java.
-        let message = normalizePhrase(body)
-        let regular = sameUnits(message, phrase) || sameUnits(unquote(message), phrase)
+        let candidates = withoutRingWord(normalizePhrase(body))
+        let regular = candidates.contains { sameUnits($0, phrase) }
         let modifier = normalizePhrase(config.vibrateOnlyPhrase)
         let vibrateOnly = !regular && config.vibrateOnlyEnabled && !modifier.isEmpty &&
-            (matchesParts(message, phrase, modifier) || matchesParts(message, modifier, phrase))
+            candidates.contains { sameUnits($0, phrase + modifier) || sameUnits($0, modifier + phrase) }
         if !regular && !vibrateOnly { return .noPassphrase }
         let allowed = config.senders.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
         if !allowed.isEmpty {

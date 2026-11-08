@@ -11,7 +11,7 @@ Wyszukiwarki telefonów online mogą zadzwonić tylko na telefon połączony z i
 ► Prywatność z założenia, nie z obietnicy
 SMS Ring nie ma uprawnienia do internetu. Sam system blokuje każde połączenie, więc Twoje dane nie mogą opuścić telefonu. Bez kont, reklam, analityki i serwerów.
 
-KONFIGURACJA (WAŻNE!): Apple nie pozwala aplikacjom czytać wiadomości. SMS Ring pomoże Ci w 1 minutę utworzyć automatyzację w Skrótach, którą musisz skonfigurować, aby aplikacja mogła odczytać przychodzącą wiadomość.
+KONFIGURACJA (WAŻNE!): Apple nie pozwala aplikacjom czytać wiadomości. SMS Ring pomoże Ci w 1 minutę utworzyć automatyzację w Skrótach, którą musisz skonfigurować, aby aplikacja mogła odczytać przychodzącą wiadomość. Dodatkowo każda wiadomość, która ma sprawić, by telefon zadzwonił, musi zawierać słowo „dzwoni”. SMS Ring dodaje je, gdy kopiujesz lub udostępniasz wiadomość.
 
 ► Otwarty kod: Możesz sprawdzić samodzielnie
 Każda linia kodu jest publiczna, więc możesz ją przejrzeć na GitHubie

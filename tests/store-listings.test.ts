@@ -136,6 +136,6 @@ test('English listings contain the requested replacement wording', async () => {
     '💬 Also works with WhatsApp, Messenger, Telegram, Signal...',
   ))
   assert.ok(storeDescription(messages.store.description, 'ios').split('\n').includes(
-    'SETUP (IMPORTANT!): Apple doesn’t let apps read messages. SMS Ring guides you through a 1-minute Shortcuts automation that you have to create for the app to be able to read the incoming message.',
+    'SETUP (IMPORTANT!): Apple doesn’t let apps read messages. SMS Ring guides you through a 1-minute Shortcuts automation that you have to create for the app to be able to read the incoming message. Every text that should ring your phone must also contain the word “ring”. SMS Ring adds it when you copy or share your message.',
   ))
 })

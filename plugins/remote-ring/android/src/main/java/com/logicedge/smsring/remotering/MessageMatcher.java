@@ -1,8 +1,11 @@
 package com.logicedge.smsring.remotering;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -18,7 +21,8 @@ public final class MessageMatcher {
     public static final int SENDER_SUFFIX_DIGITS = 9;
 
     private static final Pattern MARKS = Pattern.compile("\\p{M}+");
-    private static final Pattern INVISIBLE = Pattern.compile("[\\s\\p{Z}\\p{Cf}]+");
+    /** Whitespace, separators, invisible characters, all punctuation (every kind of quote) and symbols. */
+    private static final Pattern IGNORED = Pattern.compile("[\\s\\p{Z}\\p{Cf}\\p{P}\\p{S}]+");
     private static final Pattern NOT_LETTER_OR_DIGIT = Pattern.compile("[^\\p{L}\\p{N}]+");
     private static final Pattern NON_DIGITS = Pattern.compile("\\D+");
     private static final Pattern ANY_LETTER = Pattern.compile("\\p{L}");
@@ -31,22 +35,40 @@ public final class MessageMatcher {
         return MARKS.matcher(Normalizer.normalize(lower, Normalizer.Form.NFKD)).replaceAll("");
     }
 
-    /** Lowercase, NFKD, no accents, no whitespace. Punctuation is kept. */
+    /** Lowercase, NFKD, no accents, then no spaces, separators, quotes or other punctuation. */
     public static String normalizePhrase(String text) {
         if (text == null) return "";
-        return INVISIBLE.matcher(fold(text)).replaceAll("");
+        return IGNORED.matcher(fold(text)).replaceAll("");
     }
 
-    /** Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets. */
-    private static final String QUOTES = "\"'`\u201C\u201D\u201E\u201F\u2018\u2019\u201A\u201B\u00AB\u00BB\u2039\u203A\u300C\u300D\u300E\u300F\u301D\u301E\u301F";
+    /**
+     * "ring" in every app language, the word an iPhone user types in the Shortcuts automation.
+     * Allowed before or after the passphrase. Same list as RING_WORDS in src/core/matcher.ts.
+     */
+    public static final String[] RING_WORDS = {
+        "ring", "suena", "toca", "sonne", "klingeln", "squilla", "bel", "dzwoni", "звонок", "çal",
+        "رنين", "रिंग", "เรียกเข้า", "reo", "dering", "着信", "벨", "响铃", "響鈴",
+    };
 
-    /** Drops one pair of quotes wrapping an already normalized message. */
-    public static String unquote(String normalized) {
-        int last = normalized.length() - 1;
-        if (last >= 1 && QUOTES.indexOf(normalized.charAt(0)) >= 0 && QUOTES.indexOf(normalized.charAt(last)) >= 0) {
-            return normalized.substring(1, last);
+    private static final Set<String> NORMALIZED_RING_WORDS = new LinkedHashSet<>();
+
+    static {
+        for (String word : RING_WORDS) {
+            String normalized = normalizePhrase(word);
+            if (!normalized.isEmpty()) NORMALIZED_RING_WORDS.add(normalized);
         }
-        return normalized;
+    }
+
+    /** The message as is, and without a ring word at its start or at its end. */
+    private static List<String> withoutRingWord(String message) {
+        List<String> candidates = new ArrayList<>();
+        candidates.add(message);
+        for (String word : NORMALIZED_RING_WORDS) {
+            if (message.length() <= word.length()) continue;
+            if (message.startsWith(word)) candidates.add(message.substring(word.length()));
+            if (message.endsWith(word)) candidates.add(message.substring(0, message.length() - word.length()));
+        }
+        return candidates;
     }
 
     /** Letters and digits only (alphanumeric sender IDs). */
@@ -79,34 +101,27 @@ public final class MessageMatcher {
         return "•••• " + s.substring(s.length() - 4);
     }
 
-    /** The whole message must be the passphrase; only spaces, capitals, accents and wrapping quotes may differ. */
+    /** The whole message must be the passphrase; spaces, capitals, accents, punctuation, quotes and a ring word may differ. */
     public static Verdict evaluate(boolean armed, String passphrase, List<String> senders, String body, String sender) {
         return evaluate(armed, passphrase, senders, body, sender, false, "");
-    }
-
-    /** Whole message or individually quoted parts, with an optional outer quote pair. */
-    private static boolean matchesParts(String message, String first, String second) {
-        for (String candidate : new String[] {message, unquote(message)}) {
-            for (int length : new int[] {first.length(), first.length() + 2}) {
-                if (length > candidate.length()) continue;
-                String left = candidate.substring(0, length);
-                String right = candidate.substring(length);
-                if ((left.equals(first) || unquote(left).equals(first)) &&
-                    (right.equals(second) || unquote(right).equals(second))) return true;
-            }
-        }
-        return false;
     }
 
     public static Verdict evaluate(boolean armed, String passphrase, List<String> senders, String body, String sender,
                                    boolean vibrateOnlyEnabled, String vibrateOnlyPhrase) {
         String phrase = normalizePhrase(passphrase);
         if (phrase.length() < MIN_NORMALIZED_PASSPHRASE) return Verdict.WEAK_PASSPHRASE;
-        String message = normalizePhrase(body);
-        boolean regular = message.equals(phrase) || unquote(message).equals(phrase);
+        List<String> candidates = withoutRingWord(normalizePhrase(body));
+        boolean regular = candidates.contains(phrase);
         String modifier = normalizePhrase(vibrateOnlyPhrase);
-        boolean vibrateOnly = !regular && vibrateOnlyEnabled && !modifier.isEmpty() &&
-            (matchesParts(message, phrase, modifier) || matchesParts(message, modifier, phrase));
+        boolean vibrateOnly = false;
+        if (!regular && vibrateOnlyEnabled && !modifier.isEmpty()) {
+            for (String candidate : candidates) {
+                if (candidate.equals(phrase + modifier) || candidate.equals(modifier + phrase)) {
+                    vibrateOnly = true;
+                    break;
+                }
+            }
+        }
         if (!regular && !vibrateOnly) return Verdict.NO_PASSPHRASE;
         boolean anyAllowed = false;
         boolean matched = false;

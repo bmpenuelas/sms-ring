@@ -10,14 +10,20 @@ Implemented three times, kept identical by shared test vectors (`plugins/remote-
 
 ## Rule: the whole message must be the passphrase
 
-Only **spaces, capitals, accents/tildes and one pair of wrapping quotes** may differ. Nothing else may be added, removed or reordered: no greeting, no punctuation.
+Only the **letters and numbers** are compared. Spaces, capitals, accents/tildes, every kind of **separator**
+(dashes, commas, full stops, slashes, underscores, invisible characters…) and every kind of **quote**
+(`"` `'` `` ` `` `“ ” „ ‘ ’` `« » ‹ ›` `「 」 『 』`…, on one side only, on both, mismatched or repeated) are
+ignored. What is *not* ignored: extra words, a different order, or any letter/number that is not part of the phrase.
+On iPhone one extra word is also allowed: the **ring word** (below).
 
 | Phrase `blue tiger moon` | Rings? |
 |---|---|
 | `Blue tiger MOON`, `bluetigermoon`, `  blue  tiger moon ⏎` | ✅ |
 | `"blue tiger moon"`, `“Blue tiger moon”`, `« blue tiger moon »`, `「blue tiger moon」` | ✅ |
-| `blue tiger moon!`, `Hey blue tiger moon`, `blue-tiger-moon`, `moon tiger blue` | ❌ |
-| `"blue tiger moon` (one side only), `""blue tiger moon""` (two pairs), `"blue tiger moon".` | ❌ |
+| `"blue tiger moon` (one side only), `«blue tiger moon“` (mismatched), `""blue tiger moon""` | ✅ |
+| `blue-tiger-moon`, `blue, tiger. moon!`, `blue_tiger/moon` | ✅ |
+| `ring blue tiger moon`, `blue tiger moon ring`, `Ring: “blue-tiger-moon”`, `ringbluetigermoon` | ✅ |
+| `Hey blue tiger moon`, `moon tiger blue`, `blue tiger moon 2`, `ring ring blue tiger moon` | ❌ |
 | Phrase `piña año`, message `pina ano` | ✅ |
 
 ## `normalizePhrase`
@@ -25,11 +31,15 @@ Only **spaces, capitals, accents/tildes and one pair of wrapping quotes** may di
 1. lowercase (locale-independent)
 2. Unicode **NFKD** (full-width → ASCII, accents detached)
 3. remove combining marks (`\p{M}`): accents, tildes, dieresis…
-4. remove whitespace, separators and invisible format characters (`[\s\p{Z}\p{Cf}]`)
+4. remove whitespace, separators, invisible format characters, **all punctuation (quotes included) and symbols** (`[\s\p{Z}\p{Cf}\p{P}\p{S}]`)
 
-The message rings when `normalizePhrase(message) === normalizePhrase(passphrase)` or, after dropping one wrapping quote pair with `unquote`, `unquote(normalizePhrase(message)) === normalizePhrase(passphrase)` (UTF-16 code-unit equality on all platforms).
+There is no separate quote handling: every quote mark is punctuation (or a modifier symbol such as `` ` ``), so it disappears in step 4, wherever it is. The message rings when `normalizePhrase(message) === normalizePhrase(passphrase)` (UTF-16 code-unit equality on all platforms), after the optional ring word below is removed. Both sides go through the same normalization, so a passphrase containing punctuation still matches. Normalized passphrases shorter than **6** units never match (`weak-passphrase`).
 
-`unquote` works on the normalized text, so whitespace between a quote and the phrase doesn't matter. It removes the first and last character only when both are quote marks: `"` `'` `` ` `` `“ ” „ ‟ ‘ ’ ‚ ‛` `« » ‹ ›` `「 」 『 』` `〝 〞 〟` (full-width `＂ ＇` fold to `" '` first). Quotes are only stripped from the message: a passphrase that itself starts and ends with quotes still matches when typed exactly as it is. Normalized passphrases shorter than **6** units never match (`weak-passphrase`).
+## The ring word (iPhone)
+
+iOS refuses to create a *Message* automation when both **Sender** and **Message Contains** are empty, and the passphrase must never be stored in Shortcuts. So the iPhone setup tells the user to type the word **“ring” in their language** in *Message Contains*, and the Copy/Share helper message (`buildPassphraseInstructions`, only when `platform === 'ios'`) starts with that word: `ring blue tiger moon`.
+
+The localized word is `ios.ringWord` in each locale. The matcher accepts any of them (`RING_WORDS` in `matcher.ts` and `MessageMatcher.java`, `ringWords` in `MessageMatcher.swift`; a test keeps the three lists and the locales identical), at the **start or at the end** of the normalized message, once, with or without separators. So changing the app language later does not break messages already built with another language's word, and Android, which needs no word, accepts it too. `ring blue tiger moon vibration only`, `vibration only blue tiger moon ring` etc. also work.
 
 ## Senders
 
@@ -63,20 +73,18 @@ For passphrase `blue tiger moon` and modifier `vibration only`, these all reques
 | Form | Examples |
 |---|---|
 | Modifier after / before | `blue tiger moon vibration only`, `vibration only blue tiger moon` |
-| Entire message quoted | `"blue tiger moon vibration only"`, `“vibration only blue tiger moon”` |
-| Each part quoted | `"blue tiger moon" "vibration only"`, `“vibration only” «blue tiger moon»` |
-| Only one part quoted | `"blue tiger moon" vibration only`, `vibration only "blue tiger moon"` |
-| Outer quotes plus quoted parts | `「“blue tiger moon” «vibration only»」` |
+| Quoted in any way | `"blue tiger moon vibration only"`, `“vibration only” «blue tiger moon»`, `"blue tiger moon" vibration only`, `"blue tiger moon vibration only` |
+| Separators | `blue tiger moon, vibration-only!`, `vibration only: blue tiger moon` |
+| With the ring word | `ring blue tiger moon vibration only`, `vibration only blue tiger moon ring` |
 | Normalization | `VÍBRATION ONLY  BLÚE TÍGER MÓÓN`, `bluetigermoonvibrationonly` |
 
-All forms work in either order, with the same normalization and quote characters
-listed above. Each complete part can have one quote pair, and the complete message
-can have one outer pair. Quotes *inside* a configured phrase remain literal; this
-does not strip arbitrary punctuation or quotes from the text.
+Because quotes and separators are dropped before comparing, the phrase and the
+modifier may be in either order, and quotes inside a configured phrase do not
+matter either.
 
 The passphrase **alone still rings normally**. The modifier alone never triggers
-anything. Extra text, extra punctuation, partial words, repeated modifiers,
-one-sided quotes or a modifier inserted *inside* the passphrase do not match.
+anything. Extra words, partial words, repeated modifiers or a modifier inserted *inside*
+the passphrase do not match.
 The master switch, minimum passphrase length and sender filter still apply.
 When the feature is disabled, messages containing the extra modifier do not match.
 
@@ -89,13 +97,13 @@ vibration; vibration availability and continued execution depend on the device's
 haptics/background restrictions. No silent audio is played to keep iOS awake.
 Other apps' own incoming-message sounds are outside SMS Ring's control.
 
-The shared fixture includes positive/negative modifier cases, quoting variations,
+The shared fixture includes positive/negative modifier cases, quote and separator variations, ring-word cases in every language,
 custom/localized modifiers, Unicode normalization and sender/armed/weak-phrase
 checks, run by the TypeScript, Android and iOS matcher tests.
 
 ## Verdicts
 
-`ring`, `vibrate-only`, `disarmed`, `weak-passphrase`, `no-passphrase` (the message is not exactly the phrase or enabled modifier combination), `sender-not-allowed`; shown live in the *Try a message* sheet.
+`ring`, `vibrate-only`, `disarmed`, `weak-passphrase`, `no-passphrase` (the message is not the phrase, or the enabled modifier combination, once separators, quotes and an optional ring word are ignored), `sender-not-allowed`; shown live in the *Try a message* sheet.
 
 ## Passphrase generation
 

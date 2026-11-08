@@ -11,7 +11,7 @@ import StrengthMeter from '../StrengthMeter.vue'
 import PassphraseShareActions from '../PassphraseShareActions.vue'
 
 defineEmits<{ close: [] }>()
-const { state, actions, prefs } = useRingApp()
+const { state, actions, prefs, platform } = useRingApp()
 
 const mode = ref<'words' | 'custom'>(passphraseStartMode.value ?? (prefs.customPassphrase ? 'custom' : 'words'))
 const editing = passphraseStartMode.value === 'custom'
@@ -32,6 +32,7 @@ function switchMode(next: 'words' | 'custom') {
 <template>
   <BottomSheet :title="t.passphrase.title" @close="$emit('close')">
     <p class="hint ui-muted">{{ t.passphrase.hint }}</p>
+    <p v-if="platform === 'ios'" class="hint ui-muted">{{ t.ios.wordNote }}</p>
 
     <div class="seg" role="tablist">
       <button role="tab" :aria-selected="mode === 'words'" :class="{ on: mode === 'words' }" @click="switchMode('words')">

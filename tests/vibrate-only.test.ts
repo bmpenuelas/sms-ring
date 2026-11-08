@@ -23,10 +23,10 @@ test('every locale supplies a working vibration-only default and translated UI c
   }
 })
 
-test('quotes remain literal inside the configured parts, including surrogate pairs', () => {
+test('quotes and punctuation are ignored in the configured parts, including surrogate pairs', () => {
   const config = { armed: true, passphrase: 'find “my” 📱', senders: [], vibrateOnlyEnabled: true, vibrateOnlyPhrase: 'hush “now”' }
-  for (const body of ['find “my” 📱 hush “now”', '“hush “now”” “find “my” 📱”', '「find “my” 📱 hush “now”」']) {
+  for (const body of ['find “my” 📱 hush “now”', '“hush “now”” “find “my” 📱”', '「find “my” 📱 hush “now」', 'find my 📱 hush now', 'hush, now - FIND MY!']) {
     assert.equal(evaluateMessage(config, body, ''), 'vibrate-only', body)
   }
-  assert.equal(evaluateMessage(config, 'find my 📱 hush now', ''), 'no-passphrase')
+  assert.equal(evaluateMessage(config, 'find my hush now please', ''), 'no-passphrase')
 })

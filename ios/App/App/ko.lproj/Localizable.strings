@@ -7,7 +7,7 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "메시지에 SMS Ring 문구가 있으면 휴대폰을 최대 볼륨으로 울려요. 이 기기에서 확인하며 아무것도 전송하지 않아요.";
 "Message" = "메시지";
 "The message text, usually Shortcut Input." = "메시지 본문, 보통 단축어 입력이에요.";
-"Sender" = "발신자";
+"Sender" = "보낸 사람";
 "Optional: who sent it, required if you allowed only some senders." = "선택: 보낸 사람. 일부 발신자만 허용했다면 필요해요.";
 "Stop ringing" = "울림 중지";
 "Stops SMS Ring if it is ringing." = "SMS Ring이 울리고 있으면 멈춰요.";

@@ -41,7 +41,7 @@ const de: Messages = {
     passphrase: {
       title: 'Geheimsatz',
       exactly: 'Genau das schicken, damit es klingelt',
-      hint: 'Schick genau diese Wörter an dieses Handy, damit es klingelt. Nur Leerzeichen, Groß-/Kleinschreibung und Akzente dürfen abweichen.',
+      hint: 'Schick genau diese Wörter an dieses Handy, damit es klingelt. Leerzeichen, Groß-/Kleinschreibung, Akzente und Satzzeichen spielen keine Rolle.',
       shuffle: 'Neue Wörter',
       words: (n: number) => `${n} Wörter`,
       wordCount: 'Anzahl der Wörter',
@@ -305,13 +305,14 @@ const de: Messages = {
     ios: {
       setupTitle: 'Apple Kurzbefehle verbinden',
       why: 'Das iPhone lässt keine App deine Nachrichten lesen, auch uns nicht. Stattdessen gibt Apples eigene Kurzbefehle-App jede neue Nachricht an SMS Ring weiter, das sie auf diesem Handy prüft und vergisst.',
-      steps: [
-        'Öffne **Kurzbefehle** → **Automation** → **Neue Automation** → **Nachricht**.',
-        'Lass **Absender** und **Nachricht enthält** unverändert, damit es bei jeder Nachricht läuft. Wähle **Sofort ausführen**, schalte **Bei Ausführung benachrichtigen** aus und tippe auf **Weiter**.',
-        'Tippe auf **Neue leere Automation**, füge **Klingeln, wenn Geheimsatz passt** (SMS Ring) hinzu und setze Nachricht auf **Kurzbefehleingabe**.',
-        'Optional: Tippe auf den Pfeil und setze Absender auf **Kurzbefehleingabe → Absender**.',
+      ringWord: 'klingeln',
+      wordNote: 'Jede Nachricht, die dieses Handy klingeln lassen soll, muss dieses Wort enthalten, „ring“ in deiner Sprache. Die Nachricht, die du in SMS Ring kopierst oder teilst, beginnt schon damit.',
+      steps: (word: string) => [
+        'Öffne **Kurzbefehle** → **Automation** → **+** → **Persönliche Automation erstellen** (falls angezeigt) → **Nachricht**.',
+        `Lass **Absender** leer und gib bei **Nachricht enthält** **${word}** ein. Sorge dafür, dass sie ohne Nachfrage läuft: Wähle **Sofort ausführen** (bei älteren Versionen deaktiviere **Vor Ausführen bestätigen** und tippe auf **Nicht erneut fragen**). Wenn **Bei Ausführung benachrichtigen** angezeigt wird, schalte es aus. Tippe dann auf **Weiter**.`,
+        'Tippe auf **Aktion hinzufügen**, suche nach **SMS Ring** und wähle **Klingeln, wenn Geheimsatz passt**. Setze **Nachricht** auf **Kurzbefehlseingabe**. Nur wenn du Absender einschränkst: Tippe auf den Pfeil und setze **Absender** auf **Kurzbefehlseingabe → Absender**.',
         'Füge **Wenn** mit der Bedingung **ist wahr** hinzu und darin **Lautstärke festlegen** auf 100 %. Nur dein Geheimsatz ändert die Lautstärke.',
-        'Tippe auf **Fertig** und schick dir dann eine beliebige Nachricht: Die Prüfung unten wird grün.',
+        `Tippe auf **Fertig** und schick dir dann eine Nachricht mit **${word}**: Die Prüfung unten wird grün.`,
       ],
       openShortcuts: 'Kurzbefehle öffnen',
       waiting: 'Warte auf den ersten Durchlauf der Automation …',
@@ -384,7 +385,7 @@ const de: Messages = {
       '🔒 Privat durch Technik, nicht durch Versprechen',
       'SMS Ring hat keine Internetberechtigung. Das Betriebssystem selbst blockiert jede Verbindung, deine Daten können dein Handy also gar nicht verlassen. Keine Konten, keine Werbung, keine Analysen, keine Server.',
       '',
-      { ios: 'EINRICHTUNG (WICHTIG!): Apple erlaubt Apps nicht, Nachrichten zu lesen. SMS Ring führt dich in 1 Minute durch die Erstellung einer Automation in Kurzbefehle, die du einrichten musst, damit die App die eingehende Nachricht lesen kann.' },
+      { ios: 'EINRICHTUNG (WICHTIG!): Apple erlaubt Apps nicht, Nachrichten zu lesen. SMS Ring führt dich in 1 Minute durch die Erstellung einer Automation in Kurzbefehle, die du einrichten musst, damit die App die eingehende Nachricht lesen kann. Außerdem muss jede Nachricht, die dein Handy klingeln lassen soll, das Wort „klingeln“ enthalten. SMS Ring fügt es beim Kopieren oder Teilen der Nachricht automatisch hinzu.' },
       { ios: '' },
       '👀 Open Source: Du kannst es selbst überprüfen',
       'Jede Codezeile ist öffentlich, damit du sie auf GitHub einsehen kannst',

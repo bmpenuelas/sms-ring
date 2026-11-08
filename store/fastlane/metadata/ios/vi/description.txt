@@ -11,7 +11,7 @@ Dịch vụ tìm điện thoại trực tuyến chỉ đổ chuông được má
 ► Riêng tư từ thiết kế, không phải lời hứa
 SMS Ring không có quyền internet. Chính hệ điều hành chặn mọi kết nối, nên dữ liệu của bạn không thể rời khỏi máy. Không tài khoản, không quảng cáo, không phân tích, không máy chủ.
 
-THIẾT LẬP (QUAN TRỌNG!): Apple không cho ứng dụng đọc tin nhắn. SMS Ring hướng dẫn bạn tạo trong 1 phút một tự động hóa Phím tắt mà bạn phải thiết lập để ứng dụng có thể đọc tin nhắn đến.
+THIẾT LẬP (QUAN TRỌNG!): Apple không cho ứng dụng đọc tin nhắn. SMS Ring hướng dẫn bạn tạo trong 1 phút một tự động hóa Phím tắt mà bạn phải thiết lập để ứng dụng có thể đọc tin nhắn đến. Ngoài ra, mọi tin nhắn muốn làm điện thoại đổ chuông đều phải chứa từ “reo”. SMS Ring tự thêm từ này khi bạn sao chép hoặc chia sẻ tin nhắn.
 
 ► Mã nguồn mở: Bạn có thể tự kiểm chứng
 Mọi dòng mã đều công khai để bạn có thể xem xét trên GitHub

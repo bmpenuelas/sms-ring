@@ -11,7 +11,7 @@ Online telefoonzoekers laten alleen een telefoon met internet overgaan en vereis
 ► Privé door ontwerp, niet door belofte
 SMS Ring heeft geen internettoestemming. Het besturingssysteem blokkeert zelf elke verbinding, dus je gegevens kunnen je telefoon niet verlaten. Geen accounts, advertenties, analytics of servers.
 
-INSTELLEN (BELANGRIJK!): Apple laat apps geen berichten lezen. SMS Ring helpt je in 1 minuut een Opdrachten-automatisering te maken die je moet instellen zodat de app het binnenkomende bericht kan lezen.
+INSTELLEN (BELANGRIJK!): Apple laat apps geen berichten lezen. SMS Ring helpt je in 1 minuut een Opdrachten-automatisering te maken die je moet instellen zodat de app het binnenkomende bericht kan lezen. Daarnaast moet elk bericht dat je telefoon moet laten overgaan het woord “bel” bevatten. SMS Ring voegt het toe als je het bericht kopieert of deelt.
 
 ► Open source: Je kunt het zelf controleren
 Elke regel code is openbaar, zodat je die op GitHub kunt bekijken

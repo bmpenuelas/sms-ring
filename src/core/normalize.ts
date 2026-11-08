@@ -2,31 +2,21 @@
 // iOS (MessageMatcher.swift) ports must produce exactly the same output: see
 // docs/MATCHING.md. Pure functions, no imports: Node tests load this directly.
 
-/** Whitespace, separators and invisible format characters (zero-width spaces, BOM). */
-const INVISIBLE = /[\s\p{Z}\p{Cf}]/gu
+/**
+ * Everything that is ignored when comparing messages: whitespace, separators,
+ * invisible format characters (zero-width spaces, BOM), all punctuation (dashes,
+ * commas, full stops, every kind of quote mark: " ' ` “ ” „ « » 「 」…) and symbols.
+ */
+const IGNORED = /[\s\p{Z}\p{Cf}\p{P}\p{S}]/gu
 
 /**
  * The comparable form of a passphrase or message: lowercase, compatibility
- * folding (full-width → ASCII), accents and tildes removed, all whitespace
- * removed. Punctuation and every other character are kept, so a message must
- * be exactly the passphrase. "  Blue TIGER  móon " → "bluetigermoon".
+ * folding (full-width → ASCII), accents and tildes removed, then every space,
+ * separator, quote and other punctuation removed. Only letters and numbers
+ * remain. "  “Blue” TIGER,  móon! " → "bluetigermoon".
  */
 export function normalizePhrase(text: string): string {
-  return text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(INVISIBLE, '')
-}
-
-/** Quote marks that may wrap a message: straight, curly, low, guillemets and CJK corner brackets. */
-const QUOTES = new Set([
-  ...'"\'`\u201C\u201D\u201E\u201F\u2018\u2019\u201A\u201B\u00AB\u00BB\u2039\u203A\u300C\u300D\u300E\u300F\u301D\u301E\u301F',
-])
-
-/**
- * Drops one pair of quotes wrapping an already normalized message:
- * "“blue tiger moon”" → "bluetigermoon". Quotes on only one side stay.
- */
-export function unquote(normalized: string): string {
-  const last = normalized.length - 1
-  return last >= 1 && QUOTES.has(normalized[0]) && QUOTES.has(normalized[last]) ? normalized.slice(1, last) : normalized
+  return text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(IGNORED, '')
 }
 
 /** Letters and digits only: used to compare alphanumeric sender IDs ("My-Bank" = "MYBANK"). */

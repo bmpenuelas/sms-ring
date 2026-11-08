@@ -21,8 +21,13 @@ onMounted(() => void actions.refreshPlatform())
   <BottomSheet :title="t.ios.setupTitle" @close="$emit('close')">
     <p class="why">{{ t.ios.why }}</p>
 
+    <div class="word-card">
+      <span class="word" dir="auto">{{ t.ios.ringWord }}</span>
+      <p>{{ t.ios.wordNote }}</p>
+    </div>
+
     <ol class="steps">
-      <li v-for="(s, i) in t.ios.steps" :key="i" :style="{ '--d': `${i * 60}ms` }">
+      <li v-for="(s, i) in t.ios.steps(t.ios.ringWord)" :key="i" :style="{ '--d': `${i * 60}ms` }">
         <span class="n">{{ i + 1 }}</span>
         <RichText :text="s" />
       </li>
@@ -49,6 +54,28 @@ onMounted(() => void actions.refreshPlatform())
 .why {
   margin: 0 0 14px;
   line-height: 1.45;
+}
+.word-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--ui-field);
+}
+.word-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.word {
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--ui-ink);
+  color: var(--ui-bg);
+  font-weight: 800;
+  font-size: 20px;
 }
 .steps {
   list-style: none;

@@ -11,7 +11,7 @@ Los localizadores online solo pueden hacer sonar un móvil conectado a internet 
 ► Privado por diseño, no por promesa
 SMS Ring no tiene permiso de internet. El propio sistema bloquea cualquier conexión, así que tus datos no pueden salir de tu móvil. Sin cuentas, sin anuncios, sin analíticas, sin servidores.
 
-CONFIGURACIÓN (¡IMPORTANTE!): Apple no permite que las apps lean mensajes. SMS Ring te guía para crear en 1 minuto una automatización de Atajos que debes configurar para que la app pueda leer el mensaje entrante.
+CONFIGURACIÓN (¡IMPORTANTE!): Apple no permite que las apps lean mensajes. SMS Ring te guía para crear en 1 minuto una automatización de Atajos que debes configurar para que la app pueda leer el mensaje entrante. Además, todo mensaje que deba hacer sonar tu móvil tiene que incluir la palabra «suena». SMS Ring la añade cuando copias o compartes el mensaje.
 
 ► Código abierto: Puedes comprobarlo tú mismo
 Todo el código es público para que puedas inspeccionarlo en GitHub

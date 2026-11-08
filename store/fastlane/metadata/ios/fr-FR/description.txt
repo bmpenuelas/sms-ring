@@ -11,7 +11,7 @@ Les localisateurs en ligne ne font sonner qu’un téléphone connecté à inter
 ► Privé par conception, pas par promesse
 SMS Ring n’a pas l’autorisation internet. Le système bloque lui-même toute connexion : vos données ne peuvent physiquement pas quitter votre téléphone. Ni compte, ni pub, ni statistiques, ni serveur.
 
-CONFIGURATION (IMPORTANT !) : Apple ne permet pas aux apps de lire les messages. SMS Ring vous guide pour créer en 1 minute une automatisation Raccourcis indispensable pour que l’app puisse lire le message reçu.
+CONFIGURATION (IMPORTANT !) : Apple ne permet pas aux apps de lire les messages. SMS Ring vous guide pour créer en 1 minute une automatisation Raccourcis indispensable pour que l’app puisse lire le message reçu. De plus, tout message censé faire sonner le téléphone doit contenir le mot « sonne ». SMS Ring l’ajoute quand vous copiez ou partagez le message.
 
 ► Open source : Vous pouvez vérifier vous-même
 Tout le code est public pour que vous puissiez l’examiner sur GitHub

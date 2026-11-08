@@ -29,7 +29,7 @@ No accounts, no cloud, no internet. Private by design, open source so you can ch
 
 🔓 **Only you can stop it**: a big Stop button appears over the lock screen, like an alarm clock. Stopping asks for your PIN, pattern or fingerprint, so whoever finds your phone can't silence it.
 
-🎯 **Exact on purpose**: only the exact phrase rings, so no everyday conversation can set it off. Capitals, accents and spaces don't matter: *“Daisy MEADOW rocket”* works.
+🎯 **Exact on purpose**: only the exact phrase rings, so no everyday conversation can set it off. Capitals, accents, spaces, punctuation and quotes don't matter: *“Daisy MEADOW, rocket!”* works.
 
 🤝 **Share it with family**: send your phrase to someone you trust in one tap, so they can help you find your phone.
 

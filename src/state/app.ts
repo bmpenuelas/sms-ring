@@ -493,14 +493,19 @@ async function clearHistory() {
   history.value = []
 }
 
+/** iPhone only: the Shortcuts automation needs this word in every message. */
+function shareRingWord(): string {
+  return platform === 'ios' ? t.value.ios.ringWord : ''
+}
+
 async function copyPassphrase() {
-  const ok = await copyText(buildPassphraseInstructions(config.value, t.value.sharing))
+  const ok = await copyText(buildPassphraseInstructions(config.value, t.value.sharing, shareRingWord()))
   if (ok) haptic.success()
   return ok
 }
 
 async function sharePassphrase() {
-  return shareText(t.value.passphrase.shareTitle, buildPassphraseInstructions(config.value, t.value.sharing))
+  return shareText(t.value.passphrase.shareTitle, buildPassphraseInstructions(config.value, t.value.sharing, shareRingWord()))
 }
 
 function simulate(body: string, sender: string) {
