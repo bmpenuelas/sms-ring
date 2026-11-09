@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "De berichttekst, meestal de Opdrachtinvoer.";
 "Sender" = "Afzender";
 "Optional: who sent it, required if you allowed only some senders." = "Optioneel: wie het stuurde; nodig als je maar enkele afzenders toestaat.";
-"Stop ringing" = "Stoppen met overgaan";
-"Stops SMS Ring if it is ringing." = "Stopt SMS Ring als hij overgaat.";

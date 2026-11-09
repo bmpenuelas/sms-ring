@@ -310,13 +310,13 @@ const en = {
       setupTitle: 'Connect Apple Shortcuts',
       why: 'iPhone doesn’t let any app read your messages, not even us. Instead, Apple’s own Shortcuts app hands each new message to SMS Ring, which checks it on this phone and forgets it.',
       ringWord: 'ring',
-      wordNote: 'Every text that should ring this phone must contain this word, “ring” in your language. The message you Copy or Share from SMS Ring already starts with it.',
+      wordNote: (word: string) => `When you send an SMS to this phone, it must start with **${word}**, followed by your passphrase.`,
       steps: (word: string) => [
-        'Open **Shortcuts** → **Automation** → **+** → **Create Personal Automation** (if shown) → **Message**.',
-        `Leave **Sender** empty and type **${word}** in **Message Contains**. Make it run without asking: choose **Run Immediately** (on older versions, turn off **Ask Before Running** and tap **Don’t Ask**). If you see **Notify When Run**, turn it off. Then tap **Next**.`,
-        'Tap **Add Action**, search for **SMS Ring** and choose **Ring if passphrase matches**. Set **Message** to **Shortcut Input**. Only if you limit senders: tap the arrow and set **Sender** to **Shortcut Input → Sender**.',
-        'Add **If** with the condition **is true** and, inside it, **Set Volume** at 100%. Only your passphrase changes the volume.',
-        `Tap **Done**, then send yourself a text containing **${word}**: the check below turns green.`,
+        'Open **Shortcuts** → **Automation** → **New Automation** (or **+** if you already have automations) → **Create Personal Automation** (if shown) → **Message**.',
+        `Leave **Sender** on **Any Sender**. Tap **Choose** next to **Message Contains**, type **${word}** and tap **Done**. Make it run without asking: choose **Run Immediately** (on older versions, turn off **Ask Before Running** and tap **Don’t Ask**). If you see **Notify When Run**, turn it off. Then tap **Next**.`,
+        'If asked, tap **Get Started** → **Create New Shortcut**. In **Search Actions** (on older versions, tap **Add Action** first), search for **SMS Ring** and choose **Ring if passphrase matches**. Tap **Message**, then **Select Variable** → **Shortcut Input**. Only if you limit senders: tap the arrow, tap the **Sender** field, choose **Select Variable** → **Shortcut Input**, then tap that blue chip and choose **Sender**.',
+        'Search for **If** and add it: it already uses the result of **Ring if passphrase matches**, so leave it. Then add **Set Volume** and drag it up until it sits indented inside **If**, above **Otherwise**. Tap **50%** and slide it to 100%. Only your passphrase changes the volume.',
+        `Tap the blue **✓**, then send yourself a text containing **${word}**: the check below turns green.`,
       ],
       openShortcuts: 'Open Shortcuts',
       waiting: 'Waiting for the first automation run…',
@@ -367,8 +367,6 @@ const en = {
     intentMessageDescription: 'The message text, usually Shortcut Input.',
     intentSender: 'Sender',
     intentSenderDescription: 'Optional: who sent it, required if you allowed only some senders.',
-    intentStopTitle: 'Stop ringing',
-    intentStopDescription: 'Stops SMS Ring if it is ringing.',
   },
 
   // Store listings (fastlane metadata). Limits: title 30, short 80, subtitle 30, keywords 100 bytes, promo 170.

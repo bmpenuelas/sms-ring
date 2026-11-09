@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "ข้อความ โดยปกติคือค่าป้อนเข้าคำสั่งลัด";
 "Sender" = "ผู้ส่ง";
 "Optional: who sent it, required if you allowed only some senders." = "ไม่บังคับ: ใครส่งมา จำเป็นถ้าคุณอนุญาตเฉพาะผู้ส่งบางราย";
-"Stop ringing" = "หยุดเสียง";
-"Stops SMS Ring if it is ringing." = "หยุด SMS Ring หากกำลังดัง";

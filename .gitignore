@@ -57,3 +57,6 @@ store/fastlane/metadata/ios/review_information/phone_number.txt
 store/fastlane/metadata/ios/review_information/email_address.txt
 store/fastlane/metadata/ios/review_information/demo_user.txt
 store/fastlane/metadata/ios/review_information/demo_password.txt
+
+# Local simulator screenshots of the iOS setup walkthrough
+docs/ios-setup-snapshots/

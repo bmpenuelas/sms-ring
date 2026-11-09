@@ -60,8 +60,6 @@ const IOS_STRINGS = [
   'intentMessageDescription',
   'intentSender',
   'intentSenderDescription',
-  'intentStopTitle',
-  'intentStopDescription',
 ]
 
 /** Store limits (characters). */

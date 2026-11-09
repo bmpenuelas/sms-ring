@@ -36,30 +36,3 @@ struct RingIfPassphraseIntent: AudioPlaybackIntent {
         .result(value: RingTrigger.handleAutomation(message: message, sender: sender))
     }
 }
-
-struct StopRingingIntent: AudioPlaybackIntent {
-    static let title: LocalizedStringResource = "Stop ringing"
-    static let description = IntentDescription("Stops SMS Ring if it is ringing.")
-    static let openAppWhenRun = false
-    /// Siri or Shortcuts on a locked phone ask to unlock first.
-    static let authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
-
-    func perform() async throws -> some IntentResult {
-        RingEngine.shared.stop()
-        return .result()
-    }
-}
-
-struct SmsRingShortcuts: AppShortcutsProvider {
-    static var appShortcuts: [AppShortcut] {
-        AppShortcut(
-            intent: StopRingingIntent(),
-            phrases: [
-                "Stop \(.applicationName)",
-                "Stop ringing with \(.applicationName)",
-            ],
-            shortTitle: "Stop ringing",
-            systemImageName: "bell.slash"
-        )
-    }
-}

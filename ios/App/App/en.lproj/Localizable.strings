@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "The message text, usually Shortcut Input.";
 "Sender" = "Sender";
 "Optional: who sent it, required if you allowed only some senders." = "Optional: who sent it, required if you allowed only some senders.";
-"Stop ringing" = "Stop ringing";
-"Stops SMS Ring if it is ringing." = "Stops SMS Ring if it is ringing.";

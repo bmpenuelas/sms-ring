@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "Текст сообщения, обычно «Входные данные команды».";
 "Sender" = "Отправитель";
 "Optional: who sent it, required if you allowed only some senders." = "Необязательно: кто отправил; нужно, если разрешены только некоторые отправители.";
-"Stop ringing" = "Остановить звонок";
-"Stops SMS Ring if it is ringing." = "Останавливает SMS Ring, если он звонит.";

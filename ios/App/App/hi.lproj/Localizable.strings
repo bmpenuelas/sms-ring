@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "संदेश का टेक्स्ट, आमतौर पर शॉर्टकट इनपुट।";
 "Sender" = "प्रेषक";
 "Optional: who sent it, required if you allowed only some senders." = "वैकल्पिक: किसने भेजा; ज़रूरी है अगर आपने कुछ ही प्रेषकों को अनुमति दी है।";
-"Stop ringing" = "बजना रोकें";
-"Stops SMS Ring if it is ringing." = "बज रहा हो तो SMS Ring को रोकता है।";

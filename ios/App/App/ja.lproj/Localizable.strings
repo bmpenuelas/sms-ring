@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "メッセージの本文。通常はショートカットの入力です。";
 "Sender" = "差出人";
 "Optional: who sent it, required if you allowed only some senders." = "任意：送った人。一部の送信者だけを許可している場合は必須です。";
-"Stop ringing" = "呼び出しを止める";
-"Stops SMS Ring if it is ringing." = "SMS Ring が鳴っていれば止めます。";

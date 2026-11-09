@@ -15,12 +15,22 @@ The automation never contains the passphrase: every message goes to the intent, 
 
 The in-app guide (`IosSetupSheet.vue`) walks through these steps (the action is found by searching **SMS Ring** → *Ring if passphrase matches*), opens Shortcuts and shows **“Automation worked …”** once the intent has run at least once (`RingStore.recordAutomationRun`, which keeps only the time and the verdict). Any text proves the wiring, so the user can check it without sending the passphrase.
 
+### Walkthrough check (iOS 26.3, fresh simulator)
+
+The guide's steps were checked tap by tap against Shortcuts on iOS 26.3; the in-app sketches (`src/ui/IosStepArt.vue`) mirror those screens. Things that differ from older iOS versions and are easy to get wrong:
+
+- On an empty Automation tab the entry point is **New Automation** (the **+** only exists once an automation exists), and **Personal Automation** opens directly as a list.
+- The editor opens with **Search Actions** already at the bottom; there is no **Add Action** button.
+- *Message* and *Sender* of **Ring if passphrase matches** start as empty placeholders: tap them → **Select Variable** → **Shortcut Input** (for *Sender*, then tap the chip and choose **Sender**).
+- **If** is created already filled with the previous action's result (no "is true" picker), and **Set Volume** is added *after* **End If** with 50%. It must be dragged inside **If** and set to 100%, otherwise every matching message changes the volume.
+- Only the English guide uses the labels seen in these screenshots; other languages keep the localized labels they had and are not re-verified on a localized simulator.
+
 ## Code
 
 | File | Role |
 |---|---|
-| `ios/App/App/RingIntents.swift` | `RingIfPassphraseIntent`, `StopRingingIntent` (both `AudioPlaybackIntent`, `openAppWhenRun = false`) and `SmsRingShortcuts` (Siri: “Stop SMS Ring”). |
-| `plugins/remote-ring/ios/Sources/RemoteRingPlugin/RingEngine.swift` | `.playback` audio session (ignores the silent switch), looping tone (the configured one from `Resources/`, at `config.volume` % of the system volume; there is no system alarm sound to read, so that option is hidden), vibration timer, lock-screen media controls (pause = stop, ignored while the phone is locked with a passcode: `isProtectedDataAvailable`), time-sensitive notification. The *Stop ringing* App Intent requires authentication, so Siri asks to unlock first. |
+| `ios/App/App/RingIntents.swift` | `RingIfPassphraseIntent` (an `AudioPlaybackIntent`, `openAppWhenRun = false`). It is the only App Intent on purpose: the Shortcuts action picker lists nothing else under SMS Ring, so the wrong action cannot be chosen. |
+| `plugins/remote-ring/ios/Sources/RemoteRingPlugin/RingEngine.swift` | `.playback` audio session (ignores the silent switch), looping tone (the configured one from `Resources/`, at `config.volume` % of the system volume; there is no system alarm sound to read, so that option is hidden), vibration timer, lock-screen media controls (pause = stop, ignored while the phone is locked with a passcode: `isProtectedDataAvailable`), time-sensitive notification. |
 | `…/RingStore.swift` | Config/history/automation-run JSON in Application Support, `completeUntilFirstUserAuthentication`, excluded from backup. |
 | `…/MessageMatcher.swift` | Swift port of the matcher. |
 | `…/RemoteRingPlugin.swift` | Capacitor bridge (auto-registered by SPM). |

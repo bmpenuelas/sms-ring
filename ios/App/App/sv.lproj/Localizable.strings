@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "Meddelandets text, oftast Genvägsindata.";
 "Sender" = "Avsändare";
 "Optional: who sent it, required if you allowed only some senders." = "Valfritt: vem som skickade det; krävs om bara vissa avsändare är tillåtna.";
-"Stop ringing" = "Sluta ringa";
-"Stops SMS Ring if it is ringing." = "Stoppar SMS Ring om den ringer.";

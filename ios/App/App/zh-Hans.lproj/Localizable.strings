@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "短信正文，通常是“快捷指令输入”。";
 "Sender" = "发件人";
 "Optional: who sent it, required if you allowed only some senders." = "可选：谁发送的；如果只允许部分发件人则必须提供。";
-"Stop ringing" = "停止响铃";
-"Stops SMS Ring if it is ringing." = "如果 SMS Ring 正在响铃，则停止。";

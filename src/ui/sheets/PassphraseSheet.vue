@@ -7,6 +7,7 @@ import { passphraseStartMode } from '../../state/sheets'
 import BottomSheet from '../BottomSheet.vue'
 import Icon from '../Icon.vue'
 import KeycapPhrase from '../KeycapPhrase.vue'
+import RichText from '../RichText.vue'
 import StrengthMeter from '../StrengthMeter.vue'
 import PassphraseShareActions from '../PassphraseShareActions.vue'
 
@@ -32,7 +33,7 @@ function switchMode(next: 'words' | 'custom') {
 <template>
   <BottomSheet :title="t.passphrase.title" @close="$emit('close')">
     <p class="hint ui-muted">{{ t.passphrase.hint }}</p>
-    <p v-if="platform === 'ios'" class="hint ui-muted">{{ t.ios.wordNote }}</p>
+    <p v-if="platform === 'ios'" class="hint ui-muted"><RichText :text="t.ios.wordNote(t.ios.ringWord)" /></p>
 
     <div class="seg" role="tablist">
       <button role="tab" :aria-selected="mode === 'words'" :class="{ on: mode === 'words' }" @click="switchMode('words')">

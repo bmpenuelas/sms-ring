@@ -9,6 +9,7 @@ import { openExternal } from '../../services/device'
 import { useRingApp } from '../../state/app'
 import BottomSheet from '../BottomSheet.vue'
 import Icon from '../Icon.vue'
+import IosStepArt from '../IosStepArt.vue'
 import RichText from '../RichText.vue'
 
 defineEmits<{ close: [] }>()
@@ -22,14 +23,16 @@ onMounted(() => void actions.refreshPlatform())
     <p class="why">{{ t.ios.why }}</p>
 
     <div class="word-card">
-      <span class="word" dir="auto">{{ t.ios.ringWord }}</span>
-      <p>{{ t.ios.wordNote }}</p>
+      <p><RichText :text="t.ios.wordNote(t.ios.ringWord)" /></p>
     </div>
 
     <ol class="steps">
       <li v-for="(s, i) in t.ios.steps(t.ios.ringWord)" :key="i" :style="{ '--d': `${i * 60}ms` }">
         <span class="n">{{ i + 1 }}</span>
-        <RichText :text="s" />
+        <div class="body">
+          <RichText :text="s" />
+          <IosStepArt :step="(i + 1) as 1 | 2 | 3 | 4 | 5" />
+        </div>
       </li>
     </ol>
 
@@ -68,15 +71,6 @@ onMounted(() => void actions.refreshPlatform())
   font-size: 14px;
   line-height: 1.4;
 }
-.word {
-  flex: none;
-  padding: 8px 14px;
-  border-radius: 12px;
-  background: var(--ui-ink);
-  color: var(--ui-bg);
-  font-weight: 800;
-  font-size: 20px;
-}
 .steps {
   list-style: none;
   padding: 0;
@@ -93,6 +87,10 @@ onMounted(() => void actions.refreshPlatform())
 }
 @keyframes rise {
   from { opacity: 0; transform: translateY(8px); }
+}
+.body {
+  min-width: 0;
+  flex: 1;
 }
 .n {
   flex: none;

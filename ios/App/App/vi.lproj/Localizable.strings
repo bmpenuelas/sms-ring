@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "Nội dung tin nhắn, thường là Đầu vào phím tắt.";
 "Sender" = "Người gửi";
 "Optional: who sent it, required if you allowed only some senders." = "Tùy chọn: ai đã gửi; cần nếu bạn chỉ cho phép một số người gửi.";
-"Stop ringing" = "Dừng chuông";
-"Stops SMS Ring if it is ringing." = "Dừng SMS Ring nếu đang đổ chuông.";

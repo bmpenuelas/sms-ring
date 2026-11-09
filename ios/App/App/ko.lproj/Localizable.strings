@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "메시지 본문, 보통 단축어 입력이에요.";
 "Sender" = "보낸 사람";
 "Optional: who sent it, required if you allowed only some senders." = "선택: 보낸 사람. 일부 발신자만 허용했다면 필요해요.";
-"Stop ringing" = "울림 중지";
-"Stops SMS Ring if it is ringing." = "SMS Ring이 울리고 있으면 멈춰요.";

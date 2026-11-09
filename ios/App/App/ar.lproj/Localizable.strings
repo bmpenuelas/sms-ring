@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "نص الرسالة، عادةً مُدخل الاختصار.";
 "Sender" = "المرسل";
 "Optional: who sent it, required if you allowed only some senders." = "اختياري: من أرسلها؛ مطلوب إذا سمحت لبعض المرسلين فقط.";
-"Stop ringing" = "إيقاف الرنين";
-"Stops SMS Ring if it is ringing." = "يوقف SMS Ring إذا كان يرنّ.";

@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "Teks pesan, biasanya Input Pintasan.";
 "Sender" = "Pengirim";
 "Optional: who sent it, required if you allowed only some senders." = "Opsional: siapa pengirimnya; wajib jika kamu hanya mengizinkan pengirim tertentu.";
-"Stop ringing" = "Hentikan dering";
-"Stops SMS Ring if it is ringing." = "Menghentikan SMS Ring jika sedang berdering.";

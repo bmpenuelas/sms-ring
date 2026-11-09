@@ -9,5 +9,3 @@
 "The message text, usually Shortcut Input." = "Der Nachrichtentext, meist die Kurzbefehleingabe.";
 "Sender" = "Absender";
 "Optional: who sent it, required if you allowed only some senders." = "Optional: wer sie gesendet hat; nötig, wenn nur bestimmte Absender erlaubt sind.";
-"Stop ringing" = "Klingeln stoppen";
-"Stops SMS Ring if it is ringing." = "Stoppt SMS Ring, falls es klingelt.";
