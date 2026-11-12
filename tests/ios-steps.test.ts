@@ -3,14 +3,18 @@ import { test } from 'node:test'
 
 import { LANGUAGES } from '../src/i18n/languages.ts'
 
-test('every language gives the same five iPhone steps, with the labels the user sees', async () => {
+test('every language gives the same seven iPhone steps, with the labels the user sees', async () => {
   for (const { code } of LANGUAGES) {
     const { default: messages } = await import(`../src/i18n/locales/${code}.ts`)
     const { ios } = messages.app
     const steps: string[] = ios.steps(ios.ringWord)
-    assert.equal(steps.length, 5, code)
+    assert.equal(steps.length, 7, code)
     // The word to type, in the trigger step and in the test step.
-    for (const i of [1, 4]) assert.ok(steps[i].includes(`**${ios.ringWord}**`), `${code}: step ${i + 1} shows the ring word`)
+    // It is text to type, so it is a chip (`[[word]]`), not bold.
+    for (const i of [1, 6]) assert.ok(steps[i].includes(`[[${ios.ringWord}]]`), `${code}: step ${i + 1} shows the ring word as a chip`)
+    assert.ok(ios.wordNote(ios.ringWord).includes(`[[${ios.ringWord}]]`), `${code}: word note`)
+    // The If step points at the action it already contains.
+    assert.ok(steps[3].includes(`**${messages.native.intentRingTitle}**`), `${code}: If step names the action`)
     // The action is found by the app name and the exact (localized) action title; its parameters keep their names.
     assert.ok(steps[2].includes('**SMS Ring**'), code)
     assert.ok(steps[2].includes(`**${messages.native.intentRingTitle}**`), `${code}: action title`)

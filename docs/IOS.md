@@ -22,7 +22,8 @@ The guide's steps were checked tap by tap against Shortcuts on iOS 26.3; the in-
 - On an empty Automation tab the entry point is **New Automation** (the **+** only exists once an automation exists), and **Personal Automation** opens directly as a list.
 - The editor opens with **Search Actions** already at the bottom; there is no **Add Action** button.
 - *Message* and *Sender* of **Ring if passphrase matches** start as empty placeholders: tap them → **Select Variable** → **Shortcut Input** (for *Sender*, then tap the chip and choose **Sender**).
-- **If** is created already filled with the previous action's result (no "is true" picker), and **Set Volume** is added *after* **End If** with 50%. It must be dragged inside **If** and set to 100%, otherwise every matching message changes the volume.
+- **If** is created already filled with the previous action's result (no "is true" picker), and **Set Volume** is added *after* **End If** with 50%. It must be dragged inside **If** and set to 100%, otherwise every matching message changes the volume. The guide gives each of these its own step (7 in total): add **If**, add **Set Volume** at 100%, drag it inside **If**.
+- Copy markup (`RichText.vue`): `**bold**` is a label to tap or read; `[[text]]` is text the user types into a field (the ring word), drawn as a monospace chip. The **If** sketches use the Y-shaped branching icon Shortcuts shows for that action.
 - Only the English guide uses the labels seen in these screenshots; other languages keep the localized labels they had and are not re-verified on a localized simulator.
 
 ## Code

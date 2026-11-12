@@ -31,7 +31,7 @@ onMounted(() => void actions.refreshPlatform())
         <span class="n">{{ i + 1 }}</span>
         <div class="body">
           <RichText :text="s" />
-          <IosStepArt :step="(i + 1) as 1 | 2 | 3 | 4 | 5" />
+          <IosStepArt :step="(i + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7" />
         </div>
       </li>
     </ol>

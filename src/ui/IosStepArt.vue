@@ -2,7 +2,7 @@
 // Small, text-free sketches of the Shortcuts screens, one set per setup step.
 // They only show *where* to tap (the pulsing dot); the step text names the labels,
 // so nothing here needs translating. Mirrored in right-to-left languages, like iOS.
-defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
+defineProps<{ step: 1 | 2 | 3 | 4 | 5 | 6 | 7 }>()
 </script>
 
 <template>
@@ -117,12 +117,89 @@ defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
       </svg>
     </template>
 
-    <!-- 4 · If + Set Volume: it must sit inside If -->
+    <!-- 4 · search "If", add it: it already holds the Ring action -->
     <template v-else-if="step === 4">
       <svg class="frame" viewBox="0 0 100 120">
         <rect class="scr" width="100" height="120" rx="10" />
         <rect class="card" x="8" y="10" width="84" height="22" rx="8" />
-        <rect class="gray" x="14" y="15" width="12" height="12" rx="3.5" />
+        <rect class="app" x="14" y="15" width="12" height="12" rx="3.5" />
+        <rect class="sk" x="32" y="19.5" width="14" height="5" rx="2.5" />
+        <rect class="pill-blue" x="50" y="17" width="34" height="10" rx="5" />
+        <rect class="card" x="6" y="40" width="88" height="74" rx="10" />
+        <rect class="field" x="12" y="48" width="76" height="14" rx="7" />
+        <circle class="mag" cx="21" cy="55" r="3" /><path class="mag" d="M23.3 57.3l2.4 2.4" />
+        <rect class="sk" x="30" y="52.5" width="22" height="5" rx="2.5" />
+        <rect class="row-hl" x="10" y="68" width="80" height="20" rx="8" />
+        <g transform="translate(14 70) scale(1.333)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
+        <rect class="sk" x="36" y="76.5" width="12" height="5" rx="2.5" />
+        <g class="dim"><g transform="translate(14 92) scale(1.333)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g><rect class="sk" x="36" y="97.5" width="28" height="5" rx="2.5" /></g>
+        <g class="tap" transform="translate(66 78)"><circle class="halo" r="11" /><circle class="dot" r="3.5" /></g>
+      </svg>
+
+      <svg class="frame" viewBox="0 0 100 120">
+        <rect class="scr" width="100" height="120" rx="10" />
+        <rect class="card" x="8" y="10" width="84" height="22" rx="8" />
+        <rect class="app" x="14" y="15" width="12" height="12" rx="3.5" />
+        <rect class="sk" x="32" y="19.5" width="14" height="5" rx="2.5" />
+        <rect class="pill-blue" x="50" y="17" width="34" height="10" rx="5" />
+        <rect class="card" x="8" y="40" width="84" height="28" rx="8" />
+        <g transform="translate(13 46) scale(1.333)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
+        <rect class="sk" x="34" y="51.5" width="10" height="5" rx="2.5" />
+        <rect class="pill-blue" x="50" y="48" width="34" height="10" rx="5" />
+        <rect class="hl-outline" x="47.5" y="45.5" width="39" height="15" rx="7.5" />
+        <rect class="card" x="8" y="72" width="84" height="14" rx="7" />
+        <rect class="sk" x="27" y="77.5" width="22" height="3.5" rx="1.75" />
+        <rect class="card" x="8" y="90" width="84" height="14" rx="7" />
+        <rect class="sk" x="27" y="95.5" width="16" height="3.5" rx="1.75" />
+        <circle class="good" cx="86" cy="40" r="9" /><path class="tick-w2" d="M81.5 40l3.2 3.2 5.6-6.4" />
+      </svg>
+    </template>
+
+    <!-- 5 · search "Set Volume", add it, set it to 100% -->
+    <template v-else-if="step === 5">
+      <svg class="frame" viewBox="0 0 100 120">
+        <rect class="scr" width="100" height="120" rx="10" />
+        <rect class="card" x="8" y="8" width="84" height="14" rx="7" />
+        <rect class="app" x="14" y="11" width="8" height="8" rx="2.5" />
+        <rect class="pill-blue" x="50" y="11.5" width="34" height="7" rx="3.5" />
+        <rect class="card" x="8" y="26" width="84" height="14" rx="7" />
+        <g transform="translate(14 29) scale(0.667)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
+        <rect class="sk" x="27" y="31.5" width="14" height="3.5" rx="1.75" />
+        <rect class="card" x="6" y="46" width="88" height="68" rx="10" />
+        <rect class="field" x="12" y="54" width="76" height="14" rx="7" />
+        <circle class="mag" cx="21" cy="61" r="3" /><path class="mag" d="M23.3 63.3l2.4 2.4" />
+        <rect class="sk" x="30" y="58.5" width="26" height="5" rx="2.5" />
+        <rect class="row-hl" x="10" y="74" width="80" height="20" rx="8" />
+        <g transform="translate(15 78)"><rect class="red" width="12" height="12" rx="3.5" /><path class="spk" d="M2.5 4.8h1.9L7 2.6v6.8L4.4 7.2H2.5Z" /><path class="y" d="M8.7 4.6a2 2 0 0 1 0 2.8" /></g>
+        <rect class="sk" x="34" y="81.5" width="30" height="5" rx="2.5" />
+        <g class="dim"><g transform="translate(15 98)"><rect class="red" width="12" height="12" rx="3.5" /><path class="spk" d="M2.5 4.8h1.9L7 2.6v6.8L4.4 7.2H2.5Z" /><path class="y" d="M8.7 4.6a2 2 0 0 1 0 2.8" /></g><rect class="sk" x="34" y="103.5" width="22" height="5" rx="2.5" /></g>
+        <g class="tap" transform="translate(66 84)"><circle class="halo" r="11" /><circle class="dot" r="3.5" /></g>
+      </svg>
+
+      <svg class="frame" viewBox="0 0 100 120">
+        <rect class="scr" width="100" height="120" rx="10" />
+        <rect class="card" x="8" y="10" width="84" height="14" rx="7" />
+        <rect class="app" x="14" y="13" width="8" height="8" rx="2.5" />
+        <rect class="pill-blue" x="50" y="13.5" width="34" height="7" rx="3.5" />
+        <rect class="card" x="8" y="28" width="84" height="14" rx="7" />
+        <g transform="translate(14 31) scale(0.667)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
+        <rect class="sk" x="27" y="33.5" width="14" height="3.5" rx="1.75" />
+        <rect class="card" x="8" y="46" width="84" height="14" rx="7" />
+        <rect class="sk" x="27" y="51.5" width="16" height="3.5" rx="1.75" />
+        <rect class="card" x="8" y="68" width="84" height="26" rx="8" />
+        <g transform="translate(14 75)"><rect class="red" width="12" height="12" rx="3.5" /><path class="spk" d="M2.5 4.8h1.9L7 2.6v6.8L4.4 7.2H2.5Z" /><path class="y" d="M8.7 4.6a2 2 0 0 1 0 2.8" /></g>
+        <rect class="track" x="32" y="79.5" width="52" height="3" rx="1.5" /><rect class="fill" x="32" y="79.5" width="26" height="3" rx="1.5" /><circle class="knob" cx="58" cy="81" r="3.6" />
+        <path class="drag" d="M64 81h18m0 0l-3-3m3 3l-3 3" />
+        <g class="tap" transform="translate(58 81)"><circle class="halo" r="11" /><circle class="dot" r="3.5" /></g>
+      </svg>
+    </template>
+
+    <!-- 6 · Set Volume must sit inside If -->
+    <template v-else-if="step === 6">
+      <svg class="frame" viewBox="0 0 100 120">
+        <rect class="scr" width="100" height="120" rx="10" />
+        <rect class="card" x="8" y="10" width="84" height="22" rx="8" />
+        <g transform="translate(14 15)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
         <rect class="sk" x="32" y="19.5" width="14" height="5" rx="2.5" />
         <rect class="pill-blue" x="50" y="17" width="34" height="10" rx="5" />
         <rect class="card" x="8" y="37" width="84" height="14" rx="7" />
@@ -130,7 +207,7 @@ defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
         <rect class="card" x="8" y="55" width="84" height="14" rx="7" />
         <rect class="gray" x="14" y="58" width="8" height="8" rx="2.5" /><rect class="sk" x="27" y="60.5" width="16" height="3.5" rx="1.75" />
         <rect class="card" x="8" y="76" width="84" height="26" rx="8" />
-        <rect class="red" x="14" y="83" width="12" height="12" rx="3.5" />
+        <g transform="translate(14 83)"><rect class="red" width="12" height="12" rx="3.5" /><path class="spk" d="M2.5 4.8h1.9L7 2.6v6.8L4.4 7.2H2.5Z" /><path class="y" d="M8.7 4.6a2 2 0 0 1 0 2.8" /></g>
         <rect class="track" x="32" y="87.5" width="52" height="3" rx="1.5" /><rect class="fill" x="32" y="87.5" width="26" height="3" rx="1.5" /><circle class="knob" cx="58" cy="89" r="3.6" />
         <circle class="bad" cx="84" cy="76" r="9" /><path class="x-w" d="M80.5 72.5l7 7m0-7l-7 7" />
       </svg>
@@ -138,11 +215,11 @@ defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
       <svg class="frame" viewBox="0 0 100 120">
         <rect class="scr" width="100" height="120" rx="10" />
         <rect class="card" x="8" y="10" width="84" height="22" rx="8" />
-        <rect class="gray" x="14" y="15" width="12" height="12" rx="3.5" />
+        <g transform="translate(14 15)"><rect class="gray" width="12" height="12" rx="3.5" /><path class="y" d="M6 10V6.2M6 6.2L3 3.2M6 6.2L9 3.2M3 5.4V3.2h2.2M9 5.4V3.2H6.8" /></g>
         <rect class="sk" x="32" y="19.5" width="14" height="5" rx="2.5" />
         <rect class="pill-blue" x="50" y="17" width="34" height="10" rx="5" />
         <rect class="card" x="22" y="37" width="70" height="26" rx="8" />
-        <rect class="red" x="28" y="44" width="12" height="12" rx="3.5" />
+        <g transform="translate(28 44)"><rect class="red" width="12" height="12" rx="3.5" /><path class="spk" d="M2.5 4.8h1.9L7 2.6v6.8L4.4 7.2H2.5Z" /><path class="y" d="M8.7 4.6a2 2 0 0 1 0 2.8" /></g>
         <rect class="track" x="46" y="48.5" width="38" height="3" rx="1.5" /><rect class="fill" x="46" y="48.5" width="38" height="3" rx="1.5" /><circle class="knob" cx="82" cy="50" r="3.6" />
         <rect class="card" x="8" y="68" width="84" height="14" rx="7" />
         <rect class="gray" x="14" y="71" width="8" height="8" rx="2.5" /><rect class="sk" x="27" y="73.5" width="22" height="3.5" rx="1.75" />
@@ -154,7 +231,7 @@ defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
       </svg>
     </template>
 
-    <!-- 5 · the blue ✓ at the top right -->
+    <!-- 7 · the blue ✓ at the top right -->
     <template v-else>
       <svg class="frame" viewBox="0 0 100 120">
         <rect class="scr" width="100" height="120" rx="10" />
@@ -207,9 +284,12 @@ defineProps<{ step: 1 | 2 | 3 | 4 | 5 }>()
 .field { fill: color-mix(in oklab, var(--ui-ink) 10%, transparent); }
 .app { fill: var(--ui-accent); }
 .app.dim { opacity: 0.35; }
+.dim { opacity: 0.4; }
 .mag { fill: none; stroke: var(--ui-muted); stroke-width: 1.4; stroke-linecap: round; }
 .spark { fill: var(--ui-muted); opacity: 0.6; }
 .bubble { fill: #34c759; }
+.y { fill: none; stroke: #fff; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.spk { fill: #fff; }
 .chev { fill: none; stroke: var(--sk); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .chev-l { fill: none; stroke: var(--ui-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .chev-b { fill: none; stroke: var(--blue); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }

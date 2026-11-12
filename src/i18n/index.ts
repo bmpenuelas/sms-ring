@@ -116,11 +116,19 @@ export function formatNumber(n: number, options?: Intl.NumberFormatOptions): str
   return new Intl.NumberFormat(locale.value, options).format(n)
 }
 
-/** Renders `**bold**` segments of a step as parts (never as HTML). */
-export function richParts(text: string): { text: string; bold: boolean }[] {
-  return text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part) =>
-    part.startsWith('**') ? { text: part.slice(2, -2), bold: true } : { text: part, bold: false },
-  )
+/**
+ * Splits copy into plain, `**bold**` and `[[chip]]` parts (never HTML). A chip
+ * is text the user types into a field, shown in a monospace "keycap" style.
+ */
+export function richParts(text: string): { text: string; bold: boolean; chip: boolean }[] {
+  return text
+    .split(/(\*\*[^*]+\*\*|\[\[[^\]]+\]\])/g)
+    .filter(Boolean)
+    .map((part) => {
+      if (part.startsWith('**')) return { text: part.slice(2, -2), bold: true, chip: false }
+      if (part.startsWith('[[')) return { text: part.slice(2, -2), bold: false, chip: true }
+      return { text: part, bold: false, chip: false }
+    })
 }
 
 export { LANGUAGES as SUPPORTED_LANGUAGES }
