@@ -1,0 +1,3 @@
+# Normalise line endings so every checkout (including Windows) matches what the
+# generators emit and what store:check enforces.
+* text=auto eol=lf
