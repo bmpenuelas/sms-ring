@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu cihazda kontrol edilir; hiçbir şey gönderilmez.";
 "Message" = "Mesaj";
 "The message text, usually Shortcut Input." = "Mesaj metni, genellikle Kestirme Girdisi.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Buraya bir şey yazmayın. İptal edin, ardından eylemde Mesaj’ı Kestirme Girişi yapın; böylece Kestirmeler alınan metinle kendisi doldurur.";
 "Sender" = "Gönderen";
 "Optional: who sent it, required if you allowed only some senders." = "İsteğe bağlı: kimin gönderdiği; yalnızca bazı gönderenlere izin verdiysen gerekli.";

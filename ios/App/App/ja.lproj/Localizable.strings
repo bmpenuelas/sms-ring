@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。このデバイス で確認し、何も送信しません。";
 "Message" = "メッセージ";
 "The message text, usually Shortcut Input." = "メッセージの本文。通常はショートカットの入力です。";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "ここには何も入力しないでください。キャンセルして、アクションの「メッセージ」を「ショートカットの入力」に設定すると、受信したテキストが自動で入ります。";
 "Sender" = "差出人";
 "Optional: who sent it, required if you allowed only some senders." = "任意：送った人。一部の送信者だけを許可している場合は必須です。";

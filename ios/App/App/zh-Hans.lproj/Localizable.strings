@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台设备 上检查，不会发送任何内容。";
 "Message" = "信息";
 "The message text, usually Shortcut Input." = "短信正文，通常是“快捷指令输入”。";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "请不要在此输入任何内容。先取消，然后在操作中把“信息”设为“快捷指令输入”，让快捷指令自动填入收到的文本。";
 "Sender" = "发件人";
 "Optional: who sent it, required if you allowed only some senders." = "可选：谁发送的；如果只允许部分发件人则必须提供。";

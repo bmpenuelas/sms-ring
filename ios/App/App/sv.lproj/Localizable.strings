@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här enheten; inget skickas.";
 "Message" = "Meddelande";
 "The message text, usually Shortcut Input." = "Meddelandets text, oftast Genvägsindata.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Skriv inget här. Avbryt och ställ i åtgärden in Meddelande på Genvägsinmatning, så fyller Genvägar i den mottagna texten själv.";
 "Sender" = "Avsändare";
 "Optional: who sent it, required if you allowed only some senders." = "Valfritt: vem som skickade det; krävs om bara vissa avsändare är tillåtna.";

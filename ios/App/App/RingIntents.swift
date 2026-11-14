@@ -20,7 +20,13 @@ struct RingIfPassphraseIntent: AudioPlaybackIntent {
     /// Listed in Shortcuts under the app's actions (search "SMS Ring").
     static let isDiscoverable = true
 
-    @Parameter(title: "Message", description: "The message text, usually Shortcut Input.")
+    // If this is left unconnected in the automation, Shortcuts stops and asks the user to type it.
+    // The dialog says what to do instead (the text must be localized: see intentMessagePrompt).
+    @Parameter(
+        title: "Message",
+        description: "The message text, usually Shortcut Input.",
+        requestValueDialog: "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives."
+    )
     var message: String
 
     @Parameter(title: "Sender", description: "Optional: who sent it, required if you allowed only some senders.")

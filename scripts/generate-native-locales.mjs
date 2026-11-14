@@ -58,6 +58,7 @@ const IOS_STRINGS = [
   'intentRingDescription',
   'intentMessage',
   'intentMessageDescription',
+  'intentMessagePrompt',
   'intentSender',
   'intentSenderDescription',
 ]

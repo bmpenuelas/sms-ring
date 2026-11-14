@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "메시지에 SMS Ring 문구가 있으면 휴대폰을 최대 볼륨으로 울려요. 이 기기에서 확인하며 아무것도 전송하지 않아요.";
 "Message" = "메시지";
 "The message text, usually Shortcut Input." = "메시지 본문, 보통 단축어 입력이에요.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "여기에 아무것도 입력하지 마세요. 취소한 다음, 동작에서 메시지를 단축어 입력으로 설정하면 단축어가 받은 텍스트로 자동으로 채웁니다.";
 "Sender" = "보낸 사람";
 "Optional: who sent it, required if you allowed only some senders." = "선택: 보낸 사람. 일부 발신자만 허용했다면 필요해요.";

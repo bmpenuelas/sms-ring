@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Laat je telefoon op vol volume overgaan als het bericht je SMS Ring-zin bevat. Gecontroleerd op dit apparaat; er wordt niets verzonden.";
 "Message" = "Bericht";
 "The message text, usually Shortcut Input." = "De berichttekst, meestal de Opdrachtinvoer.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Typ hier niets. Annuleer en zet in de actie Bericht op Invoer opdracht, zodat Opdrachten het invult met de ontvangen tekst.";
 "Sender" = "Afzender";
 "Optional: who sent it, required if you allowed only some senders." = "Optioneel: wie het stuurde; nodig als je maar enkele afzenders toestaat.";

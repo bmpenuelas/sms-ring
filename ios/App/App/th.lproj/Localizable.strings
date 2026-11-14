@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "ทำให้โทรศัพท์ดังเต็มเสียงเมื่อข้อความมีวลี SMS Ring ของคุณ ตรวจใน อุปกรณ์เครื่องนี้ ไม่มีการส่งสิ่งใดออกไป";
 "Message" = "ข้อความ";
 "The message text, usually Shortcut Input." = "ข้อความ โดยปกติคือค่าป้อนเข้าคำสั่งลัด";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "อย่าพิมพ์อะไรที่นี่ ให้ยกเลิก แล้วตั้ง ข้อความ ในการทำงานเป็น ข้อมูลเข้าของคำสั่งลัด เพื่อให้คำสั่งลัดใส่ข้อความที่ได้รับให้เอง";
 "Sender" = "ผู้ส่ง";
 "Optional: who sent it, required if you allowed only some senders." = "ไม่บังคับ: ใครส่งมา จำเป็นถ้าคุณอนุญาตเฉพาะผู้ส่งบางราย";

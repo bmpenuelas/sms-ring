@@ -47,6 +47,8 @@ onMounted(() => void actions.refreshPlatform())
       </span>
     </div>
 
+    <p class="hint"><RichText :text="t.ios.promptHint" /></p>
+
     <template #footer>
       <button class="ui-btn block" @click="openExternal('shortcuts://')"><Icon name="link" /> {{ t.ios.openShortcuts }}</button>
     </template>
@@ -112,6 +114,12 @@ onMounted(() => void actions.refreshPlatform())
   border-radius: 16px;
   background: var(--ui-field);
   font-weight: 600;
+}
+.hint {
+  margin: 12px 2px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.8;
 }
 .dot {
   width: 10px;

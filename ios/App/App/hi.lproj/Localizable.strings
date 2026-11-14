@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "संदेश में आपका SMS Ring वाक्य होने पर फ़ोन पूरी आवाज़ में बजाता है। इसी डिवाइस पर जाँचा जाता है; कुछ भी भेजा नहीं जाता।";
 "Message" = "संदेश";
 "The message text, usually Shortcut Input." = "संदेश का टेक्स्ट, आमतौर पर शॉर्टकट इनपुट।";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "यहाँ कुछ न लिखें। रद्द करें, फिर एक्शन में संदेश को शॉर्टकट इनपुट पर सेट करें, ताकि शॉर्टकट उसे प्राप्त टेक्स्ट से भर दे।";
 "Sender" = "प्रेषक";
 "Optional: who sent it, required if you allowed only some senders." = "वैकल्पिक: किसने भेजा; ज़रूरी है अगर आपने कुछ ही प्रेषकों को अनुमति दी है।";

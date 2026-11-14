@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên thiết bị này; không gì được gửi đi.";
 "Message" = "Tin nhắn";
 "The message text, usually Shortcut Input." = "Nội dung tin nhắn, thường là Đầu vào phím tắt.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Đừng nhập gì ở đây. Hãy hủy, rồi trong hành động đặt Tin nhắn là Đầu vào phím tắt để Phím tắt tự điền văn bản nhận được.";
 "Sender" = "Người gửi";
 "Optional: who sent it, required if you allowed only some senders." = "Tùy chọn: ai đã gửi; cần nếu bạn chỉ cho phép một số người gửi.";

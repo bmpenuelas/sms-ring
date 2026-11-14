@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Заставляет телефон звонить на полную громкость, если сообщение содержит вашу фразу SMS Ring. Проверяется на этом устройстве; ничего не отправляется.";
 "Message" = "Сообщение";
 "The message text, usually Shortcut Input." = "Текст сообщения, обычно «Входные данные команды».";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Ничего не вводите здесь. Отмените и в действии выберите для параметра Сообщение значение Входные данные команды, чтобы Команды подставляли полученный текст сами.";
 "Sender" = "Отправитель";
 "Optional: who sent it, required if you allowed only some senders." = "Необязательно: кто отправил; нужно, если разрешены только некоторые отправители.";

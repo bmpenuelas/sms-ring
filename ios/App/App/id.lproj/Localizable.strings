@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di perangkat ini; tidak ada yang dikirim.";
 "Message" = "Pesan";
 "The message text, usually Shortcut Input." = "Teks pesan, biasanya Input Pintasan.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Jangan ketik apa pun di sini. Batalkan, lalu di aksi atur Pesan ke Input Pintasan agar Pintasan mengisinya dengan teks yang diterima.";
 "Sender" = "Pengirim";
 "Optional: who sent it, required if you allowed only some senders." = "Opsional: siapa pengirimnya; wajib jika kamu hanya mengizinkan pengirim tertentu.";

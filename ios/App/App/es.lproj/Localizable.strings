@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Hace sonar el móvil a todo volumen si el mensaje contiene tu frase de SMS Ring. Se comprueba en este dispositivo; no se envía nada.";
 "Message" = "Mensaje";
 "The message text, usually Shortcut Input." = "El texto del mensaje, normalmente la Entrada del atajo.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "No escribas nada aquí. Cancela y, en la acción, pon Mensaje en Entrada de atajo para que Atajos lo rellene con el texto recibido.";
 "Sender" = "Remitente";
 "Optional: who sent it, required if you allowed only some senders." = "Opcional: quién lo envió; necesario si solo permites algunos remitentes.";

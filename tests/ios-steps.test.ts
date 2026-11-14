@@ -25,3 +25,14 @@ test('every language gives the same seven iPhone steps, with the labels the user
     assert.ok(steps.every((s) => !s.includes('undefined') && !s.includes('${')), code)
   }
 })
+
+test('every language explains the box that asks to type the message, in the app and in Shortcuts', async () => {
+  for (const { code } of LANGUAGES) {
+    const { default: messages } = await import(`../src/i18n/locales/${code}.ts`)
+    const { ios } = messages.app
+    // The in-app hint names the Message parameter as a bold label; the Shortcuts dialog is plain text.
+    assert.ok(ios.promptHint.includes(`**${messages.native.intentMessage}**`), `${code}: hint names Message`)
+    assert.ok(!messages.native.intentMessagePrompt.includes('**'), `${code}: dialog has no markup`)
+    assert.ok(messages.native.intentMessagePrompt.length > 20, code)
+  }
+})

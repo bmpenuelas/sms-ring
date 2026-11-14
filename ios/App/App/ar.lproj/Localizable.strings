@@ -7,5 +7,6 @@
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "يجعل هاتفك يرنّ بأعلى صوت إذا احتوت الرسالة على عبارتك في SMS Ring. يتم الفحص على هذا الجهاز؛ ولا يُرسَل أي شيء.";
 "Message" = "الرسالة";
 "The message text, usually Shortcut Input." = "نص الرسالة، عادةً مُدخل الاختصار.";
+"Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "لا تكتب شيئًا هنا. ألغِ، ثم اجعل «الرسالة» في الإجراء هي «إدخال الاختصار» ليملأها الاختصار بنص الرسالة الواردة.";
 "Sender" = "المرسل";
 "Optional: who sent it, required if you allowed only some senders." = "اختياري: من أرسلها؛ مطلوب إذا سمحت لبعض المرسلين فقط.";
