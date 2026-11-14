@@ -2,6 +2,8 @@ Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses ç
 
 Çevrim içi telefon bulucular yalnızca internete bağlı bir telefonu çaldırabilir ve başka bir cihazda oturum açmanı, telefonuna bağlanmanı gerektirir... SMS Ring için şebeke yeterli. İnternet yok, hesap yok, oturum açmak yok.
 
+ÖNEMLİ: KURULUM GEREKLİ! Uygulamanın mesajları okuyabilmesi için Kestirmeler’de yeni bir otomasyon oluşturman gerekiyor. Uygulamayı yükleyip ilk kez açtığında bunu nasıl yapacağını gösteren ayrıntılı talimatlar alacaksın.
+
 ► Sessizde veya titreşimde bile son ses
 ► İsteğe bağlı titreşim ve yalnızca titreşim modu
 ► Telefonunu çaldırmak için gizli cümleni seç
@@ -11,7 +13,7 @@ Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses ç
 ► Sözle değil, tasarımla gizli
 SMS Ring’in internet izni yok. İşletim sistemi her bağlantıyı kendisi engeller; verilerin telefonundan çıkamaz. Hesap, reklam, analiz ya da sunucu yok.
 
-KURULUM (ÖNEMLİ!): Apple uygulamaların mesaj okumasına izin vermez. SMS Ring, uygulamanın gelen mesajı okuyabilmesi için oluşturman gereken bir Kestirmeler otomasyonunu 1 dakikada kurmanda sana rehberlik eder. Ayrıca telefonu çaldırması gereken her mesaj “çal” sözcüğünü de içermelidir. SMS Ring, mesajı kopyaladığında veya paylaştığında bunu kendisi ekler.
+Ayrıca telefonu çaldırması gereken her mesaj “çal” sözcüğünü de içermelidir. SMS Ring, mesajı kopyaladığında veya paylaştığında bunu kendisi ekler.
 
 ► Açık kaynak: Kendin doğrulayabilirsin
 Kodun her satırı herkese açık, böylece GitHub’da inceleyebilirsin

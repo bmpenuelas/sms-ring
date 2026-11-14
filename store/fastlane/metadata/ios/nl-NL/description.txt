@@ -2,6 +2,8 @@ Laat je telefoon op vol volume overgaan door hem een sms te sturen. Hij gaat op 
 
 Online telefoonzoekers laten alleen een telefoon met internet overgaan en vereisen dat je op een ander apparaat inlogt, verbinding maakt met je telefoon... SMS Ring heeft alleen mobiel bereik nodig. Geen internet, geen accounts, niet inloggen.
 
+BELANGRIJK: INSTELLEN VEREIST! Je moet een nieuwe automatisering in Opdrachten maken zodat de app berichten kan lezen. Je krijgt uitgebreide instructies wanneer je de app installeert en voor het eerst opent.
+
 ► Vol volume, zelfs op stil of trillen
 ► Optioneel trillen en een modus met alleen trillen
 ► Kies je geheime zin om hem te laten overgaan
@@ -11,7 +13,7 @@ Online telefoonzoekers laten alleen een telefoon met internet overgaan en vereis
 ► Privé door ontwerp, niet door belofte
 SMS Ring heeft geen internettoestemming. Het besturingssysteem blokkeert zelf elke verbinding, dus je gegevens kunnen je telefoon niet verlaten. Geen accounts, advertenties, analytics of servers.
 
-INSTELLEN (BELANGRIJK!): Apple laat apps geen berichten lezen. SMS Ring helpt je in 1 minuut een Opdrachten-automatisering te maken die je moet instellen zodat de app het binnenkomende bericht kan lezen. Daarnaast moet elk bericht dat je telefoon moet laten overgaan het woord “bel” bevatten. SMS Ring voegt het toe als je het bericht kopieert of deelt.
+Daarnaast moet elk bericht dat je telefoon moet laten overgaan het woord “bel” bevatten. SMS Ring voegt het toe als je het bericht kopieert of deelt.
 
 ► Open source: Je kunt het zelf controleren
 Elke regel code is openbaar, zodat je die op GitHub kunt bekijken

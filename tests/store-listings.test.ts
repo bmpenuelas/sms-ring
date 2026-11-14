@@ -62,11 +62,12 @@ for (const lang of LANGUAGES) {
         assert.ok(intro.trim())
         assert.doesNotMatch(intro, /🔔|📳|🔒|👀/u, 'two introductory paragraphs precede the features')
       }
-      const features = paragraphs[2].split('\n')
+      const featureIndex = platform === 'ios' ? 3 : 2
+      const features = paragraphs[featureIndex].split('\n')
       assert.ok(features[0].startsWith(marker('🔔')))
       assert.ok(features[1].startsWith(marker('📳')), 'vibration is the second feature')
       assert.ok(features.at(-1)!.startsWith(marker('🔓')))
-      const privacy = paragraphs[3].split('\n')
+      const privacy = paragraphs[featureIndex + 1].split('\n')
       assert.equal(privacy.length, 2, 'privacy paragraph follows the features')
       assert.ok(privacy[0].startsWith(marker('🔒')))
       assert.doesNotMatch(privacy[0], /[.。।]$/u, 'privacy heading has no trailing full stop')
@@ -88,8 +89,12 @@ for (const lang of LANGUAGES) {
       } else {
         assert.doesNotMatch(description, /Android|💬|WhatsApp|Messenger|Telegram|Signal/u)
         const setup = messages.store.description.find((line: string | { ios?: string }) => typeof line === 'object' && line.ios)?.ios
-        assert.ok(setup?.includes('Apple'))
-        assert.equal(paragraphs[4], setup, 'localized setup warning appears before the open-source section')
+        assert.ok(setup?.trim())
+        assert.equal(paragraphs[2], setup, 'localized setup warning follows the online-finder paragraph and precedes the features')
+        assert.equal(paragraphs.filter(paragraph => paragraph === setup).length, 1, 'setup warning is not duplicated')
+        const ringRequirement = messages.store.description.filter((line: string | { ios?: string }) => typeof line === 'object' && line.ios)[1]?.ios
+        assert.ok(ringRequirement?.includes('SMS Ring'))
+        assert.equal(paragraphs[5], ringRequirement, 'existing message-word requirement stays before the open-source section')
         assert.doesNotMatch(description, /iPhone\s*[:：]/u)
       }
     }
@@ -135,7 +140,11 @@ test('English listings contain the requested replacement wording', async () => {
   assert.ok(storeDescription(messages.store.description, 'android').includes(
     '💬 Also works with WhatsApp, Messenger, Telegram, Signal...',
   ))
-  assert.ok(storeDescription(messages.store.description, 'ios').split('\n').includes(
-    'SETUP (IMPORTANT!): Apple doesn’t let apps read messages. SMS Ring guides you through a 1-minute Shortcuts automation that you have to create for the app to be able to read the incoming message. Every text that should ring your phone must also contain the word “ring”. SMS Ring adds it when you copy or share your message.',
-  ))
+  const iosParagraphs = storeDescription(messages.store.description, 'ios').split('\n\n')
+  assert.equal(iosParagraphs[2],
+    'IMPORTANT SETUP NEEDED! : You need to create a new Shortcuts automation to allow the app to read messages. You will get detailed instructions showing you how to do it when you install the app and open it for the first time.',
+  )
+  assert.equal(iosParagraphs[5],
+    'Every text that should ring your phone must also contain the word “ring”. SMS Ring adds it when you copy or share your message.',
+  )
 })

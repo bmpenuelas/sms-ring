@@ -2,6 +2,8 @@ Fai squillare il telefono al massimo volume inviandogli un SMS. Squilla al massi
 
 I localizzatori online fanno squillare solo un telefono connesso a internet e richiedono di accedere al proprio account da un altro dispositivo, collegarsi al telefono... A SMS Ring basta la rete mobile. Niente internet, niente account, niente accessi.
 
+IMPORTANTE: CONFIGURAZIONE NECESSARIA! Devi creare una nuova automazione di Comandi Rapidi per consentire all’app di leggere i messaggi. Riceverai istruzioni dettagliate su come farlo quando installerai l’app e la aprirai per la prima volta.
+
 ► Volume massimo, anche in silenzioso o vibrazione
 ► Vibrazione facoltativa e modalità solo vibrazione
 ► Scegli la tua frase segreta per farlo squillare
@@ -11,7 +13,7 @@ I localizzatori online fanno squillare solo un telefono connesso a internet e ri
 ► Privato per scelta, non per promessa
 SMS Ring non ha il permesso internet. È il sistema stesso a bloccare ogni connessione, quindi i tuoi dati non possono uscire dal telefono. Niente account, pubblicità, statistiche o server.
 
-CONFIGURAZIONE (IMPORTANTE!): Apple non permette alle app di leggere i messaggi. SMS Ring ti guida nella creazione in 1 minuto di un’automazione di Comandi Rapidi, necessaria affinché l’app possa leggere il messaggio in arrivo. Inoltre, ogni messaggio che deve far squillare il telefono deve contenere la parola “squilla”. SMS Ring la aggiunge quando copi o condividi il messaggio.
+Inoltre, ogni messaggio che deve far squillare il telefono deve contenere la parola “squilla”. SMS Ring la aggiunge quando copi o condividi il messaggio.
 
 ► Open source: Puoi verificarlo di persona
 Ogni riga di codice è pubblica, così puoi esaminarla su GitHub

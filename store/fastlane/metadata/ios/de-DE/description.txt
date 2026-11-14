@@ -2,6 +2,8 @@ Lass dein Handy mit voller Lautstärke klingeln, indem du ihm eine SMS schickst.
 
 Online-Handyfinder können nur ein Handy mit Internetverbindung klingeln lassen und verlangen, dass du dich auf einem anderen Gerät anmeldest, eine Verbindung zu deinem Handy herstellst... SMS Ring braucht nur Mobilfunkempfang. Kein Internet, keine Konten, keine Anmeldungen.
 
+WICHTIG: EINRICHTUNG ERFORDERLICH! Du musst eine neue Automation in Kurzbefehle erstellen, damit die App Nachrichten lesen kann. Wenn du die App installierst und zum ersten Mal öffnest, erhältst du eine ausführliche Anleitung dazu.
+
 ► Volle Lautstärke, auch bei lautlos oder Vibration
 ► Optionale Vibration und reiner Vibrationsmodus
 ► Wähle deinen Geheimsatz, um es klingeln zu lassen
@@ -11,7 +13,7 @@ Online-Handyfinder können nur ein Handy mit Internetverbindung klingeln lassen 
 ► Privat durch Technik, nicht durch Versprechen
 SMS Ring hat keine Internetberechtigung. Das Betriebssystem selbst blockiert jede Verbindung, deine Daten können dein Handy also gar nicht verlassen. Keine Konten, keine Werbung, keine Analysen, keine Server.
 
-EINRICHTUNG (WICHTIG!): Apple erlaubt Apps nicht, Nachrichten zu lesen. SMS Ring führt dich in 1 Minute durch die Erstellung einer Automation in Kurzbefehle, die du einrichten musst, damit die App die eingehende Nachricht lesen kann. Außerdem muss jede Nachricht, die dein Handy klingeln lassen soll, das Wort „klingeln“ enthalten. SMS Ring fügt es beim Kopieren oder Teilen der Nachricht automatisch hinzu.
+Außerdem muss jede Nachricht, die dein Handy klingeln lassen soll, das Wort „klingeln“ enthalten. SMS Ring fügt es beim Kopieren oder Teilen der Nachricht automatisch hinzu.
 
 ► Open Source: Du kannst es selbst überprüfen
 Jede Codezeile ist öffentlich, damit du sie auf GitHub einsehen kannst

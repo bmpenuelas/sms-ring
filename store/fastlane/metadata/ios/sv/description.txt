@@ -2,6 +2,8 @@ Få telefonen att ringa på full volym genom att skicka ett sms till den. Den ri
 
 Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet och kräver att du loggar in på en annan enhet, ansluter till telefonen... SMS Ring behöver bara mobiltäckning. Inget internet, inga konton, inga inloggningar.
 
+VIKTIGT: KONFIGURATION KRÄVS! Du måste skapa en ny automatisering i Genvägar för att appen ska kunna läsa meddelanden. Du får detaljerade instruktioner om hur du gör när du installerar appen och öppnar den för första gången.
+
 ► Full volym, även på ljudlöst eller vibration
 ► Valfri vibration och läge med enbart vibration
 ► Välj din hemliga fras för att få den att ringa
@@ -11,7 +13,7 @@ Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet oc
 ► Privat från grunden, inte genom löften
 SMS Ring har ingen internetbehörighet. Operativsystemet blockerar själv varje anslutning, så dina data kan inte lämna telefonen. Inga konton, annonser, analyser eller servrar.
 
-KONFIGURATION (VIKTIGT!): Apple låter inte appar läsa meddelanden. SMS Ring hjälper dig att på 1 minut skapa en Genvägar-automation som du måste ställa in för att appen ska kunna läsa det inkommande meddelandet. Dessutom måste varje meddelande som ska få telefonen att ringa innehålla ordet ”ring”. SMS Ring lägger till det när du kopierar eller delar meddelandet.
+Dessutom måste varje meddelande som ska få telefonen att ringa innehålla ordet ”ring”. SMS Ring lägger till det när du kopierar eller delar meddelandet.
 
 ► Öppen källkod: Du kan kontrollera själv
 Varje kodrad är offentlig så att du kan granska den på GitHub
