@@ -79,6 +79,11 @@ const ios = (s) => s.replace(/\{\w+\}/g, '%@')
 const pending = []
 let stale = 0
 
+// Generated content always uses LF, and the repo wants LF on disk (store:check
+// enforces it), so Windows checkouts (core.autocrlf) must be normalised before
+// comparing or a clean tree looks permanently stale.
+const toLf = (s) => s.replace(/\r\n/g, '\n')
+
 async function emit(path, content) {
   let current = null
   try {
@@ -86,12 +91,15 @@ async function emit(path, content) {
   } catch {
     current = null
   }
-  if (current === content) return
   if (check) {
+    // Tolerate CRLF checkouts: only a content difference counts as stale.
+    if (current !== null && toLf(current) === toLf(content)) return
     stale++
     console.error(`stale: ${path.replace(root, '.')}`)
     return
   }
+  // Writing normalises CRLF to LF, which is what the repo and its tests expect.
+  if (current === content) return
   pending.push(mkdir(dirname(path), { recursive: true }).then(() => writeFile(path, content)))
 }
 
@@ -166,7 +174,7 @@ await emit(
 
 // ---- iOS Info.plist ----
 {
-  const plist = await readFile(infoPlistPath, 'utf8')
+  const plist = toLf(await readFile(infoPlistPath, 'utf8'))
   const list = LANGUAGES.map((l) => `\t\t<string>${l.ios}</string>`).join('\n')
   const next = plist.replace(
     /(<key>CFBundleLocalizations<\/key>\s*<array>)[\s\S]*?(\s*<\/array>)/,
@@ -177,7 +185,7 @@ await emit(
 
 // ---- Xcode project: variant groups for the .strings files ----
 {
-  let pbx = await readFile(pbxprojPath, 'utf8')
+  let pbx = toLf(await readFile(pbxprojPath, 'utf8'))
   // Drop what a previous run generated (ids prefixed D7), then add it back.
   // Whole variant-group blocks first, then single lines.
   pbx = pbx.replace(/\t\tD7[0-9A-F]{22} \/\* [\w.]+ \*\/ = \{\n\t\t\tisa = PBXVariantGroup;[\s\S]*?\n\t\t\};\n/g, '')
