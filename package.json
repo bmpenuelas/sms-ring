@@ -1,6 +1,6 @@
 {
   "name": "sms-ring",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "type": "module",
   "description": "Ring your phone at full volume with a secret SMS. Offline by design, open source.",
