@@ -23,6 +23,8 @@ export interface Prefs {
   skipped: CapabilityName[]
   /** The user declined SMS access at least once (shows the "won't ring" warning). */
   smsDeclined: boolean
+  /** Last observed Shortcuts run, retained across app restarts. */
+  lastAutomationRun?: { at: number; verdict: string }
   /** Light, dark, or follow the system (default). */
   theme: ThemeChoice
 }

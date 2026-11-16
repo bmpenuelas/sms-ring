@@ -26,6 +26,7 @@ import {
 import { evaluateMessage, MIN_NORMALIZED_PASSPHRASE } from '../core/matcher'
 import { normalizePhrase } from '../core/normalize'
 import { buildPassphraseInstructions } from '../core/instructions'
+import { latestAutomationRun } from '../core/automation'
 import { MAX_WORDS, MIN_WORDS, entropyBits, generateWords, splitWords } from '../core/passphrase'
 import { language, loadCatalogue, loadWords, t, type LanguageCode } from '../i18n'
 import { haptic, platform, shareText, copyText } from '../services/device'
@@ -96,6 +97,7 @@ const platformInfo = ref<PlatformInfo>({
   declaredPermissions: [],
   hasInternetPermission: null,
   osVersion: '',
+  lastAutomationRun: platform === 'ios' ? latestAutomationRun(prefs.lastAutomationRun) : undefined,
 })
 const ring = ref<RingState>({ ringing: false })
 const history = ref<TriggerRecord[]>([])
@@ -212,7 +214,13 @@ async function refreshHistory() {
 }
 
 async function refreshPlatform() {
-  platformInfo.value = await RemoteRing.getPlatformInfo()
+  const info = await RemoteRing.getPlatformInfo()
+  if (platform === 'ios') {
+    // A completed setup stays completed even if a later native read omits the run.
+    info.lastAutomationRun = latestAutomationRun(info.lastAutomationRun, prefs.lastAutomationRun)
+    if (info.lastAutomationRun) prefs.lastAutomationRun = info.lastAutomationRun
+  }
+  platformInfo.value = info
 }
 
 async function init() {
@@ -221,12 +229,12 @@ async function init() {
   const fallback = generateWords(words.value, prefs.wordCount).join(' ')
   const messages = await loadCatalogue(language.value)
   config.value = sanitizeConfig(stored, fallback, messages.app.vibrateOnly.defaultPhrase)
-  loaded.value = true
   // Persist migrated defaults too, so native background triggers see the same settings.
   await RemoteRing.setConfig({ config: config.value })
   await Promise.all([refreshCapabilities(), refreshHistory(), refreshPlatform()])
   ring.value = await RemoteRing.getRingState()
   now.value = Date.now()
+  loaded.value = true
 
   if (platform !== 'ios') {
     await RemoteRing.addListener('healthNoticeOpened', () => void reviewPermissions())

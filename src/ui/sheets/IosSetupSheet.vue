@@ -65,14 +65,13 @@ function fallbackImage() {
           <RichText :text="s" />
           <p v-if="i === 2" class="callout"><RichText :text="t.ios.inputInstruction" /></p>
           <IosStepArt :step="(i + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7" />
+          <figure v-if="i === 5" class="final">
+            <figcaption>{{ t.ios.finalCaption }}</figcaption>
+            <img :src="finalImage" :alt="t.ios.finalCaption" loading="lazy" width="588" height="1280" @error="fallbackImage" />
+          </figure>
         </div>
       </li>
     </ol>
-
-    <figure class="final">
-      <figcaption>{{ t.ios.finalCaption }}</figcaption>
-      <img :src="finalImage" :alt="t.ios.finalCaption" loading="lazy" width="588" height="1280" @error="fallbackImage" />
-    </figure>
 
     <div class="verify" :class="{ ok: state.platformInfo.lastAutomationRun }">
       <span class="dot" />
