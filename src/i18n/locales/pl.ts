@@ -326,7 +326,7 @@ const pl: Messages = {
       ],
       inputInstruction: "Stuknij **Wiadomość** w czynności **Dzwoń, gdy hasło pasuje** i wybierz **Dane wejściowe skrótu**.",
       setupCompleted: "Konfiguracja zakończona!",
-      finalCaption: "Tak powinno to wyglądać.",
+      finalCaption: "Powinno to wyglądać dokładnie tak:",
       openShortcuts: 'Otwórz Skróty',
       waiting: 'Czekam na pierwsze uruchomienie…',
       promptHint: 'Okienko prosi o wpisanie tekstu? Wtedy **Wiadomość** nie jest połączona: anuluj, edytuj akcję i ustaw **Wiadomość** na **Dane wejściowe skrótu**.',

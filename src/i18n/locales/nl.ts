@@ -318,7 +318,7 @@ const nl: Messages = {
       ],
       inputInstruction: "Tik op **Bericht** in de actie **Overgaan als zin klopt** en selecteer **Invoer opdracht**.",
       setupCompleted: "Configuratie voltooid!",
-      finalCaption: "Zo hoort het eruit te zien.",
+      finalCaption: "Zo hoort het er precies uit te zien:",
       openShortcuts: 'Open Opdrachten',
       waiting: 'Wachten op de eerste uitvoering…',
       promptHint: 'Vraagt een venster om tekst te typen? Dan is **Bericht** niet gekoppeld: annuleer, bewerk de actie en zet **Bericht** op **Invoer opdracht**.',

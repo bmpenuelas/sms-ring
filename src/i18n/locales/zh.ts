@@ -318,7 +318,7 @@ const zh: Messages = {
       ],
       inputInstruction: "轻点 **信息** 操作中的 **暗号匹配时响铃**，然后选择 **快捷指令输入**。",
       setupCompleted: "设置完成！",
-      finalCaption: "完成后应如下图所示。",
+      finalCaption: "完成后应与下图完全一致：",
       openShortcuts: '打开快捷指令',
       waiting: '正在等待自动化首次运行…',
       promptHint: '弹出要求输入文字的框？说明 **信息** 还没连接：取消它，编辑该操作，把 **信息** 设为 **快捷指令输入**。',

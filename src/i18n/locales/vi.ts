@@ -318,7 +318,7 @@ const vi: Messages = {
       ],
       inputInstruction: "Chạm vào **Tin nhắn** trong tác vụ **Đổ chuông nếu khớp câu**, rồi chọn **Đầu vào phím tắt**.",
       setupCompleted: "Đã hoàn tất thiết lập!",
-      finalCaption: "Kết quả sẽ trông như thế này.",
+      finalCaption: "Kết quả phải trông chính xác như thế này:",
       openShortcuts: 'Mở Phím tắt',
       waiting: 'Đang chờ lần chạy đầu tiên…',
       promptHint: 'Có hộp yêu cầu bạn nhập văn bản? Nghĩa là **Tin nhắn** chưa được kết nối: hãy hủy, sửa hành động và đặt **Tin nhắn** là **Đầu vào phím tắt**.',

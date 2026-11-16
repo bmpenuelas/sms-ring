@@ -322,7 +322,7 @@ const en = {
       ],
       inputInstruction: "Tap **Message** in the **Ring if passphrase matches** action, then select **Shortcut Input**.",
       setupCompleted: "Setup completed!",
-      finalCaption: "It should end up like this.",
+      finalCaption: "It should look exactly like this:",
       openShortcuts: 'Open Shortcuts',
       waiting: 'Waiting for the first automation run…',
       promptHint: 'A box asking you to type text? Then **Message** isn’t connected: cancel it, edit the action and set **Message** to **Shortcut Input**.',

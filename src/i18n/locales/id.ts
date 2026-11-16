@@ -318,7 +318,7 @@ const id: Messages = {
       ],
       inputInstruction: "Ketuk **Pesan** di tindakan **Berdering jika frasa cocok**, lalu pilih **Input Pintasan**.",
       setupCompleted: "Pengaturan selesai!",
-      finalCaption: "Hasil akhirnya akan terlihat seperti ini.",
+      finalCaption: "Hasil akhirnya harus terlihat persis seperti ini:",
       openShortcuts: 'Buka Pintasan',
       waiting: 'Menunggu otomatisasi berjalan pertama kali…',
       promptHint: 'Ada kotak yang meminta kamu mengetik teks? Berarti **Pesan** belum terhubung: batalkan, edit aksi, dan atur **Pesan** ke **Input Pintasan**.',

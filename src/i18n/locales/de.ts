@@ -318,7 +318,7 @@ const de: Messages = {
       ],
       inputInstruction: "Tippe in der Aktion **Nachricht** auf **Klingeln, wenn Geheimsatz passt** und wähle **Kurzbefehlseingabe**.",
       setupCompleted: "Einrichtung abgeschlossen!",
-      finalCaption: "So sollte es am Ende aussehen.",
+      finalCaption: "So sollte es genau aussehen:",
       openShortcuts: 'Kurzbefehle öffnen',
       waiting: 'Warte auf den ersten Durchlauf der Automation …',
       promptHint: 'Ein Feld verlangt Texteingabe? Dann ist **Nachricht** nicht verbunden: Abbrechen, die Aktion öffnen und **Nachricht** auf **Kurzbefehlseingabe** setzen.',

@@ -318,7 +318,7 @@ const it: Messages = {
       ],
       inputInstruction: "Tocca **Messaggio** nell’azione **Squilla se la frase corrisponde**, poi seleziona **Input del comando rapido**.",
       setupCompleted: "Configurazione completata!",
-      finalCaption: "Il risultato dovrebbe essere questo.",
+      finalCaption: "Il risultato dovrebbe essere esattamente così:",
       openShortcuts: 'Apri Comandi Rapidi',
       waiting: 'In attesa della prima esecuzione…',
       promptHint: 'Compare un riquadro che chiede di scrivere del testo? Allora **Messaggio** non è collegato: annulla, modifica l’azione e imposta **Messaggio** su **Input del comando rapido**.',

@@ -318,7 +318,7 @@ const sv: Messages = {
       ],
       inputInstruction: "Tryck på **Meddelande** i åtgärden **Ring om frasen stämmer** och välj **Genvägsinmatning**.",
       setupCompleted: "Inställningen är klar!",
-      finalCaption: "Så här ska det se ut.",
+      finalCaption: "Det ska se ut exakt så här:",
       openShortcuts: 'Öppna Genvägar',
       waiting: 'Väntar på första körningen…',
       promptHint: 'Ber en ruta dig skriva text? Då är **Meddelande** inte kopplat: avbryt, redigera åtgärden och ställ in **Meddelande** på **Genvägsinmatning**.',

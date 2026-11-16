@@ -318,7 +318,7 @@ const pt: Messages = {
       ],
       inputInstruction: "Toque em **Mensagem** na ação **Tocar se a frase coincidir** e selecione **Entrada de Atalho**.",
       setupCompleted: "Configuração concluída!",
-      finalCaption: "No final, deverá ficar assim.",
+      finalCaption: "Deverá ficar exatamente assim:",
       openShortcuts: 'Abrir Atalhos',
       waiting: 'Aguardando a primeira execução…',
       promptHint: 'Uma caixa pede para digitar texto? Então **Mensagem** não está conectada: cancele, edite a ação e defina **Mensagem** como **Entrada de Atalho**.',

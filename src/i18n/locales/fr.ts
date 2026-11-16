@@ -318,7 +318,7 @@ const fr: Messages = {
       ],
       inputInstruction: "Touchez **Message** dans l’action **Sonner si la phrase correspond**, puis sélectionnez **Entrée de raccourci**.",
       setupCompleted: "Configuration terminée !",
-      finalCaption: "Le résultat devrait ressembler à ceci.",
+      finalCaption: "Le résultat devrait ressembler exactement à ceci :",
       openShortcuts: 'Ouvrir Raccourcis',
       waiting: 'En attente de la première exécution…',
       promptHint: 'Une boîte demande de saisir du texte ? Alors **Message** n’est pas relié : annulez, modifiez l’action et réglez **Message** sur **Entrée de raccourci**.',

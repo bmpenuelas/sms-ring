@@ -318,7 +318,7 @@ const tr: Messages = {
       ],
       inputInstruction: "**Cümle eşleşirse çal** eyleminde **Mesaj** alanına dokunun ve **Kestirme Girişi** seçin.",
       setupCompleted: "Kurulum tamamlandı!",
-      finalCaption: "Sonunda böyle görünmelidir.",
+      finalCaption: "Tam olarak böyle görünmelidir:",
       openShortcuts: 'Kestirmeler’i aç',
       waiting: 'İlk otomasyon çalışması bekleniyor…',
       promptHint: 'Metin yazmanızı isteyen bir kutu mu çıktı? O zaman **Mesaj** bağlı değil: iptal edin, eylemi düzenleyin ve **Mesaj**’ı **Kestirme Girişi** yapın.',

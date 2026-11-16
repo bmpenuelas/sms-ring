@@ -318,7 +318,7 @@ const es: Messages = {
       ],
       inputInstruction: "Toca **Mensaje** en la acción **Sonar si coincide la frase** y selecciona **Entrada de atajo**.",
       setupCompleted: "¡Configuración completada!",
-      finalCaption: "Debería quedar así.",
+      finalCaption: "Debería quedar exactamente así:",
       openShortcuts: 'Abrir Atajos',
       waiting: 'Esperando la primera ejecución…',
       promptHint: '¿Aparece un cuadro que pide escribir texto? Entonces **Mensaje** no está conectado: cancélalo, edita la acción y pon **Mensaje** en **Entrada de atajo**.',

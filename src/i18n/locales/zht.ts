@@ -318,7 +318,7 @@ const zht: Messages = {
       ],
       inputInstruction: "點一下 **訊息** 動作中的 **暗號相符時響鈴**，然後選擇 **捷徑輸入**。",
       setupCompleted: "設定完成！",
-      finalCaption: "完成後應如下圖所示。",
+      finalCaption: "完成後應與下圖完全一致：",
       openShortcuts: '打開捷徑',
       waiting: '正在等待自動化操作第一次執行…',
       promptHint: '跳出要求輸入文字的框？代表 **訊息** 還沒連接：取消它，編輯該動作，把 **訊息** 設為 **捷徑輸入**。',
