@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "解锁后轻触暂停即可停止";
 "Ring if passphrase matches" = "暗号匹配时响铃";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "当短信包含你的 SMS Ring 暗号时，让手机以最大音量响铃。在这台设备 上检查，不会发送任何内容。";
+"Ring if ${message} has the passphrase" = "如果${message}包含暗号则响铃";
 "Message" = "信息";
 "The message text, usually Shortcut Input." = "短信正文，通常是“快捷指令输入”。";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "请不要在此输入任何内容。先取消，然后在操作中把“信息”设为“快捷指令输入”，让快捷指令自动填入收到的文本。";

@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Unlock, then tap pause to stop";
 "Ring if passphrase matches" = "Ring if passphrase matches";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere.";
+"Ring if ${message} has the passphrase" = "Ring if ${message} has the passphrase";
 "Message" = "Message";
 "The message text, usually Shortcut Input." = "The message text, usually Shortcut Input.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives.";

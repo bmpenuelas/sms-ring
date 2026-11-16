@@ -97,6 +97,8 @@ export interface PlatformInfo {
   /** False when the OS confirms the app cannot open network sockets at all. */
   hasInternetPermission: boolean | null
   osVersion: string
+  /** iPhone only: when the Shortcuts automation last ran and what the matcher decided (never the message). */
+  lastAutomationRun?: { at: number; verdict: string }
 }
 
 export interface RemoteRingPlugin {

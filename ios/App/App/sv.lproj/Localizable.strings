@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Lås upp och tryck på paus för att stoppa";
 "Ring if passphrase matches" = "Ring om frasen stämmer";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Får telefonen att ringa på full volym när meddelandet innehåller din SMS Ring-fras. Kontrolleras på den här enheten; inget skickas.";
+"Ring if ${message} has the passphrase" = "Ring om ${message} innehåller frasen";
 "Message" = "Meddelande";
 "The message text, usually Shortcut Input." = "Meddelandets text, oftast Genvägsindata.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Skriv inget här. Avbryt och ställ i åtgärden in Meddelande på Genvägsinmatning, så fyller Genvägar i den mottagna texten själv.";

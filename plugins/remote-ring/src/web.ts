@@ -16,6 +16,8 @@ import type {
 const CONFIG_KEY = 'remoteRing.web.config'
 const CAPS_KEY = 'remoteRing.web.capabilities'
 const HISTORY_KEY = 'remoteRing.web.history'
+/** Browser preview only: set to `{"at": <epoch ms>, "verdict": "ring"}` to simulate a Shortcuts automation run (iPhone setup guide). */
+const AUTOMATION_KEY = 'remoteRing.web.automationRun'
 
 const DEFAULT_CAPS: CapabilityStatus = {
   sms: 'prompt',
@@ -141,6 +143,7 @@ export class RemoteRingWeb extends WebPlugin implements RemoteRingPlugin {
       declaredPermissions: [],
       hasInternetPermission: null,
       osVersion: navigator.userAgent,
+      lastAutomationRun: read<{ at: number; verdict: string } | null>(AUTOMATION_KEY, null) ?? undefined,
     }
   }
 

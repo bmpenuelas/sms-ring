@@ -90,7 +90,7 @@ const capabilities = ref<CapabilityStatus>({
   autostart: 'unsupported',
   notificationAccess: 'unsupported',
 })
-const platformInfo = ref<PlatformInfo & { lastAutomationRun?: { at: number; verdict: string } }>({
+const platformInfo = ref<PlatformInfo>({
   platform,
   triggerMode: platform === 'ios' ? 'shortcuts' : platform === 'android' ? 'sms' : 'simulated',
   declaredPermissions: [],

@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Mở khóa, rồi chạm tạm dừng để tắt";
 "Ring if passphrase matches" = "Đổ chuông nếu khớp câu";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Làm máy đổ chuông hết cỡ khi tin nhắn chứa câu SMS Ring của bạn. Kiểm tra trên thiết bị này; không gì được gửi đi.";
+"Ring if ${message} has the passphrase" = "Đổ chuông nếu ${message} chứa câu";
 "Message" = "Tin nhắn";
 "The message text, usually Shortcut Input." = "Nội dung tin nhắn, thường là Đầu vào phím tắt.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Đừng nhập gì ở đây. Hãy hủy, rồi trong hành động đặt Tin nhắn là Đầu vào phím tắt để Phím tắt tự điền văn bản nhận được.";

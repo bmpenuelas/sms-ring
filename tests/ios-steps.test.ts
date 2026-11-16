@@ -36,3 +36,19 @@ test('every language explains the box that asks to type the message, in the app 
     assert.ok(messages.native.intentMessagePrompt.length > 20, code)
   }
 })
+
+test('every language localizes the action summary around the Message parameter', async () => {
+  for (const { code } of LANGUAGES) {
+    const { default: messages } = await import(`../src/i18n/locales/${code}.ts`)
+    assert.ok(messages.native.intentSummary.includes('${message}'), `${code}: summary keeps the parameter placeholder`)
+  }
+})
+
+test('every language has the finished-automation image shown at the end of the iPhone guide', async () => {
+  const { existsSync, statSync } = await import('node:fs')
+  for (const { code } of LANGUAGES) {
+    const file = new URL(`../public/ios-setup/${code}.webp`, import.meta.url)
+    assert.ok(existsSync(file), `${code}: public/ios-setup/${code}.webp`)
+    assert.ok(statSync(file).size < 100 * 1024, `${code}: image is small`)
+  }
+})

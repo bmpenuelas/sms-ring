@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Kilidi açın, sonra durdurmak için duraklata dokunun";
 "Ring if passphrase matches" = "Cümle eşleşirse çal";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Mesaj SMS Ring cümleni içeriyorsa telefonunu son ses çaldırır. Bu cihazda kontrol edilir; hiçbir şey gönderilmez.";
+"Ring if ${message} has the passphrase" = "${message} cümleyi içeriyorsa çal";
 "Message" = "Mesaj";
 "The message text, usually Shortcut Input." = "Mesaj metni, genellikle Kestirme Girdisi.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Buraya bir şey yazmayın. İptal edin, ardından eylemde Mesaj’ı Kestirme Girişi yapın; böylece Kestirmeler alınan metinle kendisi doldurur.";

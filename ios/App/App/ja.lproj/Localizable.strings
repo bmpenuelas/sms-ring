@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "ロックを解除して一時停止をタップすると止まります";
 "Ring if passphrase matches" = "フレーズが一致したら鳴らす";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "メッセージに SMS Ring のフレーズが含まれていれば、スマホを最大音量で鳴らします。このデバイス で確認し、何も送信しません。";
+"Ring if ${message} has the passphrase" = "${message} にフレーズがあれば鳴らす";
 "Message" = "メッセージ";
 "The message text, usually Shortcut Input." = "メッセージの本文。通常はショートカットの入力です。";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "ここには何も入力しないでください。キャンセルして、アクションの「メッセージ」を「ショートカットの入力」に設定すると、受信したテキストが自動で入ります。";

@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "解鎖後輕觸暫停即可停止";
 "Ring if passphrase matches" = "暗號相符時響鈴";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "當簡訊包含你的 SMS Ring 暗號時，讓手機以最大音量響鈴。在這部裝置 上檢查，不會傳送任何內容。";
+"Ring if ${message} has the passphrase" = "如果${message}包含暗號則響鈴";
 "Message" = "訊息";
 "The message text, usually Shortcut Input." = "簡訊內文，通常是「捷徑輸入」。";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "請不要在此輸入任何內容。先取消，然後在動作中把「訊息」設為「捷徑輸入」，讓捷徑自動填入收到的文字。";

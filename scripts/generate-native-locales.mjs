@@ -56,6 +56,7 @@ const IOS_STRINGS = [
   'stopHint',
   'intentRingTitle',
   'intentRingDescription',
+  'intentSummary',
   'intentMessage',
   'intentMessageDescription',
   'intentMessagePrompt',
@@ -75,7 +76,8 @@ const xml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/^([@?])/, '\\$1')
 const strings = (s) => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')
 const android = (s) => s.replace(/\{\w+\}/g, '%1$s')
-const ios = (s) => s.replace(/\{\w+\}/g, '%@')
+// `${message}` is an App Intents parameter placeholder and stays as is; `{name}` becomes %@.
+const ios = (s) => s.replace(/(?<!\$)\{\w+\}/g, '%@')
 
 const pending = []
 let stale = 0

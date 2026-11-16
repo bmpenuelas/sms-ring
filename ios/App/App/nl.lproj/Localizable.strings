@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Ontgrendel en tik op pauze om te stoppen";
 "Ring if passphrase matches" = "Overgaan als zin klopt";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Laat je telefoon op vol volume overgaan als het bericht je SMS Ring-zin bevat. Gecontroleerd op dit apparaat; er wordt niets verzonden.";
+"Ring if ${message} has the passphrase" = "Overgaan als ${message} de zin bevat";
 "Message" = "Bericht";
 "The message text, usually Shortcut Input." = "De berichttekst, meestal de Opdrachtinvoer.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Typ hier niets. Annuleer en zet in de actie Bericht op Invoer opdracht, zodat Opdrachten het invult met de ontvangen tekst.";

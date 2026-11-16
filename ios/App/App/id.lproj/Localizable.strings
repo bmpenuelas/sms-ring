@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "Buka kunci, lalu ketuk jeda untuk berhenti";
 "Ring if passphrase matches" = "Berdering jika frasa cocok";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "Membuat ponselmu berdering dengan volume penuh jika pesan berisi frasa SMS Ring-mu. Diperiksa di perangkat ini; tidak ada yang dikirim.";
+"Ring if ${message} has the passphrase" = "Berdering jika ${message} berisi frasa";
 "Message" = "Pesan";
 "The message text, usually Shortcut Input." = "Teks pesan, biasanya Input Pintasan.";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "Jangan ketik apa pun di sini. Batalkan, lalu di aksi atur Pesan ke Input Pintasan agar Pintasan mengisinya dengan teks yang diterima.";

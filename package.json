@@ -26,6 +26,7 @@
     "verify:offline": "node scripts/run-command.mjs -- node scripts/verify-offline.mjs",
     "assets": "node scripts/run-command.mjs -- node scripts/generate-app-assets.mjs",
     "assets:web": "node scripts/run-command.mjs -- node scripts/generate-app-assets.mjs --web",
+    "ios:setup-images": "node scripts/run-command.mjs -- node scripts/generate-ios-setup-images.mjs",
     "assets:check": "node scripts/run-command.mjs -- node scripts/generate-app-assets.mjs --check",
     "cap:sync": "node scripts/run-command.mjs -- npm run assets:check && node scripts/run-command.mjs -- npm run build && node scripts/run-command.mjs -- npm run locales && node scripts/run-command.mjs -- cap sync",
     "cap:sync:android": "node scripts/run-command.mjs -- npm run assets:check && node scripts/run-command.mjs -- npm run build && node scripts/run-command.mjs -- npm run locales && node scripts/run-command.mjs -- cap sync android",

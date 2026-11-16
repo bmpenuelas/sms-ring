@@ -5,6 +5,7 @@
 "Unlock, then tap pause to stop" = "अनलॉक करें, फिर रोकने के लिए पॉज़ पर टैप करें";
 "Ring if passphrase matches" = "वाक्य मिलने पर बजाएँ";
 "Rings your phone at full volume when the message contains your SMS Ring passphrase. Checked on this device; nothing is sent anywhere." = "संदेश में आपका SMS Ring वाक्य होने पर फ़ोन पूरी आवाज़ में बजाता है। इसी डिवाइस पर जाँचा जाता है; कुछ भी भेजा नहीं जाता।";
+"Ring if ${message} has the passphrase" = "अगर ${message} में वाक्य है तो बजाएँ";
 "Message" = "संदेश";
 "The message text, usually Shortcut Input." = "संदेश का टेक्स्ट, आमतौर पर शॉर्टकट इनपुट।";
 "Don’t type anything here. Cancel, then in the action set Message to Shortcut Input, so Shortcuts fills it in with the text it receives." = "यहाँ कुछ न लिखें। रद्द करें, फिर एक्शन में संदेश को शॉर्टकट इनपुट पर सेट करें, ताकि शॉर्टकट उसे प्राप्त टेक्स्ट से भर दे।";

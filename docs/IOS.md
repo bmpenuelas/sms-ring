@@ -19,6 +19,11 @@ The in-app guide (`IosSetupSheet.vue`) walks through these steps (the action is 
 
 If **Message** of the action is not set to **Shortcut Input**, Shortcuts stops each run and asks the user to type it (a text box with a single OK). Nothing is received from the SMS in that case: the intent only sees what was typed, so the real passphrase text never reaches it, yet the run is recorded and the guide shows “Automation worked”. Because of that, the intent's *Message* parameter carries a `requestValueDialog` (`intentMessagePrompt`) that says not to type and what to set instead, and the guide shows a permanent hint (`ios.promptHint`) under the check. A run cannot be told apart from a typed one, so the check only proves the automation ran, not that Message is connected; the real test is a text with the passphrase.
 
+### Finishing the guide
+
+- **Image**: the guide ends with `public/ios-setup/<language>.webp`, a screenshot of the finished automation in that language (falls back to `en.webp`). The action name and its summary ("Ring if … has the passphrase", `intentSummary`) are localized by the app, the rest by Shortcuts, so each image needs the *system* language of the simulator, not just Shortcuts'. To refresh them: for each language set `AppleLanguages`/`AppleLocale` in the booted simulator (`xcrun simctl spawn booted defaults write -g AppleLanguages -array es`), kill `linkd` and relaunch Shortcuts, open the automation → its action, `xcrun simctl status_bar booted override --time 9:41 …`, `xcrun simctl io booted screenshot raw-<code>.png`, then `npm run ios:setup-images -- <folder>` (rounds the corners, 588 px wide, ~30 KB each).
+- **Completion**: while the guide is open it polls the native side every 1.5 s (the automation runs in the background, so no event reaches the app). A run recorded after the guide was opened shows a **Setup completed!** popup; OK closes it and the guide. A run that already existed when the guide opened does not trigger it. In the browser preview, `localStorage['remoteRing.web.automationRun'] = '{"at":<ms>,"verdict":"ring"}'` simulates a run.
+
 ### Walkthrough check (iOS 26.3, fresh simulator)
 
 The guide's steps were checked tap by tap against Shortcuts on iOS 26.3; the in-app sketches (`src/ui/IosStepArt.vue`) mirror those screens. Things that differ from older iOS versions and are easy to get wrong:
