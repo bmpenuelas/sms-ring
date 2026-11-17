@@ -15,7 +15,8 @@ export default defineConfig({
     // Keep the existing order: web build, localized native/store resources, sync.
     afterBuild: [['node', 'scripts/generate-native-locales.mjs']],
   },
-  android: { appId: 'com.logicedge.smsring' },
+  // The installer uses the isolated debug APK; release/store identities stay unchanged.
+  android: { appId: 'com.logicedge.smsring.debug' },
   store: {
     root: 'store',
     locales: LANGUAGES.map(language => ({ app: language.code, android: language.play, ios: language.appStore })),

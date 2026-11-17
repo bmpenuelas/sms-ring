@@ -6,7 +6,7 @@ const appId = 'com.logicedge.smsring'
 const pluginNamespace = `${appId}.remotering`
 const read = (path: string) => readFile(new URL(`../${path}`, import.meta.url), 'utf8')
 
-test('Capacitor, native projects, generated resources and installer use the same app identifier', async () => {
+test('release identities agree while the installer targets the isolated debug application ID', async () => {
   assert.ok((await read('capacitor.config.ts')).includes(`appId: '${appId}'`))
   const gradle = await read('android/app/build.gradle')
   assert.ok(gradle.includes(`applicationId "${appId}"`))
@@ -20,7 +20,10 @@ test('Capacitor, native projects, generated resources and installer use the same
     assert.ok(resources.includes(`<string name="${name}">${appId}</string>`))
   }
   const config = await read('reusable-dev-scripts.config.mjs')
-  for (const key of ['appId', 'androidId', 'iosId']) assert.ok(config.includes(`${key}: '${appId}'`))
+  for (const key of ['androidId', 'iosId']) assert.ok(config.includes(`${key}: '${appId}'`))
+  const debug = gradle.match(/\bdebug\s*\{([^}]+)\}/su)?.[1] ?? ''
+  assert.match(debug, /applicationIdSuffix\s+["']\.debug["']/u)
+  assert.ok(config.includes(`appId: '${appId}.debug'`), 'installer verifies/replaces only the debug package')
   assert.ok((await read('plugins/remote-ring/android/build.gradle')).includes(`namespace = "${pluginNamespace}"`))
   assert.ok((await read('plugins/remote-ring/android/src/main/AndroidManifest.xml'))
     .includes(`android:taskAffinity="${appId}.ring"`))

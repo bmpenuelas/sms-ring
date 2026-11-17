@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readFile, mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises'
+import { dirname, join, resolve } from 'node:path'
+import { tmpdir } from 'node:os'
 import { test } from 'node:test'
 import { fileURLToPath } from 'node:url'
 import config from '../reusable-dev-scripts.config.mjs'
@@ -13,7 +15,7 @@ const root = fileURLToPath(new URL('../', import.meta.url))
 
 test('the toolkit dependency and store adapter follow the integration configuration', async () => {
   const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
-  assert.ok(['0.1.2', 'file:../dev-scripts'].includes(pkg.devDependencies['reusable-dev-scripts']))
+  assert.ok(['0.2.0', 'file:../dev-scripts'].includes(pkg.devDependencies['reusable-dev-scripts']))
   assert.equal(config.store.allowExternalCredentials, true)
   assert.deepEqual(config.store.locales, LANGUAGES.map(language => ({ app: language.code, android: language.play, ios: language.appStore })))
   assert.deepEqual(config.capacitor.prepare, [['node', 'scripts/generate-app-assets.mjs', '--check']])
@@ -50,6 +52,7 @@ test('configured sync/install/release plans cannot change package versions or na
     ['capacitor', 'versions', '--bump', 'patch', '--dry-run'],
     ['android', 'build', '--configuration', 'release', '--format', 'aab', '--dry-run'],
     ['android', 'install', '--physical', '--dry-run'],
+    ['android', 'start-adb', '--dry-run'],
     ['store', 'run', '--dry-run', '--', 'android', 'listing'],
   ]) {
     const result = cli(args, root)
@@ -82,5 +85,74 @@ test('product generators no longer import the removed compatibility reporter', a
   for (const name of ['generate-app-assets', 'generate-native-locales', 'generate-ios-setup-images', 'generate-ringtone', 'verify-offline']) {
     const source = await readFile(new URL('../scripts/' + name + '.mjs', import.meta.url), 'utf8')
     assert.ok(!source.includes('cli-failure.mjs'), name)
+  }
+})
+
+test('ADB startup uses the typed installed command without selecting or installing a device', async () => {
+  const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
+  assert.equal(pkg.scripts['android:start-adb'], 'rds android start-adb')
+  const help = cli(['android', 'start-adb', '--help'], root)
+  assert.equal(help.status, 0, help.stderr)
+  assert.match(help.stdout, /^rds android start-adb\r?\n/u)
+
+  const calls: { command: string; args: string[]; capture?: boolean }[] = []
+  const errors: string[] = []
+  const output = {
+    env: {}, log: () => {}, error: (message: string) => errors.push(message),
+    runner: async (step: { command: string; args: string[]; capture?: boolean }) => {
+      calls.push(step)
+      return { stdout: '', stderr: '' }
+    },
+  }
+  const args = ['android', 'start-adb', '--cwd', root, '--no-banner']
+  // Inspect the actual app's resolved plan with a fake runner: no ADB daemon is started.
+  assert.equal(await runCli(args, output), 0)
+  assert.equal(calls.length, 1)
+  assert.match(calls[0].command.split(/[\\/]/u).at(-1)!, /^adb(?:\.exe)?$/u)
+  assert.deepEqual(calls[0].args, ['start-server'])
+  assert.equal(calls[0].capture, false)
+
+  calls.length = 0
+  assert.equal(await runCli([...args, '--dry-run'], output), 0)
+  assert.equal(calls.length, 0)
+  assert.equal(await runCli([...args, '--env', 'production'], output), 1)
+  assert.equal(calls.length, 0)
+  assert.match(errors.join('\n'), /requires --allow-production/u)
+})
+
+test('debug install verification and explicit replacement never target the release package', async t => {
+  const parent = resolve(tmpdir()), directory = await mkdtemp(join(parent, 'rds-debug-install-'))
+  t.after(async () => {
+    assert.equal(dirname(resolve(directory)), parent)
+    await rm(directory, { recursive: true, force: true })
+  })
+  const debugId = 'com.logicedge.smsring.debug'
+  const releaseId = 'com.logicedge.smsring'
+  assert.equal(config.android.appId, debugId)
+  await writeFile(join(directory, 'reusable-dev-scripts.config.json'), JSON.stringify({ version: 1, android: { appId: config.android.appId } }))
+  const output = join(directory, 'android/app/build/outputs/apk/debug')
+  await mkdir(output, { recursive: true })
+  await writeFile(join(output, 'app-debug.apk'), 'synthetic APK, never installed')
+  for (const replace of [false, true]) {
+    const calls: { args: string[] }[] = []
+    const code = await runCli(['android', 'install', '--cwd', directory, '--physical', '--no-banner', ...(replace ? ['--replace'] : [])], {
+      env: {}, log: () => {}, error: () => {},
+      runner: async step => {
+        calls.push(step)
+        assert.ok(!step.args.includes(releaseId), 'no command can address the release/store package')
+        if (step.args[0] === 'devices') return { stdout: 'fixture-device\tdevice\n', stderr: '' }
+        if (step.args.includes('path')) {
+          assert.equal(step.args.at(-1), debugId)
+          return { stdout: 'package:/fixture/base.apk\n', stderr: '' }
+        }
+        return { stdout: 'Success\n', stderr: '' }
+      },
+    })
+    assert.equal(code, 0)
+    assert.equal(calls.length, replace ? 5 : 3)
+    const removals = calls.filter(step => step.args.includes('uninstall'))
+    assert.equal(removals.length, replace ? 1 : 0)
+    if (replace) assert.equal(removals[0].args.at(-1), debugId)
+    assert.deepEqual(calls.at(-1)!.args.slice(-4), ['shell', 'pm', 'path', debugId])
   }
 })

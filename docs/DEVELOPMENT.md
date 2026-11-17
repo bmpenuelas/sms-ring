@@ -41,6 +41,7 @@ Like the app, it loads nothing from other sites: fonts are copied from `@fontsou
 | `npm run verify:offline` | Check the no-network guarantees. |
 | `npm run cap:sync` | Check assets + build + locales + `cap sync`. |
 | `npm run android:debug` | Build a debug APK. |
+| `npm run android:start-adb` | Start ADB through `rds android start-adb`, using the configured SDK/environment without choosing or installing a device. |
 | `npm run native:versions` | Sync package version to native projects, preserving a higher iOS build number. |
 | `npm run ios:bump-build-number` | Increment the iOS build number in every Xcode configuration, keeping the package/marketing version (e.g. `1.0.0`). |
 
@@ -64,13 +65,13 @@ Use `cap:sync:open:ios` after a build-only bump to keep `1.0.0`.
 
 ## Shared automation and local policy
 
-The development dependency `reusable-dev-scripts` supplies `rds`. The npm release is pinned to `0.1.1` in the manifest and lockfile. Run `npm ci` for a clean install; no sibling checkout or global tool is required. To update intentionally, install an explicitly selected version with `npm install --save-dev --save-exact reusable-dev-scripts@<version>` and review both dependency files. `reusable-dev-scripts.config.mjs` owns app IDs, locale mappings, the local hooks and the explicit external-credential opt-in.
+The development dependency `reusable-dev-scripts` supplies `rds`. The npm release is pinned to `0.2.0` in the manifest and lockfile. Run `npm ci` for a clean install; no sibling checkout or global tool is required. To update intentionally, install an explicitly selected version with `npm install --save-dev --save-exact reusable-dev-scripts@<version>` and review both dependency files. `reusable-dev-scripts.config.mjs` owns app IDs, locale mappings, the local hooks and the explicit external-credential opt-in.
 
-- Vue builds, Capacitor sync/open, native version synchronization, Gradle/ADB mechanics, CSV exports, store validation/changelogs, pinned Fastlane and result banners use rds.
+- Vue builds, Capacitor sync/open, native version synchronization, Gradle/ADB mechanics, CSV exports, store validation/changelogs, pinned Fastlane and result banners use rds. `android:start-adb` now calls the typed `rds android start-adb` command instead of generic `rds exec -- adb start-server`; it honors the configured SDK and production guard. Add `-- --dry-run` to preview without starting the daemon.
 - Artwork composition/splash rewriting, the multi-target locale/Xcode/store-copy generator, ring tones, iOS setup images and offline verification stay local. The `capacitor.afterBuild` hook keeps web compilation before locale generation and native sync. Generators are not silently replaced with generic versions.
 - `scripts/native-workflow.mjs` keeps this app's release policy: bump once, update BOTH native projects, sync the selected platform, verify offline behavior before a release Gradle build, then reveal the artifact. Debug/install recipes do not bump. Every step delegates to rds.
 - Release preparation aliases intentionally bump; retry the same release with `npm run cap:sync:android` and `npm exec -- rds android build --configuration release --format aab --reveal` after the offline check, rather than bumping again. Add `-- --dry-run` to the named native recipes to plan every step without changing versions or building.
-- `npm run android:install -- --device <serial>` syncs, builds debug and installs on a physical device. Multiple devices require an explicit selection. It NEVER silently removes a Play Store install: only add `--replace` after approving loss of local app data. The obsolete `--build-script` installer option is no longer supported; use explicit sync/build commands for a custom recipe.
+- `npm run android:install -- --device <serial>` syncs, builds debug and installs on a physical device. The debug APK adds `.debug` to the release ID, so `android.appId` is `com.logicedge.smsring.debug` for package verification and explicit replacement. It installs alongside the store app (`com.logicedge.smsring`) with separate settings/data; release, Capacitor and store IDs remain unchanged. Multiple devices require an explicit selection. `--replace` is never implicit and clears only the configured debug package after approval, not the store app. The obsolete `--build-script` installer option is no longer supported; use explicit sync/build commands for a custom recipe. If installation succeeded but verification queried the unsuffixed release ID, correct the config; do not uninstall the store app or rebuild just to repeat verification.
 - CSV exports still default to `store/exports/android.csv` and `ios.csv`; custom paths now use `-- --output exports/custom.csv`, relative to `store/`, and cannot escape the project.
 
 rds prints one timestamped result per invocation on stderr (ISO UTC): SUCCESS, FAILED, or PLAN COMPLETE for dry-run. Help/version stay clean; nested rds calls leave the banner to their owner. Set `output: { banners: false }` in the config, `RDS_BANNERS=0` in CI, or pass `--no-banner`. `--banner` overrides disabled settings. Ordinary diagnostics remain enabled. Direct `node` invocations of the product generators use normal Node diagnostics; use npm aliases for banners. The no-op compatibility reporter and its imports have been removed. Its asset-generator fingerprint was updated only after the previous asset check passed and the generator change was verified to be exactly the removal of that inert import; no artwork was regenerated. Superseded helper implementations have been removed.
@@ -159,6 +160,21 @@ The git pre-commit hook in `.githooks/` checks generated assets and locales befo
 
 ## Shared recipe extensions
 
-The project pins `reusable-dev-scripts@0.1.2` from npm; clean installs need no sibling checkout. For toolkit development, temporarily use `npm install --save-dev --install-links=false ../dev-scripts --ignore-scripts` and rebuild that checkout after changes. Return to the registry dependency with `npm install --save-dev --save-exact reusable-dev-scripts@0.1.2 --ignore-scripts` and update the lockfile. The ignore-scripts flag applies only to these narrow dependency-update commands, not normal project setup or rds hooks.
+The project pins `reusable-dev-scripts@0.2.0` from npm; clean installs need no sibling checkout. For toolkit development, temporarily use `npm install --save-dev --install-links=false ../dev-scripts --ignore-scripts` and rebuild that checkout after changes. Return to the registry dependency with `npm install --save-dev --save-exact reusable-dev-scripts@0.2.0 --ignore-scripts` and update the lockfile. The ignore-scripts flag applies only to these narrow dependency-update commands, not normal project setup or rds hooks.
 
 `capacitor.afterBuild` runs the app-owned locale generator after each successful default Vue build and before sync/copy, preserving the existing build → locales → native sync order. It is skipped with `--skip-build`. The former `scripts/build-native.mjs` wrapper is no longer needed. `scripts/native-workflow.mjs` imports the toolkit’s `runSteps` with an explicit project working directory; local process-launching code is removed. Release/version/offline verification and device-replacement policies are unchanged.
+
+### Remaining migration audit
+
+The ADB alias migration works with the existing pinned toolkit; it needs no dependency update or app version bump. The remaining aliases were checked against both the installed command contract and newer shared command families:
+
+| Candidate | Disposition |
+| --- | --- |
+| Android bundle, APK, debug, install and release preparation | Already delegate versioning, sync, Gradle and ADB to RDS through the app-owned recipe. Preserve both-platform version ownership, offline verification, ordering and device/replace options. |
+| App assets | Retain local SVG composition, adaptive-icon sizing, splash repainting, web/store outputs, compression and source fingerprint checks; generic Capacitor assets are not a complete replacement. |
+| Locales | Retain the catalogue adapter, Android app/plugin strings and locale declaration, iOS plist/Xcode resource registration and store-listing generation; generic native strings would omit work. |
+| Ringtones, iOS setup images and offline verification | Retain app-specific media generation and security policy. |
+| Dev, preview, typecheck and tests | Existing tool invocations need no new orchestration. Concurrent dev, TCP readiness, environment generation and Prisma commands have no matching multi-service/database workflow here. |
+| Git-hook setup | Retain local project policy; do not replace it with build/release automation. |
+
+The migration audit did not require a dependency upgrade or validate live ADB, native builds, signing, uploads or Explorer behavior. After local toolkit testing, the project now pins the published npm `0.2.0` snapshot, including the Windows reveal fixes; it no longer needs the sibling checkout for normal use. Further edits in a toolkit checkout still require an intentional dependency update or a temporary development link.

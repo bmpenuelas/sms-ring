@@ -1,6 +1,6 @@
 {
   "name": "sms-ring",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "type": "module",
   "description": "Ring your phone at full volume with a secret SMS. Offline by design, open source.",
@@ -46,7 +46,7 @@
     "android:install": "node scripts/native-workflow.mjs android install",
     "android:bundle": "node scripts/native-workflow.mjs android aab",
     "android:apk:release": "node scripts/native-workflow.mjs android apk",
-    "android:start-adb": "rds exec -- adb start-server",
+    "android:start-adb": "rds android start-adb",
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
@@ -67,7 +67,7 @@
     "@capacitor/cli": "^8.5.3",
     "@capacitor/ios": "^8.5.3",
     "@vitejs/plugin-vue": "^6.0.10",
-    "reusable-dev-scripts": "0.1.2",
+    "reusable-dev-scripts": "0.2.0",
     "sharp": "^0.34.5",
     "typescript": "^6.0.3",
     "vite": "^8.3.4",
