@@ -11,7 +11,6 @@
 //    CFBundleLocalizations, and the Xcode project's variant groups
 //  - Store listings: store/fastlane/metadata/{android,ios}/<locale>/*.txt
 // Both stores detect the app's languages from these files.
-import './lib/cli-failure.mjs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'

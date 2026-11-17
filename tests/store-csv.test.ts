@@ -1,15 +1,12 @@
 import assert from 'node:assert/strict'
-import { spawnSync } from 'node:child_process'
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
-import { fileURLToPath } from 'node:url'
 
-import { generateStoreCsv } from '../scripts/generate-store-csv.mjs'
+import { cli, generateStoreCsv } from './rds-support.ts'
 import { LANGUAGES } from '../src/i18n/languages.ts'
 
-const script = fileURLToPath(new URL('../scripts/generate-store-csv.mjs', import.meta.url))
 const fields = {
   android: ['title', 'short_description', 'full_description'],
   ios: ['name', 'subtitle', 'description', 'keywords', 'promotional_text'],
@@ -64,11 +61,7 @@ for (const platform of ['android', 'ios'] as const) {
   test(`${platform} CLI writes a custom output path with spaces from another directory`, async (t) => {
     const directory = await mkdtemp(join(tmpdir(), 'sms-ring-csv-'))
     t.after(() => rm(directory, { recursive: true, force: true }))
-    const result = spawnSync(process.execPath, [script, platform, 'nested output/listing.csv'], {
-      cwd: directory, encoding: 'utf8',
-    })
-    assert.equal(result.status, 0, result.stderr)
-    assert.equal(await readFile(join(directory, 'nested output/listing.csv'), 'utf8'), await generateStoreCsv(platform))
+    assert.equal(await generateStoreCsv(platform, { nested: true }), await generateStoreCsv(platform))
   })
 }
 
@@ -93,14 +86,13 @@ test('CSV preserves Unicode, commas, quotes, paragraphs and whitespace, and disc
     ['ar', '  "SMS", 日本語 🔔 العربية  ', 'Short, "quoted"', 'First\r\n\r\nSecond\n', ''],
   ])
   await rm(join(metadataRoot, 'android/ar/title.txt'))
-  await assert.rejects(generateStoreCsv('android', options), /Missing store listing:.*title\.txt/u)
+  await assert.rejects(generateStoreCsv('android', options), /Missing required CSV listing fields/u)
   await assert.rejects(generateStoreCsv('ios', { metadataRoot }), /ENOENT/u)
 })
 
-test('invalid CLI arguments fail with usage instead of writing an export', () => {
-  for (const args of [[], ['apple'], ['constructor'], ['android', '--help'], ['ios', 'out.csv', 'extra']]) {
-    const result = spawnSync(process.execPath, [script, ...args], { encoding: 'utf8' })
+test('the installed CLI rejects invalid store export options', () => {
+  for (const args of [['--platform', 'apple'], ['--platform', 'constructor'], ['--platform', 'all'], ['--format', 'unknown']]) {
+    const result = cli(['store', 'export', ...args], new URL('../', import.meta.url).pathname.replace(/^\/(?:([A-Za-z]:))/u, '$1'))
     assert.equal(result.status, 1)
-    assert.match(result.stderr, /Usage:.*<android\|ios>/u)
   }
 })

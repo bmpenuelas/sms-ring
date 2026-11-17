@@ -22,7 +22,6 @@
 // 5. Records a hash of the sources in assets/.generated.json for assets:check.
 //
 // Commit the sources, the base PNGs and the native files together.
-import './lib/cli-failure.mjs'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs'

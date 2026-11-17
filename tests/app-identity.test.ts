@@ -19,7 +19,8 @@ test('Capacitor, native projects, generated resources and installer use the same
   for (const name of ['package_name', 'custom_url_scheme']) {
     assert.ok(resources.includes(`<string name="${name}">${appId}</string>`))
   }
-  assert.ok((await read('scripts/android-install.mjs')).includes(`const appId = '${appId}'`))
+  const config = await read('reusable-dev-scripts.config.mjs')
+  for (const key of ['appId', 'androidId', 'iosId']) assert.ok(config.includes(`${key}: '${appId}'`))
   assert.ok((await read('plugins/remote-ring/android/build.gradle')).includes(`namespace = "${pluginNamespace}"`))
   assert.ok((await read('plugins/remote-ring/android/src/main/AndroidManifest.xml'))
     .includes(`android:taskAffinity="${appId}.ring"`))

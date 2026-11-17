@@ -11,7 +11,6 @@ import { join, resolve } from 'node:path'
 
 import sharp from 'sharp'
 
-import './lib/cli-failure.mjs'
 
 const source = resolve(process.argv[2] ?? '')
 const out = resolve(import.meta.dirname, '../public/ios-setup')

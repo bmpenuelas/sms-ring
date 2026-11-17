@@ -7,7 +7,6 @@
 // 2. The production web build ships a Content-Security-Policy with connect-src 'none'.
 // 3. The Android manifests strip INTERNET, and the built APK (if present) declares no
 //    INTERNET permission (checked with the SDK's aapt).
-import './lib/cli-failure.mjs'
 import { execFileSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, relative } from 'node:path'

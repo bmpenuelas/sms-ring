@@ -1,6 +1,6 @@
 # Development
 
-Requirements: Node 22+, JDK 21 + Android SDK 36 (Android), Xcode 16+ on macOS (iOS).
+Requirements: Node >=22.18, JDK 21 + Android SDK 36 (Android), Xcode 16+ on macOS (iOS).
 
 ## Layout
 
@@ -9,8 +9,8 @@ src/                 Vue app (core/, state/, ui/, i18n/, services/)
 plugins/remote-ring/ local Capacitor plugin (npm workspace): TS API, Android (Java), iOS (Swift, SPM)
 android/ ios/        Capacitor platform projects (committed)
 assets/              icon sources (SVG) and the base PNGs generated from them
-scripts/             generate-app-assets, generate-native-locales, generate-ringtone, verify-offline, run-command (result banners)
-store/fastlane/      generated store listings + fastlane lanes that upload them
+scripts/             generate-app-assets, generate-native-locales, generate-ringtone, verify-offline, plus small application-owned native recipes
+store/fastlane/      generated listing data; shared lanes and gems come from rds
 site/                GitHub Pages: landing page + privacy/ (static, no build step)
 tests/               node:test suites (core + word lists)
 ```
@@ -62,11 +62,18 @@ For an update to an already published App Store version, increase the marketing 
 `release:prepare:ios` / `release:prepare:ios:open` also bump that patch version before syncing/building.
 Use `cap:sync:open:ios` after a build-only bump to keep `1.0.0`.
 
-Every npm script ends with a framed result banner on stderr: a green `✅ SUCCESS` for exit code 0 or a red `❌ FAILED` otherwise, with the local time and date (`HH:mm:ss DD/MM/YYYY`). `scripts/run-command.mjs` wraps each external command (`vite`, `vue-tsc`, `cap`, `node`, `npm`, `adb`) without a shell, and the custom scripts import `scripts/lib/cli-failure.mjs` so running them directly is covered too.
+## Shared automation and local policy
 
-- stdout is untouched, so JSON and pipes still work. Color follows the terminal: `NO_COLOR`, `TERM=dumb` and `FORCE_COLOR=0` turn it off, `FORCE_COLOR=1` forces it.
-- Success is per command step, not per `&&` chain: a later step can still fail, and a long-running `dev` server reports only when it exits.
-- The banner never changes the exit status and never repeats arguments or environment values.
+The development dependency `reusable-dev-scripts` supplies `rds`. The npm release is pinned to `0.1.1` in the manifest and lockfile. Run `npm ci` for a clean install; no sibling checkout or global tool is required. To update intentionally, install an explicitly selected version with `npm install --save-dev --save-exact reusable-dev-scripts@<version>` and review both dependency files. `reusable-dev-scripts.config.mjs` owns app IDs, locale mappings, the local hooks and the explicit external-credential opt-in.
+
+- Vue builds, Capacitor sync/open, native version synchronization, Gradle/ADB mechanics, CSV exports, store validation/changelogs, pinned Fastlane and result banners use rds.
+- Artwork composition/splash rewriting, the multi-target locale/Xcode/store-copy generator, ring tones, iOS setup images and offline verification stay local. The `capacitor.afterBuild` hook keeps web compilation before locale generation and native sync. Generators are not silently replaced with generic versions.
+- `scripts/native-workflow.mjs` keeps this app's release policy: bump once, update BOTH native projects, sync the selected platform, verify offline behavior before a release Gradle build, then reveal the artifact. Debug/install recipes do not bump. Every step delegates to rds.
+- Release preparation aliases intentionally bump; retry the same release with `npm run cap:sync:android` and `npm exec -- rds android build --configuration release --format aab --reveal` after the offline check, rather than bumping again. Add `-- --dry-run` to the named native recipes to plan every step without changing versions or building.
+- `npm run android:install -- --device <serial>` syncs, builds debug and installs on a physical device. Multiple devices require an explicit selection. It NEVER silently removes a Play Store install: only add `--replace` after approving loss of local app data. The obsolete `--build-script` installer option is no longer supported; use explicit sync/build commands for a custom recipe.
+- CSV exports still default to `store/exports/android.csv` and `ios.csv`; custom paths now use `-- --output exports/custom.csv`, relative to `store/`, and cannot escape the project.
+
+rds prints one timestamped result per invocation on stderr (ISO UTC): SUCCESS, FAILED, or PLAN COMPLETE for dry-run. Help/version stay clean; nested rds calls leave the banner to their owner. Set `output: { banners: false }` in the config, `RDS_BANNERS=0` in CI, or pass `--no-banner`. `--banner` overrides disabled settings. Ordinary diagnostics remain enabled. Direct `node` invocations of the product generators use normal Node diagnostics; use npm aliases for banners. The no-op compatibility reporter and its imports have been removed. Its asset-generator fingerprint was updated only after the previous asset check passed and the generator change was verified to be exactly the removal of that inert import; no artwork was regenerated. Superseded helper implementations have been removed.
 
 ## Uploading store listings
 
@@ -74,7 +81,7 @@ fastlane uploads the listings in `store/fastlane/` (Ruby only, so Windows works;
 still needs a Mac). Store API keys stay out of git: the paths below are gitignored, and so is any `.p8`.
 
 1. Ruby 3.3 and Bundler (`winget install RubyInstallerTeam.RubyWithDevKit.3.3 --source winget`).
-   The first `npm run store -- …` runs `bundle install` into `store/vendor/bundle` for you.
+   The first `npm run store -- …` runs `bundle install` into `.rds/gems` for you.
 2. Keys. Neither is ever committed, and a `.p8` is ignored anywhere. Point the environment variable
    at the file, or put it at the gitignored default path:
    - **Google Play**: a Google Cloud service account with the Google Play Android Developer API
@@ -105,8 +112,8 @@ npm run store -- ios listing_with_images             # everything
 npm run store -- lanes                               # list the lanes
 ```
 
-Every upload lane runs `store:check:strict` first and stops on errors; `skip_check:true` skips it and
-`strict:false` tolerates content that is still missing. The check wants the icon, feature graphic and
+Every upload lane runs strict scoped validation first and stops on errors; the old
+`skip_check:true` and `strict:false` bypasses are deliberately rejected. App-owned offline verification also runs before uploads. The check wants the icon, feature graphic and
 phone screenshots for `en-US` on Google Play and an iPhone set for `en-US` on the App Store (other
 languages fall back to those; `--all-locales` requires every language). Options: `validate:true`
 (App Store Connect has no dry run, so on iOS it only runs the local check), `confirm:true` (deliver
@@ -130,8 +137,11 @@ keywords exceed 100 bytes. If Ruby fails with `certificate verify failed` becaus
 scanning re-signs traffic, set `SSL_CERT_FILE` to a PEM bundle of Ruby's `ssl/cert.pem` plus the
 antivirus root certificate.
 
-`scripts/lib/store-specs.mjs` holds every limit and media size (the languages come from
-`src/i18n/languages.ts`, so they cannot drift); `tests/store-metadata.test.ts` covers the checks.
+The pinned toolkit owns store limits and media rules. Locale mappings come from `src/i18n/languages.ts` via the config. Store tests exercise the installed CLI against isolated fixtures, not copied validators. `.rds/` is ignored.
+
+Authenticated Fastlane operations now use shared rds lanes and `.rds/gems`; copied wrappers, Fastfiles, Appfile and gem manifests/lockfiles were removed. Existing key environment variables retain their old store-relative interpretation; absolute overrides remain absolute and are never copied into the checkout. The config explicitly enables `store.allowExternalCredentials` for `playKey` and `appleKey` only. Relative traversal and every output/cleanup path remain contained. Configuration and dry-run do not open key contents.
+
+For local-only planning use `npm exec -- rds store run --dry-run -- android listing`. `validate:true` on Android contacts the store and still requires operator approval. Shared lanes additionally expose internal binary uploads, never public rollout or review submission; the app-owned offline hook runs before any upload. No authenticated lane was executed during migration.
 
 ## Testing end to end
 
@@ -146,3 +156,9 @@ antivirus root certificate.
 - App icons and splash: chosen and generated (`npm run assets`, see [ASSETS.md](ASSETS.md)).
 
 The git pre-commit hook in `.githooks/` checks generated assets and locales before each commit; `npm install` enables it.
+
+## Shared recipe extensions
+
+The project pins `reusable-dev-scripts@0.1.2` from npm; clean installs need no sibling checkout. For toolkit development, temporarily use `npm install --save-dev --install-links=false ../dev-scripts --ignore-scripts` and rebuild that checkout after changes. Return to the registry dependency with `npm install --save-dev --save-exact reusable-dev-scripts@0.1.2 --ignore-scripts` and update the lockfile. The ignore-scripts flag applies only to these narrow dependency-update commands, not normal project setup or rds hooks.
+
+`capacitor.afterBuild` runs the app-owned locale generator after each successful default Vue build and before sync/copy, preserving the existing build → locales → native sync order. It is skipped with `--skip-build`. The former `scripts/build-native.mjs` wrapper is no longer needed. `scripts/native-workflow.mjs` imports the toolkit’s `runSteps` with an explicit project working directory; local process-launching code is removed. Release/version/offline verification and device-replacement policies are unchanged.

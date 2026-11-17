@@ -60,3 +60,6 @@ store/fastlane/metadata/ios/review_information/demo_password.txt
 
 # Local simulator screenshots of the iOS setup walkthrough
 docs/ios-setup-snapshots/
+
+# Shared developer-tool state (gems, temporary Fastlane wrapper)
+.rds/

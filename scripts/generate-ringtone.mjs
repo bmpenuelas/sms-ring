@@ -15,7 +15,6 @@
 // "beacon" keeps its original file name (remote_ring_tone): Android's fallback
 // notification channel refers to it.
 
-import './lib/cli-failure.mjs'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'

@@ -6,7 +6,7 @@ import { join } from 'node:path'
 import { test, type TestContext } from 'node:test'
 import { fileURLToPath } from 'node:url'
 
-const script = fileURLToPath(new URL('../scripts/sync-native-versions.mjs', import.meta.url))
+const script = fileURLToPath(new URL('../bin/rds.mjs', import.meta.resolve('reusable-dev-scripts')))
 const projectFile = 'ios/App/App.xcodeproj/project.pbxproj'
 const androidFile = 'android/app/build.gradle'
 
@@ -15,6 +15,7 @@ async function fixture(t: TestContext) {
   t.after(() => rm(directory, { recursive: true, force: true }))
   const files = {
     'package.json': JSON.stringify({ version: '1.0.0' }),
+    'reusable-dev-scripts.config.json': JSON.stringify({ version: 1, capacitor: { platforms: ['android', 'ios'] } }),
     [projectFile]: (await readFile(new URL(`../${projectFile}`, import.meta.url), 'utf8'))
       .replace(/CURRENT_PROJECT_VERSION = [^;]+;/gu, 'CURRENT_PROJECT_VERSION = 1000000;')
       .replace(/MARKETING_VERSION = [^;]+;/gu, 'MARKETING_VERSION = 1.0.0;'),
@@ -24,7 +25,7 @@ async function fixture(t: TestContext) {
     await mkdir(join(directory, relative, '..'), { recursive: true })
     await writeFile(join(directory, relative), contents)
   }
-  const run = (...args: string[]) => spawnSync(process.execPath, [script, ...args], { cwd: directory, encoding: 'utf8' })
+  const run = (...args: string[]) => spawnSync(process.execPath, [script, 'capacitor', 'versions', ...args.flatMap(arg => arg === '--bump-ios-build' ? ['--platform', 'ios', '--bump-build'] : [arg])], { cwd: directory, encoding: 'utf8' })
   const read = (relative: string) => readFile(join(directory, relative), 'utf8')
   return { directory, run, read }
 }
@@ -69,7 +70,7 @@ test('invalid iOS build settings fail before modifying native files', async (t) 
   const android = await read(androidFile)
   const result = run('--bump-ios-build')
   assert.equal(result.status, 1)
-  assert.match(result.stderr, /Expected integer CURRENT_PROJECT_VERSION/u)
+  assert.match(result.stderr, /Expected integer iOS CURRENT_PROJECT_VERSION/u)
   assert.equal(await read(projectFile), invalid)
   assert.equal(await read(androidFile), android)
 })

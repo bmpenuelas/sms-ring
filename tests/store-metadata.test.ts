@@ -6,8 +6,7 @@ import { test } from 'node:test'
 
 import sharp from 'sharp'
 
-import { changelog, createPaths, packageVersionCode, Report, runCheck } from '../scripts/store-metadata.mjs'
-import { LOCALES } from '../scripts/lib/store-specs.mjs'
+import { changelog, createPaths, LOCALES, runCheck } from './rds-support.ts'
 import { LANGUAGES } from '../src/i18n/languages.ts'
 
 type Paths = ReturnType<typeof createPaths>
@@ -29,7 +28,7 @@ async function picture(path: string, width: number, height: number, channels: 3 
   await sharp({ create: { width, height, channels, background } }).png().toFile(path)
 }
 
-const messages = (report: InstanceType<typeof Report>, level: string) =>
+const messages = (report: { items: { level: string; where: string; message: string }[] }, level: string) =>
   report.items.filter((item: { level: string }) => item.level === level).map((item: { where: string; message: string }) => `${item.where}: ${item.message}`)
 
 test('the store language table is the app language registry', () => {
@@ -40,12 +39,12 @@ test('the store language table is the app language registry', () => {
   }
 })
 
-test('findings: todo items become errors only when strict', () => {
-  const lenient = new Report(false)
-  const strict = new Report(true)
-  for (const report of [lenient, strict]) report.add('todo', 'a', 'missing')
-  assert.deepEqual([lenient.count('todo'), lenient.count('error')], [1, 0])
-  assert.deepEqual([strict.count('todo'), strict.count('error')], [0, 1])
+test('missing listings become errors only in strict CLI checks', async (t) => {
+  const paths = await fixture(t)
+  const lenient = await runCheck({ scope: 'text' }, paths)
+  const strict = await runCheck({ scope: 'text', strict: true }, paths)
+  assert.equal(lenient.status, 0); assert.ok(lenient.count('todo') > 0)
+  assert.equal(strict.status, 1); assert.ok(strict.count('error') > 0); assert.equal(strict.count('todo'), 0)
 })
 
 test('text: characters, App Store keyword bytes, stray folders, BOM and URLs', async (t) => {
@@ -62,7 +61,7 @@ test('text: characters, App Store keyword bytes, stray folders, BOM and URLs', a
   assert.ok(errors.some((text) => text.includes('de-DE/title.txt: starts with a byte order mark')))
   assert.ok(errors.some((text) => text.includes('de-DE/video.txt: must be a YouTube')))
   assert.ok(messages(report, 'warn').some((text) => text.includes('xx-XX')))
-  assert.ok(messages(report, 'todo').includes('android/fr-FR: language folder missing; run npm run locales'))
+  assert.ok(messages(report, 'todo').some(text => text.startsWith('android/fr-FR: language folder missing;')))
 })
 
 test('media: Google Play sizes, long-side ratio, transparency; icon only for the default language', async (t) => {
@@ -101,15 +100,17 @@ test('media: App Store screenshot sizes, the iPhone slot and non-image files', a
 test('changelog: version code follows package.json, notes over 500 characters are skipped', async (t) => {
   const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
   const [major, minor, patch] = version.split('.').map(Number)
-  assert.equal(await packageVersionCode(), Math.max(1, major * 1_000_000 + minor * 1_000 + patch))
+  const expectedVersion = Math.max(1, major * 1_000_000 + minor * 1_000 + patch)
 
   const paths = await fixture(t)
   await write(join(paths.ios, 'en-US/release_notes.txt'), 'Fixes.\n')
   await write(join(paths.ios, 'de-DE/release_notes.txt'), `${'x'.repeat(501)}\n`)
-  process.exitCode = undefined
-  await changelog({ 'version-code': '1000090' }, paths)
+  const result = await changelog({ 'version-code': '1000090' }, paths)
+  assert.equal(result.status, 1, 'overlong notes must fail the shared CLI')
   assert.equal(await readFile(join(paths.android, 'en-US/changelogs/1000090.txt'), 'utf8'), 'Fixes.\n')
   await assert.rejects(readFile(join(paths.android, 'de-DE/changelogs/1000090.txt')))
-  assert.equal(process.exitCode, 1)
-  process.exitCode = undefined
+  await rm(join(paths.ios, 'de-DE/release_notes.txt'))
+  const defaults = await changelog({}, paths)
+  assert.equal(defaults.status, 0, defaults.stderr)
+  assert.equal(await readFile(join(paths.android, `en-US/changelogs/${expectedVersion}.txt`), 'utf8'), 'Fixes.\n')
 })
