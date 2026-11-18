@@ -15,7 +15,7 @@ const root = fileURLToPath(new URL('../', import.meta.url))
 
 test('the toolkit dependency and store adapter follow the integration configuration', async () => {
   const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'))
-  assert.ok(['0.2.0', 'file:../dev-scripts'].includes(pkg.devDependencies['reusable-dev-scripts']))
+  assert.ok(['0.3.0', 'file:../dev-scripts'].includes(pkg.devDependencies['reusable-dev-scripts']))
   assert.equal(config.store.allowExternalCredentials, true)
   assert.deepEqual(config.store.locales, LANGUAGES.map(language => ({ app: language.code, android: language.play, ios: language.appStore })))
   assert.deepEqual(config.capacitor.prepare, [['node', 'scripts/generate-app-assets.mjs', '--check']])

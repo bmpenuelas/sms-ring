@@ -9,7 +9,7 @@ import { LANGUAGES } from '../src/i18n/languages.ts'
 
 const fields = {
   android: ['title', 'short_description', 'full_description'],
-  ios: ['name', 'subtitle', 'description', 'keywords', 'promotional_text'],
+  ios: ['name', 'subtitle', 'description', 'keywords', 'promotional_text', 'privacy_url', 'release_notes', 'support_url'],
 }
 
 // Independent CSV reader for round-trip assertions, including multiline cells.
