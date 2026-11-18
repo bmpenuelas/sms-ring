@@ -110,10 +110,15 @@ final class RingNotifications {
             ? context.getString(R.string.remote_ring_notification_text)
             : context.getString(R.string.remote_ring_notification_text_from, sender);
 
+        // Silence the service notification's audio, not its alerting behavior:
+        // setSilent(true) suppresses the full-screen intent too (via grouping on
+        // older AndroidX versions, or FLAG_SILENT on newer Android).
+        // The channel handles this on Android 8+; these fields cover Android 7.
+        boolean servicePlaysTone = CHANNEL_ACTIVE.equals(channel);
         return new NotificationCompat.Builder(context, channel)
-            .setSilent(CHANNEL_ACTIVE.equals(channel))
-            .setSound(vibrateOnly ? null : toneUri(context))
-            .setVibrate(startServiceFromScreen ? RingService.VIBRATION_PATTERN : new long[] {0})
+            .setSound(servicePlaysTone || vibrateOnly ? null : toneUri(context))
+            .setVibrate(!servicePlaysTone && startServiceFromScreen ? RingService.VIBRATION_PATTERN : null)
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .setSmallIcon(R.drawable.remote_ring_ic_notification)
             .setContentTitle(context.getString(R.string.remote_ring_notification_title))
             .setContentText(text)

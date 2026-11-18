@@ -25,6 +25,11 @@ Android 12+ may refuse to start a foreground service from the background. Order 
 2. If refused anyway (`ForegroundServiceStartNotAllowedException`), a **full-screen alarm notification** is posted. Its channel rings immediately; when the stop screen opens it starts the full ringer (an activity in the foreground may start the service).
 3. **Full-screen intent** permission (Android 14+) makes that screen appear over the lock screen.
 
+The active notification has no sound or vibration of its own (the service handles
+both), but must **not** use `setSilent(true)`: Android also suppresses full-screen
+intents for explicitly silent notifications. Its channel stays high-importance,
+and foreground notification display is requested immediately.
+
 ## Volume and Do Not Disturb
 
 - Audio uses `USAGE_ALARM` on `STREAM_ALARM`, raised to max and restored afterwards. Alarms ring in silent/vibrate mode and in most DND modes.
