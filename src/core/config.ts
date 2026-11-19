@@ -64,6 +64,15 @@ export function sanitizeConfig(input: unknown, fallbackPassphrase: string, fallb
   }
 }
 
+/**
+ * A plain, structured-cloneable copy for the native bridge. iOS posts plugin options to
+ * native with structured clone, which silently drops a reactive Proxy (native then sees
+ * empty options), so never pass a reactive config to the plugin directly.
+ */
+export function plainConfig(config: RingConfig): RingConfig {
+  return { ...config, senders: [...config.senders] }
+}
+
 /** Nearest selectable step index for a duration. */
 export function durationStepIndex(seconds: number): number {
   let best = 0

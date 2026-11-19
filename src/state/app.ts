@@ -20,6 +20,7 @@ import {
   MIN_VOLUME,
   TONES,
   defaultConfig,
+  plainConfig,
   sanitizeConfig,
   type ToneId,
 } from '../core/config'
@@ -180,7 +181,7 @@ watch(
   (value) => {
     if (!loaded.value) return
     clearTimeout(saveTimer)
-    saveTimer = setTimeout(() => void RemoteRing.setConfig({ config: { ...value, senders: [...value.senders] } }), 200)
+    saveTimer = setTimeout(() => void RemoteRing.setConfig({ config: plainConfig(value) }), 200)
   },
   { deep: true },
 )
@@ -230,10 +231,15 @@ async function init() {
   const messages = await loadCatalogue(language.value)
   config.value = sanitizeConfig(stored, fallback, messages.app.vibrateOnly.defaultPhrase)
   // Persist migrated defaults too, so native background triggers see the same settings.
-  await RemoteRing.setConfig({ config: config.value })
-  await Promise.all([refreshCapabilities(), refreshHistory(), refreshPlatform()])
-  ring.value = await RemoteRing.getRingState()
-  now.value = Date.now()
+  // A native read/write that fails must never leave the app on a blank screen.
+  try {
+    await RemoteRing.setConfig({ config: plainConfig(config.value) })
+    await Promise.all([refreshCapabilities(), refreshHistory(), refreshPlatform()])
+    ring.value = await RemoteRing.getRingState()
+    now.value = Date.now()
+  } catch {
+    // Show the UI with what loaded; the resume handler below re-reads everything.
+  }
   loaded.value = true
 
   if (platform !== 'ios') {
