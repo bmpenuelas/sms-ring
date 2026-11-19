@@ -100,6 +100,7 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
         <span class="mark circle" data-stop="0" aria-hidden="true"><i /></span>
         <div class="body">
           <span class="heading">
+            <span class="role trigger">{{ t.automation.trigger }}</span>
             <h2>{{ t.passphrase.title }}</h2>
             <span class="exact"><Icon name="message" :size="15" /> {{ t.passphrase.exactly }}</span>
           </span>
@@ -112,6 +113,11 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
             <button class="mini press" :aria-label="t.common.copy" @click="actions.copyPassphrase()"><Icon name="copy" :size="16" /></button>
             <button class="mini press" :aria-label="t.common.share" @click="actions.sharePassphrase()"><Icon name="share" :size="16" /></button>
           </span>
+          <!-- second trigger: the same message plus the vibrate-only words runs a quieter action -->
+          <button v-if="state.config.vibrateOnlyEnabled" class="alt press" @click="k.openSheet('settings')">
+            <Icon name="vibrate" :size="16" />
+            <span>{{ t.vibrateOnly.hint(state.config.vibrateOnlyPhrase) }}</span>
+          </button>
         </div>
       </li>
 
@@ -119,6 +125,7 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
       <li class="step">
         <span class="mark square" data-stop="1" aria-hidden="true"><i /></span>
         <div class="body">
+          <span class="role condition">{{ t.automation.condition }}</span>
           <h2>{{ t.senders.title }}</h2>
           <span class="sims">
             <button v-if="!state.config.senders.length" class="sim any press" @click="k.openSheet('senders')">
@@ -141,6 +148,7 @@ const live = computed(() => state.status === 'ready' || state.status === 'ringin
       <li class="step">
         <span class="mark diamond" data-stop="2" aria-hidden="true"><i /></span>
         <div class="body time">
+          <span class="role action">{{ t.automation.action }}</span>
           <h2>{{ t.duration.title }} <b>{{ k.formatDuration(state.config.durationSeconds) }}</b></h2>
           <TimeBar :fraction="k.durationFraction.value" :running="state.ring.ringing" />
           <span class="marks" role="radiogroup" :aria-label="t.duration.title">
@@ -593,6 +601,43 @@ h2 b {
 .heading {
   display: grid;
   gap: 4px;
+}
+/* trigger / condition / action: what role each step plays in the automation */
+.role {
+  justify-self: start;
+  margin-bottom: -6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.heading .role {
+  margin-bottom: 2px;
+}
+.role.trigger { background: var(--blue); }
+.role.condition { background: var(--coral); }
+.role.action { background: var(--yellow); color: var(--on-light); }
+/* the vibrate-only words: a second trigger that runs the quiet action */
+.alt {
+  justify-self: start;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--dim);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: start;
+}
+.alt :deep(svg) {
+  flex: none;
 }
 .exact {
   display: flex;

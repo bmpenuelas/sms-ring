@@ -26,8 +26,8 @@ const es: Messages = {
       automatic: 'Automático',
     },
     status: {
-      ready: 'Esperando tu frase secreta',
-      readyHint: 'Envíala desde cualquier móvil y este sonará, incluso en silencio.',
+      ready: 'Automatización activa: esperando tu disparador',
+      readyHint: 'Cuando un SMS coincide con tu disparador, este móvil suena o vibra, incluso en silencio.',
       incomplete: 'Pendiente de configurar',
       incompleteHint: (n: number) => (n === 1 ? 'Falta 1 paso para que pueda sonar.' : `Faltan ${n} pasos para que pueda sonar.`),
       paused: 'En pausa',
@@ -37,6 +37,11 @@ const es: Messages = {
       pause: 'Pausar',
       finishSetup: 'Terminar configuración',
       improve: 'Mejorar la fiabilidad de detección',
+    },
+    automation: {
+      trigger: 'Disparador',
+      condition: 'Condición',
+      action: 'Acción',
     },
     passphrase: {
       title: 'Frase secreta',
@@ -238,7 +243,7 @@ const es: Messages = {
         sms: {
           title: 'Recibir SMS',
           short: 'Para detectar tu frase',
-          why: 'SMS Ring necesita ver los SMS entrantes para reconocer tu frase. Sin esto, nunca podrá sonar.',
+          why: 'SMS Ring es una automatización activada por SMS: necesita ver los SMS entrantes para compararlos con tu frase disparadora y decidir si suena o vibra. Sin esto, nunca podrá sonar.',
           safe: [
             'Los SMS se revisan en este móvil, en memoria, y se olvidan.',
             'No se guarda, copia ni envía nada: la app no tiene internet.',
@@ -374,17 +379,22 @@ const es: Messages = {
   },
   store: {
     title: 'SMS Ring – Encuentra tu móvil',
-    shortDescription: 'Incluso en silencio y sin internet, envía un SMS para hacer sonar tu móvil',
+    shortDescription: 'Automatiza tu móvil: un SMS lo hace sonar o vibrar, incluso en silencio',
     subtitle: 'Funciona incluso sin internet',
     keywords: 'buscar móvil,móvil perdido,sonar,silencio,sms,alarma,localizar,offline,privacidad,código abierto',
     promo: 'Funciona incluso en silencio y sin internet. Solo tienes que enviar un SMS para hacer sonar tu móvil.',
     description: [
-      'Haz sonar tu móvil a todo volumen enviándole un SMS. Suena a todo volumen, incluso en silencio. No necesita conexión a internet y funciona incluso con una señal móvil débil.',
+      { android: 'SMS Ring es una automatización activada por SMS para tu móvil. Define el disparador, una frase secreta enviada desde cualquier número o solo desde los que elijas, y tu móvil ejecuta la acción: suena a todo volumen, incluso en silencio, o solo vibra, según el mensaje. No necesita conexión a internet y funciona incluso con una señal móvil débil.' },
+      { ios: 'Haz sonar tu móvil a todo volumen enviándole un SMS. Suena a todo volumen, incluso en silencio. No necesita conexión a internet y funciona incluso con una señal móvil débil.' },
       '',
       'Los localizadores online solo pueden hacer sonar un móvil conectado a internet y te obligan a iniciar sesión en otro dispositivo, conectarte a tu móvil... SMS Ring solo necesita cobertura. Sin internet, sin cuentas, sin inicios de sesión.',
       '',
       { ios: '¡IMPORTANTE: CONFIGURACIÓN NECESARIA! : Debes crear una nueva automatización de Atajos para que la app pueda leer mensajes. Recibirás instrucciones detalladas sobre cómo hacerlo cuando instales la app y la abras por primera vez.' },
       { ios: '' },
+      { android: '⚡ Disparador: un SMS con tu frase secreta' },
+      { android: '🎯 Condición: desde cualquier número o solo los que elijas' },
+      { android: '🔔 Acción: sonar a todo volumen o solo vibrar, según el mensaje' },
+      { android: '' },
       '🔔 A todo volumen, incluso en silencio o vibración',
       '📳 Vibración opcional y modo de solo vibración',
       '🎲 Elige tu frase secreta para hacerlo sonar',

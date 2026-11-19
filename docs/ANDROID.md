@@ -71,7 +71,7 @@ Five synthesized tones ship in `res/raw` (`npm run ringtone`); `remote_ring_tone
 
 ## Google Play policy notes
 
-- `RECEIVE_SMS` is a restricted permission: submit the *Permissions Declaration Form*. The closest permitted use case is device-finding/anti-loss triggered by user-configured SMS; be ready to show the in-app explanation screen and video.
+- `RECEIVE_SMS` is a restricted permission: submit the *Permissions Declaration Form*. Declare **Device Automation** only (“automate actions based on one or more triggers set by the user”). Google rejected an earlier declaration because the listing and app read as a plain phone finder, and “Family or device locator” / “Remote control of user phone” are on its invalid-use list. So the app and the Android listing present the rule the user configures: **Trigger** (the secret passphrase, plus the optional vibrate-only words), **Condition** (allowed senders) and **Action** (ring or vibrate). Keep that wording consistent in three places: the Android listing (`store.description` lines tagged `android`), the Home screen labels (`app.automation`) and the declaration's review notes. Add a video link showing setup → trigger → ring → vibrate-only.
 - `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` must be justified (core function: ring instantly when a message arrives).
 - `USE_FULL_SCREEN_INTENT` is granted by default only to calling/alarm apps on Android 14+; the app asks via settings when needed.
 

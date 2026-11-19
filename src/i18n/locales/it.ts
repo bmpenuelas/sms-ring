@@ -26,8 +26,8 @@ const it: Messages = {
       automatic: 'Automatica',
     },
     status: {
-      ready: 'In ascolto della tua frase segreta',
-      readyHint: 'Inviala da qualsiasi telefono e questo squilla, anche in silenzioso.',
+      ready: 'Automazione attiva: in attesa del tuo attivatore',
+      readyHint: 'Quando un SMS corrisponde al tuo attivatore, questo telefono squilla o vibra, anche in silenzioso.',
       incomplete: 'In attesa di configurazione',
       incompleteHint: (n: number) => (n === 1 ? 'Manca 1 passaggio perché possa squillare.' : `Mancano ${n} passaggi perché possa squillare.`),
       paused: 'In pausa',
@@ -37,6 +37,11 @@ const it: Messages = {
       pause: 'Metti in pausa',
       finishSetup: 'Completa la configurazione',
       improve: 'Migliora l’affidabilità del rilevamento',
+    },
+    automation: {
+      trigger: 'Attivatore',
+      condition: 'Condizione',
+      action: 'Azione',
     },
     passphrase: {
       title: 'Frase segreta',
@@ -238,7 +243,7 @@ const it: Messages = {
         sms: {
           title: 'Ricevere SMS',
           short: 'Per riconoscere la tua frase',
-          why: 'SMS Ring deve vedere gli SMS in arrivo per riconoscere la tua frase. Senza questo, non potrà mai squillare.',
+          why: 'SMS Ring è un’automazione attivata da SMS: deve vedere gli SMS in arrivo per confrontarli con la tua frase attivatore e decidere se squillare o vibrare. Senza, non potrà mai squillare.',
           safe: [
             'Gli SMS vengono controllati su questo telefono, in memoria, e poi dimenticati.',
             'Nulla viene salvato, copiato o inviato: l’app non ha internet.',
@@ -374,17 +379,22 @@ const it: Messages = {
   },
   store: {
     title: 'SMS Ring – Trova il telefono',
-    shortDescription: 'Anche in silenzioso e senza internet, invia un SMS per far squillare il telefono',
+    shortDescription: 'Automatizza il telefono: un SMS lo fa squillare o vibrare, anche in silenzioso',
     subtitle: 'Funziona anche senza internet',
     keywords: 'trova telefono,telefono perso,squillo,silenzioso,sms,allarme,offline,privacy,open source,volume',
     promo: 'Funziona anche in silenzioso e senza internet. Basta inviare un SMS per far squillare il telefono.',
     description: [
-      'Fai squillare il telefono al massimo volume inviandogli un SMS. Squilla al massimo volume, anche in silenzioso. Non serve una connessione a internet e funziona anche con un segnale mobile debole.',
+      { android: 'SMS Ring è un’automazione attivata da SMS per il tuo telefono. Imposta l’attivatore, una frase segreta inviata da qualsiasi numero o solo dai numeri che scegli, e il telefono esegue l’azione: squilla a tutto volume, anche in silenzioso, o vibra soltanto, in base al messaggio. Non serve internet e funziona anche con poco segnale mobile.' },
+      { ios: 'Fai squillare il telefono al massimo volume inviandogli un SMS. Squilla al massimo volume, anche in silenzioso. Non serve una connessione a internet e funziona anche con un segnale mobile debole.' },
       '',
       'I localizzatori online fanno squillare solo un telefono connesso a internet e richiedono di accedere al proprio account da un altro dispositivo, collegarsi al telefono... A SMS Ring basta la rete mobile. Niente internet, niente account, niente accessi.',
       '',
       { ios: 'IMPORTANTE: CONFIGURAZIONE NECESSARIA! Devi creare una nuova automazione di Comandi Rapidi per consentire all’app di leggere i messaggi. Riceverai istruzioni dettagliate su come farlo quando installerai l’app e la aprirai per la prima volta.' },
       { ios: '' },
+      { android: '⚡ Attivatore: un SMS con la tua frase segreta' },
+      { android: '🎯 Condizione: da qualsiasi numero o solo dai numeri che scegli' },
+      { android: '🔔 Azione: squillare a tutto volume o solo vibrare, in base al messaggio' },
+      { android: '' },
       '🔔 Volume massimo, anche in silenzioso o vibrazione',
       '📳 Vibrazione facoltativa e modalità solo vibrazione',
       '🎲 Scegli la tua frase segreta per farlo squillare',

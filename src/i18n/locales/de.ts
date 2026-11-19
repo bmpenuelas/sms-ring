@@ -26,8 +26,8 @@ const de: Messages = {
       automatic: 'Automatisch',
     },
     status: {
-      ready: 'Wartet auf deinen Geheimsatz',
-      readyHint: 'Schick ihn von irgendeinem Handy, und dieses klingelt – auch im Lautlos-Modus.',
+      ready: 'Automatisierung aktiv: wartet auf deinen Auslöser',
+      readyHint: 'Passt eine SMS zu deinem Auslöser, klingelt oder vibriert dieses Handy, auch im Lautlos-Modus.',
       incomplete: 'Wartet auf Einrichtung',
       incompleteHint: (n: number) => (n === 1 ? 'Noch 1 Schritt, bis es klingeln kann.' : `Noch ${n} Schritte, bis es klingeln kann.`),
       paused: 'Pausiert',
@@ -37,6 +37,11 @@ const de: Messages = {
       pause: 'Pausieren',
       finishSetup: 'Einrichtung abschließen',
       improve: 'Erkennung zuverlässiger machen',
+    },
+    automation: {
+      trigger: 'Auslöser',
+      condition: 'Bedingung',
+      action: 'Aktion',
     },
     passphrase: {
       title: 'Geheimsatz',
@@ -238,7 +243,7 @@ const de: Messages = {
         sms: {
           title: 'SMS empfangen',
           short: 'Um deinen Geheimsatz zu erkennen',
-          why: 'SMS Ring muss eingehende SMS sehen, um deinen Geheimsatz zu erkennen. Ohne das kann es nie klingeln.',
+          why: 'SMS Ring ist eine per SMS ausgelöste Automatisierung: Es muss eingehende SMS sehen, um sie mit deiner Auslöser-Phrase zu vergleichen und zu entscheiden, ob es klingelt oder vibriert. Ohne das kann nie etwas klingeln.',
           safe: [
             'SMS werden auf diesem Handy im Speicher geprüft und dann vergessen.',
             'Nichts wird gespeichert, kopiert oder gesendet: Die App hat kein Internet.',
@@ -374,17 +379,22 @@ const de: Messages = {
   },
   store: {
     title: 'SMS Ring – Lauter Handyfinder',
-    shortDescription: 'Auch lautlos und ohne Internet: Schick eine SMS, damit dein Handy klingelt',
+    shortDescription: 'Automatisiere dein Handy: SMS lässt es klingeln oder vibrieren, auch lautlos',
     subtitle: 'Auch ohne Internet nutzbar',
     keywords: 'handy finden,handy verloren,klingeln,lautlos,sms,alarm,orten,offline,datenschutz,open source',
     promo: 'Funktioniert auch lautlos und ohne Internet. Schick einfach eine SMS, damit dein Handy klingelt.',
     description: [
-      'Lass dein Handy mit voller Lautstärke klingeln, indem du ihm eine SMS schickst. Es klingelt mit voller Lautstärke, auch im Lautlos-Modus. Keine Internetverbindung nötig, es funktioniert sogar bei schwachem Mobilfunksignal.',
+      { android: 'SMS Ring ist eine per SMS ausgelöste Automatisierung für dein Handy. Lege den Auslöser fest, eine geheime Phrase von beliebigen oder nur von dir gewählten Nummern, und dein Handy führt die Aktion aus: Es klingelt mit voller Lautstärke, auch im Lautlos-Modus, oder vibriert nur, je nach Nachricht. Keine Internetverbindung nötig, es funktioniert auch bei schwachem Mobilfunksignal.' },
+      { ios: 'Lass dein Handy mit voller Lautstärke klingeln, indem du ihm eine SMS schickst. Es klingelt mit voller Lautstärke, auch im Lautlos-Modus. Keine Internetverbindung nötig, es funktioniert sogar bei schwachem Mobilfunksignal.' },
       '',
       'Online-Handyfinder können nur ein Handy mit Internetverbindung klingeln lassen und verlangen, dass du dich auf einem anderen Gerät anmeldest, eine Verbindung zu deinem Handy herstellst... SMS Ring braucht nur Mobilfunkempfang. Kein Internet, keine Konten, keine Anmeldungen.',
       '',
       { ios: 'WICHTIG: EINRICHTUNG ERFORDERLICH! Du musst eine neue Automation in Kurzbefehle erstellen, damit die App Nachrichten lesen kann. Wenn du die App installierst und zum ersten Mal öffnest, erhältst du eine ausführliche Anleitung dazu.' },
       { ios: '' },
+      { android: '⚡ Auslöser: eine SMS mit deiner geheimen Phrase' },
+      { android: '🎯 Bedingung: von beliebiger Nummer oder nur von Nummern deiner Wahl' },
+      { android: '🔔 Aktion: mit voller Lautstärke klingeln oder nur vibrieren, je nach Nachricht' },
+      { android: '' },
       '🔔 Volle Lautstärke, auch bei lautlos oder Vibration',
       '📳 Optionale Vibration und reiner Vibrationsmodus',
       '🎲 Wähle deinen Geheimsatz, um es klingeln zu lassen',

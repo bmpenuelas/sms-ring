@@ -26,8 +26,8 @@ const pt: Messages = {
       automatic: 'Automático',
     },
     status: {
-      ready: 'Aguardando sua frase secreta',
-      readyHint: 'Envie de qualquer celular e este toca, mesmo no silencioso.',
+      ready: 'Automação ativa: aguardando seu gatilho',
+      readyHint: 'Quando uma mensagem corresponde ao seu gatilho, este celular toca ou vibra, mesmo no silencioso.',
       incomplete: 'Aguardando configuração',
       incompleteHint: (n: number) => (n === 1 ? 'Falta 1 passo para poder tocar.' : `Faltam ${n} passos para poder tocar.`),
       paused: 'Pausado',
@@ -37,6 +37,11 @@ const pt: Messages = {
       pause: 'Pausar',
       finishSetup: 'Concluir configuração',
       improve: 'Melhorar a confiabilidade da detecção',
+    },
+    automation: {
+      trigger: 'Gatilho',
+      condition: 'Condição',
+      action: 'Ação',
     },
     passphrase: {
       title: 'Frase secreta',
@@ -238,7 +243,7 @@ const pt: Messages = {
         sms: {
           title: 'Receber SMS',
           short: 'Para notar sua frase',
-          why: 'O SMS Ring precisa ver os SMS recebidos para reconhecer sua frase. Sem isso, nunca vai tocar.',
+          why: 'O SMS Ring é uma automação acionada por SMS: precisa ver as mensagens recebidas para compará-las com sua frase-gatilho e decidir se toca ou vibra. Sem isso, nada poderá tocar.',
           safe: [
             'Os SMS são verificados neste celular, na memória, e esquecidos.',
             'Nada é guardado, copiado ou enviado: o app não tem internet.',
@@ -374,17 +379,22 @@ const pt: Messages = {
   },
   store: {
     title: 'SMS Ring – Ache seu celular',
-    shortDescription: 'Mesmo no silencioso e sem internet, envie um SMS para fazer seu celular tocar',
+    shortDescription: 'Automatize seu celular: um SMS o faz tocar ou vibrar, mesmo no silencioso',
     subtitle: 'Funciona mesmo sem internet',
     keywords: 'achar celular,celular perdido,tocar,silencioso,sms,alarme,offline,privacidade,código aberto',
     promo: 'Funciona mesmo no silencioso e sem internet. Basta enviar um SMS para fazer seu celular tocar.',
     description: [
-      'Faça seu celular tocar no volume máximo enviando um SMS para ele. Ele toca no volume máximo, mesmo no silencioso. Não precisa de conexão com a internet e funciona até com sinal fraco da operadora.',
+      { android: 'O SMS Ring é uma automação acionada por SMS para o seu celular. Defina o gatilho, uma frase secreta enviada de qualquer número ou só dos números que você escolher, e o celular executa a ação: toca em volume máximo, mesmo no silencioso, ou apenas vibra, conforme a mensagem. Não precisa de internet e funciona até com sinal móvel fraco.' },
+      { ios: 'Faça seu celular tocar no volume máximo enviando um SMS para ele. Ele toca no volume máximo, mesmo no silencioso. Não precisa de conexão com a internet e funciona até com sinal fraco da operadora.' },
       '',
       'Localizadores online só conseguem tocar um celular conectado à internet e exigem que você faça login em outro dispositivo, conecte-se ao seu celular... O SMS Ring só precisa de sinal da operadora. Sem internet, sem contas, sem logins.',
       '',
       { ios: 'IMPORTANTE: CONFIGURAÇÃO NECESSÁRIA! : Você precisa criar uma nova automação do Atalhos para permitir que o app leia mensagens. Você receberá instruções detalhadas de como fazer isso quando instalar o app e abri-lo pela primeira vez.' },
       { ios: '' },
+      { android: '⚡ Gatilho: um SMS com sua frase secreta' },
+      { android: '🎯 Condição: de qualquer número ou só dos que você escolher' },
+      { android: '🔔 Ação: tocar em volume máximo ou apenas vibrar, conforme a mensagem' },
+      { android: '' },
       '🔔 Volume máximo, mesmo no silencioso ou vibrar',
       '📳 Vibração opcional e modo somente vibração',
       '🎲 Escolha sua frase secreta para fazê-lo tocar',

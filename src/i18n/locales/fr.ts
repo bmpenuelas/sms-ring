@@ -26,8 +26,8 @@ const fr: Messages = {
       automatic: 'Automatique',
     },
     status: {
-      ready: 'À l’écoute de votre phrase secrète',
-      readyHint: 'Envoyez-la depuis n’importe quel téléphone et celui-ci sonne, même en silencieux.',
+      ready: 'Automatisation active : en attente de votre déclencheur',
+      readyHint: 'Quand un SMS correspond à votre déclencheur, ce téléphone sonne ou vibre, même en silencieux.',
       incomplete: 'Configuration en attente',
       incompleteHint: (n: number) => (n === 1 ? 'Encore 1 étape avant de pouvoir sonner.' : `Encore ${n} étapes avant de pouvoir sonner.`),
       paused: 'En pause',
@@ -37,6 +37,11 @@ const fr: Messages = {
       pause: 'Mettre en pause',
       finishSetup: 'Terminer la configuration',
       improve: 'Améliorer la fiabilité de détection',
+    },
+    automation: {
+      trigger: 'Déclencheur',
+      condition: 'Condition',
+      action: 'Action',
     },
     passphrase: {
       title: 'Phrase secrète',
@@ -238,7 +243,7 @@ const fr: Messages = {
         sms: {
           title: 'Recevoir les SMS',
           short: 'Pour repérer votre phrase',
-          why: 'SMS Ring doit voir les SMS entrants pour reconnaître votre phrase. Sans cela, il ne pourra jamais sonner.',
+          why: 'SMS Ring est une automatisation déclenchée par SMS : il doit voir les SMS entrants pour les comparer à votre phrase déclencheur et décider s’il sonne ou vibre. Sans cela, rien ne pourra jamais sonner.',
           safe: [
             'Les SMS sont vérifiés sur ce téléphone, en mémoire, puis oubliés.',
             'Rien n’est stocké, copié ni envoyé : l’app n’a pas internet.',
@@ -374,17 +379,22 @@ const fr: Messages = {
   },
   store: {
     title: 'SMS Ring – Trouve ton tél.',
-    shortDescription: 'Même en silencieux et sans internet, un SMS fait sonner votre téléphone',
+    shortDescription: 'Automatisez votre mobile : un SMS le fait sonner ou vibrer, même en silencieux',
     subtitle: 'Fonctionne même sans internet',
     keywords: 'retrouver téléphone,téléphone perdu,sonner,silencieux,sms,alarme,hors ligne,vie privée',
     promo: 'Fonctionne même en silencieux et sans internet. Envoyez simplement un SMS pour faire sonner votre téléphone.',
     description: [
-      'Faites sonner votre téléphone à plein volume en lui envoyant un SMS. Il sonne à plein volume, même en silencieux. Aucune connexion internet n’est nécessaire : il fonctionne même avec un faible signal mobile.',
+      { android: 'SMS Ring est une automatisation déclenchée par SMS pour votre téléphone. Définissez le déclencheur, une phrase secrète envoyée depuis n’importe quel numéro ou seulement ceux que vous choisissez, et votre téléphone exécute l’action : il sonne à plein volume, même en silencieux, ou vibre seulement, selon le message. Aucune connexion internet n’est nécessaire, même avec un signal mobile faible.' },
+      { ios: 'Faites sonner votre téléphone à plein volume en lui envoyant un SMS. Il sonne à plein volume, même en silencieux. Aucune connexion internet n’est nécessaire : il fonctionne même avec un faible signal mobile.' },
       '',
       'Les localisateurs en ligne ne font sonner qu’un téléphone connecté à internet et vous obligent à vous connecter à un compte sur un autre appareil, à établir une connexion avec votre téléphone... SMS Ring a juste besoin du réseau mobile. Ni internet, ni compte, ni connexion à un compte.',
       '',
       { ios: 'IMPORTANT : CONFIGURATION NÉCESSAIRE ! Vous devez créer une nouvelle automatisation Raccourcis pour permettre à l’app de lire les messages. Vous recevrez des instructions détaillées pour le faire lorsque vous installerez l’app et l’ouvrirez pour la première fois.' },
       { ios: '' },
+      { android: '⚡ Déclencheur: un SMS avec votre phrase secrète' },
+      { android: '🎯 Condition: depuis n’importe quel numéro ou seulement ceux que vous choisissez' },
+      { android: '🔔 Action: sonner à plein volume ou seulement vibrer, selon le message' },
+      { android: '' },
       '🔔 Plein volume, même en silencieux ou vibreur',
       '📳 Vibration en option et mode vibration seule',
       '🎲 Choisissez votre phrase secrète pour le faire sonner',

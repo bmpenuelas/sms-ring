@@ -1,6 +1,10 @@
-Fai squillare il telefono al massimo volume inviandogli un SMS. Squilla al massimo volume, anche in silenzioso. Non serve una connessione a internet e funziona anche con un segnale mobile debole.
+SMS Ring è un’automazione attivata da SMS per il tuo telefono. Imposta l’attivatore, una frase segreta inviata da qualsiasi numero o solo dai numeri che scegli, e il telefono esegue l’azione: squilla a tutto volume, anche in silenzioso, o vibra soltanto, in base al messaggio. Non serve internet e funziona anche con poco segnale mobile.
 
 I localizzatori online fanno squillare solo un telefono connesso a internet e richiedono di accedere al proprio account da un altro dispositivo, collegarsi al telefono... A SMS Ring basta la rete mobile. Niente internet, niente account, niente accessi.
+
+⚡ Attivatore: un SMS con la tua frase segreta
+🎯 Condizione: da qualsiasi numero o solo dai numeri che scegli
+🔔 Azione: squillare a tutto volume o solo vibrare, in base al messaggio
 
 🔔 Volume massimo, anche in silenzioso o vibrazione
 📳 Vibrazione facoltativa e modalità solo vibrazione

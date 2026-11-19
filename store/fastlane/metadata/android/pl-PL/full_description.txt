@@ -1,6 +1,10 @@
-Spraw, by telefon zadzwonił na pełnej głośności, wysyłając do niego SMS. Dzwoni na pełnej głośności, nawet po wyciszeniu. Nie wymaga internetu i działa nawet przy słabym zasięgu sieci komórkowej.
+SMS Ring to uruchamiana SMS-em automatyzacja dla Twojego telefonu. Ustaw wyzwalacz, czyli tajną frazę wysłaną z dowolnego numeru lub tylko z wybranych przez Ciebie, a telefon wykona akcję: zadzwoni z pełną głośnością, nawet w trybie cichym, albo tylko zawibruje, zależnie od wiadomości. Nie potrzebuje internetu i działa nawet przy słabym zasięgu.
 
 Wyszukiwarki telefonów online mogą zadzwonić tylko na telefon połączony z internetem i wymagają zalogowania się na innym urządzeniu, połączenia z telefonem... SMS Ring potrzebuje tylko zasięgu sieci. Bez internetu, bez kont, bez logowania.
+
+⚡ Wyzwalacz: SMS z Twoją tajną frazą
+🎯 Warunek: z dowolnego numeru lub tylko z wybranych przez Ciebie
+🔔 Akcja: dzwonienie z pełną głośnością albo tylko wibracja, zależnie od wiadomości
 
 🔔 Pełna głośność, nawet po wyciszeniu lub w trybie wibracji
 📳 Opcjonalne wibracje i tryb samych wibracji

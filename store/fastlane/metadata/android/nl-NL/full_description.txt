@@ -1,6 +1,10 @@
-Laat je telefoon op vol volume overgaan door hem een sms te sturen. Hij gaat op vol volume over, ook op stil. Geen internetverbinding nodig, het werkt zelfs met een zwak mobiel signaal.
+SMS Ring is een door sms geactiveerde automatisering voor je telefoon. Stel de trigger in, een geheime zin van elk nummer of alleen van nummers die jij kiest, en je telefoon voert de actie uit: hij gaat op volle sterkte over, ook op stil, of trilt alleen, afhankelijk van het bericht. Geen internetverbinding nodig, het werkt zelfs met zwak mobiel bereik.
 
 Online telefoonzoekers laten alleen een telefoon met internet overgaan en vereisen dat je op een ander apparaat inlogt, verbinding maakt met je telefoon... SMS Ring heeft alleen mobiel bereik nodig. Geen internet, geen accounts, niet inloggen.
+
+⚡ Trigger: een sms met je geheime zin
+🎯 Voorwaarde: van elk nummer of alleen van nummers die jij kiest
+🔔 Actie: op volle sterkte overgaan of alleen trillen, afhankelijk van het bericht
 
 🔔 Vol volume, zelfs op stil of trillen
 📳 Optioneel trillen en een modus met alleen trillen

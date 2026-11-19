@@ -1,6 +1,10 @@
-Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses çalar. İnternet bağlantısı gerekmez, zayıf bir şebeke sinyaliyle bile çalışır.
+SMS Ring, telefonunuz için SMS ile tetiklenen bir otomasyondur. Tetikleyiciyi belirleyin: herhangi bir numaradan veya yalnızca seçtiğiniz numaralardan gelen gizli bir cümle. Telefonunuz eylemi gerçekleştirir: mesaja göre tam sesle, sessizde bile çalar ya da yalnızca titrer. İnternet bağlantısı gerekmez, zayıf mobil sinyalde bile çalışır.
 
 Çevrim içi telefon bulucular yalnızca internete bağlı bir telefonu çaldırabilir ve başka bir cihazda oturum açmanı, telefonuna bağlanmanı gerektirir... SMS Ring için şebeke yeterli. İnternet yok, hesap yok, oturum açmak yok.
+
+⚡ Tetikleyici: gizli cümlenizi içeren bir SMS
+🎯 Koşul: herhangi bir numaradan veya yalnızca seçtiğiniz numaralardan
+🔔 Eylem: mesaja göre tam sesle çalmak veya yalnızca titremek
 
 🔔 Sessizde veya titreşimde bile son ses
 📳 İsteğe bağlı titreşim ve yalnızca titreşim modu

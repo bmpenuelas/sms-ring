@@ -26,8 +26,8 @@ const vi: Messages = {
       automatic: 'Tự động',
     },
     status: {
-      ready: 'Đang chờ câu bí mật của bạn',
-      readyHint: 'Nhắn từ bất kỳ điện thoại nào và máy này sẽ đổ chuông, kể cả khi đang im lặng.',
+      ready: 'Tự động hóa đang bật: chờ kích hoạt của bạn',
+      readyHint: 'Khi một SMS khớp với điều kiện kích hoạt, điện thoại này sẽ đổ chuông hoặc rung, kể cả khi im lặng.',
       incomplete: 'Đang chờ cài đặt',
       incompleteHint: (n: number) => `Còn ${n} bước nữa là có thể đổ chuông.`,
       paused: 'Tạm dừng',
@@ -37,6 +37,11 @@ const vi: Messages = {
       pause: 'Tạm dừng',
       finishSetup: 'Hoàn tất cài đặt',
       improve: 'Tăng độ tin cậy khi phát hiện',
+    },
+    automation: {
+      trigger: 'Kích hoạt',
+      condition: 'Điều kiện',
+      action: 'Hành động',
     },
     passphrase: {
       title: 'Câu bí mật',
@@ -238,7 +243,7 @@ const vi: Messages = {
         sms: {
           title: 'Nhận SMS',
           short: 'Để nhận ra câu bí mật',
-          why: 'SMS Ring cần thấy SMS đến để nhận ra câu bí mật. Không có quyền này, máy sẽ không bao giờ đổ chuông.',
+          why: 'SMS Ring là tự động hóa được kích hoạt bằng SMS: ứng dụng cần xem SMS đến để so với cụm từ kích hoạt của bạn và quyết định đổ chuông hay rung. Nếu không, sẽ không bao giờ đổ chuông được.',
           safe: [
             'SMS được kiểm tra trên máy này, trong bộ nhớ, rồi quên đi.',
             'Không lưu, sao chép hay gửi gì cả: ứng dụng không có internet.',
@@ -374,17 +379,22 @@ const vi: Messages = {
   },
   store: {
     title: 'SMS Ring – Tìm điện thoại',
-    shortDescription: 'Ngay cả khi im lặng và không có internet, gửi SMS để điện thoại đổ chuông',
+    shortDescription: 'Tự động hóa điện thoại: một SMS khiến máy đổ chuông hoặc rung, kể cả khi im lặng',
     subtitle: 'Không internet vẫn hoạt động',
     keywords: 'tìm điện thoại,mất điện thoại,đổ chuông,im lặng,sms,báo thức,ngoại tuyến',
     promo: 'Hoạt động ngay cả khi im lặng và không có internet. Chỉ cần gửi SMS để điện thoại đổ chuông.',
     description: [
-      'Làm điện thoại đổ chuông hết cỡ bằng cách gửi SMS đến máy. Máy đổ chuông hết cỡ, kể cả khi im lặng. Không cần kết nối internet, hoạt động ngay cả khi sóng di động yếu.',
+      { android: 'SMS Ring là tự động hóa kích hoạt bằng SMS cho điện thoại của bạn. Đặt trình kích hoạt, một cụm từ bí mật gửi từ bất kỳ số nào hoặc chỉ từ các số bạn chọn, và điện thoại sẽ thực hiện hành động: đổ chuông to hết cỡ, kể cả khi im lặng, hoặc chỉ rung, tùy nội dung tin nhắn. Không cần internet, hoạt động cả khi sóng di động yếu.' },
+      { ios: 'Làm điện thoại đổ chuông hết cỡ bằng cách gửi SMS đến máy. Máy đổ chuông hết cỡ, kể cả khi im lặng. Không cần kết nối internet, hoạt động ngay cả khi sóng di động yếu.' },
       '',
       'Dịch vụ tìm điện thoại trực tuyến chỉ đổ chuông được máy có internet và yêu cầu bạn đăng nhập trên thiết bị khác, kết nối với điện thoại... SMS Ring chỉ cần sóng di động. Không internet, không tài khoản, không đăng nhập.',
       '',
       { ios: 'QUAN TRỌNG: CẦN THIẾT LẬP! Bạn cần tạo một tự động hóa mới trong Phím tắt để cho phép ứng dụng đọc tin nhắn. Bạn sẽ nhận được hướng dẫn chi tiết về cách thực hiện khi cài đặt ứng dụng và mở lần đầu tiên.' },
       { ios: '' },
+      { android: '⚡ Kích hoạt: một SMS có cụm từ bí mật của bạn' },
+      { android: '🎯 Điều kiện: từ bất kỳ số nào hoặc chỉ từ các số bạn chọn' },
+      { android: '🔔 Hành động: đổ chuông to hết cỡ hoặc chỉ rung, tùy nội dung tin nhắn' },
+      { android: '' },
       '🔔 Kêu hết cỡ, kể cả khi im lặng hay rung',
       '📳 Rung tùy chọn và chế độ chỉ rung',
       '🎲 Chọn câu bí mật để làm điện thoại đổ chuông',

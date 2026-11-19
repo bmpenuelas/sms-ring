@@ -26,8 +26,8 @@ const tr: Messages = {
       automatic: 'Otomatik',
     },
     status: {
-      ready: 'Gizli cümleni bekliyor',
-      readyHint: 'Herhangi bir telefondan gönder; bu telefon sessizde bile çalar.',
+      ready: 'Otomasyon açık: tetikleyiciniz bekleniyor',
+      readyHint: 'Bir SMS tetikleyicinizle eşleşince bu telefon sessizde bile çalar veya titrer.',
       incomplete: 'Kurulum bekleniyor',
       incompleteHint: (n: number) => `Çalabilmesi için ${n} adım kaldı.`,
       paused: 'Duraklatıldı',
@@ -37,6 +37,11 @@ const tr: Messages = {
       pause: 'Duraklat',
       finishSetup: 'Kurulumu bitir',
       improve: 'Algılama güvenilirliğini artır',
+    },
+    automation: {
+      trigger: 'Tetikleyici',
+      condition: 'Koşul',
+      action: 'Eylem',
     },
     passphrase: {
       title: 'Gizli cümle',
@@ -238,7 +243,7 @@ const tr: Messages = {
         sms: {
           title: 'SMS alma',
           short: 'Cümleni fark etmek için',
-          why: 'SMS Ring’in cümleni tanıması için gelen SMS’leri görmesi gerekir. Bu olmadan asla çalamaz.',
+          why: 'SMS Ring, SMS ile tetiklenen bir otomasyondur: gelen SMS’leri tetikleyici cümlenizle karşılaştırıp çalıp çalmayacağına veya titreyip titremeyeceğine karar vermek için görmesi gerekir. Bu olmadan hiçbir şey çalamaz.',
           safe: [
             'SMS’ler bu telefonda, bellekte kontrol edilir ve unutulur.',
             'Hiçbir şey saklanmaz, kopyalanmaz ya da gönderilmez: uygulamanın interneti yok.',
@@ -374,17 +379,22 @@ const tr: Messages = {
   },
   store: {
     title: 'SMS Ring – Telefonunu Bul',
-    shortDescription: 'Sessizde ve internetsiz bile, telefonunu çaldırmak için SMS gönder',
+    shortDescription: 'Telefonunuzu otomatikleştirin: SMS ile sessizde bile çalar veya titrer',
     subtitle: 'İnternetsiz bile çalışır',
     keywords: 'telefon bul,kayıp telefon,çaldır,sessiz,sms,alarm,çevrimdışı,gizlilik,yüksek ses',
     promo: 'Sessizde ve internetsiz bile çalışır. Telefonunu çaldırmak için bir SMS göndermen yeterli.',
     description: [
-      'Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses çalar. İnternet bağlantısı gerekmez, zayıf bir şebeke sinyaliyle bile çalışır.',
+      { android: 'SMS Ring, telefonunuz için SMS ile tetiklenen bir otomasyondur. Tetikleyiciyi belirleyin: herhangi bir numaradan veya yalnızca seçtiğiniz numaralardan gelen gizli bir cümle. Telefonunuz eylemi gerçekleştirir: mesaja göre tam sesle, sessizde bile çalar ya da yalnızca titrer. İnternet bağlantısı gerekmez, zayıf mobil sinyalde bile çalışır.' },
+      { ios: 'Telefonuna SMS göndererek son ses çalmasını sağla. Sessizde bile son ses çalar. İnternet bağlantısı gerekmez, zayıf bir şebeke sinyaliyle bile çalışır.' },
       '',
       'Çevrim içi telefon bulucular yalnızca internete bağlı bir telefonu çaldırabilir ve başka bir cihazda oturum açmanı, telefonuna bağlanmanı gerektirir... SMS Ring için şebeke yeterli. İnternet yok, hesap yok, oturum açmak yok.',
       '',
       { ios: 'ÖNEMLİ: KURULUM GEREKLİ! Uygulamanın mesajları okuyabilmesi için Kestirmeler’de yeni bir otomasyon oluşturman gerekiyor. Uygulamayı yükleyip ilk kez açtığında bunu nasıl yapacağını gösteren ayrıntılı talimatlar alacaksın.' },
       { ios: '' },
+      { android: '⚡ Tetikleyici: gizli cümlenizi içeren bir SMS' },
+      { android: '🎯 Koşul: herhangi bir numaradan veya yalnızca seçtiğiniz numaralardan' },
+      { android: '🔔 Eylem: mesaja göre tam sesle çalmak veya yalnızca titremek' },
+      { android: '' },
       '🔔 Sessizde veya titreşimde bile son ses',
       '📳 İsteğe bağlı titreşim ve yalnızca titreşim modu',
       '🎲 Telefonunu çaldırmak için gizli cümleni seç',

@@ -1,6 +1,10 @@
-Haz sonar tu móvil a todo volumen enviándole un SMS. Suena a todo volumen, incluso en silencio. No necesita conexión a internet y funciona incluso con una señal móvil débil.
+SMS Ring es una automatización activada por SMS para tu móvil. Define el disparador, una frase secreta enviada desde cualquier número o solo desde los que elijas, y tu móvil ejecuta la acción: suena a todo volumen, incluso en silencio, o solo vibra, según el mensaje. No necesita conexión a internet y funciona incluso con una señal móvil débil.
 
 Los localizadores online solo pueden hacer sonar un móvil conectado a internet y te obligan a iniciar sesión en otro dispositivo, conectarte a tu móvil... SMS Ring solo necesita cobertura. Sin internet, sin cuentas, sin inicios de sesión.
+
+⚡ Disparador: un SMS con tu frase secreta
+🎯 Condición: desde cualquier número o solo los que elijas
+🔔 Acción: sonar a todo volumen o solo vibrar, según el mensaje
 
 🔔 A todo volumen, incluso en silencio o vibración
 📳 Vibración opcional y modo de solo vibración

@@ -26,8 +26,8 @@ const nl: Messages = {
       automatic: 'Automatisch',
     },
     status: {
-      ready: 'Luistert naar je geheime zin',
-      readyHint: 'Sms hem vanaf elke telefoon en deze gaat over, zelfs op stil.',
+      ready: 'Automatisering actief: wacht op je trigger',
+      readyHint: 'Als een sms bij je trigger past, gaat deze telefoon over of trilt hij, ook op stil.',
       incomplete: 'Wacht op instellen',
       incompleteHint: (n: number) => (n === 1 ? 'Nog 1 stap voordat hij kan overgaan.' : `Nog ${n} stappen voordat hij kan overgaan.`),
       paused: 'Gepauzeerd',
@@ -37,6 +37,11 @@ const nl: Messages = {
       pause: 'Pauzeren',
       finishSetup: 'Instellen afronden',
       improve: 'Detectie betrouwbaarder maken',
+    },
+    automation: {
+      trigger: 'Trigger',
+      condition: 'Voorwaarde',
+      action: 'Actie',
     },
     passphrase: {
       title: 'Geheime zin',
@@ -238,7 +243,7 @@ const nl: Messages = {
         sms: {
           title: 'Sms ontvangen',
           short: 'Om je zin te herkennen',
-          why: 'SMS Ring moet binnenkomende sms’jes zien om je zin te herkennen. Zonder dit kan hij nooit overgaan.',
+          why: 'SMS Ring is een automatisering die door sms wordt geactiveerd: het moet binnenkomende sms’jes zien om ze te vergelijken met je triggerzin en te bepalen of de telefoon overgaat of trilt. Zonder dit kan er nooit iets overgaan.',
           safe: [
             'Sms’jes worden op deze telefoon in het geheugen gecontroleerd en vergeten.',
             'Niets wordt opgeslagen, gekopieerd of verzonden: de app heeft geen internet.',
@@ -374,17 +379,22 @@ const nl: Messages = {
   },
   store: {
     title: 'SMS Ring – Vind je telefoon',
-    shortDescription: 'Ook op stil en zonder internet: stuur een sms om je telefoon te laten overgaan',
+    shortDescription: 'Automatiseer je telefoon: een sms laat hem overgaan of trillen, ook op stil',
     subtitle: 'Werkt ook zonder internet',
     keywords: 'telefoon vinden,telefoon kwijt,overgaan,stil,sms,alarm,offline,privacy,open source,luid',
     promo: 'Werkt ook op stil en zonder internet. Stuur gewoon een sms om je telefoon te laten overgaan.',
     description: [
-      'Laat je telefoon op vol volume overgaan door hem een sms te sturen. Hij gaat op vol volume over, ook op stil. Geen internetverbinding nodig, het werkt zelfs met een zwak mobiel signaal.',
+      { android: 'SMS Ring is een door sms geactiveerde automatisering voor je telefoon. Stel de trigger in, een geheime zin van elk nummer of alleen van nummers die jij kiest, en je telefoon voert de actie uit: hij gaat op volle sterkte over, ook op stil, of trilt alleen, afhankelijk van het bericht. Geen internetverbinding nodig, het werkt zelfs met zwak mobiel bereik.' },
+      { ios: 'Laat je telefoon op vol volume overgaan door hem een sms te sturen. Hij gaat op vol volume over, ook op stil. Geen internetverbinding nodig, het werkt zelfs met een zwak mobiel signaal.' },
       '',
       'Online telefoonzoekers laten alleen een telefoon met internet overgaan en vereisen dat je op een ander apparaat inlogt, verbinding maakt met je telefoon... SMS Ring heeft alleen mobiel bereik nodig. Geen internet, geen accounts, niet inloggen.',
       '',
       { ios: 'BELANGRIJK: INSTELLEN VEREIST! Je moet een nieuwe automatisering in Opdrachten maken zodat de app berichten kan lezen. Je krijgt uitgebreide instructies wanneer je de app installeert en voor het eerst opent.' },
       { ios: '' },
+      { android: '⚡ Trigger: een sms met je geheime zin' },
+      { android: '🎯 Voorwaarde: van elk nummer of alleen van nummers die jij kiest' },
+      { android: '🔔 Actie: op volle sterkte overgaan of alleen trillen, afhankelijk van het bericht' },
+      { android: '' },
       '🔔 Vol volume, zelfs op stil of trillen',
       '📳 Optioneel trillen en een modus met alleen trillen',
       '🎲 Kies je geheime zin om hem te laten overgaan',

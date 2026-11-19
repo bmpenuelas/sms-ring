@@ -1,6 +1,10 @@
-Lass dein Handy mit voller Lautstärke klingeln, indem du ihm eine SMS schickst. Es klingelt mit voller Lautstärke, auch im Lautlos-Modus. Keine Internetverbindung nötig, es funktioniert sogar bei schwachem Mobilfunksignal.
+SMS Ring ist eine per SMS ausgelöste Automatisierung für dein Handy. Lege den Auslöser fest, eine geheime Phrase von beliebigen oder nur von dir gewählten Nummern, und dein Handy führt die Aktion aus: Es klingelt mit voller Lautstärke, auch im Lautlos-Modus, oder vibriert nur, je nach Nachricht. Keine Internetverbindung nötig, es funktioniert auch bei schwachem Mobilfunksignal.
 
 Online-Handyfinder können nur ein Handy mit Internetverbindung klingeln lassen und verlangen, dass du dich auf einem anderen Gerät anmeldest, eine Verbindung zu deinem Handy herstellst... SMS Ring braucht nur Mobilfunkempfang. Kein Internet, keine Konten, keine Anmeldungen.
+
+⚡ Auslöser: eine SMS mit deiner geheimen Phrase
+🎯 Bedingung: von beliebiger Nummer oder nur von Nummern deiner Wahl
+🔔 Aktion: mit voller Lautstärke klingeln oder nur vibrieren, je nach Nachricht
 
 🔔 Volle Lautstärke, auch bei lautlos oder Vibration
 📳 Optionale Vibration und reiner Vibrationsmodus

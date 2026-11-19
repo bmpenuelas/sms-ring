@@ -34,8 +34,8 @@ const pl: Messages = {
       automatic: 'Automatycznie',
     },
     status: {
-      ready: 'Czeka na Twoje hasło',
-      readyHint: 'Wyślij je z dowolnego telefonu, a ten zadzwoni, nawet wyciszony.',
+      ready: 'Automatyzacja włączona: czeka na wyzwalacz',
+      readyHint: 'Gdy SMS pasuje do wyzwalacza, ten telefon dzwoni lub wibruje, nawet w trybie cichym.',
       incomplete: 'Czeka na konfigurację',
       incompleteHint: (n: number) => `${pl3(n, 'Został 1 krok', `Zostały ${n} kroki`, `Zostało ${n} kroków`)}, zanim będzie mógł dzwonić.`,
       paused: 'Wstrzymano',
@@ -45,6 +45,11 @@ const pl: Messages = {
       pause: 'Wstrzymaj',
       finishSetup: 'Dokończ konfigurację',
       improve: 'Popraw niezawodność wykrywania',
+    },
+    automation: {
+      trigger: 'Wyzwalacz',
+      condition: 'Warunek',
+      action: 'Akcja',
     },
     passphrase: {
       title: 'Tajne hasło',
@@ -246,7 +251,7 @@ const pl: Messages = {
         sms: {
           title: 'Odbieranie SMS',
           short: 'Aby rozpoznać hasło',
-          why: 'SMS Ring musi widzieć przychodzące SMS-y, by rozpoznać Twoje hasło. Bez tego nigdy nie zadzwoni.',
+          why: 'SMS Ring to automatyzacja uruchamiana SMS-em: musi widzieć przychodzące SMS-y, by porównać je z frazą wyzwalającą i zdecydować, czy dzwonić, czy wibrować. Bez tego nic nigdy nie zadzwoni.',
           safe: [
             'SMS-y są sprawdzane na tym telefonie, w pamięci, i zapominane.',
             'Nic nie jest zapisywane, kopiowane ani wysyłane: aplikacja nie ma internetu.',
@@ -382,17 +387,22 @@ const pl: Messages = {
   },
   store: {
     title: 'SMS Ring – Głośny lokalizator',
-    shortDescription: 'Nawet wyciszony i bez internetu: wyślij SMS, by telefon zadzwonił',
+    shortDescription: 'Zautomatyzuj telefon: SMS sprawia, że dzwoni lub wibruje, nawet w trybie cichym',
     subtitle: 'Działa nawet bez internetu',
     keywords: 'znajdź telefon,zgubiony telefon,dzwonek,wyciszony,sms,alarm,offline,prywatność,otwarty kod',
     promo: 'Działa nawet po wyciszeniu i bez internetu. Wystarczy wysłać SMS, aby telefon zadzwonił.',
     description: [
-      'Spraw, by telefon zadzwonił na pełnej głośności, wysyłając do niego SMS. Dzwoni na pełnej głośności, nawet po wyciszeniu. Nie wymaga internetu i działa nawet przy słabym zasięgu sieci komórkowej.',
+      { android: 'SMS Ring to uruchamiana SMS-em automatyzacja dla Twojego telefonu. Ustaw wyzwalacz, czyli tajną frazę wysłaną z dowolnego numeru lub tylko z wybranych przez Ciebie, a telefon wykona akcję: zadzwoni z pełną głośnością, nawet w trybie cichym, albo tylko zawibruje, zależnie od wiadomości. Nie potrzebuje internetu i działa nawet przy słabym zasięgu.' },
+      { ios: 'Spraw, by telefon zadzwonił na pełnej głośności, wysyłając do niego SMS. Dzwoni na pełnej głośności, nawet po wyciszeniu. Nie wymaga internetu i działa nawet przy słabym zasięgu sieci komórkowej.' },
       '',
       'Wyszukiwarki telefonów online mogą zadzwonić tylko na telefon połączony z internetem i wymagają zalogowania się na innym urządzeniu, połączenia z telefonem... SMS Ring potrzebuje tylko zasięgu sieci. Bez internetu, bez kont, bez logowania.',
       '',
       { ios: 'WAŻNE: WYMAGANA KONFIGURACJA! Musisz utworzyć nową automatyzację w Skrótach, aby aplikacja mogła czytać wiadomości. Szczegółowe instrukcje otrzymasz po zainstalowaniu aplikacji i jej pierwszym otwarciu.' },
       { ios: '' },
+      { android: '⚡ Wyzwalacz: SMS z Twoją tajną frazą' },
+      { android: '🎯 Warunek: z dowolnego numeru lub tylko z wybranych przez Ciebie' },
+      { android: '🔔 Akcja: dzwonienie z pełną głośnością albo tylko wibracja, zależnie od wiadomości' },
+      { android: '' },
       '🔔 Pełna głośność, nawet po wyciszeniu lub w trybie wibracji',
       '📳 Opcjonalne wibracje i tryb samych wibracji',
       '🎲 Wybierz swoje tajne hasło, aby telefon zadzwonił',

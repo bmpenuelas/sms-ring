@@ -30,8 +30,8 @@ const en = {
       automatic: 'Automatic',
     },
     status: {
-      ready: 'Listening for your passphrase',
-      readyHint: 'Text it from any phone and this one rings, even on silent.',
+      ready: 'Automation on: waiting for your trigger',
+      readyHint: 'When a text matches your trigger, this phone rings or vibrates, even on silent.',
       incomplete: 'Awaiting setup',
       incompleteHint: (n: number) => (n === 1 ? '1 step left before it can ring.' : `${n} steps left before it can ring.`),
       paused: 'Paused',
@@ -41,6 +41,11 @@ const en = {
       pause: 'Pause',
       finishSetup: 'Finish setup',
       improve: 'Improve detection reliability',
+    },
+    automation: {
+      trigger: 'Trigger',
+      condition: 'Condition',
+      action: 'Action',
     },
     passphrase: {
       title: 'Secret passphrase',
@@ -242,7 +247,7 @@ const en = {
         sms: {
           title: 'Receive SMS',
           short: 'To notice your passphrase',
-          why: 'SMS Ring needs to see incoming texts to recognise your passphrase. Without it, nothing can ever ring.',
+          why: 'SMS Ring is a text-triggered automation, so it needs to see incoming texts to check them against your trigger passphrase and decide whether to ring or vibrate. Without it, nothing can ever ring.',
           safe: [
             'Texts are checked on this phone, in memory, then forgotten.',
             'Nothing is stored, copied or sent: the app has no internet access.',
@@ -382,18 +387,23 @@ const en = {
   // Store listings (fastlane metadata). Limits: title 30, short 80, subtitle 30, keywords 100 bytes, promo 170.
   store: {
     title: 'SMS Ring – Loud Phone Finder',
-    shortDescription: 'Even on silent and without internet, send an SMS to make your phone ring',
+    shortDescription: 'Automate your phone: an SMS trigger makes it ring or vibrate, even on silent',
     subtitle: 'Works even without internet',
     keywords: 'find phone,lost phone,ring,silent,sms,alarm,locate,offline,privacy,open source,loud',
     promo: 'Works even on silent and without internet. Just send an SMS to make your phone ring.',
     // Plain lines are shared; tagged lines appear only in that platform's listing.
     description: [
-      'Make your phone ring at full volume by sending an SMS to it. It rings at full volume, even on silent. No internet connection is needed, works even with just a weak mobile signal.',
+      { android: 'SMS Ring is an SMS-triggered automation for your phone. Set the trigger, a secret passphrase sent from any number or only the numbers you choose, and your phone runs the action: it rings at full volume, even on silent, or only vibrates, depending on the message. No internet connection is needed, works even with just a weak mobile signal.' },
+      { ios: 'Make your phone ring at full volume by sending an SMS to it. It rings at full volume, even on silent. No internet connection is needed, works even with just a weak mobile signal.' },
       '',
       'Online phone finders can only ring a phone that’s connected to the internet, and they require you to log in on another device, connect to your phone... SMS Ring just needs mobile signal. No internet, no accounts, no logins.',
       '',
       { ios: 'IMPORTANT SETUP NEEDED! : You need to create a new Shortcuts automation to allow the app to read messages. You will get detailed instructions showing you how to do it when you install the app and open it for the first time.' },
       { ios: '' },
+      { android: '⚡ Trigger: an SMS with your secret passphrase' },
+      { android: '🎯 Condition: from any number, or only the numbers you choose' },
+      { android: '🔔 Action: ring at full volume, or only vibrate, depending on the message' },
+      { android: '' },
       '🔔 Full volume, even on silent or vibrate',
       '📳 Optional vibration, and vibration-only mode',
       '🎲 Choose your secret passphrase to make it ring',

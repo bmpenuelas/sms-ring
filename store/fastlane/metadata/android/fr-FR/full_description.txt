@@ -1,6 +1,10 @@
-Faites sonner votre téléphone à plein volume en lui envoyant un SMS. Il sonne à plein volume, même en silencieux. Aucune connexion internet n’est nécessaire : il fonctionne même avec un faible signal mobile.
+SMS Ring est une automatisation déclenchée par SMS pour votre téléphone. Définissez le déclencheur, une phrase secrète envoyée depuis n’importe quel numéro ou seulement ceux que vous choisissez, et votre téléphone exécute l’action : il sonne à plein volume, même en silencieux, ou vibre seulement, selon le message. Aucune connexion internet n’est nécessaire, même avec un signal mobile faible.
 
 Les localisateurs en ligne ne font sonner qu’un téléphone connecté à internet et vous obligent à vous connecter à un compte sur un autre appareil, à établir une connexion avec votre téléphone... SMS Ring a juste besoin du réseau mobile. Ni internet, ni compte, ni connexion à un compte.
+
+⚡ Déclencheur: un SMS avec votre phrase secrète
+🎯 Condition: depuis n’importe quel numéro ou seulement ceux que vous choisissez
+🔔 Action: sonner à plein volume ou seulement vibrer, selon le message
 
 🔔 Plein volume, même en silencieux ou vibreur
 📳 Vibration en option et mode vibration seule

@@ -26,8 +26,8 @@ const sv: Messages = {
       automatic: 'Automatiskt',
     },
     status: {
-      ready: 'Lyssnar efter din hemliga fras',
-      readyHint: 'Sms:a den från vilken telefon som helst så ringer den här, även på ljudlöst.',
+      ready: 'Automatisering på: väntar på din utlösare',
+      readyHint: 'När ett sms matchar din utlösare ringer eller vibrerar den här telefonen, även på ljudlöst.',
       incomplete: 'Väntar på inställning',
       incompleteHint: (n: number) => (n === 1 ? '1 steg kvar innan den kan ringa.' : `${n} steg kvar innan den kan ringa.`),
       paused: 'Pausad',
@@ -37,6 +37,11 @@ const sv: Messages = {
       pause: 'Pausa',
       finishSetup: 'Slutför inställningen',
       improve: 'Gör upptäckten mer pålitlig',
+    },
+    automation: {
+      trigger: 'Utlösare',
+      condition: 'Villkor',
+      action: 'Åtgärd',
     },
     passphrase: {
       title: 'Hemlig fras',
@@ -238,7 +243,7 @@ const sv: Messages = {
         sms: {
           title: 'Ta emot sms',
           short: 'För att känna igen din fras',
-          why: 'SMS Ring behöver se inkommande sms för att känna igen din fras. Utan det kan den aldrig ringa.',
+          why: 'SMS Ring är en automatisering som utlöses av sms: den behöver se inkommande sms för att jämföra dem med din utlösarfras och avgöra om den ska ringa eller vibrera. Utan det kan inget någonsin ringa.',
           safe: [
             'Sms kontrolleras på den här telefonen, i minnet, och glöms sedan.',
             'Inget sparas, kopieras eller skickas: appen har inget internet.',
@@ -374,17 +379,22 @@ const sv: Messages = {
   },
   store: {
     title: 'SMS Ring – Hitta telefonen',
-    shortDescription: 'Även på ljudlöst och utan internet: skicka ett sms så ringer telefonen',
+    shortDescription: 'Automatisera telefonen: ett sms får den att ringa eller vibrera, även ljudlöst',
     subtitle: 'Fungerar även utan internet',
     keywords: 'hitta telefon,borttappad mobil,ringa,ljudlöst,sms,larm,offline,integritet,öppen källkod',
     promo: 'Fungerar även på ljudlöst och utan internet. Skicka bara ett sms så ringer telefonen.',
     description: [
-      'Få telefonen att ringa på full volym genom att skicka ett sms till den. Den ringer på full volym, även på ljudlöst. Ingen internetanslutning behövs, det fungerar även med svag mobilsignal.',
+      { android: 'SMS Ring är en sms-utlöst automatisering för din telefon. Ställ in utlösaren, en hemlig fras från valfritt nummer eller bara från nummer du väljer, så utför telefonen åtgärden: den ringer med full volym, även på ljudlöst, eller bara vibrerar, beroende på meddelandet. Ingen internetanslutning behövs, det fungerar även med svag mobilsignal.' },
+      { ios: 'Få telefonen att ringa på full volym genom att skicka ett sms till den. Den ringer på full volym, även på ljudlöst. Ingen internetanslutning behövs, det fungerar även med svag mobilsignal.' },
       '',
       'Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet och kräver att du loggar in på en annan enhet, ansluter till telefonen... SMS Ring behöver bara mobiltäckning. Inget internet, inga konton, inga inloggningar.',
       '',
       { ios: 'VIKTIGT: KONFIGURATION KRÄVS! Du måste skapa en ny automatisering i Genvägar för att appen ska kunna läsa meddelanden. Du får detaljerade instruktioner om hur du gör när du installerar appen och öppnar den för första gången.' },
       { ios: '' },
+      { android: '⚡ Utlösare: ett sms med din hemliga fras' },
+      { android: '🎯 Villkor: från valfritt nummer eller bara nummer du väljer' },
+      { android: '🔔 Åtgärd: ringa med full volym eller bara vibrera, beroende på meddelandet' },
+      { android: '' },
       '🔔 Full volym, även på ljudlöst eller vibration',
       '📳 Valfri vibration och läge med enbart vibration',
       '🎲 Välj din hemliga fras för att få den att ringa',

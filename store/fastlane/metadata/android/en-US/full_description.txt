@@ -1,6 +1,10 @@
-Make your phone ring at full volume by sending an SMS to it. It rings at full volume, even on silent. No internet connection is needed, works even with just a weak mobile signal.
+SMS Ring is an SMS-triggered automation for your phone. Set the trigger, a secret passphrase sent from any number or only the numbers you choose, and your phone runs the action: it rings at full volume, even on silent, or only vibrates, depending on the message. No internet connection is needed, works even with just a weak mobile signal.
 
 Online phone finders can only ring a phone that’s connected to the internet, and they require you to log in on another device, connect to your phone... SMS Ring just needs mobile signal. No internet, no accounts, no logins.
+
+⚡ Trigger: an SMS with your secret passphrase
+🎯 Condition: from any number, or only the numbers you choose
+🔔 Action: ring at full volume, or only vibrate, depending on the message
 
 🔔 Full volume, even on silent or vibrate
 📳 Optional vibration, and vibration-only mode

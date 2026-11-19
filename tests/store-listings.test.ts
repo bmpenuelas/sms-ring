@@ -62,7 +62,13 @@ for (const lang of LANGUAGES) {
         assert.ok(intro.trim())
         assert.doesNotMatch(intro, /🔔|📳|🔒|👀/u, 'two introductory paragraphs precede the features')
       }
-      const featureIndex = platform === 'ios' ? 3 : 2
+      // iOS: the Shortcuts setup warning sits here. Android: the trigger / condition / action block.
+      const featureIndex = 3
+      if (platform === 'android') {
+        const rule = paragraphs[2].split('\n')
+        assert.equal(rule.length, 3, 'automation block: trigger, condition, action')
+        for (const [i, emoji] of ['⚡', '🎯', '🔔'].entries()) assert.ok(rule[i].startsWith(marker(emoji)))
+      }
       const features = paragraphs[featureIndex].split('\n')
       assert.ok(features[0].startsWith(marker('🔔')))
       assert.ok(features[1].startsWith(marker('📳')), 'vibration is the second feature')
@@ -88,11 +94,13 @@ for (const lang of LANGUAGES) {
         assert.match(features.find((line) => line.startsWith('💬'))!, /Signal(?:em)?\.\.\.$/u)
       } else {
         assert.doesNotMatch(description, /Android|💬|WhatsApp|Messenger|Telegram|Signal/u)
-        const setup = messages.store.description.find((line: string | { ios?: string }) => typeof line === 'object' && line.ios)?.ios
+        // iOS-only lines, empty spacers excluded: [0] the iOS intro, [1] Shortcuts setup warning, [2] message-word requirement
+        const iosOnly = messages.store.description.filter((line: string | { ios?: string }) => typeof line === 'object' && line.ios)
+        const setup = iosOnly[1]?.ios
         assert.ok(setup?.trim())
         assert.equal(paragraphs[2], setup, 'localized setup warning follows the online-finder paragraph and precedes the features')
         assert.equal(paragraphs.filter(paragraph => paragraph === setup).length, 1, 'setup warning is not duplicated')
-        const ringRequirement = messages.store.description.filter((line: string | { ios?: string }) => typeof line === 'object' && line.ios)[1]?.ios
+        const ringRequirement = iosOnly[2]?.ios
         assert.ok(ringRequirement?.includes('SMS Ring'))
         assert.equal(paragraphs[5], ringRequirement, 'existing message-word requirement stays before the open-source section')
         assert.doesNotMatch(description, /iPhone\s*[:：]/u)
@@ -118,13 +126,16 @@ test('English listings contain the requested replacement wording', async () => {
   assert.equal(messages.store.promo,
     'Works even on silent and without internet. Just send an SMS to make your phone ring.')
   assert.equal(messages.store.shortDescription,
-    'Even on silent and without internet, send an SMS to make your phone ring')
+    'Automate your phone: an SMS trigger makes it ring or vibrate, even on silent')
+  const online = 'Online phone finders can only ring a phone that’s connected to the internet, and they require you to log in on another device, connect to your phone... SMS Ring just needs mobile signal. No internet, no accounts, no logins.\n\n'
+  const intro = {
+    // Android frames the app as the SMS-triggered automation it declares to Google Play.
+    android: 'SMS Ring is an SMS-triggered automation for your phone. Set the trigger, a secret passphrase sent from any number or only the numbers you choose, and your phone runs the action: it rings at full volume, even on silent, or only vibrates, depending on the message. No internet connection is needed, works even with just a weak mobile signal.\n\n',
+    ios: 'Make your phone ring at full volume by sending an SMS to it. It rings at full volume, even on silent. No internet connection is needed, works even with just a weak mobile signal.\n\n',
+  }
   for (const platform of ['android', 'ios'] as const) {
     const description = storeDescription(messages.store.description, platform)
-    assert.ok(description.startsWith(
-      'Make your phone ring at full volume by sending an SMS to it. It rings at full volume, even on silent. No internet connection is needed, works even with just a weak mobile signal.\n\n'
-      + 'Online phone finders can only ring a phone that’s connected to the internet, and they require you to log in on another device, connect to your phone... SMS Ring just needs mobile signal. No internet, no accounts, no logins.\n\n',
-    ))
+    assert.ok(description.startsWith(intro[platform] + online))
     for (const line of [
       '🎲 Choose your secret passphrase to make it ring',
       '📱 Allow from any number, or only the numbers you choose',
@@ -140,6 +151,16 @@ test('English listings contain the requested replacement wording', async () => {
   assert.ok(storeDescription(messages.store.description, 'android').includes(
     '💬 Also works with WhatsApp, Messenger, Telegram, Signal...',
   ))
+  const androidLines = storeDescription(messages.store.description, 'android').split('\n')
+  const iosLines = storeDescription(messages.store.description, 'ios').split('\n')
+  for (const line of [
+    '⚡ Trigger: an SMS with your secret passphrase',
+    '🎯 Condition: from any number, or only the numbers you choose',
+    '🔔 Action: ring at full volume, or only vibrate, depending on the message',
+  ]) {
+    assert.ok(androidLines.includes(line))
+    assert.ok(!iosLines.some((l) => l.endsWith(line.slice(2))))
+  }
   const iosParagraphs = storeDescription(messages.store.description, 'ios').split('\n\n')
   assert.equal(iosParagraphs[2],
     'IMPORTANT SETUP NEEDED! : You need to create a new Shortcuts automation to allow the app to read messages. You will get detailed instructions showing you how to do it when you install the app and open it for the first time.',

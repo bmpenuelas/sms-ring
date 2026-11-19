@@ -1,6 +1,10 @@
-Få telefonen att ringa på full volym genom att skicka ett sms till den. Den ringer på full volym, även på ljudlöst. Ingen internetanslutning behövs, det fungerar även med svag mobilsignal.
+SMS Ring är en sms-utlöst automatisering för din telefon. Ställ in utlösaren, en hemlig fras från valfritt nummer eller bara från nummer du väljer, så utför telefonen åtgärden: den ringer med full volym, även på ljudlöst, eller bara vibrerar, beroende på meddelandet. Ingen internetanslutning behövs, det fungerar även med svag mobilsignal.
 
 Onlinetjänster för att hitta mobilen kan bara ringa en telefon med internet och kräver att du loggar in på en annan enhet, ansluter till telefonen... SMS Ring behöver bara mobiltäckning. Inget internet, inga konton, inga inloggningar.
+
+⚡ Utlösare: ett sms med din hemliga fras
+🎯 Villkor: från valfritt nummer eller bara nummer du väljer
+🔔 Åtgärd: ringa med full volym eller bara vibrera, beroende på meddelandet
 
 🔔 Full volym, även på ljudlöst eller vibration
 📳 Valfri vibration och läge med enbart vibration

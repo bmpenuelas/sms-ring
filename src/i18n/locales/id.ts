@@ -26,8 +26,8 @@ const id: Messages = {
       automatic: 'Otomatis',
     },
     status: {
-      ready: 'Menunggu frasa rahasiamu',
-      readyHint: 'Kirim dari ponsel mana pun dan ponsel ini berdering, bahkan saat senyap.',
+      ready: 'Otomatisasi aktif: menunggu pemicu Anda',
+      readyHint: 'Saat SMS cocok dengan pemicu, ponsel ini berdering atau bergetar, bahkan saat senyap.',
       incomplete: 'Menunggu penyiapan',
       incompleteHint: (n: number) => `Tinggal ${n} langkah lagi agar bisa berdering.`,
       paused: 'Dijeda',
@@ -37,6 +37,11 @@ const id: Messages = {
       pause: 'Jeda',
       finishSetup: 'Selesaikan penyiapan',
       improve: 'Tingkatkan keandalan deteksi',
+    },
+    automation: {
+      trigger: 'Pemicu',
+      condition: 'Kondisi',
+      action: 'Tindakan',
     },
     passphrase: {
       title: 'Frasa rahasia',
@@ -238,7 +243,7 @@ const id: Messages = {
         sms: {
           title: 'Menerima SMS',
           short: 'Untuk mengenali frasamu',
-          why: 'SMS Ring perlu melihat SMS masuk untuk mengenali frasamu. Tanpa ini, ponsel tidak akan pernah berdering.',
+          why: 'SMS Ring adalah otomatisasi yang dipicu SMS: aplikasi perlu melihat SMS masuk untuk mencocokkannya dengan frasa pemicu Anda dan memutuskan apakah berdering atau bergetar. Tanpa ini, tidak akan pernah berdering.',
           safe: [
             'SMS diperiksa di ponsel ini, di memori, lalu dilupakan.',
             'Tidak ada yang disimpan, disalin, atau dikirim: aplikasi tidak punya internet.',
@@ -374,17 +379,22 @@ const id: Messages = {
   },
   store: {
     title: 'SMS Ring – Cari Ponsel',
-    shortDescription: 'Meski senyap dan tanpa internet, kirim SMS agar ponsel berdering',
+    shortDescription: 'Otomatiskan ponsel: SMS membuatnya berdering atau bergetar, bahkan saat senyap',
     subtitle: 'Tetap bekerja tanpa internet',
     keywords: 'cari ponsel,ponsel hilang,dering,senyap,sms,alarm,offline,privasi,sumber terbuka,keras',
     promo: 'Tetap bekerja meski senyap dan tanpa internet. Cukup kirim SMS untuk membunyikan ponselmu.',
     description: [
-      'Bunyikan ponselmu dengan volume penuh dengan mengirim SMS ke ponsel tersebut. Ponsel berdering dengan volume penuh, bahkan saat senyap. Tidak perlu koneksi internet, tetap bekerja meski sinyal seluler lemah.',
+      { android: 'SMS Ring adalah otomatisasi yang dipicu SMS untuk ponsel Anda. Tentukan pemicunya, frasa rahasia yang dikirim dari nomor mana pun atau hanya dari nomor yang Anda pilih, lalu ponsel menjalankan tindakan: berdering dengan volume penuh, bahkan saat senyap, atau hanya bergetar, sesuai pesannya. Tidak perlu internet, tetap berfungsi meski sinyal seluler lemah.' },
+      { ios: 'Bunyikan ponselmu dengan volume penuh dengan mengirim SMS ke ponsel tersebut. Ponsel berdering dengan volume penuh, bahkan saat senyap. Tidak perlu koneksi internet, tetap bekerja meski sinyal seluler lemah.' },
       '',
       'Pelacak ponsel online hanya bisa membunyikan ponsel yang terhubung ke internet dan mengharuskanmu masuk ke akun di perangkat lain, menghubungkan ke ponselmu... SMS Ring cukup dengan sinyal seluler. Tanpa internet, tanpa akun, tanpa login.',
       '',
       { ios: 'PENTING: PENYIAPAN DIPERLUKAN! Kamu perlu membuat otomatisasi baru di Pintasan agar aplikasi bisa membaca pesan. Kamu akan mendapat petunjuk terperinci tentang cara melakukannya saat menginstal aplikasi dan membukanya untuk pertama kali.' },
       { ios: '' },
+      { android: '⚡ Pemicu: SMS berisi frasa rahasia Anda' },
+      { android: '🎯 Kondisi: dari nomor mana pun atau hanya nomor yang Anda pilih' },
+      { android: '🔔 Tindakan: berdering dengan volume penuh atau hanya bergetar, sesuai pesan' },
+      { android: '' },
       '🔔 Volume penuh, bahkan saat senyap atau getar',
       '📳 Getar opsional dan mode getar saja',
       '🎲 Pilih frasa rahasiamu untuk membunyikan ponsel',

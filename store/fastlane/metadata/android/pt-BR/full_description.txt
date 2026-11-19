@@ -1,6 +1,10 @@
-Faça seu celular tocar no volume máximo enviando um SMS para ele. Ele toca no volume máximo, mesmo no silencioso. Não precisa de conexão com a internet e funciona até com sinal fraco da operadora.
+O SMS Ring é uma automação acionada por SMS para o seu celular. Defina o gatilho, uma frase secreta enviada de qualquer número ou só dos números que você escolher, e o celular executa a ação: toca em volume máximo, mesmo no silencioso, ou apenas vibra, conforme a mensagem. Não precisa de internet e funciona até com sinal móvel fraco.
 
 Localizadores online só conseguem tocar um celular conectado à internet e exigem que você faça login em outro dispositivo, conecte-se ao seu celular... O SMS Ring só precisa de sinal da operadora. Sem internet, sem contas, sem logins.
+
+⚡ Gatilho: um SMS com sua frase secreta
+🎯 Condição: de qualquer número ou só dos que você escolher
+🔔 Ação: tocar em volume máximo ou apenas vibrar, conforme a mensagem
 
 🔔 Volume máximo, mesmo no silencioso ou vibrar
 📳 Vibração opcional e modo somente vibração

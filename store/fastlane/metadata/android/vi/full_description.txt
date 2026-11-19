@@ -1,6 +1,10 @@
-Làm điện thoại đổ chuông hết cỡ bằng cách gửi SMS đến máy. Máy đổ chuông hết cỡ, kể cả khi im lặng. Không cần kết nối internet, hoạt động ngay cả khi sóng di động yếu.
+SMS Ring là tự động hóa kích hoạt bằng SMS cho điện thoại của bạn. Đặt trình kích hoạt, một cụm từ bí mật gửi từ bất kỳ số nào hoặc chỉ từ các số bạn chọn, và điện thoại sẽ thực hiện hành động: đổ chuông to hết cỡ, kể cả khi im lặng, hoặc chỉ rung, tùy nội dung tin nhắn. Không cần internet, hoạt động cả khi sóng di động yếu.
 
 Dịch vụ tìm điện thoại trực tuyến chỉ đổ chuông được máy có internet và yêu cầu bạn đăng nhập trên thiết bị khác, kết nối với điện thoại... SMS Ring chỉ cần sóng di động. Không internet, không tài khoản, không đăng nhập.
+
+⚡ Kích hoạt: một SMS có cụm từ bí mật của bạn
+🎯 Điều kiện: từ bất kỳ số nào hoặc chỉ từ các số bạn chọn
+🔔 Hành động: đổ chuông to hết cỡ hoặc chỉ rung, tùy nội dung tin nhắn
 
 🔔 Kêu hết cỡ, kể cả khi im lặng hay rung
 📳 Rung tùy chọn và chế độ chỉ rung
